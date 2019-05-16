@@ -10,6 +10,7 @@ $bsf_rt_progress_bar_color=$_POST['bsf_rt_progress_bar_color'];
 $bsf_rt_progress_bar_background_color=$_POST['bsf_rt_progress_bar_background_color'];
 $bsf_rt_progress_bar_thickness=$_POST['bsf_rt_progress_bar_thickness'];
 $bsf_rt_progress_bar_styles=$_POST['bsf_rt_progress_bar_styles'];
+$bsf_rt_single_page=$_POST['bsf_rt_single_page'];
 
 
 $update_options = array(
@@ -23,6 +24,7 @@ $update_options = array(
 		'bsf_rt_progress_bar_styles' => $bsf_rt_progress_bar_styles,
 		'bsf_rt_progress_bar_background_color' => $bsf_rt_progress_bar_background_color,
 		'bsf_rt_progress_bar_thickness' => $bsf_rt_progress_bar_thickness,
+		'bsf_rt_single_page' => $bsf_rt_single_page,
 
 	);
 

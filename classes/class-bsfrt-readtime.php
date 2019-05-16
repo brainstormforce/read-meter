@@ -41,6 +41,9 @@ class BSF_ReadTime {
 		
 			add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_below_the_post_title' ), 90 );
 		}
+		if ( isset( $bsf_rt_options['bsf_rt_single_page'] ) && 'bsf_rt_single_page' === $bsf_rt_options['bsf_rt_single_page'] ) {
+			add_filter( 'get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_excerpt' ), 1000 );
+		}
 		if ( isset( $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) && ( 'none' === $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
 			return;
 		} elseif ( isset( $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) && ( 'top_of_the_page' === $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
@@ -212,6 +215,46 @@ class BSF_ReadTime {
 	}
 
 }
+/**
+	 * Adds the reading time before the_excerpt.
+	 *
+	 * If the options is selected to automatically add the reading time before
+	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $content The original content of the_excerpt.
+	 * @return string The excerpt content with reading time prepended.
+	 */
+	public function bsf_rt_add_reading_time_before_excerpt( $content ) {
+		$bsf_rt_options = get_option( 'bsf_rt' );
+
+		// Get the post type of the current post.
+		$bsf_rt_current_post_type = get_post_type();
+
+		// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+		if ( isset( $bsf_rt_options['bsf_rt_post_types'] ) && !in_array($bsf_rt_current_post_type, $bsf_rt_options['bsf_rt_post_types']) )  {
+			return $title;
+		}
+
+		$original_content = $content;
+		$bsf_rt_post          = get_the_ID();
+
+		$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $bsf_rt_options );
+
+		$label            = $bsf_rt_options['bsf_rt_reading_time_label'];
+		$postfix          = $bsf_rt_options['bsf_rt_reading_time_postfix_label'];
+
+		if ( $this->reading_time > 1 ) {
+			$calculated_postfix = $postfix;
+		} else {
+			$calculated_postfix = 'mins';
+		}
+
+		$content  = '<span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span>';
+		$content .= $original_content;
+		return $content;
+	}
 
 	/**
 	 * Adds the reading time after astra_header.

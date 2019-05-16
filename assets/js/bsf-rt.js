@@ -20,3 +20,8 @@ var expanded = false;
     expanded = false;
   }
 }
+
+// Color Picker JS
+jQuery(document).ready(function($){
+    $('.my-color-field').wpColorPicker();
+});

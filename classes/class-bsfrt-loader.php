@@ -43,6 +43,7 @@ if (! class_exists('BSF_RT_Loader') ) :
          */
         public function bsfrt_pluginStyle()
         { 
+             wp_enqueue_style( 'wp-color-picker' );
              wp_enqueue_style('customstyle',BSF_RT_PLUGIN_URL.'/assets/css/styles.css');
         }
          /**

@@ -14,34 +14,36 @@
                   </th>
                   <td>
                     <input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="275" class="regular-text">
-                    <p class="description">
-                        
-                            Defaults to 275 , The average number of words an adult can read in a minute.
-                        
-                    </p>  
+                    
                   </td>
             </tr>
              <tr>
                   <th scope="row">
-                    <label for="SelectPostTypes">Select Post Types</label>
+                    <label for="SelectPostTypes">Select Post Types :</label>
                   </th>
                  <td>
-                    <div class="multiselect">
-                            <div class="selectBox" onclick="showCheckboxes()">
-                              <select>
-                                <option>Select an option</option>
-                              </select>
-                              <div class="overSelect"></div>
-                            </div>
-                            <div id="checkboxes">
-                                    <?php
-                              foreach ( get_post_types( '', 'names' ) as $post_type ) {
+                                   <?php
+                                    $args = array(
+                                         'public'   => true,
+                                        '_builtin' => true
+                                      );
+                              foreach ( get_post_types( $args, 'names' ) as $post_type ) {
                                 
                              echo '<br>'.'<input type="checkbox" name="posts[]" value="'.$post_type.'"/>' . $post_type;
                             }
                                 ?>
-                            </div>
-                      </div>
+                                 <?php
+                                    $args = array(
+                                         'public'   => true,
+                                        '_builtin' => false
+                                      );
+                              foreach ( get_post_types( $args, 'names' ) as $post_type ) {
+                                
+                             echo '<br>'.'<input type="checkbox" name="posts[]" value="'.$post_type.'"/>' . $post_type;
+                            }
+                                ?>
+                          
+                      
                     <p class="description">
                      
                             Deafults to Above Post Content , Specify Position   Where Do you want to display the Reading Time
@@ -60,7 +62,7 @@
                   </th>
                  <td>
                     <label for="ForSinglePage">
-                        <input type="checkbox" name="Single Page" value="1">
+                        <input type="checkbox" name="bsf_rt_single_page" value="bsf_rt_single_page">
                     Single Page</label> 
                   </td>
             </tr>
@@ -70,7 +72,7 @@
                   </th>
                  <td>
                          <select required name="bsf_rt_position_of_read_time">
-                            <option value="<?php $options=get_option('bsf_rt'); echo $options['bsf_rt_position_of_read_time'];?>"><?php $options=get_option('bsf_rt'); echo $options['bsf_rt_position_of_read_time'];?></option>
+                            <option value="<?php $options=get_option('bsf_rt'); echo $options['bsf_rt_position_of_read_time'];?>">--Select Position--</option>
                             <option value="none">None</option>
                             <option value="above_the_content">Above the Content</option>
                             <option value="above_the_post_title">Above the Post Title</option>
@@ -144,7 +146,7 @@
                     <label for="ProgressBarColor">Color :</label>
                   </th>
                   <td>
-                   <input type="color" name="bsf_rt_progress_bar_color">
+                   <input type="color" class="my-color-field" name="bsf_rt_progress_bar_color">
                   </td>
             </tr>
              <tr>
