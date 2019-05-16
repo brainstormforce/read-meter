@@ -1,0 +1,52 @@
+.multiselect {
+  width: 200px;
+}
+.selectBox {
+  position: relative;
+}
+.selectBox select {
+  width: 100%;
+  font-weight: normal;
+}
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+#checkboxes label {
+  display: block;
+}
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+/*Class readtime CSS*/
+
+.bsf_rt_reading_time_before_content
+{
+	background-color: black;
+	color: white;
+    font-weight: bolder;
+	font-weight: 500;
+	width: auto;
+	padding: 5px;
+	display: inline-block;
+
+}
+.bsf_rt_reading_time_after_astra_header
+{
+    background-color: black;
+	color: white;
+	margin-left: 75px;
+	font-weight: bolder;
+	font-weight: 500;
+	width: auto;
+	padding: 5px;
+	display: inline-block;
+}
