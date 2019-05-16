@@ -16,7 +16,7 @@ class BSF_ReadTime {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		// die();
+        
 		$default_options = array(
 		'bsf_rt_reading_time_label'=> 'Reading Time',
 		'bsf_rt_reading_time_postfix_label'=> 'mins',
@@ -29,14 +29,44 @@ class BSF_ReadTime {
 
 	$bsf_rt_options = get_option( 'bsf_rt' );
 
-	if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'above_the_content' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
-		// die();
+	   if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'above_the_content' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
+		
 			add_filter( 'the_content', array( $this, 'bsf_rt_add_reading_time_before_content' ), 90 );
 		}
+		if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'above_the_post_title' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
+		
+			add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_above_the_post_title' ), 90 );
+		}
+		if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'below_the_post_title' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
+		
+			add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_below_the_post_title' ), 90 );
+		}
+		if ( isset( $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) && ( 'none' === $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
+			return;
+		} elseif ( isset( $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) && ( 'top_of_the_page' === $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
+				add_action('wp_head','hook_header');
+				function hook_header() {
+					echo '<div class="progress-container-top">
+            	<div class="progress-bar" id="myBar"></div>
+            	</div>';
+				}
+				
+		} elseif ( isset( $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) && ( 'bottom_of_the_page' === $bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
+				add_action('wp_head','hook_header');
+				function hook_header() {
+				echo '<div class="progress-container-bottom">
+            	<div class="progress-bar" id="myBar"></div>
+            	</div>';
+            }
+		}
+		if ( isset( $bsf_rt_options['bsf_rt_progress_bar_color'] ) ) {
+			
+		}
 
-		 if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && 'below_ast_header' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) {
-		 	add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
-		 }
+
+		 // if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && 'below_ast_header' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) {
+		 // 	add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
+		 // }
 	}
 
 	/**
@@ -80,10 +110,108 @@ class BSF_ReadTime {
 			$calculated_postfix = 'mins';
 		}
 
-		$content  = '<span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span>';
+		$content  = '
+		<span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span>';
 		$content .= $original_content;
 		return $content;
 	}
+	/**
+	 * Adds the reading time above the post title.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $content The original post content.
+	 * @return string The post content with reading time prepended.
+	 */
+	public function bsf_rt_add_reading_time_above_the_post_title( $title) {
+		// die();
+		if ( in_the_loop() && ( is_single() || is_page() || is_home() || is_category() ) ) {
+        
+  
+		$bsf_rt_options = get_option( 'bsf_rt' );
+
+		// Get the post type of the current post.
+		$bsf_rt_current_post_type = get_post_type();
+		
+		// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+	
+		if ( isset( $bsf_rt_options['bsf_rt_post_types'] ) && !in_array($bsf_rt_current_post_type, $bsf_rt_options['bsf_rt_post_types']) )  {
+			return $title;
+		}
+
+		$original_title = $title;
+		$bsf_rt_post          = get_the_ID();
+		$post_meta=get_post_meta( $bsf_rt_post,'bsf_rt_reading_time',true);
+		$previous_word_count=get_post_meta( $bsf_rt_post,'bsf_rt_reading_time',true);
+		
+		$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $bsf_rt_options );
+	
+		$label            = $bsf_rt_options['bsf_rt_reading_time_label'];
+		$postfix          = $bsf_rt_options['bsf_rt_reading_time_postfix_label'];
+		
+
+		if ( $this->reading_time > 1 ) {
+			$calculated_postfix = $postfix;
+		} else {
+			$calculated_postfix = 'mins';
+		}
+
+		$title  = '
+		<span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span><br>';
+		$title .= $original_title;
+		return $title;
+	}
+
+}
+/**
+	 * Adds the reading time above the post title.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $content The original post content.
+	 * @return string The post content with reading time prepended.
+	 */
+	public function bsf_rt_add_reading_time_below_the_post_title( $title) {
+		// die();
+		if ( in_the_loop() && ( is_single() || is_page() || is_home() || is_category() ) ) {
+        
+  
+		$bsf_rt_options = get_option( 'bsf_rt' );
+
+		// Get the post type of the current post.
+		$bsf_rt_current_post_type = get_post_type();
+		
+		// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+	
+		if ( isset( $bsf_rt_options['bsf_rt_post_types'] ) && !in_array($bsf_rt_current_post_type, $bsf_rt_options['bsf_rt_post_types']) )  {
+			return $title;
+		}
+
+		$original_title = $title;
+		$bsf_rt_post          = get_the_ID();
+		$post_meta=get_post_meta( $bsf_rt_post,'bsf_rt_reading_time',true);
+		$previous_word_count=get_post_meta( $bsf_rt_post,'bsf_rt_reading_time',true);
+		
+		$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $bsf_rt_options );
+	
+		$label            = $bsf_rt_options['bsf_rt_reading_time_label'];
+		$postfix          = $bsf_rt_options['bsf_rt_reading_time_postfix_label'];
+		
+
+		if ( $this->reading_time > 1 ) {
+			$calculated_postfix = $postfix;
+		} else {
+			$calculated_postfix = 'mins';
+		}
+
+		$title  = ' 
+		<br><span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span>';
+		$original_title .= $title;
+		$title=$original_title;
+		return $title;
+	}
+
+}
 
 	/**
 	 * Adds the reading time after astra_header.
@@ -117,7 +245,10 @@ class BSF_ReadTime {
 			$calculated_postfix = 'mins';
 		}
 
-	echo '<span class="bsf_rt_reading_time_after_astra_header"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span>';
+	echo '
+			<span class="bsf_rt_reading_time_after_astra_header"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span>
+	         ';
+
 	}
 
 	/**

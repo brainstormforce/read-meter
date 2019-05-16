@@ -32,6 +32,8 @@ if (! class_exists('BSF_RT_Loader') ) :
         {
             require BSF_RT_ABSPATH.'includes/bsf-rt-page.php'; 
            add_action('init', array($this, 'bsfrt_pluginStyle'));
+           add_action('init', array($this, 'bsfrt_pluginScript'));
+           
         }         
         /**
          * Plugin Styles.
@@ -42,6 +44,16 @@ if (! class_exists('BSF_RT_Loader') ) :
         public function bsfrt_pluginStyle()
         { 
              wp_enqueue_style('customstyle',BSF_RT_PLUGIN_URL.'/assets/css/styles.css');
+        }
+         /**
+         * Plugin Scripts.
+         *
+         * @since  1.0.0
+         * @return void
+         */
+        public function bsfrt_pluginScript()
+        { 
+             wp_enqueue_script('customscript',BSF_RT_PLUGIN_URL.'/assets/js/bsf-rt.js');
         }
 
        
