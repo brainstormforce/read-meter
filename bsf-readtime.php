@@ -1,6 +1,6 @@
 <?php
    /**
-    * Plugin Name: BSF ReadTime
+    * Plugin Name: Read Meter - Advanced Read Time & Reading Progress Bar for WordPress
     * Plugin URI:  https://brainstormforce.com
     * Description:  To Display Reading time for a particular post.    
     * Version:     1.0.0
