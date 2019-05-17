@@ -13,7 +13,7 @@
                     <label for="WordsPerMinute">Words Per Minute :</label>
                   </th>
                   <td>
-                    <input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="275" class="regular-text">
+                    <input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="275" class="small-text">
                     
                   </td>
             </tr>
@@ -154,7 +154,7 @@
                     <label for="ProgressBarBackgroundColor">Background Color :</label>
                   </th>
                  <td>
-                   <input type="color" name="bsf_rt_progress_bar_background_color">
+                   <input type="color" class="my-color-field" name="bsf_rt_progress_bar_background_color">
                  </td>
             </tr>
              <tr>
@@ -162,7 +162,7 @@
                     <label for="Thickness">Thickness :</label>
                   </th>
                   <td>
-                   <input type="number" name="bsf_rt_progress_bar_thickness">px
+                   <input type="number" class="small-text" name="bsf_rt_progress_bar_thickness">px
                   </td>
             </tr>
             

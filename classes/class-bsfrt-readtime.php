@@ -62,11 +62,12 @@ class BSF_ReadTime {
             	</div>';
             }
 		}
-		if ( isset( $bsf_rt_options['bsf_rt_progress_bar_color'] ) ) {
-			
-		}
 
+		
+		// if ( isset( $bsf_rt_options['bsf_rt_progress_bar_color'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_background_color'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_thickness'] ) ) {
 
+		//  $this->bsf_rt_set_progressbar_colors($bsf_rt_options['bsf_rt_progress_bar_color'],$bsf_rt_options['bsf_rt_progress_bar_background_color'],$bsf_rt_options['bsf_rt_progress_bar_thickness']);
+  //   }
 		 // if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && 'below_ast_header' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) {
 		 // 	add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
 		 // }
@@ -358,6 +359,37 @@ class BSF_ReadTime {
 		}
 
 		return $additional_time;
+	}
+
+	/**
+	 * Adds CSS to the progress BAr as per User input.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param Progress Bar color.
+	 * @param Progress Bar Background color.
+	 * @param Progress Bar Thickness.
+	 * 
+	 * @return int  Additional time added to the reading time by images.
+	 */
+	public function bsf_rt_set_progressbar_colors($bsf_rt_progress_bar_color,$bsf_rt_progress_bar_background_color,$bsf_rt_progress_bar_thickness) {
+		var_dump($bsf_rt_progress_bar_background_color);
+		?>
+		<style type="text/css">
+				.progress-container-top{
+				background: <?php echo $bsf_rt_progress_bar_background_color; ?>;
+				height: <?php echo $bsf_rt_progress_bar_thickness; ?>px;
+				}
+				.progress-container-bottom {
+				background: <?php echo $bsf_rt_progress_bar_background_color; ?>;
+				height: <?php echo $bsf_rt_progress_bar_thickness; ?>px;
+				}
+				.progress-bar {
+				background: <?php echo $bsf_rt_progress_bar_color; ?>;
+				height: <?php echo $bsf_rt_progress_bar_thickness; ?>px;
+				}
+		</style>
+<?php
 	}
 
 }

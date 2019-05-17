@@ -71,6 +71,7 @@
 
 .progress-bar {
   height: 8px;
-  background: #4caf50;
+  background: #FF0040;
   width: 0%;
+  z-index: 2;
 }
