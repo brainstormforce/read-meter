@@ -22,26 +22,26 @@
                     <label for="SelectPostTypes">Select Post Types :</label>
                   </th>
                  <td>
-                                   <?php
+                                    <?php
                                     $args = array(
                                          'public'   => true,
                                         '_builtin' => true
                                       );
-                              foreach ( get_post_types( $args, 'names' ) as $post_type ) {
+                                    foreach ( get_post_types($args, 'names') as $post_type ) {
                                 
-                             echo '<br>'.'<input type="checkbox" name="posts[]" value="'.$post_type.'"/>' . $post_type;
-                            }
-                                ?>
-                                 <?php
+                                        echo '<br>'.'<input type="checkbox" name="posts[]" value="'.$post_type.'"/>' . $post_type;
+                                    }
+                                    ?>
+                                    <?php
                                     $args = array(
                                          'public'   => true,
                                         '_builtin' => false
                                       );
-                              foreach ( get_post_types( $args, 'names' ) as $post_type ) {
+                                    foreach ( get_post_types($args, 'names') as $post_type ) {
                                 
-                             echo '<br>'.'<input type="checkbox" name="posts[]" value="'.$post_type.'"/>' . $post_type;
-                            }
-                                ?>
+                                        echo '<br>'.'<input type="checkbox" name="posts[]" value="'.$post_type.'"/>' . $post_type;
+                                    }
+                                    ?>
                           
                       
                     <p class="description">

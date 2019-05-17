@@ -30,25 +30,25 @@
 
 .bsf_rt_reading_time_before_content
 {
-	background-color: black;
-	color: white;
+    background-color: black;
+    color: white;
     font-weight: bolder;
-	font-weight: 500;
-	width: auto;
-	padding: 5px;
-	display: inline-block;
+    font-weight: 500;
+    width: auto;
+    padding: 5px;
+    display: inline-block;
 
 }
 .bsf_rt_reading_time_after_astra_header
 {
     background-color: black;
-	color: white;
-	margin-left: 75px;
-	font-weight: bolder;
-	font-weight: 500;
-	width: auto;
-	padding: 5px;
-	display: inline-block;
+    color: white;
+    margin-left: 75px;
+    font-weight: bolder;
+    font-weight: 500;
+    width: auto;
+    padding: 5px;
+    display: inline-block;
 }
 
 /*Progress Bar CSS*/

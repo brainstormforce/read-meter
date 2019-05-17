@@ -8,7 +8,7 @@
 function BSF_RT_Settings_page()
 {
     add_submenu_page(
-    	'tools.php',
+        'tools.php',
         'BSF ReadTime',
         'BSF ReadTime',
         'manage_options',
