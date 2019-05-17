@@ -63,11 +63,19 @@ class BSF_ReadTime {
             }
 		}
 
-		
-		// if ( isset( $bsf_rt_options['bsf_rt_progress_bar_color'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_background_color'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_thickness'] ) ) {
+		if ( isset( $bsf_rt_options['bsf_rt_progress_bar_styles'] ) && ('Normal' === $bsf_rt_options['bsf_rt_progress_bar_styles'])  ) {
 
-		//  $this->bsf_rt_set_progressbar_colors($bsf_rt_options['bsf_rt_progress_bar_color'],$bsf_rt_options['bsf_rt_progress_bar_background_color'],$bsf_rt_options['bsf_rt_progress_bar_thickness']);
-  //   }
+			if ( isset( $bsf_rt_options['bsf_rt_progress_bar_color'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_background_color'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_thickness'] ) ) {
+
+			 $this->bsf_rt_set_progressbar_colors_normal($bsf_rt_options['bsf_rt_progress_bar_color'],$bsf_rt_options['bsf_rt_progress_bar_background_color'],$bsf_rt_options['bsf_rt_progress_bar_thickness']);
+	    }
+   } elseif ( isset( $bsf_rt_options['bsf_rt_progress_bar_styles'] ) && ('Gradient' === $bsf_rt_options['bsf_rt_progress_bar_styles'])  ) {
+
+			if ( isset( $bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_gradiant_two'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_background_color'] ) && isset( $bsf_rt_options['bsf_rt_progress_bar_thickness'] ) ) {
+
+			 $this->bsf_rt_set_progressbar_colors_gradient($bsf_rt_options['bsf_rt_progress_bar_gradiant_one'],$bsf_rt_options['bsf_rt_progress_bar_gradiant_two'],$bsf_rt_options['bsf_rt_progress_bar_background_color'],$bsf_rt_options['bsf_rt_progress_bar_thickness']);
+	    }
+   } 
 		 // if ( isset( $bsf_rt_options['bsf_rt_position_of_read_time'] ) && 'below_ast_header' === $bsf_rt_options['bsf_rt_position_of_read_time'] ) {
 		 // 	add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
 		 // }
@@ -362,7 +370,7 @@ class BSF_ReadTime {
 	}
 
 	/**
-	 * Adds CSS to the progress BAr as per User input.
+	 * Adds CSS to the progress BAr as per User input , When Style is Selected Normal.
 	 *
 	 * @since 1.1.0
 	 *
@@ -372,8 +380,8 @@ class BSF_ReadTime {
 	 * 
 	 * @return int  Additional time added to the reading time by images.
 	 */
-	public function bsf_rt_set_progressbar_colors($bsf_rt_progress_bar_color,$bsf_rt_progress_bar_background_color,$bsf_rt_progress_bar_thickness) {
-		var_dump($bsf_rt_progress_bar_background_color);
+	public function bsf_rt_set_progressbar_colors_normal($bsf_rt_progress_bar_color,$bsf_rt_progress_bar_background_color,$bsf_rt_progress_bar_thickness) {
+		
 		?>
 		<style type="text/css">
 				.progress-container-top{
@@ -387,6 +395,39 @@ class BSF_ReadTime {
 				.progress-bar {
 				background: <?php echo $bsf_rt_progress_bar_color; ?>;
 				height: <?php echo $bsf_rt_progress_bar_thickness; ?>px;
+				}
+		</style>
+<?php
+	}
+	
+	/**
+	 * Adds CSS to the progress Bar as per User input , When Style is Selected Gradient.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param Progress Bar gradient color one.
+	 * @param Progress Bar gradient color two.
+	 * @param Progress Bar Background color.
+	 * @param Progress Bar Thickness.
+	 * 
+	 * @return int  Additional time added to the reading time by images.
+	 */
+	public function bsf_rt_set_progressbar_colors_gradient($bsf_rt_progress_bar_gradiant_one,$bsf_rt_progress_bar_gradiant_two,$bsf_rt_progress_bar_background_color,$bsf_rt_progress_bar_thickness) {
+		
+		?>
+		<style type="text/css">
+				.progress-container-top{
+				background: <?php echo $bsf_rt_progress_bar_background_color; ?>;
+				height: <?php echo $bsf_rt_progress_bar_thickness; ?>px;
+				}
+				.progress-container-bottom {
+				background: <?php echo $bsf_rt_progress_bar_background_color; ?>;
+				height: <?php echo $bsf_rt_progress_bar_thickness; ?>px;
+				}
+				.progress-bar {
+				background-color:  <?php echo $bsf_rt_progress_bar_gradiant_one; ?>;
+				background-image: linear-gradient(to bottom right, <?php echo $bsf_rt_progress_bar_gradiant_one; ?>, <?php echo $bsf_rt_progress_bar_gradiant_two; ?>);
+
 				}
 		</style>
 <?php
