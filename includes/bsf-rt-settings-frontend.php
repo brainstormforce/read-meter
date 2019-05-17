@@ -129,34 +129,57 @@
                    
                   </td>
             </tr>
+             
              <tr>
                   <th scope="row">
                     <label for="ProgressBarStyle">Styles :</label>
                   </th>
                   <td>
-                    <select required name="bsf_rt_progress_bar_styles">
-                        <option value="Normal">Normal</option>
-                        <option value="Gradient">Gradient</option>
+                    <select  name="bsf_rt_progress_bar_styles" id="getFname" onchange="bsd_rt_ColorSelectCheck(this);">
+                        <option  value="Normal">Normal</option>
+                        <option id="gradiantcolor" value="Gradient">Gradient</option>
                      </select>
-                   
+
                   </td>
             </tr>
-            <tr>
-                  <th scope="row">
-                    <label for="ProgressBarColor">Color :</label>
-                  </th>
-                  <td>
-                   <input type="color" class="my-color-field" name="bsf_rt_progress_bar_color">
-                  </td>
-            </tr>
-             <tr>
+            
+              <tr id="normal-color-wrap">
+                    <th scope="row">
+                      <label for="ProgressBarColor">Color :</label>
+                    </th>
+                  
+                    <td>
+                     <input name="bsf_rt_progress_bar_color" class="my-color-field" value="#00bfff">
+                    </td>
+              </tr>
+              
+             <tr id="normal-back-wrap">
                   <th scope="row">
                     <label for="ProgressBarBackgroundColor">Background Color :</label>
                   </th>
+
                  <td>
-                   <input type="color" class="my-color-field" name="bsf_rt_progress_bar_background_color">
+                   <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#ffffff">
+
                  </td>
             </tr>
+             <tr id="gradiant-wrap1">
+                    <th scope="row">
+                      <label for="ProgressBarColor">Primary Color :</label>
+                    </th>
+                    <td>
+                     <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#cd5c5c">
+                    </td>
+                </tr>
+                <tr id="gradiant-wrap2">
+                    <th scope="row">
+                      <label for="ProgressBarColor">Secondary Color :</label>
+                    </th>
+                    <td>
+                     <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#00bfff">
+                    </td>
+                </tr>
+
              <tr>
                   <th scope="row">
                     <label for="Thickness">Thickness :</label>

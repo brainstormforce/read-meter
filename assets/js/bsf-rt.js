@@ -16,20 +16,28 @@ function myFunction() {
   document.getElementById("myBar").style.width = scrolled + "%";
 }
 
-// Select Option of Post Type JS
-var expanded = false;
-    function showCheckboxes() {
-  var checkboxes = document.getElementById("checkboxes");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-
 // Color Picker JS
 jQuery(document).ready(function($){
     $('.my-color-field').wpColorPicker();
 });
+
+// Progress Bar color selection JS
+function bsd_rt_ColorSelectCheck(nameSelect)
+{
+    console.log(nameSelect);
+    if(nameSelect){
+       admOptionValue = document.getElementById("gradiantcolor").value;
+       if(admOptionValue == nameSelect.value){
+            
+             document.getElementById("gradiant-wrap2").style.display = "table-row";
+             document.getElementById("gradiant-wrap1").style.display = "table-row";
+            document.getElementById("normal-color-wrap").style.display = "none";
+
+        }
+        else{
+            document.getElementById("gradiant-wrap2").style.display = "none";
+            document.getElementById("gradiant-wrap1").style.display = "none";            
+            document.getElementById("normal-color-wrap").style.display = "table-row";
+        }
+      }
+}

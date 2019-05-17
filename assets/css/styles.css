@@ -75,3 +75,9 @@
   width: 0%;
   z-index: 2;
 }
+
+#gradiant-wrap1 , #gradiant-wrap2 {
+
+  display: none;
+
+}
