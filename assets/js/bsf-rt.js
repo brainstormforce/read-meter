@@ -4,17 +4,20 @@ window.onscroll = function () {
 
 function myFunction()
 {
-    console.log("inside myfun");
+   
     var content = document.getElementById("main");
 
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    console.log(winScroll);
+    //console.log(winScroll);
     var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     //var height = 1519;
+    console.log(document.documentElement.scrollHeight);
     console.log(document.documentElement.clientHeight);
+    console.log(height);
+    console.log("height");
     var scrolled = (winScroll / height) * 100;
-    console.log(scrolled); 
-    // console.log(scrolled);
+    //console.log(scrolled); 
+   
     document.getElementById("myBar").style.width = scrolled + "%";
 }
 
