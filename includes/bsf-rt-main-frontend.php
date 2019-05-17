@@ -1,5 +1,5 @@
 <?php
-echo '<h1> BSF ReadTime </h1>';
+echo '<h1> Read Meter </h1>';
  
 //Navigation
 

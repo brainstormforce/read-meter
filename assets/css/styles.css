@@ -81,3 +81,9 @@
   display: none;
 
 }
+
+/*Post Types CSS*/
+.post_type_name
+{
+  text-transform: capitalize;
+}
