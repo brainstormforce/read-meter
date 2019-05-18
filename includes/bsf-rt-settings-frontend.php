@@ -30,17 +30,22 @@
             foreach ( get_post_types($args, 'objects') as $post_type ) {
                if ( in_array($post_type->labels->name, $exclude)  ) {
             continue;
-              }
-              if ( in_array($post_type->labels->name , $options['bsf_rt_post_types'])) {
-                echo'<label for="ForPostType">
-                 <input type="checkbox" checked name="posts[]" value="'.$post_type->labels->name.'">
-                 '.$post_type->labels->name.'</label><br> ';
+              } 
+              if(isset($options['bsf_rt_post_types'])){
+                if ( in_array($post_type->labels->name , $options['bsf_rt_post_types'])) {
+                  echo'<label for="ForPostType">
+                   <input type="checkbox" checked name="posts[]" value="'.$post_type->labels->name.'">
+                   '.$post_type->labels->name.'</label><br> ';
+                } else {
+                 echo'<label for="ForPostType">
+                   <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
+                   '.$post_type->labels->name.'</label><br> ';
+                }
               } else {
-               echo'<label for="ForPostType">
-                 <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
-                 '.$post_type->labels->name.'</label><br> ';
+                echo'<label for="ForPostType">
+                   <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
+                   '.$post_type->labels->name.'</label><br> ';
               }
-              
             }
           ?>
           

@@ -35,9 +35,14 @@
               }
 
               function goInactive() {
-                document.getElementById("myBar").style.opacity=0.5;
-                document.getElementById("myWrap").style.opacity=0.5;
-              }
+                var mybar=document.getElementById("myBar");
+                var mywrap=document.getElementById("myWrap");
+
+                if (typeof mybar !== 'undefined' && typeof myWrap !== 'undefined' ){
+                  myWrap.style.opacity=0.5;
+                  myWrap.style.opacity=0.5;
+                }
+            }
 
               function goActive() {
                 document.getElementById("myBar").style.opacity=1;
