@@ -81,7 +81,29 @@ var idleTime = 0;
   );
 
   // Progress Bar color selection JS
-  function bsd_rt_ColorSelectCheck(nameSelect)
+  window.onload = function() {
+  bsd_rt_ColorSelectCheck();
+};
+  function bsd_rt_ColorSelectCheck()
+  { 
+    nameSelect=document.getElementById("getFname").value;
+    
+      console.log(nameSelect);
+      if(nameSelect === 'Gradient') {
+         
+               document.getElementById("gradiant-wrap2").style.display = "table-row";
+               document.getElementById("gradiant-wrap1").style.display = "table-row";
+              document.getElementById("normal-color-wrap").style.display = "none";
+
+          }
+          else{
+              document.getElementById("gradiant-wrap2").style.display = "none";
+              document.getElementById("gradiant-wrap1").style.display = "none";            
+              document.getElementById("normal-color-wrap").style.display = "table-row";
+          }
+      }
+
+      function bsd_rt_ColorSelectCheck_two(nameSelect)
   {
       console.log(nameSelect);
       if(nameSelect) {
@@ -100,3 +122,5 @@ var idleTime = 0;
           }
       }
   }
+
+  

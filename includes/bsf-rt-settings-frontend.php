@@ -188,7 +188,7 @@
           <label for="ProgressBarStyle">Styles :</label>
         </th>
           <td>
-            <select  name="bsf_rt_progress_bar_styles" id="getFname" onchange="bsd_rt_ColorSelectCheck(this);">
+            <select  name="bsf_rt_progress_bar_styles" id="getFname" onchange="bsd_rt_ColorSelectCheck_two(this);">
                 <?php 
                 if (isset($options['bsf_rt_progress_bar_styles'])) {
                     if ('Normal' === $options['bsf_rt_progress_bar_styles']) {
