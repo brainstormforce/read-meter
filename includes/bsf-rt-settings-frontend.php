@@ -1,3 +1,9 @@
+<!-- 
+ * Add Global settings Frontend Page of the read meter Plugin.
+ *
+ * @since  1.0.0
+ * @return void
+ * -->
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
   <form action="<?php echo "?page=bsf_rt&tab=bsf_rt_settings_backend"; ?>" method="post" name="bsf_rt_settings_form">
     <table class="form-table" > 
@@ -19,7 +25,7 @@
           <label for="SelectPostTypes">Select Post Types :</label>
         </th>
         <td class="post_type_name">
-          <?php
+            <?php
             $args = array(
             'public'   => true,
             
@@ -28,26 +34,26 @@
             $exclude=array('attachment','elementor_library','Media','My Templates');
 
             foreach ( get_post_types($args, 'objects') as $post_type ) {
-               if ( in_array($post_type->labels->name, $exclude)  ) {
-            continue;
-              } 
-              if(isset($options['bsf_rt_post_types'])){
-                if ( in_array($post_type->labels->name , $options['bsf_rt_post_types'])) {
-                  echo'<label for="ForPostType">
+                if (in_array($post_type->labels->name, $exclude)  ) {
+                    continue;
+                } 
+                if (isset($options['bsf_rt_post_types'])) {
+                    if (in_array($post_type->labels->name, $options['bsf_rt_post_types'])) {
+                        echo'<label for="ForPostType">
                    <input type="checkbox" checked name="posts[]" value="'.$post_type->labels->name.'">
                    '.$post_type->labels->name.'</label><br> ';
+                    } else {
+                        echo'<label for="ForPostType">
+                   <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
+                   '.$post_type->labels->name.'</label><br> ';
+                    }
                 } else {
-                 echo'<label for="ForPostType">
+                    echo'<label for="ForPostType">
                    <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
                    '.$post_type->labels->name.'</label><br> ';
                 }
-              } else {
-                echo'<label for="ForPostType">
-                   <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
-                   '.$post_type->labels->name.'</label><br> ';
-              }
             }
-          ?>
+            ?>
           
           <p class="description">
             Deafults to  Post.
@@ -69,12 +75,12 @@
         <td>
           <label for="ForSinglePage">
             <?php
-               if ($options['bsf_rt_single_page']) {
+            if ($options['bsf_rt_single_page']) {
                 echo ' <input type="checkbox" checked name="bsf_rt_single_page" value="bsf_rt_single_page">';
-              } else {
+            } else {
                 echo ' <input type="checkbox" name="bsf_rt_single_page" value="bsf_rt_single_page">';
-              }
-             ?>
+            }
+            ?>
          
           Single Page</label> 
         </td>
@@ -88,27 +94,27 @@
           <select required name="bsf_rt_position_of_read_time">
             <?php 
             if (isset($options['bsf_rt_position_of_read_time'])) {
-              if ('above_the_content' === $options['bsf_rt_position_of_read_time']) {
-                echo '<option selected value="above_the_content">Above the Content</option>';
-              } else {
-                  echo '<option  value="above_the_content">Above the Content</option>';
-              }
-               if ('above_the_post_title' === $options['bsf_rt_position_of_read_time']) {
-                echo '<option selected value="above_the_post_title">Above the Post Title</option>';
-              } else {
-                  echo '<option value="above_the_post_title">Above the Post Title</option>';
-              }
-               if ('below_the_post_title' === $options['bsf_rt_position_of_read_time']) {
-                echo '<option selected value="below_the_post_title">Below the Post Title</option>';
-              } else {
-                  echo '<option value="below_the_post_title">Below the Post Title</option>';
-              }
+                if ('above_the_content' === $options['bsf_rt_position_of_read_time']) {
+                    echo '<option selected value="above_the_content">Above the Content</option>';
+                } else {
+                    echo '<option  value="above_the_content">Above the Content</option>';
+                }
+                if ('above_the_post_title' === $options['bsf_rt_position_of_read_time']) {
+                    echo '<option selected value="above_the_post_title">Above the Post Title</option>';
+                } else {
+                    echo '<option value="above_the_post_title">Above the Post Title</option>';
+                }
+                if ('below_the_post_title' === $options['bsf_rt_position_of_read_time']) {
+                    echo '<option selected value="below_the_post_title">Below the Post Title</option>';
+                } else {
+                    echo '<option value="below_the_post_title">Below the Post Title</option>';
+                }
 
             } else {
-              echo '<option selected value="none">None</option>';
+                echo '<option selected value="none">None</option>';
             }
 
-             ?>
+            ?>
             </select>
           <p class="description">
           Deafults to Above Post Content , Specify Position Where Do you want to display the Reading Time
@@ -156,22 +162,22 @@
           <select required name="bsf_rt_position_of_progress_bar">
             <?php 
             if (isset($options['bsf_rt_position_of_progress_bar'])) {
-              if ('top_of_the_page' === $options['bsf_rt_position_of_progress_bar']) {
-                echo '<option selected value="top_of_the_page">Top of the Page</option>';
-              } else {
-                  echo '<option value="top_of_the_page">Top of the Page</option>';
-              }
-               if ('bottom_of_the_page' === $options['bsf_rt_position_of_progress_bar']) {
-                echo '<option selected value="bottom_of_the_page">Bottom of the Page</option>';
-              } else {
-                  echo '<option value="bottom_of_the_page">Bottom of the Page</option>';
-              }
+                if ('top_of_the_page' === $options['bsf_rt_position_of_progress_bar']) {
+                    echo '<option selected value="top_of_the_page">Top of the Page</option>';
+                } else {
+                    echo '<option value="top_of_the_page">Top of the Page</option>';
+                }
+                if ('bottom_of_the_page' === $options['bsf_rt_position_of_progress_bar']) {
+                    echo '<option selected value="bottom_of_the_page">Bottom of the Page</option>';
+                } else {
+                    echo '<option value="bottom_of_the_page">Bottom of the Page</option>';
+                }
 
             } else {
-              echo '<option selected value="none">None</option>';
+                echo '<option selected value="none">None</option>';
             }
 
-             ?>
+            ?>
           </select>
         </td>
       </tr>
@@ -182,24 +188,24 @@
         </th>
           <td>
             <select  name="bsf_rt_progress_bar_styles" id="getFname" onchange="bsd_rt_ColorSelectCheck(this);">
-               <?php 
-            if (isset($options['bsf_rt_progress_bar_styles'])) {
-              if ('Normal' === $options['bsf_rt_progress_bar_styles']) {
-                echo '<option id="normalcolor" selected value="Normal">Normal</option>';
-              } else {
-                  echo '<option id="normalcolor" value="Normal">Normal</option>';
-              }
-               if ('Gradient' === $options['bsf_rt_progress_bar_styles']) {
-                echo '<option selected id="gradiantcolor" value="Gradient">Gradient</option>';
-              } else {
-                  echo '<option id="gradiantcolor" value="Gradient">Gradient</option>';
-              }
+                <?php 
+                if (isset($options['bsf_rt_progress_bar_styles'])) {
+                    if ('Normal' === $options['bsf_rt_progress_bar_styles']) {
+                        echo '<option id="normalcolor" selected value="Normal">Normal</option>';
+                    } else {
+                        echo '<option id="normalcolor" value="Normal">Normal</option>';
+                    }
+                    if ('Gradient' === $options['bsf_rt_progress_bar_styles']) {
+                        echo '<option selected id="gradiantcolor" value="Gradient">Gradient</option>';
+                    } else {
+                        echo '<option id="gradiantcolor" value="Gradient">Gradient</option>';
+                    }
 
-            } else {
-              echo '<option selected value="Normal">Normal</option>';
-            }
+                } else {
+                    echo '<option selected value="Normal">Normal</option>';
+                }
 
-             ?>
+                ?>
                 
                 
              </select>
@@ -212,11 +218,11 @@
           </th>  
           <td>
             <?php
-             if (isset($options['bsf_rt_progress_bar_color'])) { ?>
+            if (isset($options['bsf_rt_progress_bar_color'])) { ?>
               <input name="bsf_rt_progress_bar_color" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color']; ?>">
-             <?php } else { ?>
+            <?php } else { ?>
               <input name="bsf_rt_progress_bar_color" class="my-color-field" value="#00ACE0">
-             <?php }
+            <?php }
             ?>
            
           </td>
@@ -227,13 +233,13 @@
             <label for="ProgressBarBackgroundColor">Background Color :</label>
           </th>
           <td>
-             <?php
-             if (isset($options['bsf_rt_progress_bar_background_color'])) { ?>
+                <?php
+                if (isset($options['bsf_rt_progress_bar_background_color'])) { ?>
               <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value=" <?php echo $options['bsf_rt_progress_bar_background_color']; ?>">
-             <?php } else { ?>
+                <?php } else { ?>
                <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#E00078">
-             <?php }
-            ?>
+                <?php }
+                ?>
             
           </td>
         </tr>
@@ -242,13 +248,13 @@
             <label for="ProgressBarColor">Primary Color :</label>
           </th>
           <td>
-             <?php
-             if (isset($options['bsf_rt_progress_bar_color_g1'])) { ?>
+                <?php
+                if (isset($options['bsf_rt_progress_bar_color_g1'])) { ?>
               <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color_g1']; ?>">
-             <?php } else { ?>
+                <?php } else { ?>
                <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#E00078">
-             <?php }
-            ?>
+                <?php }
+                ?>
           
           </td>
         </tr>
@@ -258,13 +264,13 @@
               <label for="ProgressBarColor">Secondary Color :</label>
             </th>
             <td>
-               <?php
-             if (isset($options['bsf_rt_progress_bar_color_g2'])) { ?>
+                <?php
+                if (isset($options['bsf_rt_progress_bar_color_g2'])) { ?>
               <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color_g2']; ?>">
-             <?php } else { ?>
+                <?php } else { ?>
                <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#E00078">
-             <?php }
-            ?>
+                <?php }
+                ?>
              
             </td>
         </tr>
@@ -274,14 +280,14 @@
             <label for="Thickness">Thickness :</label>
           </th>
           <td>
-             <?php
+                <?php
 
-             if (isset($options['bsf_rt_progress_bar_thickness'])) { ?>
+                if (isset($options['bsf_rt_progress_bar_thickness'])) { ?>
               <input type="number" name="bsf_rt_progress_bar_thickness" class="small-text" value="<?php echo $options['bsf_rt_progress_bar_thickness']; ?>">&nbsppx
-             <?php } else { ?>
+                <?php } else { ?>
                <input type="number" name="bsf_rt_progress_bar_thickness" class="small-text" value="10">&nbsppx
-             <?php }
-            ?>
+                <?php }
+                ?>
            
           </td>
         </tr>

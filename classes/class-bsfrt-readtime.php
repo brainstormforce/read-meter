@@ -55,22 +55,22 @@ class BSF_ReadTime
             
             function hook_header()
             {
-				$bsf_rt_is_admin_bar_showing=is_admin_bar_showing();	
-				
-				if ($bsf_rt_is_admin_bar_showing == true ) {
-					
-				echo '<div style="top:30px;" id="myWrap" class="progress-container-top">
+                $bsf_rt_is_admin_bar_showing=is_admin_bar_showing();    
+                
+                if ($bsf_rt_is_admin_bar_showing == true ) {
+                    
+                    echo '<div style="top:30px;" id="myWrap" class="progress-container-top">
             	<div class="progress-bar" id="myBar"></div>
             	</div>';
-				} elseif ($bsf_rt_is_admin_bar_showing == false ) {
- 					
-                echo '<div style="top:0px;" id="myWrap" class="progress-container-top">
+                } elseif ($bsf_rt_is_admin_bar_showing == false ) {
+                     
+                            echo '<div style="top:0px;" id="myWrap" class="progress-container-top">
             	<div class="progress-bar" id="myBar"></div>
             	</div>';
-            }
+                }
         
-       }      
-      } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'bottom_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
+            }      
+        } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'bottom_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
             add_action('wp_footer', 'hook_header');
             function hook_header()
             {
@@ -83,15 +83,15 @@ class BSF_ReadTime
         if (isset($this->bsf_rt_options['bsf_rt_progress_bar_styles']) && ('Normal' === $this->bsf_rt_options['bsf_rt_progress_bar_styles'])  ) {
 
             if (isset($this->bsf_rt_options['bsf_rt_progress_bar_color']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_background_color']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_thickness']) ) {
-            	
-            		add_action('wp_head',array( $this, 'bsf_rt_set_progressbar_colors_normal'));
+                
+                add_action('wp_head', array( $this, 'bsf_rt_set_progressbar_colors_normal'));
                  // $this->bsf_rt_set_progressbar_colors_normal();
             }
         } elseif (isset($this->bsf_rt_options['bsf_rt_progress_bar_styles']) && ('Gradient' === $this->bsf_rt_options['bsf_rt_progress_bar_styles'])  ) {
 
             if (isset($this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_gradiant_two']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_background_color']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_thickness']) ) {
 
-                      add_action('wp_head',array( $this, 'bsf_rt_set_progressbar_colors_gradient'));
+                      add_action('wp_head', array( $this, 'bsf_rt_set_progressbar_colors_gradient'));
             }
         } 
 
@@ -101,16 +101,17 @@ class BSF_ReadTime
          // }
     }
 
-    public function call_css_header() {
-    	?>
-    	<style type="text/css">
-	        .progress-container-top{
-	        	background: #000;
-	        	height: 20px;
-	        }
-		</style>
+    public function call_css_header()
+    {
+        ?>
+        <style type="text/css">
+            .progress-container-top{
+                background: #000;
+                height: 20px;
+            }
+        </style>
 
-    	<?php
+        <?php
     }
 
     /**
@@ -419,55 +420,56 @@ class BSF_ReadTime
      * 
      * @return int  Additional time added to the reading time by images.
      */
-    public function bsf_rt_set_progressbar_colors_normal() {
+    public function bsf_rt_set_progressbar_colors_normal()
+    {
         
         ?>
         <style type="text/css">
                 .progress-container-top{
-                	background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
-                	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
-                	
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
+                    height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                    
                 }
-    		    .progress-container-bottom {
-	                background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
-                	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
-                	
+                .progress-container-bottom {
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
+                    height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                    
                 } 
                 .progress-bar {
-    				background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_color']; ?>;
-                	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
-	               width: 0%;
-	               
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_color']; ?>;
+                    height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                   width: 0%;
+                   
                 }           
         </style>
-      <?php
+        <?php
     }
      
      /**
-     * Adds CSS to the progress Bar as per User input , When Style is Selected Gradient.
-     *
-     * @since 1.1.0
-     *
-     * @param Progress Bar gradient color one.
-     * @param Progress Bar gradient color two.
-     * @param Progress Bar Background color.
-     * @param Progress Bar Thickness.
-     * 
-     * @return int  Additional time added to the reading time by images.
-     */
+      * Adds CSS to the progress Bar as per User input , When Style is Selected Gradient.
+      *
+      * @since 1.1.0
+      *
+      * @param Progress Bar gradient color one.
+      * @param Progress Bar gradient color two.
+      * @param Progress Bar Background color.
+      * @param Progress Bar Thickness.
+      * 
+      * @return int  Additional time added to the reading time by images.
+      */
     public function bsf_rt_set_progressbar_colors_gradient()
     {  
         ?>
         <style type="text/css">
                .progress-container-top{
-                	background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
-                	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
-                	
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
+                    height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                    
                 }
-    		    .progress-container-bottom {
-	                background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
-                	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
-                	
+                .progress-container-bottom {
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
+                    height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                    
                 } 
                 .progress-bar {
                 background-color:  <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one']; ?>;

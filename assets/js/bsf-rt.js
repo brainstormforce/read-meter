@@ -1,17 +1,9 @@
+var idleTime = 0;
 
+            var timeoutID;
 
-
-// Progress Bar JS
-        window.onscroll = function () {
-            myFunction()};
-
-            function myFunction()
+            function setup()
             {
-              var idleTime = 0;
-
-              var timeoutID;
-
-              function setup() {
 
 
                 this.addEventListener("keypress", resetTimer, false);
@@ -19,73 +11,92 @@
                 this.addEventListener("mousewheel", resetTimer, false);
 
 
-              startTimer();
-              }
-              setup();
+                startTimer();
+            }
+                setup();
 
-              function startTimer() {
+            function startTimer()
+            {
                 // wait 2 seconds before calling goInactive
                 timeoutID = window.setTimeout(goInactive, 1000);
-              }
+            }
 
-              function resetTimer(e) {
+            function resetTimer(e)
+            {
                 window.clearTimeout(timeoutID);
 
                 goActive();
-              }
-
-              function goInactive() {
-               
-                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ){
-                  document.getElementById("myBar").style.opacity=0.5;
-                  document.getElementById("myWrap").style.opacity=0.5;
-                }
             }
 
-              function goActive() {
-                 if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ){
-                  document.getElementById("myBar").style.opacity=1;
-                  document.getElementById("myWrap").style.opacity=1;
+            function goInactive()
+            {
+               if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
+                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
+                    document.getElementById("myBar").style.opacity=0.5;
+                    document.getElementById("myWrap").style.opacity=0.5;
                 }
-                startTimer();
               }
-              var content = document.getElementById("main");
+            }
 
-              var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-              //console.log(winScroll);
-              var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-              //var height = 1519;
-              
-              var scrolled = (winScroll / height) * 100;
-              //console.log(scrolled); 
+            function goActive()
+            {
+              if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
+                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
+                    document.getElementById("myBar").style.opacity=1;
+                    document.getElementById("myWrap").style.opacity=1;
+                }
+               }     
+               startTimer();
+            }
 
-              document.getElementById("myBar").style.width = scrolled + "%";
+
+// Progress Bar JS
+  window.onscroll = function () {
+      myFunction()};
+
+  function myFunction()
+  {
+      
+          var content = document.getElementById("main");
+
+          var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          //console.log(winScroll);
+          var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          //var height = 1519;
+        
+          var scrolled = (winScroll / height) * 100;
+          //console.log(scrolled); 
+          if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
+                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
+          document.getElementById("myBar").style.width = scrolled + "%";
         }
+      }
+  }
 
-// Color Picker JS
-jQuery(document).ready(
-    function ($) {
-        $('.my-color-field').wpColorPicker();
-    }
-);
+  // Color Picker JS
+  jQuery(document).ready(
+      function ($) {
+          $('.my-color-field').wpColorPicker();
+      }
+  );
 
-// Progress Bar color selection JS
-function bsd_rt_ColorSelectCheck(nameSelect)
-{
-    console.log(nameSelect);
-    if(nameSelect) {
-        admOptionValue = document.getElementById("gradiantcolor").value;
-        if(admOptionValue == nameSelect.value) {
-            
-             document.getElementById("gradiant-wrap2").style.display = "table-row";
-             document.getElementById("gradiant-wrap1").style.display = "table-row";
-            document.getElementById("normal-color-wrap").style.display = "none";
+  // Progress Bar color selection JS
+  function bsd_rt_ColorSelectCheck(nameSelect)
+  {
+      console.log(nameSelect);
+      if(nameSelect) {
+          admOptionValue = document.getElementById("gradiantcolor").value;
+          if(admOptionValue == nameSelect.value) {
+      
+               document.getElementById("gradiant-wrap2").style.display = "table-row";
+               document.getElementById("gradiant-wrap1").style.display = "table-row";
+              document.getElementById("normal-color-wrap").style.display = "none";
 
-        }
-        else{
-            document.getElementById("gradiant-wrap2").style.display = "none";
-            document.getElementById("gradiant-wrap1").style.display = "none";            
-            document.getElementById("normal-color-wrap").style.display = "table-row";
-        }
-    }
-}
+          }
+          else{
+              document.getElementById("gradiant-wrap2").style.display = "none";
+              document.getElementById("gradiant-wrap1").style.display = "none";            
+              document.getElementById("normal-color-wrap").style.display = "table-row";
+          }
+      }
+  }
