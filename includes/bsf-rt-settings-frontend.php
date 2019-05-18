@@ -34,22 +34,23 @@
             $exclude=array('attachment','elementor_library','Media','My Templates');
 
             foreach ( get_post_types($args, 'objects') as $post_type ) {
+
                 if (in_array($post_type->labels->name, $exclude)  ) {
                     continue;
                 } 
                 if (isset($options['bsf_rt_post_types'])) {
-                    if (in_array($post_type->labels->name, $options['bsf_rt_post_types'])) {
+                    if (in_array($post_type->name, $options['bsf_rt_post_types'])) {
                         echo'<label for="ForPostType">
-                   <input type="checkbox" checked name="posts[]" value="'.$post_type->labels->name.'">
+                   <input type="checkbox" checked name="posts[]" value="'.$post_type->name.'">
                    '.$post_type->labels->name.'</label><br> ';
                     } else {
                         echo'<label for="ForPostType">
-                   <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
+                   <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
                    '.$post_type->labels->name.'</label><br> ';
                     }
                 } else {
                     echo'<label for="ForPostType">
-                   <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
+                   <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
                    '.$post_type->labels->name.'</label><br> ';
                 }
             }

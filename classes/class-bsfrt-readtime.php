@@ -127,6 +127,7 @@ class BSF_ReadTime
      */
     public function bsf_rt_add_reading_time_before_content( $content )
     {
+
         // die();
         $this->bsf_rt_options = get_option('bsf_rt');
 
@@ -134,7 +135,7 @@ class BSF_ReadTime
         $bsf_rt_current_post_type = get_post_type();
         
         // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-    
+  
         if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
             return $content;
         }
