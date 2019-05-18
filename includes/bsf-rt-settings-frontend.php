@@ -22,32 +22,28 @@
           <?php
             $args = array(
             'public'   => true,
-            '_builtin' => true
+            
             );
             $options=get_option('bsf_rt');
+            $exclude=array('attachment','elementor_library','Media','My Templates');
 
-            foreach ( get_post_types($args, 'names') as $post_type ) {
-              if ( in_array($post_type, $options['bsf_rt_post_types'])) {
-                echo '<input type="checkbox" checked name="posts[]" value="'.$post_type.'"/>' . $post_type.'<br>';
+            foreach ( get_post_types($args, 'objects') as $post_type ) {
+               if ( in_array($post_type->labels->name, $exclude)  ) {
+            continue;
+              }
+              if ( in_array($post_type->labels->name , $options['bsf_rt_post_types'])) {
+                echo'<label for="ForPostType">
+                 <input type="checkbox" checked name="posts[]" value="'.$post_type->labels->name.'">
+                 '.$post_type->labels->name.'</label><br> ';
               } else {
-                echo '<input type="checkbox"  name="posts[]" value="'.$post_type.'"/>' . $post_type.'<br>';
+               echo'<label for="ForPostType">
+                 <input type="checkbox"  name="posts[]" value="'.$post_type->labels->name.'">
+                 '.$post_type->labels->name.'</label><br> ';
               }
               
             }
           ?>
-          <?php
-            $args = array(
-            'public'   => true,
-            '_builtin' => false
-            );
-            foreach ( get_post_types($args, 'names') as $post_type ) {
-                if ( in_array($post_type, $options['bsf_rt_post_types'])) {
-                echo '<input type="checkbox" checked name="posts[]" value="'.$post_type.'"/>' . $post_type.'<br>';
-              } else {
-                echo '<input type="checkbox"  name="posts[]" value="'.$post_type.'"/>' . $post_type.'<br>';
-              }
-            }
-          ?>
+          
           <p class="description">
             Deafults to Above Post Content , Specify Position   Where Do you want to display the Reading Time
           </p>  
@@ -274,7 +270,7 @@
           </th>
           <td>
              <?php
-             
+
              if (isset($options['bsf_rt_progress_bar_thickness'])) { ?>
               <input type="number" name="bsf_rt_progress_bar_thickness" class="small-text" value="<?php echo $options['bsf_rt_progress_bar_thickness']; ?>">&nbsppx
              <?php } else { ?>

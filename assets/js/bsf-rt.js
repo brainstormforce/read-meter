@@ -1,10 +1,50 @@
+
+
+
 // Progress Bar JS
 window.onscroll = function () {
     myFunction()};
 
 function myFunction()
 {
+  var idleTime = 0;
+
+   var timeoutID;
+ 
+function setup() {
+    
+    
+    this.addEventListener("keypress", resetTimer, false);
+    this.addEventListener("DOMMouseScroll", resetTimer, false);
+    this.addEventListener("mousewheel", resetTimer, false);
    
+ 
+    startTimer();
+}
+setup();
+ 
+function startTimer() {
+    // wait 2 seconds before calling goInactive
+    timeoutID = window.setTimeout(goInactive, 1000);
+}
+ 
+function resetTimer(e) {
+    window.clearTimeout(timeoutID);
+ 
+    goActive();
+}
+ 
+function goInactive() {
+    document.getElementById("myBar").style.opacity=0.5;
+    document.getElementById("myWrap").style.opacity=0.5;
+}
+ 
+function goActive() {
+    document.getElementById("myBar").style.opacity=1;
+    document.getElementById("myWrap").style.opacity=1;
+         
+    startTimer();
+}
     var content = document.getElementById("main");
 
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;

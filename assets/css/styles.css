@@ -59,6 +59,7 @@
   width: 100%;
   height: 8px;
   background: #ccc;
+  
 }
 .progress-container-bottom {
   position: fixed;
@@ -67,6 +68,7 @@
   width: 100%;
   height: 8px;
   background: #ccc;
+  
 }
 
 .progress-bar {
@@ -74,6 +76,7 @@
   background: #FF0040;
   width: 0%;
   z-index: 2;
+  
 }
 
 #gradiant-wrap1 , #gradiant-wrap2 {
@@ -83,7 +86,7 @@
 }
 
 /*Post Types CSS*/
-.post_type_name
+/*.post_type_name
 {
   text-transform: capitalize;
-}
+}*/

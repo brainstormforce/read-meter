@@ -9,8 +9,8 @@ function BSF_RT_Settings_page()
 {
     add_submenu_page(
         'tools.php',
-        'BSF ReadTime',
-        'BSF ReadTime',
+        'Read Meter',
+        'Read Meter',
         'manage_options',
         'bsf_rt',
         'BSF_RT_Page_html'

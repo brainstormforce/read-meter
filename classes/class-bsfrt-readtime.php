@@ -59,12 +59,12 @@ class BSF_ReadTime
 				
 				if ($bsf_rt_is_admin_bar_showing == true ) {
 					
-				echo '<div style="top:30px;" class="progress-container-top">
+				echo '<div style="top:30px;" id="myWrap" class="progress-container-top">
             	<div class="progress-bar" id="myBar"></div>
             	</div>';
 				} elseif ($bsf_rt_is_admin_bar_showing == false ) {
  					
-                echo '<div style="top:0px;" class="progress-container-top">
+                echo '<div style="top:0px;" id="myWrap" class="progress-container-top">
             	<div class="progress-bar" id="myBar"></div>
             	</div>';
             }
@@ -74,7 +74,7 @@ class BSF_ReadTime
             add_action('wp_footer', 'hook_header');
             function hook_header()
             {
-                  echo '<div class="progress-container-bottom">
+                  echo '<div id="myWrap" class="progress-container-bottom">
             	<div class="progress-bar" id="myBar"></div>
             	</div>';
             }
@@ -426,15 +426,18 @@ class BSF_ReadTime
                 .progress-container-top{
                 	background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
                 	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                	
                 }
     		    .progress-container-bottom {
 	                background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
                 	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                	
                 } 
                 .progress-bar {
     				background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_color']; ?>;
                 	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
 	               width: 0%;
+	               
                 }           
         </style>
       <?php
@@ -459,16 +462,19 @@ class BSF_ReadTime
                .progress-container-top{
                 	background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
                 	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                	
                 }
     		    .progress-container-bottom {
 	                background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
                 	height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                	
                 } 
                 .progress-bar {
                 background-color:  <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one']; ?>;
                 background-image: linear-gradient(to bottom right, <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one']; ?>, <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_two']; ?>);
                 height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
                 width: 0%;
+                
 
                 }
         </style>
