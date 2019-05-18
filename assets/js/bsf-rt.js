@@ -20,7 +20,6 @@ var idleTime = 0;
             {
                 // wait 2 seconds before calling goInactive
                 timeoutID = window.setTimeout(goInactive, 1000);
-                console.log(timeoutID);
             }
 
             function resetTimer(e)
