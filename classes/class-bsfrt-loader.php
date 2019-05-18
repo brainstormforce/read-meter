@@ -54,7 +54,8 @@ if (! class_exists('BSF_RT_Loader') ) :
           */
         public function bsfrt_pluginScript()
         { 
-             wp_enqueue_script('customscript', BSF_RT_PLUGIN_URL.'/assets/js/bsf-rt.js');
+             wp_enqueue_script('customscript', BSF_RT_PLUGIN_URL.'/assets/js/bsf-rt.js',array('jquery','wp-color-picker'), null, true);
+             
         }
 
        

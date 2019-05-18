@@ -38,6 +38,7 @@
                 if (in_array($post_type->labels->name, $exclude)  ) {
                     continue;
                 } 
+                if ($options['bsf_rt_post_types'] !== 'post'){
                 if (isset($options['bsf_rt_post_types'])) {
                     if (in_array($post_type->name, $options['bsf_rt_post_types'])) {
                         echo'<label for="ForPostType">
@@ -53,7 +54,13 @@
                    <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
                    '.$post_type->labels->name.'</label><br> ';
                 }
-            }
+              } else {
+                 echo'<label for="ForPostType">
+                   <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
+                   '.$post_type->labels->name.'</label><br> ';
+                    }
+              }
+            
             ?>
           
           <p class="description">
@@ -173,9 +180,17 @@
                 } else {
                     echo '<option value="bottom_of_the_page">Bottom of the Page</option>';
                 }
+                if ('none' === $options['bsf_rt_position_of_progress_bar']) {
+                    echo '<option selected value="none">None</option>';
+                } else {
+                    echo '<option value="none">None</option>';
+                }
+
 
             } else {
-                echo '<option selected value="none">None</option>';
+               echo '<option value="none">None</option>';
+               echo '<option value="top_of_the_page">Top of the Page</option>';
+               echo '<option value="bottom_of_the_page">Bottom of the Page</option>';
             }
 
             ?>
@@ -203,8 +218,9 @@
                     }
 
                 } else {
-                    echo '<option selected value="Normal">Normal</option>';
-                }
+                    echo '<option id="normalcolor" value="Normal">Normal</option>';
+                    echo '<option id="gradiantcolor" value="Gradient">Gradient</option>';
+                  }
 
                 ?>
                 
