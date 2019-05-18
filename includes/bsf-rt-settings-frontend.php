@@ -45,7 +45,7 @@
           ?>
           
           <p class="description">
-            Deafults to Above Post Content , Specify Position   Where Do you want to display the Reading Time
+            Deafults to  Post.
           </p>  
         </td>
       </tr>
@@ -180,9 +180,9 @@
                <?php 
             if (isset($options['bsf_rt_progress_bar_styles'])) {
               if ('Normal' === $options['bsf_rt_progress_bar_styles']) {
-                echo '<option selected value="Normal">Normal</option>';
+                echo '<option id="normalcolor" selected value="Normal">Normal</option>';
               } else {
-                  echo '<option  value="Normal">Normal</option>';
+                  echo '<option id="normalcolor" value="Normal">Normal</option>';
               }
                if ('Gradient' === $options['bsf_rt_progress_bar_styles']) {
                 echo '<option selected id="gradiantcolor" value="Gradient">Gradient</option>';

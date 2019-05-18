@@ -2,64 +2,61 @@
 
 
 // Progress Bar JS
-window.onscroll = function () {
-    myFunction()};
+        window.onscroll = function () {
+            myFunction()};
 
-function myFunction()
-{
-  var idleTime = 0;
+            function myFunction()
+            {
+              var idleTime = 0;
 
-   var timeoutID;
- 
-function setup() {
-    
-    
-    this.addEventListener("keypress", resetTimer, false);
-    this.addEventListener("DOMMouseScroll", resetTimer, false);
-    this.addEventListener("mousewheel", resetTimer, false);
-   
- 
-    startTimer();
-}
-setup();
- 
-function startTimer() {
-    // wait 2 seconds before calling goInactive
-    timeoutID = window.setTimeout(goInactive, 1000);
-}
- 
-function resetTimer(e) {
-    window.clearTimeout(timeoutID);
- 
-    goActive();
-}
- 
-function goInactive() {
-    document.getElementById("myBar").style.opacity=0.5;
-    document.getElementById("myWrap").style.opacity=0.5;
-}
- 
-function goActive() {
-    document.getElementById("myBar").style.opacity=1;
-    document.getElementById("myWrap").style.opacity=1;
-         
-    startTimer();
-}
-    var content = document.getElementById("main");
+              var timeoutID;
 
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    //console.log(winScroll);
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    //var height = 1519;
-    console.log(document.documentElement.scrollHeight);
-    console.log(document.documentElement.clientHeight);
-    console.log(height);
-    console.log("height");
-    var scrolled = (winScroll / height) * 100;
-    //console.log(scrolled); 
-   
-    document.getElementById("myBar").style.width = scrolled + "%";
-}
+              function setup() {
+
+
+                this.addEventListener("keypress", resetTimer, false);
+                this.addEventListener("DOMMouseScroll", resetTimer, false);
+                this.addEventListener("mousewheel", resetTimer, false);
+
+
+              startTimer();
+              }
+              setup();
+
+              function startTimer() {
+                // wait 2 seconds before calling goInactive
+                timeoutID = window.setTimeout(goInactive, 1000);
+              }
+
+              function resetTimer(e) {
+                window.clearTimeout(timeoutID);
+
+                goActive();
+              }
+
+              function goInactive() {
+                document.getElementById("myBar").style.opacity=0.5;
+                document.getElementById("myWrap").style.opacity=0.5;
+              }
+
+              function goActive() {
+                document.getElementById("myBar").style.opacity=1;
+                document.getElementById("myWrap").style.opacity=1;
+
+                startTimer();
+              }
+              var content = document.getElementById("main");
+
+              var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+              //console.log(winScroll);
+              var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+              //var height = 1519;
+              
+              var scrolled = (winScroll / height) * 100;
+              //console.log(scrolled); 
+
+              document.getElementById("myBar").style.width = scrolled + "%";
+        }
 
 // Color Picker JS
 jQuery(document).ready(
