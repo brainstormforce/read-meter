@@ -135,7 +135,9 @@ class BSF_ReadTime
         $bsf_rt_current_post_type = get_post_type();
         
         // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-  
+  		if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
+    			return $content;
+    		}
         if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
             return $content;
         }
@@ -182,7 +184,9 @@ class BSF_ReadTime
             $bsf_rt_current_post_type = get_post_type();
         
             // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-    
+    		if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
+    			return $title;
+    		}
             if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                   return $title;
             }
@@ -227,11 +231,15 @@ class BSF_ReadTime
   
             $this->bsf_rt_options = get_option('bsf_rt');
 
+
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
+
         
             // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-    
+    		if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
+    			return $title;
+    		}
             if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                   return $title;
             }
@@ -280,6 +288,9 @@ class BSF_ReadTime
         $bsf_rt_current_post_type = get_post_type();
 
         // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+       if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
+    			return $title;
+    		}
         if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
             return $title;
         }
