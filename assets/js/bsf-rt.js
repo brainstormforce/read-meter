@@ -1,3 +1,4 @@
+console.log('OK'); 
 var idleTime = 0;
 
             var timeoutID;
@@ -65,7 +66,7 @@ var idleTime = 0;
           //var height = 1519;
         
           var scrolled = (winScroll / height) * 100;
-          //console.log(scrolled); 
+          console.log(height); 
           if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
                 if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
           document.getElementById("myBar").style.width = scrolled + "%";
@@ -73,12 +74,8 @@ var idleTime = 0;
       }
   }
 
-  // Color Picker JS
-  jQuery(document).ready(
-      function ($) {
-          $('.my-color-field').wpColorPicker();
-      }
-  );
+
+  
 
   // Progress Bar color selection JS
   window.onload = function() {
