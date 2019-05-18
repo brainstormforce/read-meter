@@ -18,7 +18,8 @@ var idleTime = 0;
 
             function startTimer()
             {
-                // wait 2 seconds before calling goInactive
+              console.log(timeoutID);
+                // wait 1 seconds before calling goInactive
                 timeoutID = window.setTimeout(goInactive, 1000);
                 console.log(timeoutID);
             }
@@ -31,7 +32,7 @@ var idleTime = 0;
             }
 
             function goInactive()
-            {
+            { console.log('inactive');
                if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
                 if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
                     document.getElementById("myBar").style.opacity=0.5;
@@ -42,6 +43,7 @@ var idleTime = 0;
 
             function goActive()
             {
+              console.log('active');
               if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
                 if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
                     document.getElementById("myBar").style.opacity=1;
@@ -67,7 +69,7 @@ var idleTime = 0;
           //var height = 1519;
         
           var scrolled = (winScroll / height) * 100;
-           
+          
           if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
                 if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
           document.getElementById("myBar").style.width = scrolled + "%";
@@ -84,7 +86,9 @@ var idleTime = 0;
 };
   function bsd_rt_ColorSelectCheck()
   { 
+    if(document.getElementById("getFname") !== null){
     nameSelect=document.getElementById("getFname").value;
+
     
       console.log(nameSelect);
       if(nameSelect === 'Gradient') {
@@ -100,6 +104,7 @@ var idleTime = 0;
               document.getElementById("normal-color-wrap").style.display = "table-row";
           }
       }
+    }
 
       function bsd_rt_ColorSelectCheck_two(nameSelect)
   {
