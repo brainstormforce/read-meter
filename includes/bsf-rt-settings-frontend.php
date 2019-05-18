@@ -250,8 +250,8 @@
           </th>
           <td>
                 <?php
-                if (isset($options['bsf_rt_progress_bar_color_g1'])) { ?>
-              <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color_g1']; ?>">
+                if (isset($options['bsf_rt_progress_bar_gradiant_one'])) { ?>
+              <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_gradiant_one']; ?>">
                 <?php } else { ?>
                <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#E00078">
                 <?php }
@@ -266,8 +266,8 @@
             </th>
             <td>
                 <?php
-                if (isset($options['bsf_rt_progress_bar_color_g2'])) { ?>
-              <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color_g2']; ?>">
+                if (isset($options['bsf_rt_progress_bar_gradiant_two'])) { ?>
+              <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_gradiant_two']; ?>">
                 <?php } else { ?>
                <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#E00078">
                 <?php }
