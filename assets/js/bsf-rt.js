@@ -35,19 +35,18 @@
               }
 
               function goInactive() {
-                var mybar=document.getElementById("myBar");
-                var mywrap=document.getElementById("myWrap");
-
-                if (typeof mybar !== 'undefined' && typeof myWrap !== 'undefined' ){
-                  myWrap.style.opacity=0.5;
-                  myWrap.style.opacity=0.5;
+               
+                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ){
+                  document.getElementById("myBar").style.opacity=0.5;
+                  document.getElementById("myWrap").style.opacity=0.5;
                 }
             }
 
               function goActive() {
-                document.getElementById("myBar").style.opacity=1;
-                document.getElementById("myWrap").style.opacity=1;
-
+                 if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ){
+                  document.getElementById("myBar").style.opacity=1;
+                  document.getElementById("myWrap").style.opacity=1;
+                }
                 startTimer();
               }
               var content = document.getElementById("main");
