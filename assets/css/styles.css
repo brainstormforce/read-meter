@@ -85,6 +85,9 @@
 
 }
 
+#bsf-rt-progress-bar-options{
+  display: block;
+}
 /*Post Types CSS*/
 /*.post_type_name
 {

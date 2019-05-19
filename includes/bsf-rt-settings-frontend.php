@@ -167,7 +167,7 @@
         <label for="PositionofDisplayProgressBar">Display Position:</label>
         </th>
         <td>
-          <select required name="bsf_rt_position_of_progress_bar">
+          <select required id="bsf_rt_position_of_progress_bar" name="bsf_rt_position_of_progress_bar" onchange="bsd_rt_Progressbarpositioncheck(this);">
             <?php 
             if (isset($options['bsf_rt_position_of_progress_bar'])) {
                 if ('top_of_the_page' === $options['bsf_rt_position_of_progress_bar']) {
@@ -197,7 +197,8 @@
           </select>
         </td>
       </tr>
-         
+     </table>
+     <table class="form-table" id="bsf-rt-progress-bar-options">  
       <tr>
         <th scope="row">
           <label for="ProgressBarStyle">Styles :</label>
@@ -308,12 +309,15 @@
            
           </td>
         </tr>
-        <tr>
+       
+    </table>
+    <table class="form-table">
+       <tr>
           <th>
           <input type="submit" value="Save" class="bt button button-primary" name="submit">
           </th>
        </tr>
-    </table>
+  </table>
   </form>
 </div>
 <?php
