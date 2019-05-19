@@ -138,6 +138,10 @@ class BSF_ReadTime
   		if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
     			return $content;
     		}
+    	 if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+            return $content;
+        }
+
         if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
             return $content;
         }
@@ -190,6 +194,9 @@ class BSF_ReadTime
     			return $title;
     			
     		}
+    		 if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+            return $title;
+        }
             if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                   return $title;
               
@@ -244,6 +251,9 @@ class BSF_ReadTime
     		if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
     			return $title;
     		}
+    		if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+            return $title;
+        }
             if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                   return $title;
             }
@@ -293,10 +303,13 @@ class BSF_ReadTime
 
         // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
        if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
-    			return $title;
+    			return $content;
     		}
+    		if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+            return $content;
+        }
         if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
-            return $title;
+            return $content;
         }
 
         $original_content = $content;
