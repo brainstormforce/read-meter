@@ -83,53 +83,128 @@
         <td>
           <label for="ForSinglePage">
             <?php
-            if ($options['bsf_rt_single_page']) {
-                echo ' <input type="checkbox" checked name="bsf_rt_single_page" value="bsf_rt_single_page">';
+            
+            if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_single_page', $options['bsf_rt_show_read_time'])) {
+                echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
             } else {
-                echo ' <input type="checkbox" name="bsf_rt_single_page" value="bsf_rt_single_page">';
+                echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
             }
             ?>
          
           Single Page</label> 
-        </td>
-      </tr>
-
-      <tr>
-        <th scope="row">
-          <label for="PositiontoDisplayReadTime">Position to Display Read Time:</label>
-        </th>
-        <td>
-          <select required name="bsf_rt_position_of_read_time">
+    
+          <select required name="bsf_rt_single_page_position_of_read_time">
             <?php 
-            if (isset($options['bsf_rt_position_of_read_time'])) {
-                if ('above_the_content' === $options['bsf_rt_position_of_read_time']) {
+            if (isset($options['bsf_rt_single_page_position_of_read_time'])) {
+                if ('above_the_content' === $options['bsf_rt_single_page_position_of_read_time']) {
                     echo '<option selected value="above_the_content">Above the Content</option>';
                 } else {
                     echo '<option  value="above_the_content">Above the Content</option>';
                 }
-                if ('above_the_post_title' === $options['bsf_rt_position_of_read_time']) {
+                if ('above_the_post_title' === $options['bsf_rt_single_page_position_of_read_time']) {
                     echo '<option selected value="above_the_post_title">Above the Post Title</option>';
                 } else {
                     echo '<option value="above_the_post_title">Above the Post Title</option>';
                 }
-                if ('below_the_post_title' === $options['bsf_rt_position_of_read_time']) {
+                if ('below_the_post_title' === $options['bsf_rt_single_page_position_of_read_time']) {
                     echo '<option selected value="below_the_post_title">Below the Post Title</option>';
                 } else {
                     echo '<option value="below_the_post_title">Below the Post Title</option>';
                 }
 
             } else {
+
                 echo '<option selected value="none">None</option>';
+                echo '<option  value="above_the_content">Above the Content</option>';
+                echo '<option value="above_the_post_title">Above the Post Title</option>';
+                echo '<option value="below_the_post_title">Below the Post Title</option>';
             }
 
             ?>
-            </select>
-          <p class="description">
-          Deafults to Above Post Content , Specify Position Where Do you want to display the Reading Time
-          </p>  
-        </td>
-      </tr>
+            </select> <br>
+            <label for="ForHomeBlogPage">
+            <?php
+            if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_home_blog_page', $options['bsf_rt_show_read_time']) ) {
+                echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page">';
+            } else {
+                echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page">';
+            }
+            ?>
+         
+          Home / Blog Page</label> 
+    
+          <select required name="bsf_rt_home_blog_page_position_of_read_time">
+            <?php 
+            if (isset($options['bsf_rt_home_blog_page_position_of_read_time'])) {
+                if ('above_the_content' === $options['bsf_rt_home_blog_page_position_of_read_time']) {
+                    echo '<option selected value="above_the_content">Above the Content</option>';
+                } else {
+                    echo '<option  value="above_the_content">Above the Content</option>';
+                }
+                if ('above_the_post_title' === $options['bsf_rt_home_blog_page_position_of_read_time']) {
+                    echo '<option selected value="above_the_post_title">Above the Post Title</option>';
+                } else {
+                    echo '<option value="above_the_post_title">Above the Post Title</option>';
+                }
+                if ('below_the_post_title' === $options['bsf_rt_home_blog_page_position_of_read_time']) {
+                    echo '<option selected value="below_the_post_title">Below the Post Title</option>';
+                } else {
+                    echo '<option value="below_the_post_title">Below the Post Title</option>';
+                }
 
+            } else {
+
+                echo '<option selected value="none">None</option>';
+                echo '<option  value="above_the_content">Above the Content</option>';
+                echo '<option value="above_the_post_title">Above the Post Title</option>';
+                echo '<option value="below_the_post_title">Below the Post Title</option>';
+            }
+
+            ?>
+            </select> <br>
+            <label for="ForArchivePage">
+            <?php
+            if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_archive_page', $options['bsf_rt_show_read_time']) ) {
+                echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page">';
+            } else {
+                echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page">';
+            }
+            ?>
+         
+          Archive Page</label> 
+    
+          <select required name="bsf_rt_archive_page_position_of_read_time">
+            <?php 
+            if (isset($options['bsf_rt_archive_page_position_of_read_time'])) {
+                if ('above_the_content' === $options['bsf_rt_archive_page_position_of_read_time']) {
+                    echo '<option selected value="above_the_content">Above the Content</option>';
+                } else {
+                    echo '<option  value="above_the_content">Above the Content</option>';
+                }
+                if ('above_the_post_title' === $options['bsf_rt_archive_page_position_of_read_time']) {
+                    echo '<option selected value="above_the_post_title">Above the Post Title</option>';
+                } else {
+                    echo '<option value="above_the_post_title">Above the Post Title</option>';
+                }
+                if ('below_the_post_title' === $options['bsf_rt_archive_page_position_of_read_time']) {
+                    echo '<option selected value="below_the_post_title">Below the Post Title</option>';
+                } else {
+                    echo '<option value="below_the_post_title">Below the Post Title</option>';
+                }
+
+            } else {
+
+                echo '<option selected value="none">None</option>';
+                echo '<option  value="above_the_content">Above the Content</option>';
+                echo '<option value="above_the_post_title">Above the Post Title</option>';
+                echo '<option value="below_the_post_title">Below the Post Title</option>';
+            }
+
+            ?>
+            </select> 
+        </td>
+         
+      </tr>
       <tr>
         <th scope="row">
           <label for="ReadingTimePostfixLabel">Reading Time PreFix :</label>
@@ -336,7 +411,10 @@ $bsf_rt_progress_bar_styles=$_POST['bsf_rt_progress_bar_styles'];
 $bsf_rt_single_page=$_POST['bsf_rt_single_page'];
 $bsf_rt_progress_bar_gradiant_one=$_POST['bsf_rt_progress_bar_color_g1'];
 $bsf_rt_progress_bar_gradiant_two=$_POST['bsf_rt_progress_bar_color_g2'];
-
+$bsf_rt_show_read_time=$_POST['bsf_rt_show_read_time'];
+$bsf_rt_single_page_position_of_read_time=$_POST['bsf_rt_single_page_position_of_read_time'];
+$bsf_rt_home_blog_page_position_of_read_time=$_POST['bsf_rt_home_blog_page_position_of_read_time'];
+$bsf_rt_archive_page_position_of_read_time=$_POST['bsf_rt_archive_page_position_of_read_time'];
 
 $update_options = array(
         'bsf_rt_reading_time_label'=> $bsf_rt_reading_time_label,
@@ -352,6 +430,10 @@ $update_options = array(
         'bsf_rt_progress_bar_gradiant_two'=>$bsf_rt_progress_bar_gradiant_two,
         'bsf_rt_progress_bar_thickness' => $bsf_rt_progress_bar_thickness,
         'bsf_rt_single_page' => $bsf_rt_single_page,
+        'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
+        'bsf_rt_single_page_position_of_read_time' => $bsf_rt_single_page_position_of_read_time,
+        'bsf_rt_home_blog_page_position_of_read_time' => $bsf_rt_home_blog_page_position_of_read_time,
+        'bsf_rt_archive_page_position_of_read_time' => $bsf_rt_archive_page_position_of_read_time,
 
     );
 
