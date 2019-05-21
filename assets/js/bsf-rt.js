@@ -66,10 +66,11 @@ var idleTime = 0;
           var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
           //var height = 1519;
           var scrolled = (winScroll / height) * 100;
-           
+        
           if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
                 if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
           document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
+          console.log(document.getElementById("bsf_rt_progress_bar").style.width);
         }
       }
   }

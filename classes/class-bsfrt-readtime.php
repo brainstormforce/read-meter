@@ -12,7 +12,7 @@ class BSF_ReadTime
 
     public $bsf_rt_options = array();
 
-    public $bsf_rt_is_admin_bar_showing;
+    public static $bsf_rt_is_admin_bar_showing;
     /**
      * Construct function for BSF_ReadTime.
      *
@@ -36,6 +36,7 @@ class BSF_ReadTime
 
         $this->bsf_rt_options = get_option('bsf_rt');
         add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
+
 //Displaying Reading Time Conditions
     if (isset($this->bsf_rt_options['bsf_rt_show_read_time'])) {
         if(in_array('bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
@@ -90,7 +91,7 @@ class BSF_ReadTime
         if (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'none' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
             return;
         } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'top_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
-          
+           
             add_action('wp_footer', array($this,'hook_header_top'));
             
             } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'bottom_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
@@ -742,6 +743,7 @@ class BSF_ReadTime
      */        
     public function hook_header_top()
             {  
+                 
                $this->bsf_rt_options = get_option('bsf_rt');
 
 
@@ -759,14 +761,14 @@ class BSF_ReadTime
                 if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                     return ;
                 }
-                if ($this->bsf_rt_is_admin_bar_showing == true ) {
+                if (self::$bsf_rt_is_admin_bar_showing == true ) {
                     
-                    echo '<div style="top:30px;" id="bsf_rt_progress_bar_container" class="progress-container-top">
+                    echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top-admin-bar">
                 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
-                } elseif ($this->bsf_rt_is_admin_bar_showing == false ) {
+                } elseif (self::$bsf_rt_is_admin_bar_showing == false ) {
                      
-                            echo '<div style="top:0px;" id="bsf_rt_progress_bar_container" class="progress-container-top">
+                            echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top">
                 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
                 }
@@ -774,8 +776,8 @@ class BSF_ReadTime
     }   
     public function bsf_rt_is_admin_bar_showing() {
        
-        $this->bsf_rt_is_admin_bar_showing=is_admin_bar_showing();
-        //var_dump($this->bsf_rt_is_admin_bar_showing);   
+        self::$bsf_rt_is_admin_bar_showing=is_admin_bar_showing();
+           
      }   
 
     /**
@@ -794,7 +796,12 @@ class BSF_ReadTime
         
         ?>
         <style type="text/css">
-                .progress-container-top{
+                .progress-container-top-admin-bar{
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
+                    height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                    
+                }
+                .progress-container-top {
                     background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
                     height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
                     
@@ -830,7 +837,12 @@ class BSF_ReadTime
     {  
         ?>
         <style type="text/css">
-               .progress-container-top{
+               .progress-container-top-admin-bar{
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
+                    height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
+                    
+                }
+                .progress-container-top {
                     background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
                     height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
                     
