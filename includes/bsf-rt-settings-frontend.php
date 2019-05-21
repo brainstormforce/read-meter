@@ -11,7 +11,7 @@
         <h3> General Settings </h3>
       </tr>
       <p class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.
       </p>  
       
       <tr>
@@ -83,7 +83,7 @@
         <h3>Read Time</h3>
       </tr>
        <p class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Control the position & appearance of the estimated read time of the post.
       </p> 
       <tr>
         <th scope="row">
@@ -200,7 +200,7 @@
         <h3>Progress Bar</h3>
       </tr>
        <p class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read.
       </p> 
       <tr>
         <th scope="row">
@@ -287,34 +287,20 @@
         </tr> 
         <tr id="normal-color-wrap">
           <th scope="row">
-            <label for="ProgressBarColor"> Color :</label>
+            <label for="ProgressBarColor"> Primary Color :</label>
           </th>  
           <td>
             <?php
-            if (isset($options['bsf_rt_progress_bar_color'])) { ?>
-              <input name="bsf_rt_progress_bar_color" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color']; ?>">
+            if (isset($options['bsf_rt_progress_bar_gradiant_one'])) { ?>
+              <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_gradiant_one']; ?>">
             <?php } else { ?>
-              <input name="bsf_rt_progress_bar_color" class="my-color-field" value="#00ACE0">
+              <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#00ACE0">
             <?php }
             ?>
            
           </td>
         </tr>
-        
-        <tr id="gradiant-wrap1">
-          <th scope="row">
-            <label for="ProgressBarColor">Primary Color :</label>
-          </th>
-          <td>
-                <?php
-                if (isset($options['bsf_rt_progress_bar_gradiant_one'])) { ?>
-              <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_gradiant_one']; ?>">
-                <?php } else { ?>
-               <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#E00078">
-                <?php }
-                ?>
-          
-          </td>
+       
         </tr>
 
         <tr id="gradiant-wrap2">
@@ -388,7 +374,6 @@ $update_options = array(
         'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
         'bsf_rt_post_types'     => $bsf_rt_post_types,
         'bsf_rt_position_of_progress_bar' => $bsf_rt_position_of_progress_bar,
-        'bsf_rt_progress_bar_color' => $bsf_rt_progress_bar_color,
         'bsf_rt_progress_bar_styles' => $bsf_rt_progress_bar_styles,
         'bsf_rt_progress_bar_background_color' => $bsf_rt_progress_bar_background_color,
         'bsf_rt_progress_bar_gradiant_one'=>$bsf_rt_progress_bar_gradiant_one,

@@ -100,7 +100,7 @@ class BSF_ReadTime
 
         if (isset($this->bsf_rt_options['bsf_rt_progress_bar_styles']) && ('Normal' === $this->bsf_rt_options['bsf_rt_progress_bar_styles'])  ) {
 
-            if (isset($this->bsf_rt_options['bsf_rt_progress_bar_color']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_background_color']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_thickness']) ) {
+            if (isset($this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_background_color']) && isset($this->bsf_rt_options['bsf_rt_progress_bar_thickness']) ) {
                 
                 add_action('wp_head', array( $this, 'bsf_rt_set_progressbar_colors_normal'));
                  // $this->bsf_rt_set_progressbar_colors_normal();
@@ -805,7 +805,7 @@ class BSF_ReadTime
                     
                 } 
                 .progress-bar {
-                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_color']; ?>;
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one']; ?>;
                     height: <?php  echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
                    width: 0%;
                    
