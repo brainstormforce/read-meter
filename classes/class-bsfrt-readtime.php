@@ -11,6 +11,8 @@ class BSF_ReadTime
     public $reading_time;
 
     public $bsf_rt_options = array();
+
+    public $bsf_rt_is_admin_bar_showing;
     /**
      * Construct function for BSF_ReadTime.
      *
@@ -30,57 +32,59 @@ class BSF_ReadTime
         );
 
         add_option('bsf_rt', $default_options);
+    
 
         $this->bsf_rt_options = get_option('bsf_rt');
-
+        add_action('wp_head',array($this,'bsf_rt_is_admin_bar_showing'));
 //Displaying Reading Time Conditions
     if (isset($this->bsf_rt_options['bsf_rt_show_read_time'])) {
         if(in_array('bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
 
-                    if (isset($this->bsf_rt_options['bsf_rt_single_page_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_single_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('the_content', array( $this, 'bsf_rt_add_reading_time_before_content' ), 90);
                     }
-                    if (isset($this->bsf_rt_options['bsf_rt_single_page_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_single_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_above_the_post_title' ), 90);
                     }
-                    if (isset($this->bsf_rt_options['bsf_rt_single_page_position_of_read_time']) && ( 'below_the_post_title' === $this->bsf_rt_options['bsf_rt_single_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'below_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_below_the_post_title' ), 90);
                     }
              }
         if(in_array('bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
 
-                    if (isset($this->bsf_rt_options['bsf_rt_home_blog_page_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_home_blog_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000);
                     }
-                    if (isset($this->bsf_rt_options['bsf_rt_home_blog_page_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_home_blog_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_before_title_excerpt' ), 1000);
                     }
-                    if (isset($this->bsf_rt_options['bsf_rt_home_blog_page_position_of_read_time']) && ( 'below_the_post_title' === $this->bsf_rt_options['bsf_rt_home_blog_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'below_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_after_title_excerpt' ), 1000);
                     }
              }
         if(in_array('bsf_rt_archive_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
 
-                    if (isset($this->bsf_rt_options['bsf_rt_archive_page_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_archive_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_archive' ), 1000);
                     }
-                    if (isset($this->bsf_rt_options['bsf_rt_archive_page_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_archive_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_before_title_archive' ), 1000);
                     }
-                    if (isset($this->bsf_rt_options['bsf_rt_archive_page_position_of_read_time']) && ( 'below_the_post_title' === $this->bsf_rt_options['bsf_rt_archive_page_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'below_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_after_title_archive' ), 1000);
                     }
              }     
     }
+
 
     //Displaying Progress Bar Conditions
         if (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'none' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
@@ -221,6 +225,7 @@ class BSF_ReadTime
 
             $title  = '
 		<span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label">' . $label . '</span> <span class="bsf_rt_display_time">' . $this->reading_time . '</span> <span class="bsf_rt_display_label bsf_rt_display_postfix">' . $calculated_postfix . '</span></span><br>';
+            // $title = '<span class="bsf_rt_display_label" title="'.$label.'"></span>';
             $title .= $original_title;
             return $title;
         } else {
@@ -705,11 +710,27 @@ class BSF_ReadTime
      * @return Nothing.
      */
 
-     public function hook_header_bottom()
-            {
-                  echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
-                <div class="progress-bar" id="bsf_rt_progress_bar"></div>
-                </div>';
+     public function hook_header_bottom () {
+                 $this->bsf_rt_options = get_option('bsf_rt');
+
+
+                // Get the post type of the current post.
+                $bsf_rt_current_post_type = get_post_type();
+
+            
+                // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+                if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
+                    return ;
+                }
+                if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+                    return ;
+                }
+                if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
+                    return ;
+                }
+                      echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
+                    <div class="progress-bar" id="bsf_rt_progress_bar"></div>
+                    </div>';
             }
 
      /**
@@ -720,22 +741,42 @@ class BSF_ReadTime
      * @return Nothing.
      */        
     public function hook_header_top()
-            {   
-                $bsf_rt_is_admin_bar_showing=is_admin_bar_showing();    
-                
-                if ($bsf_rt_is_admin_bar_showing == true ) {
+            {  
+               $this->bsf_rt_options = get_option('bsf_rt');
+
+
+                // Get the post type of the current post.
+                $bsf_rt_current_post_type = get_post_type();
+
+            
+                // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+                if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
+                    return ;
+                }
+                if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+                    return ;
+                }
+                if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
+                    return ;
+                }
+                if ($this->bsf_rt_is_admin_bar_showing == true ) {
                     
                     echo '<div style="top:30px;" id="bsf_rt_progress_bar_container" class="progress-container-top">
                 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
-                } elseif ($bsf_rt_is_admin_bar_showing == false ) {
+                } elseif ($this->bsf_rt_is_admin_bar_showing == false ) {
                      
                             echo '<div style="top:0px;" id="bsf_rt_progress_bar_container" class="progress-container-top">
                 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
                 }
         
-    }      
+    }   
+    public function bsf_rt_is_admin_bar_showing() {
+       
+        $this->bsf_rt_is_admin_bar_showing=is_admin_bar_showing();
+        var_dump($this->bsf_rt_is_admin_bar_showing);   
+     }   
 
     /**
      * Adds CSS to the progress BAr as per User input , When Style is Selected Normal.

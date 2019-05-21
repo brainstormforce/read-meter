@@ -65,7 +65,6 @@ var idleTime = 0;
           //console.log(winScroll);
           var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
           //var height = 1519;
-          console.log(height);
           var scrolled = (winScroll / height) * 100;
            
           if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
@@ -89,22 +88,20 @@ var idleTime = 0;
     nameSelect=document.getElementById("bsf_rt_progress_bar_styles").value;
     
       
-      if(nameSelect === 'Gradient') {
+          if (nameSelect === 'Gradient') {
          
                document.getElementById("gradiant-wrap2").style.display = "table-row";
                document.getElementById("gradiant-wrap1").style.display = "table-row";
               document.getElementById("normal-color-wrap").style.display = "none";
 
-          }
-          else{
+          } else{
               document.getElementById("gradiant-wrap2").style.display = "none";
               document.getElementById("gradiant-wrap1").style.display = "none";            
               document.getElementById("normal-color-wrap").style.display = "table-row";
           }
-          if(document.getElementById("bsf_rt_position_of_progress_bar")){
-progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
-  //console.log(progressOptionValue);
-          //progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
+        }
+          if (document.getElementById("bsf_rt_position_of_progress_bar")){
+          progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
           if(progressOptionValue !== 'none') {
       
                document.getElementById("bsf-rt-progress-bar-options").style.display = "block";
@@ -114,8 +111,25 @@ progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar")
            document.getElementById("bsf-rt-progress-bar-options").style.display = "none";
 
           }
-      }
-    }
+      }   
+        //   if (document.getElementById("bsf_rt_single_page").checked) {
+        //     document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "inline-block"; 
+        //   } else {
+        //         document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "none"; 
+        // }
+        // if (document.getElementById("bsf_rt_home_blog_page").checked) {
+        //     document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "inline-block"; 
+        //   } else {
+        //         document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "none"; 
+        // }
+        // if (document.getElementById("bsf_rt_archive_page").checked) {
+        //     document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "inline-block"; 
+        //   } else {
+        //         document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "none"; 
+        // }
+
+
+   
  }
 
       function bsd_rt_ColorSelectCheck_two(nameSelect)
@@ -156,5 +170,34 @@ if(positionSelect) {
       }
 }
 
+// function singlePage() {
 
+//     // access properties using this keyword
+//     if ( document.getElementById('bsf_rt_single_page').checked ) {
+//         document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "inline-block"; 
+
+//     } else {
+//        document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "none"; 
+//       }
+// }
+// function homePage() {
+
+//     // access properties using this keyword
+//     if ( document.getElementById('bsf_rt_home_blog_page').checked ) {
+//         document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "inline-block"; 
+
+//     } else {
+//        document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "none"; 
+//       }
+// }
+// function archivePage() {
+
+//     // access properties using this keyword
+//     if ( document.getElementById('bsf_rt_archive_page').checked ) {
+//         document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "inline-block"; 
+
+//     } else {
+//        document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "none"; 
+//       }
+// }
   

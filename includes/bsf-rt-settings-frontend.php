@@ -90,115 +90,68 @@
         <label for="ShowEstimatedReadTime">Show Estimated Read Time On:</label>
         </th>
         <td>
-          <label for="ForSinglePage" class="bsf_rt_show_readtime_label">
+          <label id="bsf_rt_single_checkbox_label" for="ForSinglePage" class="bsf_rt_show_readtime_label" >
             <?php
             if (isset($options['bsf_rt_show_read_time'])) {
               if ( in_array('bsf_rt_single_page', $options['bsf_rt_show_read_time'])) {
-                  echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
+                  echo ' <input id="bsf_rt_single_page" type="checkbox" checked name="bsf_rt_show_read_time[]" onclick="singlePage()" value="bsf_rt_single_page">';
               } else {
-                  echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
+                  echo ' <input id="bsf_rt_single_page" type="checkbox" name="bsf_rt_show_read_time[]" onclick="singlePage()" value="bsf_rt_single_page">';
               }
             } else {
-              echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">'; 
+              echo '  <input id="bsf_rt_single_page" type="checkbox" checked name="bsf_rt_show_read_time[]" onclick="singlePage()" value="bsf_rt_single_page">'; 
             }
             ?>
          
           Single Page</label> 
     
-          <select required name="bsf_rt_single_page_position_of_read_time">
-            <?php 
-            if (isset($options['bsf_rt_single_page_position_of_read_time'])) {
-                if ('above_the_content' === $options['bsf_rt_single_page_position_of_read_time']) {
-                    echo '<option selected value="above_the_content">Above the Content</option>';
-                } else {
-                    echo '<option  value="above_the_content">Above the Content</option>';
-                }
-                if ('above_the_post_title' === $options['bsf_rt_single_page_position_of_read_time']) {
-                    echo '<option selected value="above_the_post_title">Above the Post Title</option>';
-                } else {
-                    echo '<option value="above_the_post_title">Above the Post Title</option>';
-                }
-                if ('below_the_post_title' === $options['bsf_rt_single_page_position_of_read_time']) {
-                    echo '<option selected value="below_the_post_title">Below the Post Title</option>';
-                } else {
-                    echo '<option value="below_the_post_title">Below the Post Title</option>';
-                }
-
-            } else {
-
-                echo '<option selected value="none">None</option>';
-                echo '<option  value="above_the_content">Above the Content</option>';
-                echo '<option value="above_the_post_title">Above the Post Title</option>';
-                echo '<option value="below_the_post_title">Below the Post Title</option>';
-            }
-
-            ?>
-            </select> <br>
+       <br>
             <label for="ForHomeBlogPage" class="bsf_rt_show_readtime_label">
             <?php
             if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_home_blog_page', $options['bsf_rt_show_read_time']) ) {
-                echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page">';
+                echo ' <input id="bsf_rt_home_blog_page" type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page" onclick="homePage()">';
             } else {
-                echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page">';
+                echo '  <input id="bsf_rt_home_blog_page" type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page" onclick="homePage()">';
             }
             ?>
          
           Home / Blog Page</label> 
     
-          <select required name="bsf_rt_home_blog_page_position_of_read_time">
-            <?php 
-            if (isset($options['bsf_rt_home_blog_page_position_of_read_time'])) {
-                if ('above_the_content' === $options['bsf_rt_home_blog_page_position_of_read_time']) {
-                    echo '<option selected value="above_the_content">Above the Content</option>';
-                } else {
-                    echo '<option  value="above_the_content">Above the Content</option>';
-                }
-                if ('above_the_post_title' === $options['bsf_rt_home_blog_page_position_of_read_time']) {
-                    echo '<option selected value="above_the_post_title">Above the Post Title</option>';
-                } else {
-                    echo '<option value="above_the_post_title">Above the Post Title</option>';
-                }
-                if ('below_the_post_title' === $options['bsf_rt_home_blog_page_position_of_read_time']) {
-                    echo '<option selected value="below_the_post_title">Below the Post Title</option>';
-                } else {
-                    echo '<option value="below_the_post_title">Below the Post Title</option>';
-                }
-
-            } else {
-
-                echo '<option selected value="none">None</option>';
-                echo '<option  value="above_the_content">Above the Content</option>';
-                echo '<option value="above_the_post_title">Above the Post Title</option>';
-                echo '<option value="below_the_post_title">Below the Post Title</option>';
-            }
-
-            ?>
-            </select> <br>
+         <br>
             <label for="ForArchivePage" class="bsf_rt_show_readtime_label">
             <?php
             if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_archive_page', $options['bsf_rt_show_read_time']) ) {
-                echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page">';
+                echo ' <input id="bsf_rt_archive_page" type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page" onclick="archivePage()">';
             } else {
-                echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page">';
+                echo ' <input id="bsf_rt_archive_page"  type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page" onclick="archivePage()">';
             }
             ?>
          
           Archive Page</label> 
     
-          <select required name="bsf_rt_archive_page_position_of_read_time">
+          
+        </td>
+         
+      </tr>
+        <tr>
+        <th scope="row">
+          <label for="ShowReadTimePosition">Read Time Position :</label>
+        </th>
+        <td>
+         <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time">
             <?php 
-            if (isset($options['bsf_rt_archive_page_position_of_read_time'])) {
-                if ('above_the_content' === $options['bsf_rt_archive_page_position_of_read_time']) {
+            if (isset($options['bsf_rt_position_of_read_time'])) {
+                if ('above_the_content' === $options['bsf_rt_position_of_read_time']) {
                     echo '<option selected value="above_the_content">Above the Content</option>';
                 } else {
                     echo '<option  value="above_the_content">Above the Content</option>';
                 }
-                if ('above_the_post_title' === $options['bsf_rt_archive_page_position_of_read_time']) {
+                if ('above_the_post_title' === $options['bsf_rt_position_of_read_time']) {
                     echo '<option selected value="above_the_post_title">Above the Post Title</option>';
                 } else {
                     echo '<option value="above_the_post_title">Above the Post Title</option>';
                 }
-                if ('below_the_post_title' === $options['bsf_rt_archive_page_position_of_read_time']) {
+                if ('below_the_post_title' === $options['bsf_rt_position_of_read_time']) {
                     echo '<option selected value="below_the_post_title">Below the Post Title</option>';
                 } else {
                     echo '<option value="below_the_post_title">Below the Post Title</option>';
@@ -206,7 +159,6 @@
 
             } else {
 
-                echo '<option selected value="none">None</option>';
                 echo '<option  value="above_the_content">Above the Content</option>';
                 echo '<option value="above_the_post_title">Above the Post Title</option>';
                 echo '<option value="below_the_post_title">Below the Post Title</option>';
@@ -215,7 +167,6 @@
             ?>
             </select> 
         </td>
-         
       </tr>
       <tr>
         <th scope="row">
@@ -318,23 +269,7 @@
              </select>
           </td>
         </tr>
-          
-        <tr id="normal-color-wrap">
-          <th scope="row">
-            <label for="ProgressBarColor">Color :</label>
-          </th>  
-          <td>
-            <?php
-            if (isset($options['bsf_rt_progress_bar_color'])) { ?>
-              <input name="bsf_rt_progress_bar_color" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color']; ?>">
-            <?php } else { ?>
-              <input name="bsf_rt_progress_bar_color" class="my-color-field" value="#00ACE0">
-            <?php }
-            ?>
            
-          </td>
-        </tr>
-          
         <tr id="normal-back-wrap">
           <th scope="row">
             <label for="ProgressBarBackgroundColor">Background Color :</label>
@@ -349,7 +284,23 @@
                 ?>
             
           </td>
+        </tr> 
+        <tr id="normal-color-wrap">
+          <th scope="row">
+            <label for="ProgressBarColor"> Color :</label>
+          </th>  
+          <td>
+            <?php
+            if (isset($options['bsf_rt_progress_bar_color'])) { ?>
+              <input name="bsf_rt_progress_bar_color" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_color']; ?>">
+            <?php } else { ?>
+              <input name="bsf_rt_progress_bar_color" class="my-color-field" value="#00ACE0">
+            <?php }
+            ?>
+           
+          </td>
         </tr>
+        
         <tr id="gradiant-wrap1">
           <th scope="row">
             <label for="ProgressBarColor">Primary Color :</label>
@@ -428,7 +379,7 @@ $bsf_rt_progress_bar_gradiant_two=$_POST['bsf_rt_progress_bar_color_g2'];
 $bsf_rt_show_read_time=$_POST['bsf_rt_show_read_time'];
 $bsf_rt_single_page_position_of_read_time=$_POST['bsf_rt_single_page_position_of_read_time'];
 $bsf_rt_home_blog_page_position_of_read_time=$_POST['bsf_rt_home_blog_page_position_of_read_time'];
-$bsf_rt_archive_page_position_of_read_time=$_POST['bsf_rt_archive_page_position_of_read_time'];
+$bsf_rt_position_of_read_time=$_POST['bsf_rt_position_of_read_time'];
 
 $update_options = array(
         'bsf_rt_reading_time_label'=> $bsf_rt_reading_time_label,
@@ -447,7 +398,7 @@ $update_options = array(
         'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
         'bsf_rt_single_page_position_of_read_time' => $bsf_rt_single_page_position_of_read_time,
         'bsf_rt_home_blog_page_position_of_read_time' => $bsf_rt_home_blog_page_position_of_read_time,
-        'bsf_rt_archive_page_position_of_read_time' => $bsf_rt_archive_page_position_of_read_time,
+        'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
 
     );
 
