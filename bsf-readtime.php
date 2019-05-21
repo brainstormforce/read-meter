@@ -17,6 +17,8 @@
     * @license  https://brainstormforce.com 
     * @link     https://brainstormforce.com
     */
+   define('BSF_RT_PATH',__FILE__);
+
    define('BSF_RT_ABSPATH', plugin_dir_path(__FILE__));
    
    define('BSF_RT_PLUGIN_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
@@ -25,3 +27,5 @@
 
    require plugin_dir_path(__FILE__).'classes/class-bsfrt-loader.php';
    require plugin_dir_path(__FILE__).'classes/class-bsfrt-readtime.php';
+
+   

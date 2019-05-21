@@ -10,7 +10,10 @@
       <tr>
         <h3> General Settings </h3>
       </tr>
-
+      <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>  
+      
       <tr>
         <th scope="row">
           <label for="WordsPerMinute">Words Per Minute :</label>
@@ -38,7 +41,7 @@
                 if (in_array($post_type->labels->name, $exclude)  ) {
                     continue;
                 } 
-                if ($options['bsf_rt_post_types'] !== 'post'){
+                if ($options['bsf_rt_post_types'] !== 'post') {
                 if (isset($options['bsf_rt_post_types'])) {
                     if (in_array($post_type->name, $options['bsf_rt_post_types'])) {
                         echo'<label for="ForPostType">
@@ -55,17 +58,21 @@
                    '.$post_type->labels->name.'</label><br> ';
                 }
               } else {
+                if ($post_type->name == 'post') {
+                  echo'<label for="ForPostType">
+                   <input type="checkbox" checked name="posts[]" value="'.$post_type->name.'">
+                   '.$post_type->labels->name.'</label><br> ';
+                }
                  echo'<label for="ForPostType">
                    <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
                    '.$post_type->labels->name.'</label><br> ';
                     }
-              }
+                }
+              
+            
             
             ?>
-          
-          <p class="description">
-            Deafults to  Post.
-          </p>  
+         
         </td>
       </tr>
 
@@ -75,7 +82,9 @@
       <tr>
         <h3>Read Time</h3>
       </tr>
-
+       <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p> 
       <tr>
         <th scope="row">
         <label for="ShowEstimatedReadTime">Show Estimated Read Time On:</label>
@@ -83,11 +92,14 @@
         <td>
           <label for="ForSinglePage" class="bsf_rt_show_readtime_label">
             <?php
-            
-            if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_single_page', $options['bsf_rt_show_read_time'])) {
-                echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
+            if (isset($options['bsf_rt_show_read_time'])) {
+              if ( in_array('bsf_rt_single_page', $options['bsf_rt_show_read_time'])) {
+                  echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
+              } else {
+                  echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
+              }
             } else {
-                echo ' <input type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">';
+              echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_single_page">'; 
             }
             ?>
          
@@ -236,7 +248,9 @@
       <tr>
         <h3>Progress Bar</h3>
       </tr>
-
+       <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p> 
       <tr>
         <th scope="row">
         <label for="PositionofDisplayProgressBar">Display Position:</label>
