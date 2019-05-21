@@ -88,6 +88,14 @@
 #bsf-rt-progress-bar-options{
   display: block;
 }
+#bsf_rt_progress_bar_container {
+  opacity: 0.5;
+  /*transition: opacity ease-in-out 200ms;*/
+}
+.bsf_rt_show_readtime_label{
+  min-width: 200px;
+  display: inline-block;
+}
 /*Post Types CSS*/
 /*.post_type_name
 {

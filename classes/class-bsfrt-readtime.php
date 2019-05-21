@@ -695,7 +695,7 @@ class BSF_ReadTime
 
         return $additional_time;
     }
-    
+
      /**
      * Adds the Progress bar at the bottom.
      * @since 1.0.0
@@ -706,8 +706,8 @@ class BSF_ReadTime
 
      public function hook_header_bottom()
             {
-                  echo '<div id="myWrap" class="progress-container-bottom">
-                <div class="progress-bar" id="myBar"></div>
+                  echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
+                <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
             }
 
@@ -724,13 +724,13 @@ class BSF_ReadTime
                 
                 if ($bsf_rt_is_admin_bar_showing == true ) {
                     
-                    echo '<div style="top:30px;" id="myWrap" class="progress-container-top">
-                <div class="progress-bar" id="myBar"></div>
+                    echo '<div style="top:30px;" id="bsf_rt_progress_bar_container" class="progress-container-top">
+                <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
                 } elseif ($bsf_rt_is_admin_bar_showing == false ) {
                      
-                            echo '<div style="top:0px;" id="myWrap" class="progress-container-top">
-                <div class="progress-bar" id="myBar"></div>
+                            echo '<div style="top:0px;" id="bsf_rt_progress_bar_container" class="progress-container-top">
+                <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
                 }
         

@@ -31,20 +31,21 @@ var idleTime = 0;
 
             function goInactive()
             {
-               if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
-                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
-                    document.getElementById("myBar").style.opacity=0.5;
-                    document.getElementById("myWrap").style.opacity=0.5;
+               if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+                   document.getElementById("bsf_rt_progress_bar_container").setAttribute('style', 'opacity : 0.5; transition: opacity ease-in-out 500ms;');
+                   // document.getElementById("bsf_rt_progress_bar_container").style.opacity=0.5;
                 }
               }
             }
 
             function goActive()
             {
-              if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
-                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
-                    document.getElementById("myBar").style.opacity=1;
-                    document.getElementById("myWrap").style.opacity=1;
+              if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+                   
+                    document.getElementById("bsf_rt_progress_bar_container").setAttribute('style', 'opacity : 1; transition: opacity ease-in-out 500ms;');
+                  // document.getElementById("bsf_rt_progress_bar_container").style.opacity=1;
                 }
                }     
                startTimer();
@@ -67,9 +68,9 @@ var idleTime = 0;
         
           var scrolled = (winScroll / height) * 100;
            
-          if(document.getElementById("myBar") !== null && document.getElementById("myWrap") !== null ) {
-                if (typeof document.getElementById("myBar") !== 'undefined' && typeof document.getElementById("myWrap") !== 'undefined' ) {
-          document.getElementById("myBar").style.width = scrolled + "%";
+          if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+          document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
         }
       }
   }
@@ -82,11 +83,12 @@ var idleTime = 0;
   bsd_rt_ColorSelectCheck();
  
 };
-  function bsd_rt_ColorSelectCheck()
-  { 
-    nameSelect=document.getElementById("getFname").value;
+  function bsd_rt_ColorSelectCheck() { 
+   
+   if (document.getElementById("bsf_rt_progress_bar_styles") !== null) {
+    nameSelect=document.getElementById("bsf_rt_progress_bar_styles").value;
     
-      console.log(nameSelect);
+      
       if(nameSelect === 'Gradient') {
          
                document.getElementById("gradiant-wrap2").style.display = "table-row";
@@ -99,11 +101,26 @@ var idleTime = 0;
               document.getElementById("gradiant-wrap1").style.display = "none";            
               document.getElementById("normal-color-wrap").style.display = "table-row";
           }
+          if(document.getElementById("bsf_rt_position_of_progress_bar")){
+progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
+  //console.log(progressOptionValue);
+          //progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
+          if(progressOptionValue !== 'none') {
+      
+               document.getElementById("bsf-rt-progress-bar-options").style.display = "block";
+               
+          }
+          else{
+           document.getElementById("bsf-rt-progress-bar-options").style.display = "none";
+
+          }
       }
+    }
+ }
 
       function bsd_rt_ColorSelectCheck_two(nameSelect)
   {
-      //console.log(nameSelect);
+      
       if(nameSelect) {
           admOptionValue = document.getElementById("gradiantcolor").value;
           if(admOptionValue == nameSelect.value) {
@@ -125,7 +142,7 @@ var idleTime = 0;
 function bsd_rt_Progressbarpositioncheck(positionSelect) {
 
 if(positionSelect) {
-  console.log(positionSelect.value);
+  //console.log(positionSelect.value);
           //progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
           if(positionSelect.value !== 'none') {
       
@@ -139,24 +156,5 @@ if(positionSelect) {
       }
 }
 
-window.onload = function() {
- 
-  bsd_rt_Progressbarpositioncheck_two();
-};
-function bsd_rt_Progressbarpositioncheck_two() {
-if(document.getElementById("bsf_rt_position_of_progress_bar")){
-progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
-  console.log(progressOptionValue);
-          //progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
-          if(progressOptionValue !== 'none') {
-      
-               document.getElementById("bsf-rt-progress-bar-options").style.display = "block";
-               
-          }
-          else{
-           document.getElementById("bsf-rt-progress-bar-options").style.display = "none";
 
-          }
-      }
-}
   

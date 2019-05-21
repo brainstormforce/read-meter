@@ -81,7 +81,7 @@
         <label for="ShowEstimatedReadTime">Show Estimated Read Time On:</label>
         </th>
         <td>
-          <label for="ForSinglePage">
+          <label for="ForSinglePage" class="bsf_rt_show_readtime_label">
             <?php
             
             if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_single_page', $options['bsf_rt_show_read_time'])) {
@@ -122,7 +122,7 @@
 
             ?>
             </select> <br>
-            <label for="ForHomeBlogPage">
+            <label for="ForHomeBlogPage" class="bsf_rt_show_readtime_label">
             <?php
             if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_home_blog_page', $options['bsf_rt_show_read_time']) ) {
                 echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page">';
@@ -162,7 +162,7 @@
 
             ?>
             </select> <br>
-            <label for="ForArchivePage">
+            <label for="ForArchivePage" class="bsf_rt_show_readtime_label">
             <?php
             if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_archive_page', $options['bsf_rt_show_read_time']) ) {
                 echo ' <input type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page">';
@@ -279,7 +279,7 @@
           <label for="ProgressBarStyle">Styles :</label>
         </th>
           <td>
-            <select  name="bsf_rt_progress_bar_styles" id="getFname" onchange="bsd_rt_ColorSelectCheck_two(this);">
+            <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles" onchange="bsd_rt_ColorSelectCheck_two(this);">
                 <?php 
                 if (isset($options['bsf_rt_progress_bar_styles'])) {
                     if ('Normal' === $options['bsf_rt_progress_bar_styles']) {
