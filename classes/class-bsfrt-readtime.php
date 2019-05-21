@@ -35,7 +35,7 @@ class BSF_ReadTime
     
 
         $this->bsf_rt_options = get_option('bsf_rt');
-        add_action('wp_head',array($this,'bsf_rt_is_admin_bar_showing'));
+        add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
 //Displaying Reading Time Conditions
     if (isset($this->bsf_rt_options['bsf_rt_show_read_time'])) {
         if(in_array('bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
@@ -775,7 +775,7 @@ class BSF_ReadTime
     public function bsf_rt_is_admin_bar_showing() {
        
         $this->bsf_rt_is_admin_bar_showing=is_admin_bar_showing();
-        var_dump($this->bsf_rt_is_admin_bar_showing);   
+        //var_dump($this->bsf_rt_is_admin_bar_showing);   
      }   
 
     /**
