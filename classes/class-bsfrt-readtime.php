@@ -86,6 +86,7 @@ class BSF_ReadTime
         if (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'none' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
             return;
         } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'top_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
+          
             add_action('wp_footer', array($this,'hook_header_top'));
             
             } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'bottom_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
@@ -719,7 +720,7 @@ class BSF_ReadTime
      * @return Nothing.
      */        
     public function hook_header_top()
-            {
+            {   
                 $bsf_rt_is_admin_bar_showing=is_admin_bar_showing();    
                 
                 if ($bsf_rt_is_admin_bar_showing == true ) {

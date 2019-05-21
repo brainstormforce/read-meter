@@ -33,7 +33,7 @@ var idleTime = 0;
             {
                if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
                 if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
-                   document.getElementById("bsf_rt_progress_bar_container").setAttribute('style', 'opacity : 0.5; transition: opacity ease-in-out 500ms;');
+                   document.getElementById("bsf_rt_progress_bar_container").setAttribute('style', 'opacity : 0.5; transition: opacity ease-in-out 200ms;');
                    // document.getElementById("bsf_rt_progress_bar_container").style.opacity=0.5;
                 }
               }
@@ -44,7 +44,7 @@ var idleTime = 0;
               if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
                 if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
                    
-                    document.getElementById("bsf_rt_progress_bar_container").setAttribute('style', 'opacity : 1; transition: opacity ease-in-out 500ms;');
+                    document.getElementById("bsf_rt_progress_bar_container").setAttribute('style', 'opacity : 1; transition: opacity ease-in-out 200ms;');
                   // document.getElementById("bsf_rt_progress_bar_container").style.opacity=1;
                 }
                }     
@@ -65,7 +65,7 @@ var idleTime = 0;
           //console.log(winScroll);
           var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
           //var height = 1519;
-        
+          console.log(height);
           var scrolled = (winScroll / height) * 100;
            
           if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
