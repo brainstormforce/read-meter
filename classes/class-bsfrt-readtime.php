@@ -704,7 +704,7 @@ class BSF_ReadTime
     }
 
      /**
-     * Adds the Progress bar at the bottom.
+     * Adds the Progress Bar at the bottom.
      * @since 1.0.0
      *
      * @param  Nothing.
@@ -735,7 +735,7 @@ class BSF_ReadTime
             }
 
      /**
-     * Adds the Progress bar at the top.
+     * Adds the Progress Bar at the top.
      * @since 1.0.0
      *
      * @param  Nothing.
@@ -781,7 +781,7 @@ class BSF_ReadTime
      }   
 
     /**
-     * Adds CSS to the progress BAr as per User input , When Style is Selected Normal.
+     * Adds CSS to the progress Bar as per User input , When Style is Selected Normal.
      *
      * @since 1.1.0
      *

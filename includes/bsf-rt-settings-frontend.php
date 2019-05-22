@@ -68,10 +68,7 @@
                    '.$post_type->labels->name.'</label><br> ';
                     }
                 }
-              
-            
-            
-            ?>
+             ?>
          
         </td>
       </tr>
