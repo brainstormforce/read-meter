@@ -10,6 +10,7 @@ class BSF_ReadTime
 {
     public $reading_time;
 
+
     public $bsf_rt_options = array();
 
     public static $bsf_rt_is_admin_bar_showing;
@@ -22,7 +23,11 @@ class BSF_ReadTime
      */
     public function __construct()
     {
-        
+        $bsf_rt_general_settings = get_option('bsf_rt_general_settings');
+        $bsf_rt_read_time_settings = get_option('bsf_rt_read_time_settings');
+        $bsf_rt_progress_bar_settings = get_option('bsf_rt_progress_bar_settings');
+        $all_options=array_merge( $bsf_rt_general_settings,$bsf_rt_read_time_settings);
+        $all_options=array_merge($all_options,$bsf_rt_progress_bar_settings);
         $default_options = array(
         'bsf_rt_reading_time_label'=> 'Reading Time',
         'bsf_rt_reading_time_postfix_label'=> 'mins',
@@ -34,7 +39,7 @@ class BSF_ReadTime
         add_option('bsf_rt', $default_options);
     
 
-        $this->bsf_rt_options = get_option('bsf_rt');
+        $this->bsf_rt_options = $all_options;
         add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
 
 //Displaying Reading Time Conditions
@@ -130,7 +135,7 @@ class BSF_ReadTime
     {
         if (in_the_loop() && is_singular()) {
             // die();
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
@@ -187,7 +192,7 @@ class BSF_ReadTime
         if (in_the_loop() && is_singular() ) {
         
   
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
@@ -248,7 +253,7 @@ class BSF_ReadTime
         if (in_the_loop() && is_singular() ) {
         
   
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
 
             // Get the post type of the current post.
@@ -306,7 +311,7 @@ class BSF_ReadTime
      */
     public function bsf_rt_add_reading_time_before_content_excerpt( $content ) {
         if (in_the_loop() && is_home() && !is_archive() ) {
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
@@ -358,7 +363,7 @@ class BSF_ReadTime
          if (in_the_loop() && is_home() && !is_archive() ) {
         
   
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
@@ -420,7 +425,7 @@ class BSF_ReadTime
         if (in_the_loop() && is_home() && !is_archive() ) {
         
   
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
 
             // Get the post type of the current post.
@@ -478,7 +483,7 @@ class BSF_ReadTime
     public function bsf_rt_add_reading_time_before_content_archive( $content )
     {
         if (in_the_loop() && is_archive() ) { 
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
@@ -530,7 +535,7 @@ class BSF_ReadTime
          if (in_the_loop() && is_archive() ) {
         
   
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
@@ -592,7 +597,7 @@ class BSF_ReadTime
         if (in_the_loop() && is_archive() ) {
         
   
-            $this->bsf_rt_options = get_option('bsf_rt');
+            
 
 
             // Get the post type of the current post.
@@ -714,7 +719,7 @@ class BSF_ReadTime
      */
 
      public function hook_header_bottom () {
-                 $this->bsf_rt_options = get_option('bsf_rt');
+                 
 
 
                 // Get the post type of the current post.
@@ -746,9 +751,7 @@ class BSF_ReadTime
     public function hook_header_top()
             {  
                  
-               $this->bsf_rt_options = get_option('bsf_rt');
-
-
+              
                 // Get the post type of the current post.
                 $bsf_rt_current_post_type = get_post_type();
 
