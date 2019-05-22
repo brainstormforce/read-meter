@@ -54,10 +54,11 @@ class BSF_ReadTime
         $all_options=array_merge( $bsf_rt_general_settings,$bsf_rt_read_time_settings);
         $all_options=array_merge($all_options,$bsf_rt_progress_bar_settings);
     }
-    
-
         $this->bsf_rt_options = $all_options;
         add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
+
+//Shortcode
+add_shortcode('read_meter',array($this,'read_meter_shortcode'));        
 
 //Displaying Reading Time Conditions
     if (isset($this->bsf_rt_options['bsf_rt_show_read_time'])) {
@@ -107,9 +108,7 @@ class BSF_ReadTime
                     }
              }     
     }
-
-
-    //Displaying Progress Bar Conditions
+//Displaying Progress Bar Conditions
         if (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'none' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
             return;
         } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'top_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
@@ -774,7 +773,7 @@ class BSF_ReadTime
                 if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
                     return ;
                 }
-            
+
                 if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                     return ;
                 }
@@ -791,11 +790,45 @@ class BSF_ReadTime
                 }
         
     }   
+    /**
+     * Checks if admin bar is showing or not.
+     * @since 1.0.0
+     *
+     * @param  Nothing.
+     * @return Nothing.
+     */  
     public function bsf_rt_is_admin_bar_showing() {
        
         self::$bsf_rt_is_admin_bar_showing=is_admin_bar_showing();
            
-     }   
+     }
+     /**
+     * Function of the read_meter shortcode.
+     * @since 1.0.0
+     *
+     * @param  Nothing.
+     * @return shortcode display value.
+     */     
+     public function read_meter_shortcode() {
+
+            $bsf_rt_post          = get_the_ID();
+           
+            $this->bsf_rt_calculate_reading_time($bsf_rt_post, $this->bsf_rt_options);
+    
+            $label            = $this->bsf_rt_options['bsf_rt_reading_time_label'];
+            $postfix          = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
+        
+
+            if ($this->reading_time > 1 ) {
+                $calculated_postfix = $postfix;
+            } else {
+                $calculated_postfix = 'mins';
+            }
+
+            $shortcode_output = '<br>
+            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
+            return $shortcode_output;
+     }
 
     /**
      * Adds CSS to the progress Bar as per User input , When Style is Selected Normal.
