@@ -158,7 +158,6 @@ $options=get_option('bsf_rt_progress_bar_settings');
 if (isset($_POST['submit'])) {
 $site_url=site_url();
 $bsf_rt_position_of_progress_bar=$_POST['bsf_rt_position_of_progress_bar'];
-$bsf_rt_progress_bar_color=$_POST['bsf_rt_progress_bar_color'];
 $bsf_rt_progress_bar_background_color=$_POST['bsf_rt_progress_bar_background_color'];
 $bsf_rt_progress_bar_thickness=$_POST['bsf_rt_progress_bar_thickness'];
 $bsf_rt_progress_bar_styles=$_POST['bsf_rt_progress_bar_styles'];

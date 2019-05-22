@@ -126,6 +126,22 @@ $options=get_option('bsf_rt_read_time_settings');
           </p>  
         </td>
       </tr>
+      <tr>
+        <th scope="row">
+         <label for="IncludeComments">Include Comments :</label>
+        </th>
+        <td>
+          <?php if (isset($options['bsf_rt_include_comments']) && $options['bsf_rt_include_comments'] == 'yes') {
+             echo '<input type="checkbox" checked name="bsf_rt_include_comments" value="yes">';
+          } else {
+            echo '<input type="checkbox" name="bsf_rt_include_comments" value="yes">';
+          }
+         ?>
+          <p class="description">                    
+         Check if you want to count the comments in the Reading time.
+          </p>  
+        </td>
+      </tr>
 </table>
 <table class="form-table">
        <tr>
@@ -142,20 +158,16 @@ if (isset($_POST['submit'])) {
 
 $bsf_rt_reading_time_label=$_POST['bsf_rt_reading_time_prefix_label'];
 $bsf_rt_reading_time_postfix_label=$_POST['bsf_rt_reading_time_postfix_label'];
-$bsf_rt_single_page=$_POST['bsf_rt_single_page'];
 $bsf_rt_show_read_time=$_POST['bsf_rt_show_read_time'];
-$bsf_rt_single_page_position_of_read_time=$_POST['bsf_rt_single_page_position_of_read_time'];
-$bsf_rt_home_blog_page_position_of_read_time=$_POST['bsf_rt_home_blog_page_position_of_read_time'];
 $bsf_rt_position_of_read_time=$_POST['bsf_rt_position_of_read_time'];
+$bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
 $update_options = array(
         'bsf_rt_reading_time_label'=> $bsf_rt_reading_time_label,
         'bsf_rt_reading_time_postfix_label'=> $bsf_rt_reading_time_postfix_label,
         'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
-        'bsf_rt_single_page' => $bsf_rt_single_page,
         'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
-        'bsf_rt_single_page_position_of_read_time' => $bsf_rt_single_page_position_of_read_time,
-        'bsf_rt_home_blog_page_position_of_read_time' => $bsf_rt_home_blog_page_position_of_read_time,
         'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
+        'bsf_rt_include_comments' => $bsf_rt_include_comments,
 );
 update_option('bsf_rt_read_time_settings', $update_options);
 echo '<meta http-equiv="refresh" content="0.1" />';

@@ -152,16 +152,17 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
         if (in_the_loop() && is_singular()) {
             // die();
             
-
+           
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
-            
             // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
           
       		if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
         			return $content;
         		}
+              
         	if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
+
                 return $content;
             }
 
@@ -610,9 +611,6 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
         if (in_the_loop() && is_archive() ) {
         
   
-            
-
-
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
 
@@ -669,8 +667,18 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
      * @return string|int The total reading time for the article or string if it's 0.
      */
     public function bsf_rt_calculate_reading_time( $bsf_rt_post, $bsf_rt_options )
-    {
+    { 
+         $args = array(
 
+            'post_id' => $bsf_rt_post , // use post_id, not post_ID
+            );
+            $comments = get_comments( $args );
+            foreach ( $comments as $comment ) {
+            $comment_string=$comment_string.' '.$comment->comment_content;
+            }
+            $comment_word_count=(count(preg_split('/\s+/',$comment_string)));
+            // Get the post type of the current post.
+            $bsf_rt_current_post_type = get_post_type();
         $bsf_rt_content       = get_post_field('post_content', $bsf_rt_post);
         $number_of_images = substr_count(strtolower($bsf_rt_content), '<img ');
 
@@ -680,7 +688,10 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
         $bsf_rt_content = wp_strip_all_tags($bsf_rt_content);
         $word_count = count(preg_split('/\s+/', $bsf_rt_content));
-
+        if (isset($this->bsf_rt_options['bsf_rt_include_comments']) && $this->bsf_rt_options['bsf_rt_include_comments'] == 'yes') {
+           
+            $word_count += $comment_word_count;
+       }
         // Calculate additional time added to post by images.
         $additional_words_for_images = $this->bsf_rt_calculate_images($number_of_images, $this->bsf_rt_options['bsf_rt_words_per_minute']);
         $word_count                 += $additional_words_for_images;
@@ -827,6 +838,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
             $shortcode_output = '<br>
             <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
+   
             return $shortcode_output;
      }
 
