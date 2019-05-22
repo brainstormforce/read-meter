@@ -8,7 +8,7 @@
 function BSF_RT_Settings_page()
 {
     add_submenu_page(
-        'tools.php',
+        'options-general.php',
         'Read Meter',
         'Read Meter',
         'manage_options',
