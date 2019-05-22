@@ -54,23 +54,23 @@ var idleTime = 0;
 
 // Progress Bar JS
   window.onscroll = function () {
-      myFunction()};
+      bsfrtProgressBarScroll()};
 
-  function myFunction()
+  function bsfrtProgressBarScroll()
   {
       
           var content = document.getElementById("main");
 
           var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-          //console.log(winScroll);
+          
           var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-          //var height = 1519;
+          
           var scrolled = (winScroll / height) * 100;
         
           if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
                 if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
           document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
-          console.log(document.getElementById("bsf_rt_progress_bar").style.width);
+          
         }
       }
   }
@@ -80,10 +80,10 @@ var idleTime = 0;
 
   // Progress Bar color selection JS
   window.onload = function() {
-  bsd_rt_ColorSelectCheck();
+  bsf_rt_ColorSelectCheck();
  
 };
-  function bsd_rt_ColorSelectCheck() { 
+  function bsf_rt_ColorSelectCheck() { 
    
    if (document.getElementById("bsf_rt_progress_bar_styles") !== null) {
     nameSelect=document.getElementById("bsf_rt_progress_bar_styles").value;
@@ -110,28 +110,10 @@ var idleTime = 0;
            document.getElementById("bsf-rt-progress-bar-options").style.display = "none";
 
           }
-      }   
-        //   if (document.getElementById("bsf_rt_single_page").checked) {
-        //     document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "inline-block"; 
-        //   } else {
-        //         document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "none"; 
-        // }
-        // if (document.getElementById("bsf_rt_home_blog_page").checked) {
-        //     document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "inline-block"; 
-        //   } else {
-        //         document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "none"; 
-        // }
-        // if (document.getElementById("bsf_rt_archive_page").checked) {
-        //     document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "inline-block"; 
-        //   } else {
-        //         document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "none"; 
-        // }
+      } 
+    }
 
-
-   
- }
-
-      function bsd_rt_ColorSelectCheck_two(nameSelect)
+      function bsf_rt_ColorSelectCheck_two(nameSelect)
   {
       
       if(nameSelect) {
@@ -152,11 +134,10 @@ var idleTime = 0;
   }
 
 
-function bsd_rt_Progressbarpositioncheck(positionSelect) {
+function bsf_rt_Progressbarpositioncheck(positionSelect) {
 
 if(positionSelect) {
-  //console.log(positionSelect.value);
-          //progressOptionValue = document.getElementById("bsf_rt_position_of_progress_bar").value;
+ 
           if(positionSelect.value !== 'none') {
       
                document.getElementById("bsf-rt-progress-bar-options").style.display = "block";
@@ -169,34 +150,3 @@ if(positionSelect) {
       }
 }
 
-// function singlePage() {
-
-//     // access properties using this keyword
-//     if ( document.getElementById('bsf_rt_single_page').checked ) {
-//         document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "inline-block"; 
-
-//     } else {
-//        document.getElementById("bsf_rt_single_page_position_of_read_time").style.display = "none"; 
-//       }
-// }
-// function homePage() {
-
-//     // access properties using this keyword
-//     if ( document.getElementById('bsf_rt_home_blog_page').checked ) {
-//         document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "inline-block"; 
-
-//     } else {
-//        document.getElementById("bsf_rt_home_blog_page_position_of_read_time").style.display = "none"; 
-//       }
-// }
-// function archivePage() {
-
-//     // access properties using this keyword
-//     if ( document.getElementById('bsf_rt_archive_page').checked ) {
-//         document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "inline-block"; 
-
-//     } else {
-//        document.getElementById("bsf_rt_archive_page_position_of_read_time").style.display = "none"; 
-//       }
-// }
-  

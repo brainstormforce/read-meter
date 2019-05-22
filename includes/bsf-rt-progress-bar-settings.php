@@ -15,7 +15,7 @@ $options=get_option('bsf_rt_progress_bar_settings');
         <label for="PositionofDisplayProgressBar">Display Position:</label>
         </th>
         <td>
-          <select required id="bsf_rt_position_of_progress_bar" name="bsf_rt_position_of_progress_bar" onchange="bsd_rt_Progressbarpositioncheck(this);">
+          <select required id="bsf_rt_position_of_progress_bar" name="bsf_rt_position_of_progress_bar" onchange="bsf_rt_Progressbarpositioncheck(this);">
             <?php 
             if (isset($options['bsf_rt_position_of_progress_bar'])) {
                 if ('top_of_the_page' === $options['bsf_rt_position_of_progress_bar']) {
@@ -52,7 +52,7 @@ $options=get_option('bsf_rt_progress_bar_settings');
           <label for="ProgressBarStyle">Styles :</label>
         </th>
           <td>
-            <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles" onchange="bsd_rt_ColorSelectCheck_two(this);">
+            <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles" onchange="bsf_rt_ColorSelectCheck_two(this);">
                 <?php 
                 if (isset($options['bsf_rt_progress_bar_styles'])) {
                     if ('Normal' === $options['bsf_rt_progress_bar_styles']) {
