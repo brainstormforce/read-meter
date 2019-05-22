@@ -63,7 +63,9 @@ if (! class_exists('BSF_RT_Loader') ) :
         }
 
         public function bsf_rt_remove_data () {
-            delete_option('bsf_rt');
+            delete_option('bsf_rt_general_settings');
+            delete_option('bsf_rt_progress_bar_settings');
+            delete_option('bsf_rt_read_time_settings');
             }
             
     }

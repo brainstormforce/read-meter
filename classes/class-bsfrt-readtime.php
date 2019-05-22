@@ -23,20 +23,37 @@ class BSF_ReadTime
      */
     public function __construct()
     {
+
+        $bsf_rt_show_read_time=array();
+        $bsf_rt_posts=array();
+        array_push($bsf_rt_show_read_time, 'bsf_rt_single_page');
+        array_push($bsf_rt_posts, 'post');
+         $default_options_general = array(
+        'bsf_rt_words_per_minute'   => '275',
+        'bsf_rt_post_types'     => $bsf_rt_posts,
+        );
+        add_option('bsf_rt_general_settings', $default_options_general );
+        $default_options_readtime = array(
+        'bsf_rt_reading_time_label' => 'Reading Time',
+        'bsf_rt_reading_time_postfix_label' => 'mins',
+        'bsf_rt_words_per_minute'   => '275',
+        'bsf_rt_position_of_read_time' => 'above_the_content',
+        'bsf_rt_single_page' => 'bsf_rt_single_page',
+        //'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
+        );
+        add_option('bsf_rt_read_time_settings', $default_options_readtime);
+        $default_options_progressbar = array(
+        'bsf_rt_position_of_progress_bar' => 'none',
+        );
+        add_option('bsf_rt_progress_bar_settings', $default_options_progressbar );
         $bsf_rt_general_settings = get_option('bsf_rt_general_settings');
         $bsf_rt_read_time_settings = get_option('bsf_rt_read_time_settings');
         $bsf_rt_progress_bar_settings = get_option('bsf_rt_progress_bar_settings');
+ 
+        if (isset($bsf_rt_general_settings) && $bsf_rt_read_time_settings !=='' && isset($bsf_rt_progress_bar_settings)) {
         $all_options=array_merge( $bsf_rt_general_settings,$bsf_rt_read_time_settings);
         $all_options=array_merge($all_options,$bsf_rt_progress_bar_settings);
-        $default_options = array(
-        'bsf_rt_reading_time_label'=> 'Reading Time',
-        'bsf_rt_reading_time_postfix_label'=> 'mins',
-        'bsf_rt_words_per_minute'   => '275',
-        'bsf_rt_position_of_read_time' => 'above_the_content',
-        'bsf_rt_post_types'     => 'post',
-        );
-
-        add_option('bsf_rt', $default_options);
+    }
     
 
         $this->bsf_rt_options = $all_options;
@@ -141,14 +158,11 @@ class BSF_ReadTime
             $bsf_rt_current_post_type = get_post_type();
             
             // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+          
       		if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
         			return $content;
         		}
-        	 if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-                return $content;
-            }
-
-            if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
+        	if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                 return $content;
             }
 
