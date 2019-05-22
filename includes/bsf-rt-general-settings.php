@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
 
 $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
 $bsf_rt_post_types=$_POST['posts'];
-var_dump($bsf_rt_post_types);
+
 
 $update_options = array(
   'bsf_rt_words_per_minute'   => $bsf_rt_words_per_minute,

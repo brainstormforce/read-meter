@@ -34,7 +34,7 @@ class BSF_ReadTime
         );
         add_option('bsf_rt_general_settings', $default_options_general );
         $default_options_readtime = array(
-        'bsf_rt_reading_time_label' => 'Reading Time',
+        'bsf_rt_reading_time_label' => 'ReadingTime',
         'bsf_rt_reading_time_postfix_label' => 'mins',
         'bsf_rt_words_per_minute'   => '275',
         'bsf_rt_position_of_read_time' => 'above_the_content',
@@ -774,9 +774,7 @@ class BSF_ReadTime
                 if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
                     return ;
                 }
-                if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-                    return ;
-                }
+            
                 if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
                     return ;
                 }
