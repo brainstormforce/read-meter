@@ -1,5 +1,5 @@
 <?php
-echo '<h1> Read Meter </h1>';
+echo '<h1 class="bsf_rt_main_title"> Read Meter </h1>';
  
 //Navigation
 

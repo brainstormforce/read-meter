@@ -100,7 +100,7 @@
             }
             ?>
          
-          Single Page</label> 
+          Single Post</label> 
     
        <br>
             <label for="ForHomeBlogPage" class="bsf_rt_show_readtime_label">
