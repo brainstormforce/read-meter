@@ -92,12 +92,10 @@ var idleTime = 0;
           if (nameSelect === 'Gradient') {
          
                document.getElementById("gradiant-wrap2").style.display = "table-row";
-               document.getElementById("gradiant-wrap1").style.display = "table-row";
               document.getElementById("normal-color-wrap").style.display = "none";
 
           } else{
               document.getElementById("gradiant-wrap2").style.display = "none";
-              document.getElementById("gradiant-wrap1").style.display = "none";            
               document.getElementById("normal-color-wrap").style.display = "table-row";
           }
         }
