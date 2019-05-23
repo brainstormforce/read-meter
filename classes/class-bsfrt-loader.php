@@ -23,13 +23,11 @@ if (! class_exists('BSF_RT_Loader') ) :
      * @license  http://brainstormforce.com
      * @link     http://brainstormforce.com
      */
-    class BSF_RT_Loader
-    {
+    class BSF_RT_Loader {
         /**
          * Constructor
          */
-        public function __construct()
-        {
+        public function __construct() {
             include BSF_RT_ABSPATH.'includes/bsf-rt-page.php'; 
             add_action('init', array($this, 'bsfrt_pluginStyle'));
             add_action('init', array($this, 'bsfrt_pluginScript'));
@@ -42,8 +40,7 @@ if (! class_exists('BSF_RT_Loader') ) :
          * @since  1.0.0
          * @return void
          */
-        public function bsfrt_pluginStyle()
-        { 
+        public function bsfrt_pluginStyle() { 
              wp_enqueue_style('wp-color-picker');
              wp_enqueue_style('customstyle', BSF_RT_PLUGIN_URL.'/assets/css/styles.css');
         }
@@ -53,14 +50,11 @@ if (! class_exists('BSF_RT_Loader') ) :
           * @since  1.0.0
           * @return void
           */
-        public function bsfrt_pluginScript ($hook)
-        { 
-              // wp_enqueue_script('customscripttwo', BSF_RT_PLUGIN_URL.'/assets/js/bsf-rt.js',array('jquery'), null, true);
+        public function bsfrt_pluginScript ($hook) { 
              wp_enqueue_script('customscript', BSF_RT_PLUGIN_URL.'/assets/js/bsf-rt.js');
              wp_enqueue_script('colorpickerscript', BSF_RT_PLUGIN_URL.'/assets/js/color-picker.js',array('jquery','wp-color-picker'), null, true);
 
-             
-        }
+              }
 
         public function bsf_rt_remove_data () {
             delete_option('bsf_rt_general_settings');

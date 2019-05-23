@@ -57,8 +57,10 @@ class BSF_ReadTime
         add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
 
 //Shortcode
-add_shortcode('read_meter',array($this,'read_meter_shortcode'));        
+add_shortcode('read_meter',array($this,'read_meter_shortcode'));   
 
+//Function to call shortcode in Astra Hook     
+// add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
 //Displaying Reading Time Conditions
     if (isset($this->bsf_rt_options['bsf_rt_show_read_time'])) {
         if(in_array('bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
@@ -956,8 +958,18 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                 
         </style>
         <?php
-    }
-
+    } 
+     /**
+      * Adding Shortcode in Astra Theme hook.
+      *
+      * @since 1.1.0
+      * @param Nothing.
+      * @return Nothing.
+      */
+    public function bsf_rt_add_reading_time_after_astra_header()
+    { 
+        echo do_shortcode("[read_meter]");
+   }
 
 }
 $bsf_rt = new BSF_ReadTime();
