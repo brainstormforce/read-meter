@@ -1,5 +1,10 @@
 <?php
+// delete_option('bsf_rt_read_time_settings');
 $options=get_option('bsf_rt_read_time_settings');
+
+
+$font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_read_time_font_size'] : '1';
+
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
 <form action="" method="post" name="bsf_rt_settings_form">
@@ -142,6 +147,44 @@ $options=get_option('bsf_rt_read_time_settings');
           </p>  
         </td>
       </tr>
+      <tr >
+          <th scope="row">
+            <label for="ReadtimeFontSize">Font Size :</label>
+          </th>
+          <td>
+                <input type="number" name="bsf_rt_read_time_font_size" class="small-text" value="<?php echo $font_size; ?>"  >&nbsp px
+          </td>
+        </tr> 
+      <tr >
+          <th scope="row">
+            <label for="ReadtimeBackgroundColor">Background Color :</label>
+          </th>
+          <td>
+                <?php
+                if (isset($options['bsf_rt_read_time_background_color'])) { ?>
+              <input name="bsf_rt_read_time_background_color" class="my-color-field" value=" <?php echo $options['bsf_rt_read_time_background_color']; ?>">
+                <?php } else { ?>
+               <input name="bsf_rt_read_time_background_color" class="my-color-field" value="#E00078">
+                <?php }
+                ?>
+            
+          </td>
+        </tr> 
+        <tr >
+          <th scope="row">
+            <label for="ReadTimeColor"> Color :</label>
+          </th>  
+          <td>
+            <?php
+            if (isset($options['bsf_rt_read_time_color'])) { ?>
+              <input name="bsf_rt_read_time_color" class="my-color-field" value="<?php echo $options['bsf_rt_read_time_color']; ?>">
+            <?php } else { ?>
+              <input name="bsf_rt_read_time_color" class="my-color-field" value="#00ACE0">
+            <?php }
+            ?>
+           
+          </td>
+        </tr>
 </table>
 <table class="form-table">
        <tr>
@@ -161,6 +204,10 @@ $bsf_rt_reading_time_postfix_label=$_POST['bsf_rt_reading_time_postfix_label'];
 $bsf_rt_show_read_time=$_POST['bsf_rt_show_read_time'];
 $bsf_rt_position_of_read_time=$_POST['bsf_rt_position_of_read_time'];
 $bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
+$bsf_rt_read_time_font_size=$_POST['bsf_rt_read_time_font_size'];
+$bsf_rt_read_time_background_color=$_POST['bsf_rt_read_time_background_color'];
+$bsf_rt_read_time_color=$_POST['bsf_rt_read_time_color'];
+
 $update_options = array(
         'bsf_rt_reading_time_label'=> $bsf_rt_reading_time_label,
         'bsf_rt_reading_time_postfix_label'=> $bsf_rt_reading_time_postfix_label,
@@ -168,6 +215,9 @@ $update_options = array(
         'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
         'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
         'bsf_rt_include_comments' => $bsf_rt_include_comments,
+        'bsf_rt_read_time_background_color' => $bsf_rt_read_time_background_color,
+        'bsf_rt_read_time_color' => $bsf_rt_read_time_color,
+        'bsf_rt_read_time_font_size' => $bsf_rt_read_time_font_size,
 );
 update_option('bsf_rt_read_time_settings', $update_options);
 echo '<meta http-equiv="refresh" content="0.1" />';

@@ -75,9 +75,6 @@ var idleTime = 0;
       }
   }
 
-
-  
-
   // Progress Bar color selection JS
   window.onload = function() {
   bsf_rt_ColorSelectCheck();

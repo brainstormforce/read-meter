@@ -32,10 +32,9 @@
 {
     background-color: black;
     color: white;
-    font-weight: bolder;
     font-weight: 500;
-    width: 200px !important;
-    font-size: 15px !important;
+    width: auto !important;
+    font-size: 15px ;
     padding: 5px;
     display: inline-block;
 

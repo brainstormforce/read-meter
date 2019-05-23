@@ -21,8 +21,7 @@ class BSF_ReadTime
      *
      * @since 1.0.0
      */
-    public function __construct()
-    {
+    public function __construct() {
 
         $bsf_rt_show_read_time=array();
         $bsf_rt_posts=array();
@@ -134,6 +133,11 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                       add_action('wp_head', array( $this, 'bsf_rt_set_progressbar_colors_gradient'));
             }
         } 
+        if (isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) ) {
+                
+                add_action('wp_head', array( $this, 'bsf_rt_set_readtime_styles'));
+                 // $this->bsf_rt_set_progressbar_colors_normal();
+            }
     }
 
     /**
@@ -925,6 +929,28 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
         </style>
         <?php
     }
+     /**
+      * Adds CSS to the Read Time as per User input. 
+      *
+      * @since 1.1.0
+      * @param Nothing.
+      * @return Nothing.
+      */
+    public function bsf_rt_set_readtime_styles()
+    {  
+        ?>
+        <style type="text/css">
+               .bsf_rt_reading_time_before_content{
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_read_time_background_color']; ?>;
+                    color: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_color']; ?>;
+                    font-size: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_font_size']; ?>px;
+                    
+                }
+                
+        </style>
+        <?php
+    }
+
 
 }
 $bsf_rt = new BSF_ReadTime();
