@@ -692,6 +692,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
          } else {   
             $comment_word_count=0;
            }
+
         $bsf_rt_content       = get_post_field('post_content', $bsf_rt_post);
         $number_of_images = substr_count(strtolower($bsf_rt_content), '<img ');
 
@@ -707,8 +708,11 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
        }
         // Calculate additional time added to post by images.
         $additional_words_for_images = $this->bsf_rt_calculate_images($number_of_images, $this->bsf_rt_options['bsf_rt_words_per_minute']);
-        $word_count                 += $additional_words_for_images;
-        
+        if (isset($this->bsf_rt_options['bsf_rt_include_images']) && $this->bsf_rt_options['bsf_rt_include_images'] == 'yes') {
+
+             $word_count += $additional_words_for_images;
+        }
+
         $this->reading_time = ceil($word_count / $this->bsf_rt_options['bsf_rt_words_per_minute']);
 
         // If the reading time is 0 then return it as < 1 instead of 0.
