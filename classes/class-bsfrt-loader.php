@@ -47,7 +47,7 @@ if (! class_exists('BSF_RT_Loader') ) :
          /**
           * Plugin Scripts.
           *
-          * @since  1.0.0
+          * @since  1.0.0 
           * @return void
           */
         public function bsfrt_pluginScript ($hook) { 
