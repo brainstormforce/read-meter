@@ -682,6 +682,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                     'post_id' => $bsf_rt_post , // use post_id, not post_ID
                     );
                     $comments = get_comments( $args );
+                    $comment_string ='';
                     foreach ( $comments as $comment ) {
                     $comment_string=$comment_string.' '.$comment->comment_content;
                     }
