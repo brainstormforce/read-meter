@@ -3,7 +3,7 @@
 $options=get_option('bsf_rt_read_time_settings');
 
 
-$font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_read_time_font_size'] : '1';
+$font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_read_time_font_size'] : '15';
 
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
@@ -131,22 +131,6 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
           </p>  
         </td>
       </tr>
-      <tr>
-        <th scope="row">
-         <label for="IncludeComments">Include Comments :</label>
-        </th>
-        <td>
-          <?php if (isset($options['bsf_rt_include_comments']) && $options['bsf_rt_include_comments'] == 'yes') {
-             echo '<input type="checkbox" checked name="bsf_rt_include_comments" value="yes">';
-          } else {
-            echo '<input type="checkbox" name="bsf_rt_include_comments" value="yes">';
-          }
-         ?>
-          <p class="description">                    
-         Check if you want to count the comments in the Reading time.
-          </p>  
-        </td>
-      </tr>
       <tr >
           <th scope="row">
             <label for="ReadtimeFontSize">Font Size :</label>
@@ -164,7 +148,7 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
                 if (isset($options['bsf_rt_read_time_background_color'])) { ?>
               <input name="bsf_rt_read_time_background_color" class="my-color-field" value=" <?php echo $options['bsf_rt_read_time_background_color']; ?>">
                 <?php } else { ?>
-               <input name="bsf_rt_read_time_background_color" class="my-color-field" value="#E00078">
+               <input name="bsf_rt_read_time_background_color" class="my-color-field" value="#000">
                 <?php }
                 ?>
             
@@ -179,7 +163,7 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
             if (isset($options['bsf_rt_read_time_color'])) { ?>
               <input name="bsf_rt_read_time_color" class="my-color-field" value="<?php echo $options['bsf_rt_read_time_color']; ?>">
             <?php } else { ?>
-              <input name="bsf_rt_read_time_color" class="my-color-field" value="#00ACE0">
+              <input name="bsf_rt_read_time_color" class="my-color-field" value="#fff">
             <?php }
             ?>
            
@@ -203,7 +187,6 @@ $bsf_rt_reading_time_label=$_POST['bsf_rt_reading_time_prefix_label'];
 $bsf_rt_reading_time_postfix_label=$_POST['bsf_rt_reading_time_postfix_label'];
 $bsf_rt_show_read_time=$_POST['bsf_rt_show_read_time'];
 $bsf_rt_position_of_read_time=$_POST['bsf_rt_position_of_read_time'];
-$bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
 $bsf_rt_read_time_font_size=$_POST['bsf_rt_read_time_font_size'];
 $bsf_rt_read_time_background_color=$_POST['bsf_rt_read_time_background_color'];
 $bsf_rt_read_time_color=$_POST['bsf_rt_read_time_color'];
@@ -214,7 +197,6 @@ $update_options = array(
         'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
         'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
         'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
-        'bsf_rt_include_comments' => $bsf_rt_include_comments,
         'bsf_rt_read_time_background_color' => $bsf_rt_read_time_background_color,
         'bsf_rt_read_time_color' => $bsf_rt_read_time_color,
         'bsf_rt_read_time_font_size' => $bsf_rt_read_time_font_size,

@@ -69,6 +69,22 @@ $options=get_option('bsf_rt_general_settings');
          
         </td>
       </tr>
+            <tr>
+        <th scope="row">
+         <label for="IncludeComments">Include Comments :</label>
+        </th>
+        <td>
+          <?php if (isset($options['bsf_rt_include_comments']) && $options['bsf_rt_include_comments'] == 'yes') {
+             echo '<input type="checkbox" checked name="bsf_rt_include_comments" value="yes">';
+          } else {
+            echo '<input type="checkbox" name="bsf_rt_include_comments" value="yes">';
+          }
+         ?>
+          <p class="description">                    
+         Check if you want to count the comments in the Reading time.
+          </p>  
+        </td>
+      </tr>
 </table>
 <table class="form-table">
        <tr>
@@ -85,11 +101,15 @@ if (isset($_POST['submit'])) {
 
 $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
 $bsf_rt_post_types=$_POST['posts'];
+$bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
+
 
 
 $update_options = array(
   'bsf_rt_words_per_minute'   => $bsf_rt_words_per_minute,
   'bsf_rt_post_types'     => $bsf_rt_post_types,
+  'bsf_rt_include_comments' => $bsf_rt_include_comments,
+
 );
 update_option('bsf_rt_general_settings', $update_options);
 echo '<meta http-equiv="refresh" content="0.1" />';

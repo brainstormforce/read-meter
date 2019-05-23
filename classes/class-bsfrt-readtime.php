@@ -671,18 +671,25 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
      * @return string|int The total reading time for the article or string if it's 0.
      */
     public function bsf_rt_calculate_reading_time( $bsf_rt_post, $bsf_rt_options )
-    { 
-         $args = array(
+    {    
+        $bsf_rt_current_post_type = get_post_type();
+        if ($bsf_rt_current_post_type == 'post') {
+             if (in_the_loop() && is_singular() ) {
+                 $args = array(
 
-            'post_id' => $bsf_rt_post , // use post_id, not post_ID
-            );
-            $comments = get_comments( $args );
-            foreach ( $comments as $comment ) {
-            $comment_string=$comment_string.' '.$comment->comment_content;
+                    'post_id' => $bsf_rt_post , // use post_id, not post_ID
+                    );
+                    $comments = get_comments( $args );
+                    foreach ( $comments as $comment ) {
+                    $comment_string=$comment_string.' '.$comment->comment_content;
+                    }
+                    $comment_word_count=(count(preg_split('/\s+/',$comment_string)));
+                } else {   
+            $comment_word_count=0;
             }
-            $comment_word_count=(count(preg_split('/\s+/',$comment_string)));
-            // Get the post type of the current post.
-            $bsf_rt_current_post_type = get_post_type();
+         } else {   
+            $comment_word_count=0;
+           }
         $bsf_rt_content       = get_post_field('post_content', $bsf_rt_post);
         $number_of_images = substr_count(strtolower($bsf_rt_content), '<img ');
 
