@@ -53,8 +53,8 @@ var idleTime = 0;
 
 
 // Progress Bar JS
-  window.onscroll = function () {
-      bsfrtProgressBarScroll()};
+  // window.onscroll = function () {
+  //     bsfrtProgressBarScroll()};
 
   function bsfrtProgressBarScroll()
   {

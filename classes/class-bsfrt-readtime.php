@@ -56,6 +56,8 @@ class BSF_ReadTime
         $this->bsf_rt_options = $all_options;
         add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
 
+//Minutes left Span
+
 //Shortcode
 add_shortcode('read_meter',array($this,'read_meter_shortcode'));   
 
@@ -682,6 +684,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                     'post_id' => $bsf_rt_post , // use post_id, not post_ID
                     );
                     $comments = get_comments( $args );
+                    $comment_string='';
                     foreach ( $comments as $comment ) {
                     $comment_string=$comment_string.' '.$comment->comment_content;
                     }
@@ -858,6 +861,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
    
             return $shortcode_output;
      }
+  
 
     /**
      * Adds CSS to the progress Bar as per User input , When Style is Selected Normal.
