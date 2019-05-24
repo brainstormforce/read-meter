@@ -117,10 +117,16 @@ if (isset($_POST['submit'])) {
 
 $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
 $bsf_rt_post_types=$_POST['posts'];
-$bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
+if (isset($_POST['bsf_rt_include_images'])) {
 $bsf_rt_include_images=$_POST['bsf_rt_include_images'];
-
-
+} else {
+  $bsf_rt_include_images = '';
+}
+if (isset($_POST['bsf_rt_include_comments'])) {
+$bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
+} else {
+  $bsf_rt_include_comments = '';
+}
 
 $update_options = array(
   'bsf_rt_words_per_minute'   => $bsf_rt_words_per_minute,

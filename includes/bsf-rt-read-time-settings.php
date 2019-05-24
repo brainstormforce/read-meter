@@ -148,7 +148,7 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
                 if (isset($options['bsf_rt_read_time_background_color'])) { ?>
               <input name="bsf_rt_read_time_background_color" class="my-color-field" value=" <?php echo $options['bsf_rt_read_time_background_color']; ?>">
                 <?php } else { ?>
-               <input name="bsf_rt_read_time_background_color" class="my-color-field" value="#000">
+               <input name="bsf_rt_read_time_background_color" class="my-color-field" value="#eeeeee">
                 <?php }
                 ?>
             
@@ -163,7 +163,7 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
             if (isset($options['bsf_rt_read_time_color'])) { ?>
               <input name="bsf_rt_read_time_color" class="my-color-field" value="<?php echo $options['bsf_rt_read_time_color']; ?>">
             <?php } else { ?>
-              <input name="bsf_rt_read_time_color" class="my-color-field" value="#fff">
+              <input name="bsf_rt_read_time_color" class="my-color-field" value="#333333">
             <?php }
             ?>
            

@@ -8,7 +8,7 @@ $options=get_option('bsf_rt_progress_bar_settings');
         <h3>Progress Bar</h3>
       </tr>
        <p class="description">
-        Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read.
+        Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)
       </p> 
       <tr>
         <th scope="row">
@@ -87,7 +87,7 @@ $options=get_option('bsf_rt_progress_bar_settings');
                 if (isset($options['bsf_rt_progress_bar_background_color'])) { ?>
               <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value=" <?php echo $options['bsf_rt_progress_bar_background_color']; ?>">
                 <?php } else { ?>
-               <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#E00078">
+               <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#e8d5ff">
                 <?php }
                 ?>
             
@@ -102,7 +102,7 @@ $options=get_option('bsf_rt_progress_bar_settings');
             if (isset($options['bsf_rt_progress_bar_gradiant_one'])) { ?>
               <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_gradiant_one']; ?>">
             <?php } else { ?>
-              <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#00ACE0">
+              <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#5540D9">
             <?php }
             ?>
            
@@ -120,7 +120,7 @@ $options=get_option('bsf_rt_progress_bar_settings');
                 if (isset($options['bsf_rt_progress_bar_gradiant_two'])) { ?>
               <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="<?php echo $options['bsf_rt_progress_bar_gradiant_two']; ?>">
                 <?php } else { ?>
-               <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#E00078">
+               <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#ee7fff">
                 <?php }
                 ?>
              
@@ -137,7 +137,7 @@ $options=get_option('bsf_rt_progress_bar_settings');
                 if (isset($options['bsf_rt_progress_bar_thickness'])) { ?>
               <input type="number" name="bsf_rt_progress_bar_thickness" class="small-text" value="<?php echo $options['bsf_rt_progress_bar_thickness']; ?>">&nbsppx
                 <?php } else { ?>
-               <input type="number" name="bsf_rt_progress_bar_thickness" class="small-text" value="10">&nbsppx
+               <input type="number" name="bsf_rt_progress_bar_thickness" class="small-text" value="12">&nbsppx
                 <?php }
                 ?>
            

@@ -53,8 +53,7 @@ if (! class_exists('BSF_RT_Loader') ) :
         public function bsfrt_pluginScript ($hook) { 
              wp_enqueue_script('customscript', BSF_RT_PLUGIN_URL.'/assets/js/bsf-rt.js');
              wp_enqueue_script('colorpickerscript', BSF_RT_PLUGIN_URL.'/assets/js/color-picker.js',array('jquery','wp-color-picker'), null, true);
-             //wp_enqueue_script('blogprogress', BSF_RT_PLUGIN_URL.'/assets/js/bsf-rt-blog-progress-bar.js',array('jquery'),null,true);
-                 }
+            }
 
         public function bsf_rt_remove_data () {
             delete_option('bsf_rt_general_settings');

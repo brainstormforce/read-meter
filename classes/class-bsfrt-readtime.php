@@ -137,10 +137,12 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                       add_action('wp_head', array( $this, 'bsf_rt_set_progressbar_colors_gradient'));
             }
         } 
+
+        //Read time styles
         if (isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) ) {
                 
                 add_action('wp_head', array( $this, 'bsf_rt_set_readtime_styles'));
-                 // $this->bsf_rt_set_progressbar_colors_normal();
+                 
             }
     }
 
@@ -767,7 +769,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
      public function hook_header_bottom () {
                  
-
+                if (in_the_loop() && !is_home() && !is_archive() ) {
 
                 // Get the post type of the current post.
                 $bsf_rt_current_post_type = get_post_type();
@@ -786,6 +788,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                       echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
                     <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                     </div>';
+                  }
             }
 
      /**
@@ -798,7 +801,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
     public function hook_header_top()
             {  
                  
-              
+          if (in_the_loop() && !is_home() && !is_archive() ) {
                 // Get the post type of the current post.
                 $bsf_rt_current_post_type = get_post_type();
 
@@ -822,6 +825,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                 </div>';
                 }
+              }
         
     }   
     /**
