@@ -86,7 +86,7 @@ window.addEventListener('load', function() {
     
       
           if (nameSelect === 'Gradient') {
-                console.log( document.getElementById("normal-color-wrap"));
+               
               document.getElementById("gradiant-wrap2").style.display = "table-row";
 
           } else{
