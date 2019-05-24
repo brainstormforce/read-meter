@@ -9,8 +9,7 @@
 class BSF_ReadTime
 {
     public $reading_time;
-
-
+  
     public $bsf_rt_options = array();
 
     public static $bsf_rt_is_admin_bar_showing;
@@ -72,6 +71,15 @@ class BSF_ReadTime
 //Shortcode
 add_shortcode('read_meter',array($this,'read_meter_shortcode'));   
 
+//For twenty fifteen Theme remove the extra markup in the nextpost and prev post section
+ $bsf_rt_current_theme = $this->bsf_rt_get_current_theme();
+ if($bsf_rt_current_theme === 'Twenty Fifteen') {
+    add_filter( 'next_post_link', array($this,'bsf_rt_remove_markup_for_twenty_fifteen') );
+    add_filter( 'previous_post_link', array($this,'bsf_rt_remove_markup_for_twenty_fifteen'));
+ }
+
+
+
 //Function to call shortcode in Astra Hook     
 // add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
 //Displaying Reading Time Conditions
@@ -84,7 +92,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                     }
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
-                        add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_above_the_post_title' ), 90);
+                        add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_above_the_post_title' ), 90, 2);
                     }
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'below_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
@@ -199,8 +207,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                 $calculated_postfix = 'mins';
             }
 
-            $content  = '
-    		<span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
+            $content  = '<span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
             $content .= $original_content;
             return $content;
         }
@@ -217,13 +224,10 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
      * @return string The post content with reading time prepended.
      */
     public function bsf_rt_add_reading_time_above_the_post_title( $title)
-    {
-        // die();
+    { 
+      
         if (in_the_loop() && is_singular() ) {
-        
-  
-            
-
+      
             // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
             //var_dump($this->bsf_rt_options['bsf_rt_post_types']);
@@ -260,7 +264,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
             }
 
             $title  = '
-            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
+            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><!-- .bsf_rt_reading_time_before_content -->';
             // $title = '<span class="bsf_rt_display_label" title="'.$label.'"></span>';
             $title .= $original_title;
             return $title;
@@ -281,12 +285,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
     {
         // die();
         if (in_the_loop() && is_singular() ) {
-        
-  
-            
-
-
-            // Get the post type of the current post.
+    // Get the post type of the current post.
             $bsf_rt_current_post_type = get_post_type();
 
         
@@ -319,7 +318,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
             }
 
             $title  = '
-           <br> <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
+           <br> <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><!-- .bsf_rt_reading_time_before_content -->';
             $original_title .= $title;
             $title=$original_title;
             return $title;
@@ -520,9 +519,11 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
             // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
            if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
+
                     return $content;
                 }
                 if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+
                 return $content;
             }
             if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
@@ -875,8 +876,40 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
    
             return $shortcode_output;
      }
-  
+    /**
+     * Remove markup for Twenty fifteen.
+     * @since 1.0.0
+     *
+     * @param  Nothing.
+     * @return Nothing.
+     */  
+    public function bsf_rt_remove_markup_for_twenty_fifteen( $output ) {
 
+
+        $startStr = esc_html('<span class="bsf_rt_reading_time_before_content">');
+        $endStr   = esc_html('<!-- .bsf_rt_reading_time_before_content -->');
+
+        $newstr = preg_replace('/' . preg_quote($startStr) .'.*?' .                     preg_quote($endStr) . '/', '', esc_html($output));
+        
+        return htmlspecialchars_decode($newstr);
+}
+/**
+ *  Get Current Theme.
+ */
+public function bsf_rt_get_current_theme() {
+
+    $theme_name = '';
+    $theme      = wp_get_theme();
+
+    if ( isset( $theme->parent_theme ) && '' != $theme->parent_theme || null != $theme->parent_theme ) {
+        $theme_name = $theme->parent_theme;
+    } else {
+        $theme_name = $theme->name;
+    }
+
+    return $theme_name;
+}
+   
     /**
      * Adds CSS to the progress Bar as per User input , When Style is Selected Normal.
      *
@@ -1018,3 +1051,6 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
 }
 $bsf_rt = new BSF_ReadTime();
+
+
+
