@@ -56,7 +56,18 @@ class BSF_ReadTime
         $this->bsf_rt_options = $all_options;
         add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
 
-//Minutes left Span
+//If readtime bg option is None or Color
+   if (isset($this->bsf_rt_options['bsf_rt_read_time_bg_option'])) {
+      if ($this->bsf_rt_options['bsf_rt_read_time_bg_option'] == 'None' && isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_color'])) {
+
+        add_action('wp_head', array( $this, 'bsf_rt_set_readtime_bg_none'));
+
+      } else if (isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) ) {
+                
+                add_action('wp_head', array( $this, 'bsf_rt_set_readtime_styles'));
+                 
+            }
+   }    
 
 //Shortcode
 add_shortcode('read_meter',array($this,'read_meter_shortcode'));   
@@ -138,12 +149,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
             }
         } 
 
-        //Read time styles
-        if (isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) ) {
-                
-                add_action('wp_head', array( $this, 'bsf_rt_set_readtime_styles'));
-                 
-            }
+        
     }
 
     /**
@@ -769,7 +775,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
      public function hook_header_bottom () {
                  
-                if (in_the_loop() && !is_home() && !is_archive() ) {
+                if ( !is_home() && !is_archive() ) {
 
                 // Get the post type of the current post.
                 $bsf_rt_current_post_type = get_post_type();
@@ -800,8 +806,9 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
      */        
     public function hook_header_top()
             {  
-                 
-          if (in_the_loop() && !is_home() && !is_archive() ) {
+               
+          if ( !is_home() && !is_archive() ) {
+            echo "string";  
                 // Get the post type of the current post.
                 $bsf_rt_current_post_type = get_post_type();
 
@@ -968,12 +975,35 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                     background: <?php echo $this->bsf_rt_options['bsf_rt_read_time_background_color']; ?>;
                     color: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_color']; ?>;
                     font-size: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_font_size']; ?>px;
+                    padding: 0.5em 0.7em;
                     
                 }
                 
         </style>
         <?php
     } 
+     /**
+      * Adds CSS to the Read Time as per User input. 
+      *
+      * @since 1.1.0
+      * @param Nothing.
+      * @return Nothing.
+      */
+    public function bsf_rt_set_readtime_bg_none()
+    {  
+        ?>
+        <style type="text/css">
+               .bsf_rt_reading_time_before_content{
+                color: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_color']; ?>;
+                font-size: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_font_size']; ?>px;
+                padding: 0em;
+                    
+                }
+                
+        </style>
+        <?php
+    }
+     
      /**
       * Adding Shortcode in Astra Theme hook.
       *

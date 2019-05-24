@@ -28,17 +28,17 @@
 
 /*Class readtime CSS*/
 
-.bsf_rt_reading_time_before_content
+/*.bsf_rt_reading_time_before_content
 {
     background-color: black;
     color: white;
     font-weight: 500;
-    width: auto !important;
+    width: auto;
     font-size: 15px ;
-    padding: 5px;
+    padding: 0.5em 0.7em;
     display: inline-block;
 
-}
+}*/
 .bsf_rt_reading_time_after_astra_header
 {
     background-color: black;

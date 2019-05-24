@@ -107,6 +107,19 @@ window.addEventListener('load', function() {
 
           }
       } 
+      if (document.getElementById("bsf_rt_read_time_bg_option")){
+
+          rtOptionValue = document.getElementById("bsf_rt_read_time_bg_option").value;
+        
+          if('None' == rtOptionValue) {
+      
+               document.getElementById("bsf_rt_bg").style.display = "none";
+         }
+          else{
+             
+              document.getElementById("bsf_rt_bg").style.display = "block";
+          }
+      } 
     }
 
       function bsf_rt_ColorSelectCheck_two(nameSelect)
@@ -145,4 +158,18 @@ if(positionSelect) {
           }
       }
 }
+function bsf_rt_readtimebgoption(bgoption) {
 
+      if(bgoption) {
+          
+          if('None' == bgoption.value) {
+      
+               document.getElementById("bsf_rt_bg").style.display = "none";
+         }
+          else{
+             
+              document.getElementById("bsf_rt_bg").style.display = "block";
+          }
+      }
+
+}
