@@ -86,13 +86,11 @@ window.addEventListener('load', function() {
     
       
           if (nameSelect === 'Gradient') {
-         
-               document.getElementById("gradiant-wrap2").style.display = "table-row";
-              document.getElementById("normal-color-wrap").style.display = "table-row";
+                console.log( document.getElementById("normal-color-wrap"));
+              document.getElementById("gradiant-wrap2").style.display = "table-row";
 
           } else{
-              document.getElementById("gradiant-wrap2").style.display = "none";
-              document.getElementById("normal-color-wrap").style.display = "table-row";
+             document.getElementById("gradiant-wrap2").style.display = "none";
           }
         }
           if (document.getElementById("bsf_rt_position_of_progress_bar")){
@@ -126,18 +124,13 @@ window.addEventListener('load', function() {
   {
       
       if(nameSelect) {
-          admOptionValue = document.getElementById("gradiantcolor").value;
-          if(admOptionValue == nameSelect.value) {
+          
+          if('Gradient' == nameSelect.value) {
       
                document.getElementById("gradiant-wrap2").style.display = "table-row";
-               document.getElementById("gradiant-wrap1").style.display = "table-row";
-              document.getElementById("normal-color-wrap").style.display = "none";
-
-          }
+  }
           else{
               document.getElementById("gradiant-wrap2").style.display = "none";
-              document.getElementById("gradiant-wrap1").style.display = "none";            
-              document.getElementById("normal-color-wrap").style.display = "table-row";
           }
       }
   }
