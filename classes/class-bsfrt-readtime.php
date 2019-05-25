@@ -89,6 +89,8 @@ class BSF_ReadTime
     add_filter( 'next_post_link', array($this,'bsf_rt_remove_markup_for_twenty_fifteen') );
     add_filter( 'previous_post_link', array($this,'bsf_rt_remove_markup_for_twenty_fifteen'));
  }
+
+ //Show Reading time Conditions
     if (isset($this->bsf_rt_options['bsf_rt_show_read_time'])) {
         if(in_array('bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time']) && is_singular()) {
 
@@ -107,9 +109,12 @@ class BSF_ReadTime
         }
         if(in_array('bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time']) && is_home() && !is_archive()) {
 
-                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
+                    if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] )) {
                         
                         add_filter('get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000);
+                         if ( $bsf_rt_current_theme  === 'Twenty Fifteen' ||  $bsf_rt_current_theme  === 'Twenty Nineteen') {
+                         add_filter('the_content', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000);
+                     }
                     }
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
@@ -125,6 +130,9 @@ class BSF_ReadTime
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
                         add_filter('get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_archive' ), 1000);
+                        if ( $bsf_rt_current_theme  === 'Twenty Fifteen' ||  $bsf_rt_current_theme  === 'Twenty Nineteen') {
+                         add_filter('the_content', array( $this, 'bsf_rt_add_reading_time_before_content_archive' ), 1000);
+                     }
                     }
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
