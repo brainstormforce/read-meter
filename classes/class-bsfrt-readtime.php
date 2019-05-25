@@ -78,8 +78,6 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
     add_filter( 'previous_post_link', array($this,'bsf_rt_remove_markup_for_twenty_fifteen'));
  }
 
-
-
 //Function to call shortcode in Astra Hook     
 // add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
 //Displaying Reading Time Conditions
@@ -102,7 +100,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
         if(in_array('bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
 
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
-                    
+                        
                         add_filter('get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000);
                     }
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_post_title' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
@@ -338,7 +336,8 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
      * @param  string $content The original content of the_excerpt.
      * @return string The excerpt content with reading time prepended.
      */
-    public function bsf_rt_add_reading_time_before_content_excerpt( $content ) {
+    public function bsf_rt_add_reading_time_before_content_excerpt( $excerpt  ) {
+
         if (in_the_loop() && is_home() && !is_archive() ) {
             
 
@@ -347,16 +346,16 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
             // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
            if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
-        			return $content;
+        			return $excerpt;
         		}
         		if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-                return $content;
+                return $excerpt;
             }
             if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
-                return $content;
+                return $excerpt;
             }
 
-            $original_content = $content;
+            $original_excerpt = $excerpt;
             $bsf_rt_post          = get_the_ID();
 
             $this->bsf_rt_calculate_reading_time($bsf_rt_post, $this->bsf_rt_options);
@@ -370,10 +369,11 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                 $calculated_postfix = 'mins';
             }
 
-            $content  = '
-            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
-            $content .= $original_content;
-            return $content;
+            $excerpt  = '
+            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><br>';
+            $excerpt .= $original_excerpt;
+            echo $excerpt;
+        
         }
     }
      /**
@@ -509,8 +509,8 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
      * @param  string $content The original content of the_excerpt.
      * @return string The excerpt content with reading time prepended.
      */
-    public function bsf_rt_add_reading_time_before_content_archive( $content )
-    {
+    public function bsf_rt_add_reading_time_before_content_archive( $excerpt  )
+    { 
         if (in_the_loop() && is_archive() ) { 
             
 
@@ -520,17 +520,18 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
             // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
            if ($this->bsf_rt_options['bsf_rt_post_types'] == NULL) {
 
-                    return $content;
+                    return $excerpt;
                 }
                 if ($this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
-                return $content;
+                return $excerpt;
             }
             if (isset($this->bsf_rt_options['bsf_rt_post_types']) && !in_array($bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types']) ) {
-                return $content;
+                return $excerpt;
             }
 
-            $original_content = $content;
+            $original_excerpt = $excerpt;
+           
             $bsf_rt_post          = get_the_ID();
 
             $this->bsf_rt_calculate_reading_time($bsf_rt_post, $this->bsf_rt_options);
@@ -544,10 +545,11 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                 $calculated_postfix = 'mins';
             }
 
-            $content  = '
-            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br>';
-            $content .= $original_content;
-            return $content;
+            $excerpt  = '
+            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><br>';
+            $excerpt .= $original_excerpt;
+            echo $excerpt;
+            //return $excerpt;
         }
     }
      /**
