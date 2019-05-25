@@ -13,15 +13,25 @@ class BSF_ReadTime
     public $bsf_rt_options = array();
 
     public static $bsf_rt_is_admin_bar_showing;
+
+    public static $bsf_rt_check_the_page;
+
     /**
-     * Construct function for BSF_ReadTime.
+     * Construct function for Read Meter.
      *
      * Create default settings on plugin activation.
      *
      * @since 1.0.0
      */
     public function __construct() {
-
+    
+        $this->bsf_rt_init_backend();
+        add_action('wp_enqueue_scripts',array($this,'bsf_rt_init_frontend'));
+        //Shortcode
+        add_shortcode('read_meter',array($this,'read_meter_shortcode')); 
+    }
+   
+    public function bsf_rt_init_backend() {
         $bsf_rt_show_read_time=array();
         $bsf_rt_posts=array();
         array_push($bsf_rt_show_read_time, 'bsf_rt_single_page');
@@ -55,11 +65,16 @@ class BSF_ReadTime
         $this->bsf_rt_options = $all_options;
         add_action('init',array($this,'bsf_rt_is_admin_bar_showing'));
 
+    }
+ 
+    public function bsf_rt_init_frontend() {
+         
+  
 //If readtime bg option is None or Color
    if (isset($this->bsf_rt_options['bsf_rt_read_time_bg_option'])) {
       if ($this->bsf_rt_options['bsf_rt_read_time_bg_option'] == 'None' && isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_color'])) {
 
-        add_action('wp_head', array( $this, 'bsf_rt_set_readtime_bg_none'));
+              add_action('wp_head', array( $this, 'bsf_rt_set_readtime_bg_none'));
 
       } else if (isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) ) {
                 
@@ -68,21 +83,14 @@ class BSF_ReadTime
             }
    }    
 
-//Shortcode
-add_shortcode('read_meter',array($this,'read_meter_shortcode'));   
-
-//For twenty fifteen Theme remove the extra markup in the nextpost and prev post section
+  //For twenty fifteen Theme remove the extra markup in the nextpost and prev post section
  $bsf_rt_current_theme = $this->bsf_rt_get_current_theme();
  if($bsf_rt_current_theme === 'Twenty Fifteen') {
     add_filter( 'next_post_link', array($this,'bsf_rt_remove_markup_for_twenty_fifteen') );
     add_filter( 'previous_post_link', array($this,'bsf_rt_remove_markup_for_twenty_fifteen'));
  }
-
-//Function to call shortcode in Astra Hook     
-// add_action( 'astra_header_after', array( $this, 'bsf_rt_add_reading_time_after_astra_header' ), 1000 );
-//Displaying Reading Time Conditions
     if (isset($this->bsf_rt_options['bsf_rt_show_read_time'])) {
-        if(in_array('bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
+        if(in_array('bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time']) && is_singular()) {
 
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
@@ -96,8 +104,8 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_below_the_post_title' ), 90);
                     }
-             }
-        if(in_array('bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
+        }
+        if(in_array('bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time']) && is_home() && !is_archive()) {
 
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                         
@@ -111,8 +119,8 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_after_title_excerpt' ), 1000);
                     }
-             }
-        if(in_array('bsf_rt_archive_page', $this->bsf_rt_options['bsf_rt_show_read_time'])) {
+        }
+        if(in_array('bsf_rt_archive_page', $this->bsf_rt_options['bsf_rt_show_read_time']) && !is_home() && is_archive()) {
 
                     if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                     
@@ -126,19 +134,19 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                     
                         add_filter('the_title', array( $this, 'bsf_rt_add_reading_time_after_title_archive' ), 1000);
                     }
-             }     
+        }     
     }
 //Displaying Progress Bar Conditions
         if (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'none' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
             return;
-        } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'top_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
+         } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'top_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
            
-            add_action('wp_footer', array($this,'hook_header_top'));
+                add_action('wp_footer', array($this,'hook_header_top'));
             
             } elseif (isset($this->bsf_rt_options['bsf_rt_position_of_progress_bar']) && ( 'bottom_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
-            add_action('wp_footer', array($this,'hook_header_bottom'));
+                add_action('wp_footer', array($this,'hook_header_bottom'));
            
-        }
+             }
 
         if (isset($this->bsf_rt_options['bsf_rt_progress_bar_styles']) && ('Normal' === $this->bsf_rt_options['bsf_rt_progress_bar_styles'])  ) {
 
@@ -154,10 +162,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
                       add_action('wp_head', array( $this, 'bsf_rt_set_progressbar_colors_gradient'));
             }
         } 
-
-        
     }
-
     /**
      * Adds the reading time before the_content.
      *
@@ -262,7 +267,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
             }
 
             $title  = '
-            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><!-- .bsf_rt_reading_time_before_content -->';
+            <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><br><!-- .bsf_rt_reading_time_before_content -->';
             // $title = '<span class="bsf_rt_display_label" title="'.$label.'"></span>';
             $title .= $original_title;
             return $title;
@@ -272,7 +277,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
 
     }
     /**
-     * Adds the reading time above the post title.
+     * Adds the reading time below the post title.
      *
      * @since 1.0.0
      *
@@ -316,7 +321,7 @@ add_shortcode('read_meter',array($this,'read_meter_shortcode'));
             }
 
             $title  = '
-           <br> <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><!-- .bsf_rt_reading_time_before_content -->';
+           <br><br> <span class="bsf_rt_reading_time_before_content"><span class="bsf_rt_display_label" prefix="' . $label . '"></span> <span class="bsf_rt_display_time" reading_time="' . $this->reading_time . '"></span> <span class="bsf_rt_display_postfix" postfix="' . $calculated_postfix . '"></span></span><br><br><!-- .bsf_rt_reading_time_before_content -->';
             $original_title .= $title;
             $title=$original_title;
             return $title;
@@ -1050,6 +1055,25 @@ public function bsf_rt_get_current_theme() {
     { 
         echo do_shortcode("[read_meter]");
    }
+   /**
+      * Checking current page
+      *
+      * @since 1.1.0
+      * @param Nothing.
+      * @return Nothing.
+      */
+    public function bsf_rt_check_the_page() {
+
+        if (is_singular()) {
+             self::$bsf_rt_check_the_page = 'single';
+        } else if (is_home()) {
+              self::$bsf_rt_check_the_page = 'home';
+
+        } else if (is_archive()) {
+              self::$bsf_rt_check_the_page = 'archive';
+
+        }
+    }
 
 }
 $bsf_rt = new BSF_ReadTime();
