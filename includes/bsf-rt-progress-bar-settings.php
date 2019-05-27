@@ -210,7 +210,7 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
 
                   <?php } else { ?>
 
-                    <input type="number" required name="bsf_rt_progress_bar_thickness" class="small-text" value="12">&nbsppx
+                    <input type="number"  name="bsf_rt_progress_bar_thickness" class="small-text" value="12">&nbsppx
 
                   <?php }
                   ?>
