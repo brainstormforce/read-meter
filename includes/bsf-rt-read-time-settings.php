@@ -1,10 +1,62 @@
 <?php
-// delete_option('bsf_rt_read_time_settings');
+
 $options=get_option('bsf_rt_read_time_settings');
 
+$bsf_rt_show_read_time = array();
 
-$font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_read_time_font_size'] : '15';
+$bsf_rt_position_of_read_time = '';
 
+$bsf_rt_reading_time_label = '';
+
+$bsf_rt_reading_time_postfix_label = '';
+
+$bsf_rt_read_time_font_size = 15;
+
+$bsf_rt_read_time_bg_option = '';
+
+$bsf_rt_read_time_background_color = '';
+
+$bsf_rt_read_time_color = '';
+
+if (isset($options['bsf_rt_show_read_time'])) {
+
+  $bsf_rt_show_read_time = $options['bsf_rt_show_read_time'];
+}
+
+if (isset($options['bsf_rt_position_of_read_time'])) {
+
+  $bsf_rt_position_of_read_time = $options['bsf_rt_position_of_read_time'];
+}
+
+if (isset($options['bsf_rt_reading_time_label'])) {
+
+  $bsf_rt_reading_time_label = $options['bsf_rt_reading_time_label'];
+}
+
+if (isset($options['bsf_rt_reading_time_postfix_label'])) {
+
+  $bsf_rt_reading_time_postfix_label = $options['bsf_rt_reading_time_postfix_label'];
+}
+
+if (isset($options['bsf_rt_read_time_font_size'])) {
+
+  $bsf_rt_read_time_font_size = $options['bsf_rt_read_time_font_size'];
+}
+
+if (isset($options['bsf_rt_read_time_bg_option'])) {
+
+  $bsf_rt_read_time_bg_option = $options['bsf_rt_read_time_bg_option'];
+}
+
+if (isset($options['bsf_rt_read_time_background_color'])) {
+
+  $bsf_rt_read_time_background_color = $options['bsf_rt_read_time_background_color'];
+}
+
+if (isset($options['bsf_rt_read_time_color'])) {
+
+  $bsf_rt_read_time_color = $options['bsf_rt_read_time_color'];
+}
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
 <form action="" method="post" name="bsf_rt_settings_form">
@@ -22,8 +74,8 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
         <td>
           <label id="bsf_rt_single_checkbox_label" for="ForSinglePage" class="bsf_rt_show_readtime_label" >
             <?php
-            if (isset($options['bsf_rt_show_read_time'])) {
-              if ( in_array('bsf_rt_single_page', $options['bsf_rt_show_read_time'])) {
+            if (isset($bsf_rt_show_read_time)) {
+              if ( in_array('bsf_rt_single_page', $bsf_rt_show_read_time)) {
                   echo ' <input id="bsf_rt_single_page" type="checkbox" checked name="bsf_rt_show_read_time[]" onclick="singlePage()" value="bsf_rt_single_page">';
               } else {
                   echo ' <input id="bsf_rt_single_page" type="checkbox" name="bsf_rt_show_read_time[]" onclick="singlePage()" value="bsf_rt_single_page">';
@@ -38,7 +90,7 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
        <br>
             <label for="ForHomeBlogPage" class="bsf_rt_show_readtime_label">
             <?php
-            if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_home_blog_page', $options['bsf_rt_show_read_time']) ) {
+            if (isset($bsf_rt_show_read_time) && in_array('bsf_rt_home_blog_page', $bsf_rt_show_read_time) ) {
                 echo ' <input id="bsf_rt_home_blog_page" type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page" onclick="homePage()">';
             } else {
                 echo '  <input id="bsf_rt_home_blog_page" type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page" onclick="homePage()">';
@@ -50,7 +102,7 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
          <br>
             <label for="ForArchivePage" class="bsf_rt_show_readtime_label">
             <?php
-            if (isset($options['bsf_rt_show_read_time']) && in_array('bsf_rt_archive_page', $options['bsf_rt_show_read_time']) ) {
+            if (isset($bsf_rt_show_read_time) && in_array('bsf_rt_archive_page', $bsf_rt_show_read_time) ) {
                 echo ' <input id="bsf_rt_archive_page" type="checkbox" checked name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page" onclick="archivePage()">';
             } else {
                 echo ' <input id="bsf_rt_archive_page"  type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page" onclick="archivePage()">';
@@ -70,18 +122,18 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
         <td>
          <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time">
             <?php 
-            if (isset($options['bsf_rt_position_of_read_time'])) {
-                if ('above_the_content' === $options['bsf_rt_position_of_read_time']) {
+            if (isset($bsf_rt_position_of_read_time)) {
+                if ('above_the_content' === $bsf_rt_position_of_read_time) {
                     echo '<option selected value="above_the_content">Above the Content</option>';
                 } else {
                     echo '<option  value="above_the_content">Above the Content</option>';
                 }
-                if ('above_the_post_title' === $options['bsf_rt_position_of_read_time']) {
+                if ('above_the_post_title' === $bsf_rt_position_of_read_time) {
                     echo '<option selected value="above_the_post_title">Above the Post Title</option>';
                 } else {
                     echo '<option value="above_the_post_title">Above the Post Title</option>';
                 }
-                if ('below_the_post_title' === $options['bsf_rt_position_of_read_time']) {
+                if ('below_the_post_title' === $bsf_rt_position_of_read_time) {
                     echo '<option selected value="below_the_post_title">Below the Post Title</option>';
                 } else {
                     echo '<option value="below_the_post_title">Below the Post Title</option>';
@@ -103,8 +155,8 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
           <label for="ReadingTimePostfixLabel">Reading Time PreFix :</label>
         </th>
         <td>
-          <?php if( isset($options['bsf_rt_reading_time_label']) ) { ?>
-          <input type="text"  name="bsf_rt_reading_time_prefix_label" placeholder="mins" value="<?php echo $options['bsf_rt_reading_time_label'];?>" class="regular-text">
+          <?php if( isset($bsf_rt_reading_time_label) ) { ?>
+          <input type="text"  name="bsf_rt_reading_time_prefix_label" placeholder="mins" value="<?php echo $bsf_rt_reading_time_label;?>" class="regular-text">
         <?php } else { ?>
            <input type="text"  name="bsf_rt_reading_time_prefix_label" placeholder="mins" value="Reading Time" class="regular-text">
            <?php } ?>
@@ -121,8 +173,8 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
          <label for="ReadingTimePrefixLabel">Reading Time PostFix :</label>
         </th>
         <td>
-           <?php if( isset($options['bsf_rt_reading_time_postfix_label']) ) { ?>
-          <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="<?php echo $options['bsf_rt_reading_time_postfix_label'];?>" class="regular-text">
+           <?php if( isset($bsf_rt_reading_time_postfix_label) ) { ?>
+          <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="<?php echo $bsf_rt_reading_time_postfix_label;?>" class="regular-text">
             <?php } else { ?>
               <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="mins" class="regular-text">
               <?php } ?>
@@ -136,7 +188,7 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
             <label for="ReadtimeFontSize">Font Size :</label>
           </th>
           <td>
-                <input type="number" name="bsf_rt_read_time_font_size" class="small-text" value="<?php echo $font_size; ?>"  >&nbsp px
+                <input type="number" name="bsf_rt_read_time_font_size" class="small-text" value="<?php echo $bsf_rt_read_time_font_size; ?>"  >&nbsp px
           </td>
         </tr> 
       <tr >
@@ -146,13 +198,13 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
           <td>
              <select  name="bsf_rt_read_time_bg_option" id="bsf_rt_read_time_bg_option" onchange="bsf_rt_readtimebgoption(this);">
                 <?php 
-                if (isset($options['bsf_rt_read_time_bg_option'])) {
-                    if ('Color' === $options['bsf_rt_read_time_bg_option']) {
+                if (isset($bsf_rt_read_time_bg_option)) {
+                    if ('Color' === $bsf_rt_read_time_bg_option) {
                         echo '<option  selected value="Color">Color</option>';
                     } else {
                         echo '<option  value="Color">Color</option>';
                     }
-                    if ('None' === $options['bsf_rt_read_time_bg_option']) {
+                    if ('None' === $bsf_rt_read_time_bg_option) {
                         echo '<option selected value="None">None</option>';
                     } else {
                         echo '<option value="None">None</option>';
@@ -167,8 +219,8 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
              </select><br><br>
                 <?php
                 echo '<div id="bsf_rt_bg">';
-                if (isset($options['bsf_rt_read_time_background_color'])) { ?>
-              <input  name="bsf_rt_read_time_background_color" class="my-color-field" value=" <?php echo $options['bsf_rt_read_time_background_color']; ?>">
+                if (isset($bsf_rt_read_time_background_color)) { ?>
+              <input  name="bsf_rt_read_time_background_color" class="my-color-field" value=" <?php echo $bsf_rt_read_time_background_color; ?>">
                 <?php } else { ?>
                <input  name="bsf_rt_read_time_background_color" class="my-color-field" value="#eeeeee">
                 <?php }
@@ -183,8 +235,8 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
           </th>  
           <td>
             <?php
-            if (isset($options['bsf_rt_read_time_color'])) { ?>
-              <input name="bsf_rt_read_time_color" class="my-color-field" value="<?php echo $options['bsf_rt_read_time_color']; ?>">
+            if (isset($bsf_rt_read_time_color)) { ?>
+              <input name="bsf_rt_read_time_color" class="my-color-field" value="<?php echo $bsf_rt_read_time_color; ?>">
             <?php } else { ?>
               <input name="bsf_rt_read_time_color" class="my-color-field" value="#333333">
             <?php }
@@ -206,25 +258,52 @@ $font_size = isset( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_
 <?php
 if (isset($_POST['submit'])) {
 
-$bsf_rt_reading_time_label=$_POST['bsf_rt_reading_time_prefix_label'];
-$bsf_rt_reading_time_postfix_label=$_POST['bsf_rt_reading_time_postfix_label'];
-$bsf_rt_show_read_time=$_POST['bsf_rt_show_read_time'];
-$bsf_rt_position_of_read_time=$_POST['bsf_rt_position_of_read_time'];
-$bsf_rt_read_time_font_size=$_POST['bsf_rt_read_time_font_size'];
-$bsf_rt_read_time_background_color=$_POST['bsf_rt_read_time_background_color'];
-$bsf_rt_read_time_color=$_POST['bsf_rt_read_time_color'];
-$bsf_rt_read_time_bg_option=$_POST['bsf_rt_read_time_bg_option'];
-$update_options = array(
-        'bsf_rt_reading_time_label'=> $bsf_rt_reading_time_label,
-        'bsf_rt_reading_time_postfix_label'=> $bsf_rt_reading_time_postfix_label,
-        'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
-        'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
-        'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
-        'bsf_rt_read_time_background_color' => $bsf_rt_read_time_background_color,
-        'bsf_rt_read_time_color' => $bsf_rt_read_time_color,
-        'bsf_rt_read_time_font_size' => $bsf_rt_read_time_font_size,
-        'bsf_rt_read_time_bg_option' => $bsf_rt_read_time_bg_option,
-);
-update_option('bsf_rt_read_time_settings', $update_options);
-echo '<meta http-equiv="refresh" content="0.1" />';
+    if (isset($_POST['bsf_rt_reading_time_prefix_label'])) {
+      $bsf_rt_reading_time_label = $_POST['bsf_rt_reading_time_prefix_label'];
+    } else {
+      $bsf_rt_reading_time_label = '';
+    }
+
+    if (isset($_POST['bsf_rt_reading_time_postfix_label'])) {
+      $bsf_rt_reading_time_postfix_label = $_POST['bsf_rt_reading_time_postfix_label'];
+    } else {
+      $bsf_rt_reading_time_postfix_label = '';
+    }
+
+     if (isset($_POST['bsf_rt_show_read_time'])) {
+
+      $bsf_rt_show_read_time = $_POST['bsf_rt_show_read_time'];
+    } else {
+
+      $bsf_rt_show_read_time = array();
+    }
+
+     if (isset($_POST['bsf_rt_read_time_font_size'])) {
+
+      $bsf_rt_read_time_font_size = $_POST['bsf_rt_read_time_font_size'];
+    } else {
+
+      $bsf_rt_read_time_font_size = 15;
+    }
+    $bsf_rt_position_of_read_time=$_POST['bsf_rt_position_of_read_time'];
+
+    $bsf_rt_read_time_background_color=$_POST['bsf_rt_read_time_background_color'];
+
+    $bsf_rt_read_time_color=$_POST['bsf_rt_read_time_color'];
+
+    $bsf_rt_read_time_bg_option=$_POST['bsf_rt_read_time_bg_option'];
+
+    $update_options = array(
+            'bsf_rt_reading_time_label'=> $bsf_rt_reading_time_label,
+            'bsf_rt_reading_time_postfix_label'=> $bsf_rt_reading_time_postfix_label,
+            'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
+            'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
+            'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
+            'bsf_rt_read_time_background_color' => $bsf_rt_read_time_background_color,
+            'bsf_rt_read_time_color' => $bsf_rt_read_time_color,
+            'bsf_rt_read_time_font_size' => $bsf_rt_read_time_font_size,
+            'bsf_rt_read_time_bg_option' => $bsf_rt_read_time_bg_option,
+    );
+    update_option('bsf_rt_read_time_settings', $update_options);
+    echo '<meta http-equiv="refresh" content="0.1" />';
 }
