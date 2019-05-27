@@ -1,44 +1,4 @@
-.multiselect {
-  width: 200px;
-}
-.selectBox {
-  position: relative;
-}
-.selectBox select {
-  width: 100%;
-  font-weight: normal;
-}
-.overSelect {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-#checkboxes {
-  display: none;
-  border: 1px #dadada solid;
-}
-#checkboxes label {
-  display: block;
-}
-#checkboxes label:hover {
-  background-color: #1e90ff;
-}
 
-/*Class readtime CSS*/
-
-/*.bsf_rt_reading_time_before_content
-{
-    background-color: black;
-    color: white;
-    font-weight: 500;
-    width: auto;
-    font-size: 15px ;
-    padding: 0.5em 0.7em;
-    display: inline-block;
-
-}*/
 .bsf_rt_reading_time_after_astra_header
 {
     background-color: black;
@@ -87,29 +47,12 @@
   z-index: 2;
   
 }
-
-#gradiant-wrap1 , #gradiant-wrap2 {
-
-  display: none;
-
-}
-
-#bsf-rt-progress-bar-options{
-  display: block;
-}
-/*#bsf_rt_progress_bar_container {
-  opacity: 0.5;
-  /*transition: opacity ease-in-out 200ms;
-}*/
 .bsf_rt_show_readtime_label{
   min-width: 200px;
   display: inline-block;
 }
-/*Post Types CSS*/
-/*.post_type_name
-{
-  text-transform: capitalize;
-}*/
+
+/*Reading time Display CSS*/
 .bsf_rt_display_label:after {
     content: attr(prefix);
   }
@@ -119,6 +62,8 @@
 .bsf_rt_display_postfix:after {
     content: attr(postfix);
   }
+
+ /*Read meter Title CSS*/ 
 .bsf_rt_main_title {
   font-size: 23px;
   font-weight: 400;
@@ -132,3 +77,18 @@
   line-height: 25px;
   
 }
+
+
+/*Class readtime CSS*/
+
+/*.bsf_rt_reading_time_before_content
+{
+    background-color: black;
+    color: white;
+    font-weight: 500;
+    width: auto;
+    font-size: 15px ;
+    padding: 0.5em 0.7em;
+    display: inline-block;
+
+}*/

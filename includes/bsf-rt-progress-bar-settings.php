@@ -5,13 +5,13 @@ $bsf_rt_position_of_progress_bar = '';
 
 $bsf_rt_progress_bar_styles = '';
 
-$bsf_rt_progress_bar_background_color = '';
+$bsf_rt_progress_bar_background_color = '#e8d5ff';
 
-$bsf_rt_progress_bar_gradiant_one = '';
+$bsf_rt_progress_bar_gradiant_one = '#5540D9';
 
-$bsf_rt_progress_bar_gradiant_two = '';
+$bsf_rt_progress_bar_gradiant_two = '#ee7fff';
 
-$bsf_rt_progress_bar_thickness = '';
+$bsf_rt_progress_bar_thickness = 12;
 
 if (isset($options['bsf_rt_position_of_progress_bar'])) {
 

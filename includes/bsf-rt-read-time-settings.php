@@ -2,7 +2,7 @@
 
 $options=get_option('bsf_rt_read_time_settings');
 
-$bsf_rt_show_read_time = array();
+$bsf_rt_show_read_time = array('bsf_rt_single_page');
 
 $bsf_rt_position_of_read_time = '';
 
@@ -14,9 +14,9 @@ $bsf_rt_read_time_font_size = 15;
 
 $bsf_rt_read_time_bg_option = '';
 
-$bsf_rt_read_time_background_color = '';
+$bsf_rt_read_time_background_color = '#eeeeee';
 
-$bsf_rt_read_time_color = '';
+$bsf_rt_read_time_color = '#333333';
 
 if (isset($options['bsf_rt_show_read_time'])) {
 
