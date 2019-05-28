@@ -50,17 +50,21 @@ function goActive() {
 
 // Progress Bar JS
 window.onscroll = function () {
-
- bsfrtProgressBarScroll()
+var content = document.getElementById("bsf_rt_marker");
+ bsfrtProgressBarScroll(content)
 };
 
-function bsfrtProgressBarScroll() {
+function bsfrtProgressBarScroll(content) {
 
-    var content = document.getElementById("main");
-
+    //var content = document.getElementById("comments");
+    
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (content !== null) {
+        var height = document.documentElement.scrollHeight - content.clientHeight;
+    } else {
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      }
+    
 
     var scrolled = (winScroll / height) * 100;
 
@@ -107,19 +111,7 @@ function bsf_rt_ColorSelectCheck() {
 
         }
     } 
-    if (document.getElementById("bsf_rt_read_time_bg_option")) {
-
-        rtOptionValue = document.getElementById("bsf_rt_read_time_bg_option").value;
-
-        if('None' == rtOptionValue) {
-
-          document.getElementById("bsf_rt_bg").style.display = "none";
-        }
-        else{
-
-          document.getElementById("bsf_rt_bg").style.display = "block";
-        }
-    } 
+    
 }
 
 function bsf_rt_ColorSelectCheck_two(nameSelect) {
@@ -150,20 +142,6 @@ function bsf_rt_Progressbarpositioncheck(positionSelect) {
 
         document.getElementById("bsf-rt-progress-bar-options").style.display = "none";
 
-      }
-    }
-}
-function bsf_rt_readtimebgoption(bgoption) {
-
-    if(bgoption) {
-
-      if('None' == bgoption.value) {
-
-        document.getElementById("bsf_rt_bg").style.display = "none";
-      }
-      else{
-
-        document.getElementById("bsf_rt_bg").style.display = "block";
       }
     }
 }

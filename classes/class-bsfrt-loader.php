@@ -31,7 +31,9 @@ if (! class_exists('BSF_RT_Loader') ) :
 
             include BSF_RT_ABSPATH.'includes/bsf-rt-page.php'; 
 
-            add_action('init', array($this, 'bsfrt_pluginStyle'));
+            add_action('wp_enqueue_scripts', array($this, 'bsfrt_pluginStyle_frontend'));
+
+            add_action('admin_enqueue_scripts', array($this, 'bsfrt_pluginStyle_dashboard'));
 
             add_action('init', array($this, 'bsfrt_pluginScript'));
 
@@ -39,16 +41,26 @@ if (! class_exists('BSF_RT_Loader') ) :
            
         }         
         /**
-         * Plugin Styles.
+         * Plugin Styles for frontend.
          *
          * @since  1.0.0
          * @return void
          */
-        public function bsfrt_pluginStyle() { 
+        public function bsfrt_pluginStyle_frontend() { 
+
+             wp_enqueue_style('bsfrt_frontend', BSF_RT_PLUGIN_URL.'/assets/css/bsfrt-frontend-css.css');
+        }
+        /**
+         * Plugin Styles for admin dashboard.
+         *
+         * @since  1.0.0
+         * @return void
+         */
+        public function bsfrt_pluginStyle_dashboard() { 
 
              wp_enqueue_style('wp-color-picker');
 
-             wp_enqueue_style('customstyle', BSF_RT_PLUGIN_URL.'/assets/css/styles.css');
+             wp_enqueue_style('bsfrt_dashboard', BSF_RT_PLUGIN_URL.'/assets/css/bsfrt-admin-dashboard-css.css',9999999);
         }
          /**
           * Plugin Scripts.

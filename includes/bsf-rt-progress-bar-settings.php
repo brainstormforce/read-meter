@@ -47,11 +47,7 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
   <form action="" method="post" name="bsf_rt_settings_form">
       <table class="form-table">
-        <tr>
-
-           <h3>Progress Bar</h3>
-
-        </tr>
+         <br>
          <p class="description">
 
            Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)

@@ -39,24 +39,11 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
   <form action="" method="post" name="bsf_rt_settings_form">
     <table class="form-table" > 
-        <tr>
-          
-          <h3> General Settings </h3>
-        </tr>
+          <br>
           <p class="description">
 
               Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.
           </p>  
-        
-        <tr>
-          <th scope="row">
-            <label for="WordsPerMinute">Words Per Minute :</label>
-          </th>
-          <td>
-            <input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="<?php  echo $bsf_rt_words_per_minute; ?>" class="small-text">
-          </td>
-        </tr>
-
         <tr>
             <th scope="row">
               <label for="SelectPostTypes">Select Post Types :</label>
@@ -102,6 +89,14 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
            </td>
         </tr>
         <tr>
+        <tr>
+          <th scope="row">
+            <label for="WordsPerMinute">Words Per Minute :</label>
+          </th>
+          <td>
+            <input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="<?php  echo $bsf_rt_words_per_minute; ?>" class="small-text">
+          </td>
+        </tr>
           <th scope="row">
 
             <label for="IncludeComments">Include Comments :</label>
@@ -113,9 +108,9 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
                 echo '<input type="checkbox" name="bsf_rt_include_comments" value="yes">';
               }
              ?>
-              <p class="description">
+              <p id="bsf_rt_description" class="description">
 
-                 Check if you want to count the comments in the Reading time.
+                 Check this to include comment's text in reading time.
               </p>  
           </td>
         </tr>
@@ -133,9 +128,9 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
               echo '<input type="checkbox" name="bsf_rt_include_images" value="yes">';
             }
            ?>
-            <p class="description">   
+            <p id="bsf_rt_description" class="description">   
 
-               Check if you want to count the Images in the Reading time.
+              Check this to include post images in reading time.
             </p>  
           </td>
         </tr>
