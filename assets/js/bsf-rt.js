@@ -61,6 +61,9 @@ window.onscroll = function () {
 function bsfrtProgressBarScroll(content) {
 
     var intViewportHeight = window.innerHeight; // window height
+        if (content !== null) {
+            var height = content.clientHeight;
+            var winScroll = document.documentElement.scrollTop - content.offsetTop;
 
     if (content.clientHeight < intViewportHeight) {
         if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
@@ -72,16 +75,7 @@ function bsfrtProgressBarScroll(content) {
             }
         }
     } else {
-
-        if (content !== null) {
-            var height = /*document.documentElement.scrollHeight -*/ content.clientHeight;
-            var winScroll = document.documentElement.scrollTop - content.offsetTop;
-        } else {
-                var winScroll = document.documentElement.scrollTop;
-                var height = /*document.documentElement.scrollHeight -*/ document.documentElement.clientHeight;
-            }
-
-        height -= content.offsetTop;
+    height -= content.offsetTop;
         if (winScroll <= 0){
             if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
 
@@ -103,6 +97,23 @@ function bsfrtProgressBarScroll(content) {
             }
         }
     }
+ } else {
+            var content = document.getElementById("main");
+
+          var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          
+          var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          
+          var scrolled = (winScroll / height) * 100;
+        
+          if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+          document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
+          
+        }
+      }
+    }
+
 }
 
 // Progress Bar color selection JS
