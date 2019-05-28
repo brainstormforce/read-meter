@@ -1197,7 +1197,7 @@ class BSF_ReadTime
       */
     public function bsf_rt_add_marker_for_progress_bar_scroll($content) {
           
-            if (isset($this->bsf_rt_options['bsf_rt_include_comments']) && $this->bsf_rt_options['bsf_rt_include_comments'] == '' ) {
+            if (isset($this->bsf_rt_options['bsf_rt_include_comments']) && $this->bsf_rt_options['bsf_rt_include_comments'] !== 'yes' ) {
                     
                     $markup_start = '<div id="bsf_rt_marker">';
                     $markup_end = '</div>';
