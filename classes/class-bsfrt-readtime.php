@@ -8,6 +8,13 @@
  */
 class BSF_ReadTime
 {
+    /**
+     * Member Variable
+     *
+     * @var instance
+     */
+    private static $instance;
+
     public $reading_time;
   
     public $bsf_rt_options = array();
@@ -15,6 +22,16 @@ class BSF_ReadTime
     public static $bsf_rt_is_admin_bar_showing;
 
     public static $bsf_rt_check_the_page;
+
+    /**
+     *  Initiator
+     */
+    public static function get_instance() {
+        if ( ! isset( self::$instance ) ) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
 
     /**
      * Construct function for Read Meter.
@@ -31,8 +48,10 @@ class BSF_ReadTime
 
         //Shortcode
         add_shortcode('read_meter',array($this,'read_meter_shortcode')); 
+
+        add_filter('comments_template',array($this,'bsf_rt_remove_the_title_from_comments'));
     }
-   
+    
     public function bsf_rt_init_backend() {
         $bsf_rt_show_read_time = array('bsf_rt_single_page');
 
@@ -193,6 +212,7 @@ class BSF_ReadTime
      * @return string The post content with reading time prepended.
      */
     public function bsf_rt_add_reading_time_before_content( $content ) {
+
         if (in_the_loop() && is_singular()) {
            
             // Get the post type of the current post.
@@ -1004,7 +1024,6 @@ class BSF_ReadTime
      */  
     public function bsf_rt_remove_markup_for_twenty_fifteen( $output ) {
 
-
         $startStr = esc_html('<span class="bsf_rt_reading_time_before_content">');
         $endStr   = esc_html('<!-- .bsf_rt_reading_time_before_content -->');
 
@@ -1035,7 +1054,19 @@ class BSF_ReadTime
 
         return $theme_name;
     }
-   
+     /**
+    * Removes our Reading time from the comments title
+    * @since 1.0.0
+    *
+    * @param  Nothing.
+    * @return current theme name.
+    */  
+    public function bsf_rt_remove_the_title_from_comments() {
+
+        remove_filter('the_title', array( BSF_ReadTime::get_instance(), 'bsf_rt_add_reading_time_above_the_post_title' ), 90, 2);
+
+        remove_filter('the_title', array( BSF_ReadTime::get_instance(), 'bsf_rt_add_reading_time_below_the_post_title' ), 90, 2);
+    }
     /**
      * Adds CSS to the progress Bar as per User input , When Style is Selected Normal.
      *
@@ -1211,12 +1242,9 @@ class BSF_ReadTime
                 return $content;
             }
     }
-     
-                
     
 
 }
-$bsf_rt = new BSF_ReadTime();
 
-
+BSF_ReadTime::get_instance();
 
