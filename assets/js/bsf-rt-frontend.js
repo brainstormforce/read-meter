@@ -115,15 +115,3 @@ function bsfrtProgressBarScroll(content) {
     }
 
 }
-
-
-    //var content = document.getElementById("comments");
-    
-    // 1. Short Content
-    //  Content height < viewport height = dont show progerssbar.
-    // 2. Large Content
-    //  
-    // 3. Short Content + Comments 
-    // 
-    // 4. Large Content + Comments 
-    // 

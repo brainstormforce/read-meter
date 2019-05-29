@@ -188,7 +188,7 @@ if (isset($options['bsf_rt_margin_unit'])) {
           <label for="ShowReadTimePosition">Read Time Position :</label>
         </th>
         <td>
-         <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time">
+         <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time" onchange="bsf_rt_readtimepositioncheck(this);">
             <?php 
             if (isset($bsf_rt_position_of_read_time)) {
                 if ('above_the_content' === $bsf_rt_position_of_read_time) {
@@ -225,6 +225,8 @@ if (isset($options['bsf_rt_margin_unit'])) {
             </select> 
         </td>
       </tr>
+      </table>
+      <table class="form-table" id="bsf_rt_read_time_option">
       <tr>
         <th scope="row">
           <label for="ReadingTimeMargin">Margin :</label>
@@ -357,6 +359,7 @@ if (isset($options['bsf_rt_margin_unit'])) {
            
           </td>
         </tr>
+      </div>
 </table>
 <table class="form-table">
        <tr>

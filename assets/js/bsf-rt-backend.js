@@ -3,11 +3,11 @@
 window.addEventListener(
     'load', function () {
 
-        bsf_rt_ColorSelectCheck();
+        bsf_rt_onloadCheck();
     }
 );
 
-function bsf_rt_ColorSelectCheck()
+function bsf_rt_onloadCheck()
 { 
 
     if (document.getElementById("bsf_rt_progress_bar_styles") !== null) {
@@ -33,6 +33,20 @@ function bsf_rt_ColorSelectCheck()
         else{
 
             document.getElementById("bsf-rt-progress-bar-options").style.display = "none";
+
+        }
+    } 
+    if (document.getElementById("bsf_rt_position_of_read_time")) {
+        readtimeOptionValue = document.getElementById("bsf_rt_position_of_read_time").value;
+        
+         if(readtimeOptionValue !== 'none') {
+
+            document.getElementById("bsf_rt_read_time_option").style.display = "block";
+
+        }
+        else{
+
+            document.getElementById("bsf_rt_read_time_option").style.display = "none";
 
         }
     } 
@@ -71,4 +85,22 @@ function bsf_rt_Progressbarpositioncheck(positionSelect)
 
         }
     }
+}
+
+function bsf_rt_readtimepositioncheck(readtimeposition) {
+console.log(readtimeposition.value);
+     if(readtimeposition) {
+
+        if(readtimeposition.value !== 'none') {
+
+            document.getElementById("bsf_rt_read_time_option").style.display = "block";
+
+        }
+        else{
+
+            document.getElementById("bsf_rt_read_time_option").style.display = "none";
+
+        }
+    }
+
 }
