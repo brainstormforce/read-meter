@@ -223,7 +223,7 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
         </tr>
         <tr>
             <th scope="row">
-                
+
               <label for="Thickness"><?php _e('Thickness' , 'bsf_rt_textdomain' ); ?> :</label>
 
             </th>
@@ -247,7 +247,7 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
       <table class="form-table">
          <tr>
             <th>
-
+              <?php wp_nonce_field( 'bsf-rt-nonce-progress', 'bsf-rt-progress' ); ?>
               <input type="submit" value="Save" class="bt button button-primary" name="submit">
 
             </th>
@@ -255,32 +255,3 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
     </table>
   </form>
 </div>
-<?php
-if (isset($_POST['submit'])) {
-
-    $site_url=site_url();
-
-    $bsf_rt_position_of_progress_bar=$_POST['bsf_rt_position_of_progress_bar'];
-
-    $bsf_rt_progress_bar_background_color=$_POST['bsf_rt_progress_bar_background_color'];
-
-    $bsf_rt_progress_bar_thickness=$_POST['bsf_rt_progress_bar_thickness'];
-
-    $bsf_rt_progress_bar_styles=$_POST['bsf_rt_progress_bar_styles'];
-
-    $bsf_rt_progress_bar_gradiant_one=$_POST['bsf_rt_progress_bar_color_g1'];
-
-    $bsf_rt_progress_bar_gradiant_two=$_POST['bsf_rt_progress_bar_color_g2'];
-
-    $update_options = array(
-          'bsf_rt_position_of_progress_bar' => $bsf_rt_position_of_progress_bar,
-          'bsf_rt_progress_bar_styles' => $bsf_rt_progress_bar_styles,
-          'bsf_rt_progress_bar_background_color' => $bsf_rt_progress_bar_background_color,
-          'bsf_rt_progress_bar_gradiant_one'=>$bsf_rt_progress_bar_gradiant_one,
-          'bsf_rt_progress_bar_gradiant_two'=>$bsf_rt_progress_bar_gradiant_two,
-          'bsf_rt_progress_bar_thickness' => $bsf_rt_progress_bar_thickness,
-           );
-
-    update_option('bsf_rt_progress_bar_settings', $update_options);
-    echo '<meta http-equiv="refresh" content="0.1" />';
-}

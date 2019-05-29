@@ -37,7 +37,7 @@ $args = array(
 $exclude=array('attachment','elementor_library','Media','My Templates');
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
-  <form action="" method="post" name="bsf_rt_settings_form">
+  <form method="post" name="bsf_rt_settings_form">
     <table class="form-table" > 
           <br>
           <p class="description">
@@ -118,7 +118,7 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
         </tr>
         <tr>
           <th scope="row">
-           
+
              <label for="IncludeImages"> <?php _e('Include Images' , 'bsf_rt_textdomain') ?> :</label>
           </th>
           <td>
@@ -140,58 +140,10 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
     <table class="form-table">
        <tr>
           <th>
-
+            <?php wp_nonce_field( 'bsf-rt-nonce-general', 'bsf-rt-general' ); ?>
             <input type="submit" value="Save" class="bt button button-primary" name="submit">
           </th>
        </tr>
     </table>
   </form>
 </div>
-
-<?php
-if (isset($_POST['submit'])) {
-
-    $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
-    if (isset($_POST['bsf_rt_words_per_minute'])) {
-
-        $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
-
-    } else {
-
-        $bsf_rt_words_per_minute = '';
-    }
-    
-    if (isset($_POST['posts'])) {
-
-        $bsf_rt_post_types=$_POST['posts'];
-
-    } else {
-
-        $bsf_rt_post_types = array();
-    }
-    if (isset($_POST['bsf_rt_include_images'])) {
-
-        $bsf_rt_include_images=$_POST['bsf_rt_include_images'];
-
-    } else {
-
-        $bsf_rt_include_images = '';
-    }
-    if (isset($_POST['bsf_rt_include_comments'])) {
-
-        $bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
-    } else {
-
-        $bsf_rt_include_comments = '';
-    }
-
-    $update_options = array(
-      'bsf_rt_words_per_minute'   => $bsf_rt_words_per_minute,
-      'bsf_rt_post_types'     => $bsf_rt_post_types,
-      'bsf_rt_include_comments' => $bsf_rt_include_comments,
-      'bsf_rt_include_images' => $bsf_rt_include_images,
-
-    );
-    update_option('bsf_rt_general_settings', $update_options);
-    echo '<meta http-equiv="refresh" content="0.1" />';
-}

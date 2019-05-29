@@ -4,6 +4,16 @@ echo '<h1 class="bsf_rt_main_title">';
  _e('Read Meter' , 'bsf_rt_textdomain');
  echo '</h1>';
 
+ if (get_option('bsf_rt_saved_msg') == 'ok') {
+    echo 
+    '<div id="message"class="notice is-dismissible notice-info">
+      <p class="description">
+      Settings Saved.
+      </p>
+    </div>';
+    update_option('bsf_rt_saved_msg' , 'notok');
+ }
+
 //Navigation
 
 //To get the tab value from URL and store in $active_tab variable

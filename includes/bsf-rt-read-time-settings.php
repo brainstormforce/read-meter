@@ -129,8 +129,8 @@ if (isset($options['bsf_rt_margin_unit'])) {
 }
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
-<form action="" method="post" name="bsf_rt_settings_form">
-<table class="form-table" >
+<form method="post" name="bsf_rt_settings_form">
+  <table class="form-table" >
        <br>     
        <p class="description">
           <?php _e('Control the position & appearance of the estimated read time of the post.' , 'bsf_rt_textdomain') ?>
@@ -390,131 +390,12 @@ if (isset($options['bsf_rt_margin_unit'])) {
 <table class="form-table">
        <tr>
           <th>
-          <input type="submit" value="Save" class="bt button button-primary" name="submit">
+            <?php wp_nonce_field( 'bsf-rt-nonce-reading', 'bsf-rt-reading' ); ?>
+            <input type="submit" value="Save" class="bt button button-primary" name="submit">
           </th>
        </tr>
   </table>
   </form>
 </div>
 
-<?php
-if (isset($_POST['submit'])) {
 
-    if (isset($_POST['bsf_rt_reading_time_prefix_label'])) {
-        $bsf_rt_reading_time_label = $_POST['bsf_rt_reading_time_prefix_label'];
-    } else {
-        $bsf_rt_reading_time_label = '';
-    }
-
-    if (isset($_POST['bsf_rt_reading_time_postfix_label'])) {
-        $bsf_rt_reading_time_postfix_label = $_POST['bsf_rt_reading_time_postfix_label'];
-    } else {
-        $bsf_rt_reading_time_postfix_label = '';
-    }
-
-    if (isset($_POST['bsf_rt_show_read_time'])) {
-
-        $bsf_rt_show_read_time = $_POST['bsf_rt_show_read_time'];
-    } else {
-
-        $bsf_rt_show_read_time = array();
-    }
-    if (isset($_POST['bsf_rt_read_time_font_size'])) {
-
-        $bsf_rt_read_time_font_size = $_POST['bsf_rt_read_time_font_size'];
-    } else {
-
-        $bsf_rt_read_time_font_size = 15;
-    }
-    if (isset($_POST['bsf_rt_read_time_margin_top']) && $_POST['bsf_rt_read_time_margin_top'] !== '') {
-
-        $bsf_rt_read_time_margin_top = $_POST['bsf_rt_read_time_margin_top'];
-    } else {
-
-        $bsf_rt_read_time_margin_top = 5;
-    }
-    if (isset($_POST['bsf_rt_read_time_margin_right']) && $_POST['bsf_rt_read_time_margin_right'] !== '') {
-
-        $bsf_rt_read_time_margin_right = $_POST['bsf_rt_read_time_margin_right'];
-    } else {
-
-        $bsf_rt_read_time_margin_right = 0;
-    }
-    if (isset($_POST['bsf_rt_read_time_margin_bottom']) && $_POST['bsf_rt_read_time_margin_bottom'] !== '') {
-
-        $bsf_rt_read_time_margin_bottom = $_POST['bsf_rt_read_time_margin_bottom'];
-    } else {
-
-        $bsf_rt_read_time_margin_bottom = 5;
-    }
-    if (isset($_POST['bsf_rt_read_time_margin_left']) && $_POST['bsf_rt_read_time_margin_left'] !== '') {
-
-        $bsf_rt_read_time_margin_left = $_POST['bsf_rt_read_time_margin_left'];
-    } else {
-
-        $bsf_rt_read_time_margin_left = 0;
-    }
-    if (isset($_POST['bsf_rt_read_time_padding_top']) && $_POST['bsf_rt_read_time_padding_top'] !== '') {
-
-        $bsf_rt_read_time_padding_top =  $_POST['bsf_rt_read_time_padding_top'];
-    } else {
-
-        $bsf_rt_read_time_padding_top = 0.5;
-    }
-    if (isset($_POST['bsf_rt_read_time_padding_right']) && $_POST['bsf_rt_read_time_padding_right'] !== '') {
-
-        $bsf_rt_read_time_padding_right =  $_POST['bsf_rt_read_time_padding_right'];
-    } else {
-
-        $bsf_rt_read_time_padding_right = 0.7;
-    }
-    if (isset($_POST['bsf_rt_read_time_padding_bottom']) && $_POST['bsf_rt_read_time_padding_bottom'] !== '') {
-
-        $bsf_rt_read_time_padding_bottom =  $_POST['bsf_rt_read_time_padding_bottom'];
-    } else {
-
-        $bsf_rt_read_time_padding_bottom = 0.5;
-    }
-    if (isset($_POST['bsf_rt_read_time_padding_left']) && $_POST['bsf_rt_read_time_padding_left'] !== '') {
-
-        $bsf_rt_read_time_padding_left =  $_POST['bsf_rt_read_time_padding_left'];
-    } else {
-
-        $bsf_rt_read_time_padding_left = 0.7;
-    }
-     
-     
-    $bsf_rt_position_of_read_time=$_POST['bsf_rt_position_of_read_time'];
-
-    $bsf_rt_read_time_background_color=$_POST['bsf_rt_read_time_background_color'];
-
-    $bsf_rt_read_time_color=$_POST['bsf_rt_read_time_color'];
-
-    $bsf_rt_padding_unit=$_POST['bsf_rt_padding_unit'];
-
-    $bsf_rt_margin_unit=$_POST['bsf_rt_margin_unit'];
-
-    $update_options = array(
-          'bsf_rt_reading_time_label'=> $bsf_rt_reading_time_label,
-          'bsf_rt_reading_time_postfix_label'=> $bsf_rt_reading_time_postfix_label,
-          'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
-          'bsf_rt_show_read_time' => $bsf_rt_show_read_time,
-          'bsf_rt_position_of_read_time' => $bsf_rt_position_of_read_time,
-          'bsf_rt_read_time_background_color' => $bsf_rt_read_time_background_color,
-          'bsf_rt_read_time_color' => $bsf_rt_read_time_color,
-          'bsf_rt_read_time_font_size' => $bsf_rt_read_time_font_size,
-          'bsf_rt_read_time_margin_top' => $bsf_rt_read_time_margin_top,
-          'bsf_rt_read_time_margin_right' => $bsf_rt_read_time_margin_right,
-          'bsf_rt_read_time_margin_bottom' => $bsf_rt_read_time_margin_bottom,
-          'bsf_rt_read_time_margin_left' => $bsf_rt_read_time_margin_left,
-          'bsf_rt_read_time_padding_top' => $bsf_rt_read_time_padding_top,
-          'bsf_rt_read_time_padding_right' => $bsf_rt_read_time_padding_right,
-          'bsf_rt_read_time_padding_bottom' => $bsf_rt_read_time_padding_bottom,
-          'bsf_rt_read_time_padding_left' => $bsf_rt_read_time_padding_left,
-          'bsf_rt_padding_unit' => $bsf_rt_padding_unit,
-          'bsf_rt_margin_unit' => $bsf_rt_margin_unit,
-    );
-
-    update_option('bsf_rt_read_time_settings', $update_options);
-    echo '<meta http-equiv="refresh" content="0.1" />';
-}
