@@ -40,11 +40,11 @@ public function __construct()
    
     register_deactivation_hook(BSF_RT_PATH, array($this,'bsf_rt_remove_data'));
 
-    add_action( 'init', array($this, 'process_form'));
+    add_action( 'init', array($this, 'bsf_rt_process_form'));
    
 }
 
-function process_form() {
+public function bsf_rt_process_form() {
 
     $page = isset( $_GET['page'] ) ? $_GET['page'] : null;
 

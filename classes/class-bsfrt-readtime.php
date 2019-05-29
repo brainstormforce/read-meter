@@ -77,6 +77,16 @@ class BSF_ReadTime
         'bsf_rt_read_time_background_color' => '#eeeeee',
         'bsf_rt_read_time_color' => '#333333',
         'bsf_rt_read_time_font_size' => 15,
+        'bsf_rt_read_time_margin_top' => 1,
+        'bsf_rt_read_time_margin_right' => 1,
+        'bsf_rt_read_time_margin_bottom' => 1,
+        'bsf_rt_read_time_margin_left' => 1, 
+        'bsf_rt_read_time_padding_top' => 0.5,
+        'bsf_rt_read_time_padding_right' => 0.7,
+        'bsf_rt_read_time_padding_bottom' => 0.5,
+        'bsf_rt_read_time_padding_left' => 0.7,
+        'bsf_rt_padding_unit' => 'em',
+        'bsf_rt_margin_unit' => 'px',
         );
         add_option('bsf_rt_read_time_settings', $default_options_readtime);
 
@@ -109,12 +119,12 @@ class BSF_ReadTime
     
             if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
                 // Read time styles
-                if (isset($this->bsf_rt_options['bsf_rt_read_time_margin_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color'])) {
+                if (isset($this->bsf_rt_options['bsf_rt_read_time_margin_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color']) && isset($this->bsf_rt_options['bsf_rt_padding_unit']) && isset($this->bsf_rt_options['bsf_rt_margin_unit'])) {
 
                     add_action('wp_head', array( $this, 'bsf_rt_set_readtime_styles_content'));
 
                 } 
-            } else if (isset($this->bsf_rt_options['bsf_rt_read_time_margin_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color'])) {
+            } else if (isset($this->bsf_rt_options['bsf_rt_read_time_margin_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_margin_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_top']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_right']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_bottom']) && isset($this->bsf_rt_options['bsf_rt_read_time_padding_left']) && isset($this->bsf_rt_options['bsf_rt_read_time_font_size']) && isset($this->bsf_rt_options['bsf_rt_read_time_color']) && isset($this->bsf_rt_options['bsf_rt_read_time_background_color']) && isset($this->bsf_rt_options['bsf_rt_padding_unit']) && isset($this->bsf_rt_options['bsf_rt_margin_unit'])) {
 
                 add_action('wp_head', array( $this, 'bsf_rt_set_readtime_styles'));
             }

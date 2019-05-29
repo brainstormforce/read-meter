@@ -1,5 +1,6 @@
 <div class="bsf_rt_user_manual">
-	<br><label class="bsf_rt_page_title" for="howtouse"><?php _e('How to Use? </label><br><br>
+	<br><label class="bsf_rt_page_title" for="howtouse">
+		<?php _e('How to Use? </label><br><br>
 	<b>Step 1</b> : Go to the <i>General Settings</i> Tab and select the Words Per Minute ,
 	         and Post types on which you want to display the Read time and progress bar. <br><br>
 	<b>Step 2</b> : Go to the <i>Read Time</i> Tab and select the Show Estimated Read time on option , and the Read time position and Prefix and the Postfix of the Readtime to Display. <br><br>
