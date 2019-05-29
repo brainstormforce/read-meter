@@ -1,6 +1,8 @@
 <?php
 
-echo '<h1 class="bsf_rt_main_title"> Read Meter </h1>';
+echo '<h1 class="bsf_rt_main_title">';
+ _e('Read Meter' , 'bsf_rt_textdomain');
+ echo '</h1>';
 
 //Navigation
 
@@ -34,19 +36,19 @@ if (isset($_GET["tab"])) {
 
             <a href="?page=bsf_rt&tab=bsf_rt_general_settings" class="nav-tab tb <?php if ($active_tab == 'bsf_rt_general_settings') {
                     echo 'nav-tab-active';
-        } ?>"><?php _e('General Settings', 'bsf_rt_textdomain'); ?></a>
+} ?>"><?php _e('General Settings', 'bsf_rt_textdomain'); ?></a>
 
             <a href="?page=bsf_rt&tab=bsf_rt_read_time_settings" class="nav-tab tb <?php if ($active_tab == 'bsf_rt_read_time_settings') {
                     echo 'nav-tab-active';
-        } ?>"><?php _e('Read Time', 'bsf_rt_textdomain'); ?></a>
+} ?>"><?php _e('Read Time', 'bsf_rt_textdomain'); ?></a>
 
             <a href="?page=bsf_rt&tab=bsf_rt_progress_bar_settings" class="nav-tab tb <?php if ($active_tab == 'bsf_rt_progress_bar_settings') {
                         echo 'nav-tab-active';
-        } ?>"><?php _e('Progress Bar', 'bsf_rt_textdomain'); ?></a>
+} ?>"><?php _e('Progress Bar', 'bsf_rt_textdomain'); ?></a>
 
         <a href="?page=bsf_rt&tab=bsf_rt_user_manual" class="nav-tab tb <?php if ($active_tab == 'bsf_rt_user_manual') {
                         echo 'nav-tab-active';
-        } ?>"><?php _e('User Manual', 'bsf_rt_textdomain'); ?></a>
+} ?>"><?php _e('User Manual', 'bsf_rt_textdomain'); ?></a>
 </h2>
 
 <?php

@@ -6,7 +6,7 @@
     * Version:     1.0.0
     * Author:      Rajkiran Gajanan Bagal.
     * Author URI:  https://brainstormforce.com
-    *
+    * Text Domain: bsf_rt_textdomain.
     * Main
     *
     * PHP version 7
@@ -17,7 +17,7 @@
     * @license  https://brainstormforce.com 
     * @link     https://brainstormforce.com
     */
-   define('BSF_RT_PATH',__FILE__);
+   define('BSF_RT_PATH', __FILE__);
 
    define('BSF_RT_ABSPATH', plugin_dir_path(__FILE__));
    

@@ -15,32 +15,32 @@ $bsf_rt_progress_bar_thickness = 12;
 
 if (isset($options['bsf_rt_position_of_progress_bar'])) {
 
-  $bsf_rt_position_of_progress_bar = $options['bsf_rt_position_of_progress_bar'];
+    $bsf_rt_position_of_progress_bar = $options['bsf_rt_position_of_progress_bar'];
 }
 
 if (isset($options['bsf_rt_progress_bar_styles'])) {
 
-  $bsf_rt_progress_bar_styles = $options['bsf_rt_progress_bar_styles'];
+    $bsf_rt_progress_bar_styles = $options['bsf_rt_progress_bar_styles'];
 }
 
 if (isset($options['bsf_rt_progress_bar_background_color'])) {
 
-  $bsf_rt_progress_bar_background_color = $options['bsf_rt_progress_bar_background_color'];
+    $bsf_rt_progress_bar_background_color = $options['bsf_rt_progress_bar_background_color'];
 }
 
 if (isset($options['bsf_rt_progress_bar_gradiant_one'])) {
 
-  $bsf_rt_progress_bar_gradiant_one = $options['bsf_rt_progress_bar_gradiant_one'];
+    $bsf_rt_progress_bar_gradiant_one = $options['bsf_rt_progress_bar_gradiant_one'];
 }
 
 if (isset($options['bsf_rt_progress_bar_gradiant_two'])) {
 
-  $bsf_rt_progress_bar_gradiant_two = $options['bsf_rt_progress_bar_gradiant_two'];
+    $bsf_rt_progress_bar_gradiant_two = $options['bsf_rt_progress_bar_gradiant_two'];
 }
 
 if (isset($options['bsf_rt_progress_bar_thickness'])) {
 
-  $bsf_rt_progress_bar_thickness = $options['bsf_rt_progress_bar_thickness'];
+    $bsf_rt_progress_bar_thickness = $options['bsf_rt_progress_bar_thickness'];
 }
 
 ?>
@@ -49,14 +49,14 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
       <table class="form-table">
          <br>
          <p class="description">
-
-           Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)
+          <?php _e('Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)' , 'bsf_rt_textdomain'); ?>
+           
 
         </p> 
         <tr>
-          <th scope="row">
+          <th scope="row"> 
 
-            <label for="PositionofDisplayProgressBar">Display Position:</label>
+            <label for="PositionofDisplayProgressBar"><?php _e('Display Position' , 'bsf_rt_textdomain'); ?>:</label>
 
           </th>
           <td>
@@ -66,30 +66,48 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
 
                     if ('top_of_the_page' === $bsf_rt_position_of_progress_bar) {
 
-                        echo '<option selected value="top_of_the_page">Top of the Page</option>';
+                        echo '<option selected value="top_of_the_page">';
+                        _e('Top of the Page' , 'bsf_rt_textdomain');
+                        echo'</option>';
                     } else {
 
-                        echo '<option value="top_of_the_page">Top of the Page</option>';
+                        echo '<option  value="top_of_the_page">';
+                        _e('Top of the Page' , 'bsf_rt_textdomain');
+                        echo'</option>';
                     }
                     if ('bottom_of_the_page' === $bsf_rt_position_of_progress_bar) {
 
-                        echo '<option selected value="bottom_of_the_page">Bottom of the Page</option>';
+                        echo '<option selected value="bottom_of_the_page">';
+                        _e('Bottom of the Page' , 'bsf_rt_textdomain');
+                        echo'</option>';
                     } else {
 
-                        echo '<option value="bottom_of_the_page">Bottom of the Page</option>';
+                        echo '<option  value="bottom_of_the_page">';
+                        _e('Bottom of the Page' , 'bsf_rt_textdomain');
+                        echo'</option>';
                     }
                     if ('none' === $bsf_rt_position_of_progress_bar) {
 
-                        echo '<option selected value="none">None</option>';
+                        echo '<option selected value="none">';
+                        _e('None' , 'bsf_rt_textdomain');
+                        echo '</option>';
                     } else {
 
-                        echo '<option value="none">None</option>';
+                        echo '<option  value="none">';
+                        _e('None' , 'bsf_rt_textdomain');
+                        echo '</option>';
                     }
 
                 } else {
-                   echo '<option value="none">None</option>';
-                   echo '<option value="top_of_the_page">Top of the Page</option>';
-                   echo '<option value="bottom_of_the_page">Bottom of the Page</option>';
+                      echo '<option  value="none">';
+                          _e('None' , 'bsf_rt_textdomain');
+                          echo '</option>';
+                      echo '<option  value="top_of_the_page">';
+                          _e('Top of the Page' , 'bsf_rt_textdomain');
+                          echo'</option>';
+                      echo '<option  value="bottom_of_the_page">';
+                          _e('Bottom of the Page' , 'bsf_rt_textdomain');
+                          echo'</option>';
                 }
 
                 ?>
@@ -99,117 +117,129 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
        </table>
        <table class="form-table" id="bsf-rt-progress-bar-options">  
         <tr>
-          <th scope="row">
-            <label for="ProgressBarStyle">Styles :</label>
+          <th scope="row"> 
+            <label for="ProgressBarStyle"><?php _e('Styles' , 'bsf_rt_textdomain'); ?> :</label>
           </th>
             <td>
               <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles" onchange="bsf_rt_ColorSelectCheck_two(this);">
-                  <?php 
-                  if (isset($bsf_rt_progress_bar_styles)) {
+                    <?php 
+                    if (isset($bsf_rt_progress_bar_styles)) {
 
-                      if ('Normal' === $bsf_rt_progress_bar_styles) {
+                        if ('Normal' === $bsf_rt_progress_bar_styles) {
 
-                          echo '<option id="normalcolor" selected value="Normal">Normal</option>';
+                            echo '<option id="normalcolor" selected value="Normal">';
+                            _e('Normal' , 'bsf_rt_textdomain');
+                            echo '</option>';
 
-                      } else {
+                        } else {
 
-                          echo '<option id="normalcolor" value="Normal">Normal</option>';
-                      }
-                      if ('Gradient' === $bsf_rt_progress_bar_styles) {
+                            echo '<option id="normalcolor"  value="Normal">';
+                            _e('Normal' , 'bsf_rt_textdomain');
+                            echo '</option>';
+                        }
+                        if ('Gradient' === $bsf_rt_progress_bar_styles) {
 
-                          echo '<option selected id="gradiantcolor" value="Gradient">Gradient</option>';
+                            echo '<option selected id="gradiantcolor" value="Gradient">';
+                            _e('Gradient' , 'bsf_rt_textdomain');
+                            echo'</option>';
 
-                      } else {
+                        } else {
 
-                          echo '<option id="gradiantcolor" value="Gradient">Gradient</option>';
-                      }
+                            echo '<option  id="gradiantcolor" value="Gradient">';
+                            _e('Gradient' , 'bsf_rt_textdomain');
+                            echo'</option>';
+                        }
 
-                  } else {
+                    } else {
 
-                      echo '<option id="normalcolor" value="Normal">Normal</option>';
-                      echo '<option id="gradiantcolor" value="Gradient">Gradient</option>';
+                            echo '<option id="normalcolor"  value="Normal">';
+                            _e('Normal' , 'bsf_rt_textdomain');
+                            echo '</option>';
+                            echo '<option  id="gradiantcolor" value="Gradient">';
+                            _e('Gradient' , 'bsf_rt_textdomain');
+                            echo'</option>';
                     }
 
-                  ?>
+                    ?>
               </select>
             </td>
         </tr>
         <tr id="normal-back-wrap">
             <th scope="row">
 
-              <label for="ProgressBarBackgroundColor">Background Color :</label>
+              <label for="ProgressBarBackgroundColor"><?php _e('Background Color' , 'bsf_rt_textdomain' ); ?> :</label>
 
             </th>
             <td>
                 <?php
-                  if (isset($bsf_rt_progress_bar_background_color)) { ?>
+                if (isset($bsf_rt_progress_bar_background_color)) { ?>
 
                       <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value=" <?php echo $bsf_rt_progress_bar_background_color; ?>">
                 <?php } else { ?>
 
                           <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#e8d5ff">
 
-                  <?php }
-                  ?>
+                <?php }
+                ?>
               
             </td>
         </tr> 
         <tr id="normal-color-wrap">
             <th scope="row">
-              <label for="ProgressBarColor"> Primary Color :</label>
+              <label for="ProgressBarColor"> <?php _e('Primary Color' , 'bsf_rt_textdomain' ); ?> :</label>
             </th>  
             <td>
-              <?php
-              if (isset($bsf_rt_progress_bar_gradiant_one)) { ?>
+                <?php
+                if (isset($bsf_rt_progress_bar_gradiant_one)) { ?>
 
                 <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $bsf_rt_progress_bar_gradiant_one; ?>">
 
-              <?php } else { ?>
+                <?php } else { ?>
 
                 <input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#5540D9">
 
-              <?php }
-              ?>
+                <?php }
+                ?>
              
             </td>
         </tr>
         </tr>
         <tr id="gradiant-wrap2">
               <th scope="row">
-                <label for="ProgressBarColor">Secondary Color :</label>
+                <label for="ProgressBarColor"> <?php _e('Secondary Color' , 'bsf_rt_textdomain' ); ?>:</label>
               </th>
               <td>
-                  <?php
-                  if (isset($bsf_rt_progress_bar_gradiant_two)) { ?>
+                    <?php
+                    if (isset($bsf_rt_progress_bar_gradiant_two)) { ?>
 
                    <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="<?php echo $bsf_rt_progress_bar_gradiant_two; ?>">
-                  <?php } else { ?>
+                    <?php } else { ?>
 
                       <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#ee7fff">
-                  <?php }
-                  ?>
+                    <?php }
+                    ?>
                
               </td>
         </tr>
         <tr>
             <th scope="row">
-
-              <label for="Thickness">Thickness :</label>
+                
+              <label for="Thickness"><?php _e('Thickness' , 'bsf_rt_textdomain' ); ?> :</label>
 
             </th>
             <td>
-                  <?php
+                    <?php
 
-                  if (isset($bsf_rt_progress_bar_thickness)) { ?>
+                    if (isset($bsf_rt_progress_bar_thickness)) { ?>
 
                       <input type="number" required name="bsf_rt_progress_bar_thickness" class="small-text" value="<?php echo $bsf_rt_progress_bar_thickness; ?>">&nbsppx
 
-                  <?php } else { ?>
+                    <?php } else { ?>
 
                     <input type="number"  name="bsf_rt_progress_bar_thickness" class="small-text" value="12">&nbsppx
 
-                  <?php }
-                  ?>
+                    <?php }
+                    ?>
              
             </td>
         </tr>
@@ -228,21 +258,21 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
 <?php
 if (isset($_POST['submit'])) {
 
-  $site_url=site_url();
+    $site_url=site_url();
 
-  $bsf_rt_position_of_progress_bar=$_POST['bsf_rt_position_of_progress_bar'];
+    $bsf_rt_position_of_progress_bar=$_POST['bsf_rt_position_of_progress_bar'];
 
-  $bsf_rt_progress_bar_background_color=$_POST['bsf_rt_progress_bar_background_color'];
+    $bsf_rt_progress_bar_background_color=$_POST['bsf_rt_progress_bar_background_color'];
 
-  $bsf_rt_progress_bar_thickness=$_POST['bsf_rt_progress_bar_thickness'];
+    $bsf_rt_progress_bar_thickness=$_POST['bsf_rt_progress_bar_thickness'];
 
-  $bsf_rt_progress_bar_styles=$_POST['bsf_rt_progress_bar_styles'];
+    $bsf_rt_progress_bar_styles=$_POST['bsf_rt_progress_bar_styles'];
 
-  $bsf_rt_progress_bar_gradiant_one=$_POST['bsf_rt_progress_bar_color_g1'];
+    $bsf_rt_progress_bar_gradiant_one=$_POST['bsf_rt_progress_bar_color_g1'];
 
-  $bsf_rt_progress_bar_gradiant_two=$_POST['bsf_rt_progress_bar_color_g2'];
+    $bsf_rt_progress_bar_gradiant_two=$_POST['bsf_rt_progress_bar_color_g2'];
 
-  $update_options = array(
+    $update_options = array(
           'bsf_rt_position_of_progress_bar' => $bsf_rt_position_of_progress_bar,
           'bsf_rt_progress_bar_styles' => $bsf_rt_progress_bar_styles,
           'bsf_rt_progress_bar_background_color' => $bsf_rt_progress_bar_background_color,
@@ -251,6 +281,6 @@ if (isset($_POST['submit'])) {
           'bsf_rt_progress_bar_thickness' => $bsf_rt_progress_bar_thickness,
            );
 
-  update_option('bsf_rt_progress_bar_settings', $update_options);
-  echo '<meta http-equiv="refresh" content="0.1" />';
+    update_option('bsf_rt_progress_bar_settings', $update_options);
+    echo '<meta http-equiv="refresh" content="0.1" />';
 }

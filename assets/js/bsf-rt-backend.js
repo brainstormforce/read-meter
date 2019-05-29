@@ -39,7 +39,7 @@ function bsf_rt_onloadCheck()
     if (document.getElementById("bsf_rt_position_of_read_time")) {
         readtimeOptionValue = document.getElementById("bsf_rt_position_of_read_time").value;
         
-         if(readtimeOptionValue !== 'none') {
+        if(readtimeOptionValue !== 'none') {
 
             document.getElementById("bsf_rt_read_time_option").style.display = "block";
 
@@ -87,9 +87,10 @@ function bsf_rt_Progressbarpositioncheck(positionSelect)
     }
 }
 
-function bsf_rt_readtimepositioncheck(readtimeposition) {
-console.log(readtimeposition.value);
-     if(readtimeposition) {
+function bsf_rt_readtimepositioncheck(readtimeposition)
+{
+    console.log(readtimeposition.value);
+    if(readtimeposition) {
 
         if(readtimeposition.value !== 'none') {
 

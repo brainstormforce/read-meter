@@ -1,11 +1,13 @@
 
   // Color Picker JS
-  (function( $ ) {
+  (function ( $ ) {
 
-	 	// Add Color Picker to all inputs that have 'color-field' class
-	    $(function() {
+    // Add Color Picker to all inputs that have 'color-field' class
+        $(
+            function () {
 
-	        $('.my-color-field').wpColorPicker();
-	    });
+                $('.my-color-field').wpColorPicker();
+            }
+        );
      
-	})( jQuery );
+  })(jQuery);

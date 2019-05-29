@@ -11,22 +11,22 @@ $bsf_rt_include_comments = '';
 
 if (isset($options['bsf_rt_words_per_minute'])) {
 
-  $bsf_rt_words_per_minute = $options['bsf_rt_words_per_minute'];
+    $bsf_rt_words_per_minute = $options['bsf_rt_words_per_minute'];
 }
 
 if (isset($options['bsf_rt_post_types'])) {
 
-  $bsf_rt_post_types = $options['bsf_rt_post_types'];
+    $bsf_rt_post_types = $options['bsf_rt_post_types'];
 }
 
 if (isset($options['bsf_rt_include_images'])) {
 
-  $bsf_rt_include_images = $options['bsf_rt_include_images'];
+    $bsf_rt_include_images = $options['bsf_rt_include_images'];
 }
 
 if (isset($options['bsf_rt_include_comments'])) {
 
-  $bsf_rt_include_comments = $options['bsf_rt_include_comments'];
+    $bsf_rt_include_comments = $options['bsf_rt_include_comments'];
 }
 
 $args = array(
@@ -41,57 +41,59 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
     <table class="form-table" > 
           <br>
           <p class="description">
-
-              Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.
+              <?php 
+                _e('Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.' , 'bsf_rt_textdomain');
+               ?>
+              
           </p>  
         <tr>
             <th scope="row">
-              <label for="SelectPostTypes">Select Post Types :</label>
+              <label for="SelectPostTypes"><?php _e('Select Post Types' , 'bsf_rt_textdomain') ?> :</label>
             </th>
             <td class="post_type_name">
                   
-                  <?php
+                    <?php
                 
-                foreach ( get_post_types($args, 'objects') as $post_type ) {
+                    foreach ( get_post_types($args, 'objects') as $post_type ) {
 
-                      if (in_array($post_type->labels->name, $exclude)  ) {
+                        if (in_array($post_type->labels->name, $exclude)  ) {
 
-                          continue;
-                      } 
-                      if ($bsf_rt_post_types !== 'post') {
-                        if (isset($bsf_rt_post_types)) {
-                          if (in_array($post_type->name, $bsf_rt_post_types)) {
-                             echo'<label for="ForPostType">
+                            continue;
+                        } 
+                        if ($bsf_rt_post_types !== 'post') {
+                            if (isset($bsf_rt_post_types)) {
+                                if (in_array($post_type->name, $bsf_rt_post_types)) {
+                                    echo'<label for="ForPostType">
                              <input type="checkbox" checked name="posts[]" value="'.$post_type->name.'">
                              '.$post_type->labels->name.'</label><br> ';
-                              } else {
-                                  echo'<label for="ForPostType">
+                                } else {
+                                    echo'<label for="ForPostType">
                              <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
                              '.$post_type->labels->name.'</label><br> ';
-                              }
-                          } else {
-                              echo'<label for="ForPostType">
+                                }
+                            } else {
+                                echo'<label for="ForPostType">
                              <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
                              '.$post_type->labels->name.'</label><br> ';
-                          }
-                      } else {
-                      if ($post_type->name == 'post') {
-                        echo'<label for="ForPostType">
+                            }
+                        } else {
+                            if ($post_type->name == 'post') {
+                                echo'<label for="ForPostType">
                          <input type="checkbox" checked name="posts[]" value="'.$post_type->name.'">
                          '.$post_type->labels->name.'</label><br> ';
-                      }
-                       echo'<label for="ForPostType">
+                            }
+                            echo'<label for="ForPostType">
                          <input type="checkbox"  name="posts[]" value="'.$post_type->name.'">
                          '.$post_type->labels->name.'</label><br> ';
-                          }
-                }
-                   ?>
+                        }
+                    }
+                    ?>
            </td>
         </tr>
         <tr>
         <tr>
           <th scope="row">
-            <label for="WordsPerMinute">Words Per Minute :</label>
+            <label for="WordsPerMinute"><?php _e('Words Per Minute' , 'bsf_rt_textdomain') ?> :</label>
           </th>
           <td>
             <input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="<?php  echo $bsf_rt_words_per_minute; ?>" class="small-text">
@@ -99,38 +101,38 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
         </tr>
           <th scope="row">
 
-            <label for="IncludeComments">Include Comments :</label>
+            <label for="IncludeComments"> <?php _e('Include Comments' , 'bsf_rt_textdomain') ?> :</label>
           </th>
           <td>
-              <?php if (isset($bsf_rt_include_comments) && $bsf_rt_include_comments == 'yes') {
-                 echo '<input type="checkbox" checked name="bsf_rt_include_comments" value="yes">';
-              } else {
-                echo '<input type="checkbox" name="bsf_rt_include_comments" value="yes">';
-              }
-             ?>
+                <?php if (isset($bsf_rt_include_comments) && $bsf_rt_include_comments == 'yes') {
+                    echo '<input type="checkbox" checked name="bsf_rt_include_comments" value="yes">';
+                } else {
+                    echo '<input type="checkbox" name="bsf_rt_include_comments" value="yes">';
+                }
+                ?>
               <p id="bsf_rt_description" class="description">
-
-                 Check this to include comment's text in reading time.
+                 <?php _e("Check this to include comment's text in reading time." , "bsf_rt_textdomain") ?>
+                 
               </p>  
           </td>
         </tr>
         <tr>
           <th scope="row">
-
-             <label for="IncludeImages">Include Images :</label>
+           
+             <label for="IncludeImages"> <?php _e('Include Images' , 'bsf_rt_textdomain') ?> :</label>
           </th>
           <td>
             <?php if (isset($bsf_rt_include_images) && $bsf_rt_include_images == 'yes') {
 
-               echo '<input type="checkbox" checked name="bsf_rt_include_images" value="yes">';
+                echo '<input type="checkbox" checked name="bsf_rt_include_images" value="yes">';
             } else {
 
-              echo '<input type="checkbox" name="bsf_rt_include_images" value="yes">';
+                echo '<input type="checkbox" name="bsf_rt_include_images" value="yes">';
             }
-           ?>
+            ?>
             <p id="bsf_rt_description" class="description">   
-
-              Check this to include post images in reading time.
+              <?php _e(" Check this to include post images in reading time." , "bsf_rt_textdomain") ?>
+             
             </p>  
           </td>
         </tr>
@@ -150,37 +152,37 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
 if (isset($_POST['submit'])) {
 
     $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
-     if (isset($_POST['bsf_rt_words_per_minute'])) {
+    if (isset($_POST['bsf_rt_words_per_minute'])) {
 
-      $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
+        $bsf_rt_words_per_minute=$_POST['bsf_rt_words_per_minute'];
 
     } else {
 
-      $bsf_rt_words_per_minute = '';
+        $bsf_rt_words_per_minute = '';
     }
     
     if (isset($_POST['posts'])) {
 
-     $bsf_rt_post_types=$_POST['posts'];
+        $bsf_rt_post_types=$_POST['posts'];
 
     } else {
 
-      $bsf_rt_post_types = array();
+        $bsf_rt_post_types = array();
     }
     if (isset($_POST['bsf_rt_include_images'])) {
 
-      $bsf_rt_include_images=$_POST['bsf_rt_include_images'];
+        $bsf_rt_include_images=$_POST['bsf_rt_include_images'];
 
     } else {
 
-      $bsf_rt_include_images = '';
+        $bsf_rt_include_images = '';
     }
     if (isset($_POST['bsf_rt_include_comments'])) {
 
-      $bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
+        $bsf_rt_include_comments=$_POST['bsf_rt_include_comments'];
     } else {
 
-      $bsf_rt_include_comments = '';
+        $bsf_rt_include_comments = '';
     }
 
     $update_options = array(

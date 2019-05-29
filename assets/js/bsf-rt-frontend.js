@@ -58,46 +58,47 @@ window.onscroll = function () {
     var content = document.getElementById("bsf_rt_marker");
     bsfrtProgressBarScroll(content)
 };
-function bsfrtProgressBarScroll(content) {
+function bsfrtProgressBarScroll(content)
+{
 
     var intViewportHeight = window.innerHeight; // window height
-        if (content !== null) {
-            var height = content.clientHeight;
-            var winScroll = document.documentElement.scrollTop - content.offsetTop;
+    if (content !== null) {
+        var height = content.clientHeight;
+        var winScroll = document.documentElement.scrollTop - content.offsetTop;
 
-    if (content.clientHeight < intViewportHeight) {
-        if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+        if (content.clientHeight < intViewportHeight) {
+            if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
 
-            if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
 
-                document.getElementById("bsf_rt_progress_bar").style.width = 100 + "%";
-                document.getElementById("bsf_rt_progress_bar_container").style.width = 100+ "%";
+                    document.getElementById("bsf_rt_progress_bar").style.width = 100 + "%";
+                    document.getElementById("bsf_rt_progress_bar_container").style.width = 100+ "%";
+                }
+            }
+        } else {
+            height -= content.offsetTop;
+            if (winScroll <= 0) {
+                if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+
+                    if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+
+                        document.getElementById("bsf_rt_progress_bar").style.width = 0 + "%";
+                    }
+                }
+            }
+
+            var scrolled = (winScroll / height) * 100;
+            if(scrolled ) {
+                if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+
+                    if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+
+                        document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
+                    }
+                }
             }
         }
     } else {
-    height -= content.offsetTop;
-        if (winScroll <= 0){
-            if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
-
-                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
-
-                    document.getElementById("bsf_rt_progress_bar").style.width = 0 + "%";
-                }
-            }
-        }
-
-        var scrolled = (winScroll / height) * 100;
-        if( scrolled ) {
-            if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
-
-                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
-
-                    document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
-                }
-            }
-        }
-    }
- } else {
             var content = document.getElementById("main");
 
           var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -106,12 +107,12 @@ function bsfrtProgressBarScroll(content) {
           
           var scrolled = (winScroll / height) * 100;
         
-          if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
-                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
-          document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
+        if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+            if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+                document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
           
+            }
         }
-      }
     }
 
 }
