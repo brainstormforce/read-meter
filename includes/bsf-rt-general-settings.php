@@ -110,7 +110,7 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
                     echo '<input type="checkbox" name="bsf_rt_include_comments" value="yes">';
                 }
                 ?>
-              <p id="bsf_rt_description" class="description">
+              <p  class="description bsf_rt_description">
                  <?php _e("Check this to include comment's text in reading time." , "bsf_rt_textdomain") ?>
                  
               </p>  
@@ -130,7 +130,7 @@ $exclude=array('attachment','elementor_library','Media','My Templates');
                 echo '<input type="checkbox" name="bsf_rt_include_images" value="yes">';
             }
             ?>
-            <p id="bsf_rt_description" class="description">   
+            <p  class="description bsf_rt_description">   
               <?php _e(" Check this to include post images in reading time." , "bsf_rt_textdomain") ?>
              
             </p>  

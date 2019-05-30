@@ -30,9 +30,6 @@ if (! class_exists('BSF_RT_Loader') ) :
  */
 public function __construct()
 {
-
-    include BSF_RT_ABSPATH.'includes/bsf-rt-page.php'; 
-
     add_action('wp_enqueue_scripts', array($this, 'bsfrt_pluginStyle_frontend'));
 
     add_action('admin_enqueue_scripts', array($this, 'bsfrt_pluginStyle_dashboard'));
@@ -45,7 +42,7 @@ public function __construct()
 }
 
 public function bsf_rt_process_form() {
-
+    require_once BSF_RT_ABSPATH.'includes/bsf-rt-page.php'; 
     $page = isset( $_GET['page'] ) ? $_GET['page'] : null;
 
     if ( 'bsf_rt' !== $page ) {
@@ -292,4 +289,4 @@ public function bsf_rt_remove_data()
     }
     $fl = new BSF_RT_Loader();
 endif;
-?>
+

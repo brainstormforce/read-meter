@@ -6,7 +6,7 @@ echo '<h1 class="bsf_rt_main_title">';
 
  if (get_option('bsf_rt_saved_msg') == 'ok') {
     echo 
-    '<div id="message"class="notice is-dismissible notice-info">
+    '<div id="message" class="notice is-dismissible notice-success">
       <p class="description">
       Settings Saved.
       </p>
@@ -67,22 +67,22 @@ if (isset($_GET["tab"])) {
 
     if ($_GET["tab"] == "bsf_rt_general_settings") {
 
-           include 'bsf-rt-general-settings.php';
+           require_once 'bsf-rt-general-settings.php';
 
     } elseif ($_GET["tab"] == "bsf_rt_read_time_settings") {
 
-           include 'bsf-rt-read-time-settings.php';
+           require_once 'bsf-rt-read-time-settings.php';
 
     } elseif ($_GET["tab"] == "bsf_rt_progress_bar_settings") {
 
-           include 'bsf-rt-progress-bar-settings.php';
+           require_once 'bsf-rt-progress-bar-settings.php';
 
     } elseif ($_GET["tab"] == "bsf_rt_user_manual") {
 
-           include 'bsf-rt-user-manual.php';
+           require_once 'bsf-rt-user-manual.php';
     }   
 } else {
     
-    include 'bsf-rt-general-settings.php';
+    require_once 'bsf-rt-general-settings.php';
 }
 
