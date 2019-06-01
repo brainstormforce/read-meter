@@ -43,8 +43,7 @@ if (isset($_GET["tab"])) {
 
 <!-- when tab buttons are clicked we jump back to the same page but with a new parameter that represents the clicked tab. accordingly we make it active -->
 <h2 class="nav-tab-wrapper">
-
-            <a href="?page=bsf_rt&tab=bsf_rt_general_settings" class="nav-tab tb <?php if ($active_tab == 'bsf_rt_general_settings') {
+ <a href="?page=bsf_rt&tab=bsf_rt_general_settings" class="nav-tab tb <?php if ($active_tab == 'bsf_rt_general_settings') {
                     echo 'nav-tab-active';
 } ?>"><?php _e('General Settings', 'bsf_rt_textdomain'); ?></a>
 
@@ -58,7 +57,7 @@ if (isset($_GET["tab"])) {
 
         <a href="?page=bsf_rt&tab=bsf_rt_user_manual" class="nav-tab tb <?php if ($active_tab == 'bsf_rt_user_manual') {
                         echo 'nav-tab-active';
-} ?>"><?php _e('User Manual', 'bsf_rt_textdomain'); ?></a>
+} ?>"><?php _e('Getting Started', 'bsf_rt_textdomain'); ?></a>
 </h2>
 
 <?php

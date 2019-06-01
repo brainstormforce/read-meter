@@ -96,13 +96,13 @@ public function bsf_rt_process_form() {
         } else if (isset( $_POST['bsf-rt-reading'] ) && wp_verify_nonce( $_POST['bsf-rt-reading'], 'bsf-rt-nonce-reading' )) {
 
                 if (isset($_POST['bsf_rt_reading_time_prefix_label'])) {
-                    $bsf_rt_reading_time_label = $_POST['bsf_rt_reading_time_prefix_label'];
+                    $bsf_rt_reading_time_label = sanitize_text_field($_POST['bsf_rt_reading_time_prefix_label']);
                 } else {
                     $bsf_rt_reading_time_label = '';
                 }
 
                 if (isset($_POST['bsf_rt_reading_time_postfix_label'])) {
-                    $bsf_rt_reading_time_postfix_label = $_POST['bsf_rt_reading_time_postfix_label'];
+                    $bsf_rt_reading_time_postfix_label = sanitize_text_field($_POST['bsf_rt_reading_time_postfix_label']); 
                 } else {
                     $bsf_rt_reading_time_postfix_label = '';
                 }
