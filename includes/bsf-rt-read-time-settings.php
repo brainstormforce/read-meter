@@ -350,7 +350,7 @@ if (isset($options['bsf_rt_margin_unit'])) {
             <label for="ReadtimeFontSize"><?php _e('Font Size' , 'bsf_rt_textdomain'); ?>  :</label>
           </th>
           <td>
-                <input type="number" name="bsf_rt_read_time_font_size" max="50" min="15"class="small-text" value="<?php echo $bsf_rt_read_time_font_size; ?>"  >&nbsp px
+                <input type="number" name="bsf_rt_read_time_font_size" max="50" min="15" class="small-text" value="<?php echo $bsf_rt_read_time_font_size; ?>"  >&nbsp px
                 <p class="description">
                    <?php _e('Keep blank for default value.' , 'bsf_rt_textdomain'); ?>                  
           
