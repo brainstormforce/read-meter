@@ -72,8 +72,8 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
 
                 if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
 
-                    document.getElementById("bsf_rt_progress_bar").style.width = 100 + "%";
-                    document.getElementById("bsf_rt_progress_bar_container").style.width = 100+ "%";
+                    document.getElementById("bsf_rt_progress_bar").style.width = 0 + "%";
+                    document.getElementById("bsf_rt_progress_bar_container").style.width = 0 + "%";
                 }
             }
         } else {
