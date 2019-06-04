@@ -112,9 +112,20 @@ class BSF_ReadTime
  
     public function bsf_rt_init_frontend()
     {
-
+         if (isset($this->bsf_rt_options['bsf_rt_include_comments']) && $this->bsf_rt_options['bsf_rt_include_comments'] == 'yes' ) {
+            if (get_comments_number() !== '0') {
+                    add_filter( 'comments_template', function( $template )
+                 {
+                echo '<div id="bsf-rt-comments"></div>';
+                return $template;
+                } );
+                } else {
+                    add_filter('the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90);
+                }
+        
+         } else { 
         add_filter('the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90);
-       
+       }
         if (isset($this->bsf_rt_options['bsf_rt_show_read_time']) && $this->bsf_rt_options['bsf_rt_position_of_read_time'] !== 'none' ) {
     
             if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
@@ -1328,8 +1339,8 @@ class BSF_ReadTime
       */
     public function bsf_rt_add_marker_for_progress_bar_scroll($content)
     {
-          
-        if (isset($this->bsf_rt_options['bsf_rt_include_comments']) && $this->bsf_rt_options['bsf_rt_include_comments'] !== 'yes' ) {
+        
+       
                     
                 $markup_start = '<div id="bsf_rt_marker">';
                 $markup_end = '</div>';
@@ -1338,10 +1349,7 @@ class BSF_ReadTime
                    
                 return $content;
 
-        } else {
-
-            return $content;
-        }
+       
     }
     
 

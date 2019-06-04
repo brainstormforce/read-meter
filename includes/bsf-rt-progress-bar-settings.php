@@ -56,7 +56,7 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
         <tr>
           <th scope="row"> 
 
-            <label for="PositionofDisplayProgressBar"><?php _e('Display Position' , 'bsf_rt_textdomain'); ?>:</label>
+            <label for="PositionofDisplayProgressBar"><?php _e('Display Position' , 'bsf_rt_textdomain'); ?> :</label>
 
           </th>
           <td>
@@ -206,7 +206,7 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
         </tr>
         <tr id="gradiant-wrap2">
               <th scope="row">
-                <label for="ProgressBarColor"> <?php _e('Secondary Color' , 'bsf_rt_textdomain' ); ?>:</label>
+                <label for="ProgressBarColor"> <?php _e('Secondary Color' , 'bsf_rt_textdomain' ); ?> :</label>
               </th>
               <td>
                     <?php
@@ -224,7 +224,7 @@ if (isset($options['bsf_rt_progress_bar_thickness'])) {
         <tr>
             <th scope="row">
 
-              <label for="Thickness"><?php _e('Thickness' , 'bsf_rt_textdomain' ); ?> :</label>
+              <label for="Thickness"><?php _e('Bar Thickness' , 'bsf_rt_textdomain' ); ?> :</label>
 
             </th>
             <td>

@@ -185,7 +185,7 @@ if (isset($options['bsf_rt_margin_unit'])) {
       </tr>
       <tr>
         <th scope="row">
-          <label for="ShowReadTimePosition"> <?php _e('Read Time Position' , 'bsf_rt_textdomain') ?>:</label>
+          <label for="ShowReadTimePosition"> <?php _e('Read Time Position' , 'bsf_rt_textdomain') ?> :</label>
         </th>
         <td>
          <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time" onchange="bsf_rt_readtimepositioncheck(this);">
@@ -252,7 +252,54 @@ if (isset($options['bsf_rt_margin_unit'])) {
       </tr>
       </table>
       <table class="form-table" id="bsf_rt_read_time_option">
+      
       <tr>
+        <th scope="row">
+          <label for="ReadingTimePostfixLabel"> <?php _e('Reading Time Prefix' , 'bsf_rt_textdomain'); ?> :</label>
+        </th>
+        <td>
+            <?php if (isset($bsf_rt_reading_time_label) ) { ?>
+          <input type="text"  name="bsf_rt_reading_time_prefix_label"  value="<?php echo $bsf_rt_reading_time_label;?>" class="regular-text">
+            <?php } else { ?>
+           <input type="text"  name="bsf_rt_reading_time_prefix_label" value="Reading Time" class="regular-text">
+            <?php } ?>
+
+          <p class="description">
+            <?php _e('This text will display before the Reading Time.' , 'bsf_rt_textdomain'); ?>
+          
+
+          </p>  
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+         <label for="ReadingTimePrefixLabel"><?php _e('Reading Time Postfix' , 'bsf_rt_textdomain'); ?> :</label>
+        </th>
+        <td>
+            <?php if (isset($bsf_rt_reading_time_postfix_label) ) { ?>
+          <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="<?php echo $bsf_rt_reading_time_postfix_label;?>" class="regular-text">
+            <?php } else { ?>
+              <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="mins" class="regular-text">
+            <?php } ?>
+          <p class="description">  
+          <?php _e('This text will display after the Reading Time.' , 'bsf_rt_textdomain'); ?>                  
+          
+          </p>  
+        </td>
+      </tr>
+      <tr >
+          <th scope="row">
+            <label for="ReadtimeFontSize"><?php _e('Font Size' , 'bsf_rt_textdomain'); ?>  :</label>
+          </th>
+          <td>
+                <input type="number" name="bsf_rt_read_time_font_size" max="50" min="15" class="small-text" value="<?php echo $bsf_rt_read_time_font_size; ?>"  >&nbsp px
+                <p class="description">
+                   <?php _e('Keep blank for default value.' , 'bsf_rt_textdomain'); ?>                  
+          
+          </p>  
+          </td>
+        </tr>
+        <tr>
         <th scope="row">
           <label for="ReadingTimeMargin"><?php _e('Margin' , 'bsf_rt_textdomain'); ?> :</label>
         </th>
@@ -310,56 +357,10 @@ if (isset($options['bsf_rt_margin_unit'])) {
             ?>
            </select>
         </td>
-      </tr>
+      </tr> 
       <tr>
-        <th scope="row">
-          <label for="ReadingTimePostfixLabel"> <?php _e('Reading Time PreFix' , 'bsf_rt_textdomain'); ?>:</label>
-        </th>
-        <td>
-            <?php if (isset($bsf_rt_reading_time_label) ) { ?>
-          <input type="text"  name="bsf_rt_reading_time_prefix_label"  value="<?php echo $bsf_rt_reading_time_label;?>" class="regular-text">
-            <?php } else { ?>
-           <input type="text"  name="bsf_rt_reading_time_prefix_label" value="Reading Time" class="regular-text">
-            <?php } ?>
-
-          <p class="description">
-            <?php _e('This value will Display before the Reading Time , Keep Blank for Reading Time.' , 'bsf_rt_textdomain'); ?>
-          
-
-          </p>  
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">
-         <label for="ReadingTimePrefixLabel"><?php _e('Reading Time PostFix' , 'bsf_rt_textdomain'); ?> :</label>
-        </th>
-        <td>
-            <?php if (isset($bsf_rt_reading_time_postfix_label) ) { ?>
-          <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="<?php echo $bsf_rt_reading_time_postfix_label;?>" class="regular-text">
-            <?php } else { ?>
-              <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="mins" class="regular-text">
-            <?php } ?>
-          <p class="description">  
-          <?php _e('This value will Display after the Reading Time , Keep Blank for mins.' , 'bsf_rt_textdomain'); ?>                  
-          
-          </p>  
-        </td>
-      </tr>
-      <tr >
-          <th scope="row">
-            <label for="ReadtimeFontSize"><?php _e('Font Size' , 'bsf_rt_textdomain'); ?>  :</label>
-          </th>
-          <td>
-                <input type="number" name="bsf_rt_read_time_font_size" max="50" min="15" class="small-text" value="<?php echo $bsf_rt_read_time_font_size; ?>"  >&nbsp px
-                <p class="description">
-                   <?php _e('Keep blank for default value.' , 'bsf_rt_textdomain'); ?>                  
-          
-          </p>  
-          </td>
-        </tr> 
-      <tr >
           <th scope="row"> 
-            <label for="ReadtimeBackgroundColor"> <?php _e('Background Color' , 'bsf_rt_textdomain'); ?>:</label>
+            <label for="ReadtimeBackgroundColor"> <?php _e('Background Color' , 'bsf_rt_textdomain'); ?> :</label>
           </th>
           <td>
                 <?php
@@ -376,7 +377,7 @@ if (isset($options['bsf_rt_margin_unit'])) {
         </tr> 
         <tr >
           <th scope="row">
-            <label for="ReadTimeColor"> <?php _e('Color' , 'bsf_rt_textdomain'); ?> :</label>
+            <label for="ReadTimeColor"> <?php _e('Text Color' , 'bsf_rt_textdomain'); ?> :</label>
           </th>  
           <td>
             <?php
