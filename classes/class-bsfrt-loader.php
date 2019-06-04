@@ -114,7 +114,7 @@ public function bsf_rt_process_form() {
 
                     $bsf_rt_show_read_time = array();
                 }
-                if (isset($_POST['bsf_rt_read_time_font_size'])) {
+                if (isset($_POST['bsf_rt_read_time_font_size']) && $_POST['bsf_rt_read_time_font_size'] !== '' ) {
 
                     $bsf_rt_read_time_font_size = $_POST['bsf_rt_read_time_font_size'];
                 } else {
