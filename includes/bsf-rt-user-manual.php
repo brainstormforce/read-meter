@@ -9,6 +9,6 @@
 	<b>Step 4</b> : Now you are Done with Settings and can now see the reading Time and the Progress Bar as per your selected options !!<br><br><br>
 	<b> Shortcode : [read_meter]</b> <br><br>
 		You can also display the reading time wherever you want by using this shortcode , You just need to copy it and paste it in any content of Post or Page.',
-			'bsf_rt_textdomain'
+			'read-meter'
 		); ?>
 </div>

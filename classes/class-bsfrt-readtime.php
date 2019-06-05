@@ -43,7 +43,7 @@ class BSF_ReadTime {
 	public function __construct() {
 		$this->bsf_rt_init_backend();
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'bsf_rt_init_frontend' ) );
+		add_action( 'wp', array( $this, 'bsf_rt_init_frontend' ) );
 
 		// Shortcode
 		add_shortcode( 'read_meter', array( $this, 'read_meter_shortcode' ) );
@@ -140,9 +140,9 @@ class BSF_ReadTime {
 		// For twenty fifteen Theme remove the extra markup in the nextpost and prev post section
 		$bsf_rt_current_theme = $this->bsf_rt_get_current_theme();
 
-		if ( $bsf_rt_current_theme === 'Twenty Fifteen' ) {
-			add_filter( 'next_post_link', array( $this, 'bsf_rt_remove_markup_for_twenty_fifteen' ) );
-			add_filter( 'previous_post_link', array( $this, 'bsf_rt_remove_markup_for_twenty_fifteen' ) );
+		if ( $bsf_rt_current_theme === 'Twenty Fifteen' || $bsf_rt_current_theme === 'Twenty Nineteen' || $bsf_rt_current_theme === 'Twenty Thirteen' || $bsf_rt_current_theme === 'Twenty Fourteen' || $bsf_rt_current_theme === 'Twenty Sixteen' || $bsf_rt_current_theme === 'Twenty Seventeen' || $bsf_rt_current_theme === 'Twenty Twelve' ) {
+			add_filter( 'next_post_link', array( $this, 'bsf_rt_remove_markup_for_twenty_series' ) );
+			add_filter( 'previous_post_link', array( $this, 'bsf_rt_remove_markup_for_twenty_series' ) );
 		}
 
 		// Show Reading time Conditions
@@ -296,6 +296,7 @@ class BSF_ReadTime {
 	 * @return string The post content with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_above_the_post_title( $title ) {
+
 		if ( in_the_loop() && is_singular() ) {
 
 			// Get the post type of the current post.
@@ -819,6 +820,7 @@ class BSF_ReadTime {
 	 * @return string|int The total reading time for the article or string if it's 0.
 	 */
 	public function bsf_rt_calculate_reading_time( $bsf_rt_post, $bsf_rt_options ) {
+          // echo "string";
 		$bsf_rt_current_post_type = get_post_type();
 
 		if ( $bsf_rt_current_post_type == 'post' ) {
@@ -849,9 +851,9 @@ class BSF_ReadTime {
 
 			$comment_word_count = 0;
 		}
-
-		$bsf_rt_content = get_post_field( 'post_content', $bsf_rt_post );
-
+        $bsf_rt_content = get_post_field( 'post_content', $bsf_rt_post );
+		//$bsf_rt_content = get_the_content();
+      
 		$number_of_images = substr_count( strtolower( $bsf_rt_content ), '<img ' );
 
 		if ( ! isset( $this->bsf_rt_options['include_shortcodes'] ) ) {
@@ -988,6 +990,7 @@ class BSF_ReadTime {
                                 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                                 </div>';
 			}
+               
 		}
 
 	}
@@ -1038,7 +1041,7 @@ class BSF_ReadTime {
 	 * @param  Nothing.
 	 * @return Nothing.
 	 */
-	public function bsf_rt_remove_markup_for_twenty_fifteen( $output ) {
+	public function bsf_rt_remove_markup_for_twenty_series( $output ) {
 		$startStr = esc_html( '<span class="bsf_rt_reading_time_before_content">' );
 		$endStr   = esc_html( '<!-- .bsf_rt_reading_time_before_content -->' );
 
@@ -1170,79 +1173,158 @@ class BSF_ReadTime {
 	  * @return Nothing.
 	  */
 	public function bsf_rt_set_readtime_styles() {
-		?>
-		<style type="text/css">
-			   .bsf_rt_reading_time_before_content{
-					background: <?php echo $this->bsf_rt_options['bsf_rt_read_time_background_color']; ?>;
+		if ( $this->bsf_rt_options['bsf_rt_read_time_background_color'] == '' ) {
+            ?>
 
-					color: <?php echo $this->bsf_rt_options['bsf_rt_read_time_color']; ?>;
+                <style type="text/css">
+            .bsf_rt_reading_time_before_content{
+                   background: unset;
 
-					font-size: <?php echo $this->bsf_rt_options['bsf_rt_read_time_font_size']; ?>px;
-					
-					margin-top: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_margin_top'];
-					echo $this->bsf_rt_options['bsf_rt_margin_unit'];
-					?>
-					 ;
+                    color: <?php echo $this->bsf_rt_options['bsf_rt_read_time_color']; ?>;
 
-					margin-right: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_margin_right'];
-					echo $this->bsf_rt_options['bsf_rt_margin_unit'];
-					?>
-					 ;
+                    font-size: <?php echo $this->bsf_rt_options['bsf_rt_read_time_font_size']; ?>px;
+                    
+                    margin-top: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_top'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
 
-					margin-bottom: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'];
-					echo $this->bsf_rt_options['bsf_rt_margin_unit'];
-					?>
-					 ;
+                    margin-right: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_right'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
 
-					margin-left: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_margin_left'];
-					echo $this->bsf_rt_options['bsf_rt_margin_unit'];
-					?>
-					 ;
+                    margin-bottom: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
 
-					padding-top: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_padding_top'];
-					echo $this->bsf_rt_options['bsf_rt_padding_unit'];
-					?>
-					 ;
+                    margin-left: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_left'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
 
-					padding-right: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_padding_right'];
-					echo $this->bsf_rt_options['bsf_rt_padding_unit'];
-					?>
-					 ;
+                    padding-top: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_top'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
 
-					padding-bottom: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'];
-					echo $this->bsf_rt_options['bsf_rt_padding_unit'];
-					?>
-					 ;
+                    padding-right: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_right'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
 
-					padding-left: 
-					<?php
-					echo $this->bsf_rt_options['bsf_rt_read_time_padding_left'];
-					echo $this->bsf_rt_options['bsf_rt_padding_unit'];
-					?>
-					 ;
+                    padding-bottom: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
 
-					width: max-content;
+                    padding-left: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_left'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
 
-					display: block;
-					
-				}
-				
-		</style>
-		<?php
+                    width: max-content;
+
+                    display: block;
+                    
+                }
+                
+        </style>
+
+              <?php
+        } else {
+
+            ?>
+        <style type="text/css">
+               .bsf_rt_reading_time_before_content{
+                    background: <?php echo $this->bsf_rt_options['bsf_rt_read_time_background_color']; ?>;
+
+                    color: <?php echo $this->bsf_rt_options['bsf_rt_read_time_color']; ?>;
+
+                    font-size: <?php echo $this->bsf_rt_options['bsf_rt_read_time_font_size']; ?>px;
+                    
+                    margin-top: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_top'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
+
+                    margin-right: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_right'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
+
+                    margin-bottom: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
+
+                    margin-left: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_margin_left'];
+                    echo $this->bsf_rt_options['bsf_rt_margin_unit'];
+                    ?>
+                     ;
+
+                    padding-top: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_top'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
+
+                    padding-right: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_right'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
+
+                    padding-bottom: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
+
+                    padding-left: 
+                    <?php
+                    echo $this->bsf_rt_options['bsf_rt_read_time_padding_left'];
+                    echo $this->bsf_rt_options['bsf_rt_padding_unit'];
+                    ?>
+                     ;
+
+                    width: max-content;
+
+                    display: block;
+                    
+                }
+                
+        </style>
+                 <?php
+        }
 	}
 	 /**
 	  * Adds CSS to the Read Time as per User input if color and in above content.

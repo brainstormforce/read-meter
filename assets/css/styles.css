@@ -1,7 +1,7 @@
 
 /*Progress Bar CSS*/
 
-.progress-container-top-admin-bar {
+.admin-bar .progress-container-top {
   position: fixed;
   top: 30px;
   z-index: 1;

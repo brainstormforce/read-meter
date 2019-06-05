@@ -209,8 +209,6 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 			}
 			if ( isset( $_POST['bsf-rt-progress'] ) && wp_verify_nonce( $_POST['bsf-rt-progress'], 'bsf-rt-nonce-progress' ) ) {
 
-				$site_url = site_url();
-
 				$bsf_rt_position_of_progress_bar = $_POST['bsf_rt_position_of_progress_bar'];
 
 				$bsf_rt_progress_bar_background_color = $_POST['bsf_rt_progress_bar_background_color'];

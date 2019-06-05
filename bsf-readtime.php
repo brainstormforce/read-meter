@@ -6,7 +6,7 @@
 	* Version:     1.0.0
 	* Author:      Rajkiran Gajanan Bagal
 	* Author URI:  https://brainstormforce.com
-	* Text Domain: bsf_rt_textdomain.
+	* Text Domain: read-meter.
 	* Main
 	*
 	* PHP version 7

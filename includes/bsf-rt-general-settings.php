@@ -1,33 +1,14 @@
 <?php
 $options = get_option( 'bsf_rt_general_settings' );
 
-$bsf_rt_words_per_minute = '';
+$bsf_rt_words_per_minute = (!empty( $options['bsf_rt_words_per_minute'] ) ? $options['bsf_rt_words_per_minute'] : '' );
 
-$bsf_rt_post_types = array();
+$bsf_rt_post_types = (!empty( $options['bsf_rt_post_types'] ) ? $options['bsf_rt_post_types'] : array() );
 
-$bsf_rt_include_images = '';
+$bsf_rt_include_images = (!empty( $options['bsf_rt_include_images'] ) ? $options['bsf_rt_include_images'] : '' );
 
-$bsf_rt_include_comments = '';
+$bsf_rt_include_comments = (!empty( $options['bsf_rt_include_comments'] ) ? $options['bsf_rt_include_comments'] : '' );
 
-if ( isset( $options['bsf_rt_words_per_minute'] ) ) {
-
-	$bsf_rt_words_per_minute = $options['bsf_rt_words_per_minute'];
-}
-
-if ( isset( $options['bsf_rt_post_types'] ) ) {
-
-	$bsf_rt_post_types = $options['bsf_rt_post_types'];
-}
-
-if ( isset( $options['bsf_rt_include_images'] ) ) {
-
-	$bsf_rt_include_images = $options['bsf_rt_include_images'];
-}
-
-if ( isset( $options['bsf_rt_include_comments'] ) ) {
-
-	$bsf_rt_include_comments = $options['bsf_rt_include_comments'];
-}
 
 $args = array(
 	'public' => true,
@@ -42,13 +23,13 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		  <br>
 		  <p class="description">
 				<?php
-				_e( 'Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.', 'bsf_rt_textdomain' );
+				_e( 'Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.', 'read-meter' );
 				?>
 			   
 		  </p>  
 		<tr>
 			<th scope="row">
-			  <label for="SelectPostTypes"><?php _e( 'Select Post Types', 'bsf_rt_textdomain' ); ?> :</label>
+			  <label for="SelectPostTypes"><?php _e( 'Select Post Types', 'read-meter' ); ?> :</label>
 			</th>
 			<td class="post_type_name">
 				   
@@ -93,7 +74,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr>
 		<tr>
 		  <th scope="row">
-			<label for="WordsPerMinute"><?php _e( 'Words Per Minute', 'bsf_rt_textdomain' ); ?> :</label>
+			<label for="WordsPerMinute"><?php _e( 'Words Per Minute', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
 			<input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="<?php echo $bsf_rt_words_per_minute; ?>" class="small-text">
@@ -101,7 +82,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		</tr>
 		  <th scope="row">
 
-			<label for="IncludeComments"> <?php _e( 'Include Comments', 'bsf_rt_textdomain' ); ?> :</label>
+			<label for="IncludeComments"> <?php _e( 'Include Comments', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
 				<?php
@@ -112,7 +93,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 				}
 				?>
 			  <p  class="description bsf_rt_description">
-					<?php _e( "Check this to include comment's text in reading time.", 'bsf_rt_textdomain' ); ?>
+					<?php _e( "Check this to include comment's text in reading time.", 'read-meter' ); ?>
 				  
 			  </p>  
 		  </td>
@@ -120,7 +101,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr>
 		  <th scope="row">
 
-			 <label for="IncludeImages"> <?php _e( 'Include Images', 'bsf_rt_textdomain' ); ?> :</label>
+			 <label for="IncludeImages"> <?php _e( 'Include Images', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
 			<?php
@@ -133,7 +114,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			}
 			?>
 			<p  class="description bsf_rt_description">   
-				<?php _e( ' Check this to include post images in reading time.', 'bsf_rt_textdomain' ); ?>
+				<?php _e( ' Check this to include post images in reading time.', 'read-meter' ); ?>
 			  
 			</p>  
 		  </td>

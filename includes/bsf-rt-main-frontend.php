@@ -1,7 +1,7 @@
 <?php
 
 echo '<h1 class="bsf_rt_main_title">';
- _e( 'Read Meter', 'bsf_rt_textdomain' );
+ _e( 'Read Meter', 'read-meter' );
  echo '</h1>';
 
 if ( get_option( 'bsf_rt_saved_msg' ) == 'ok' ) {
@@ -47,7 +47,7 @@ if ( isset( $_GET['tab'] ) ) {
 					echo 'nav-tab-active';
 	}
 	?>
-	"><?php _e( 'General Settings', 'bsf_rt_textdomain' ); ?></a>
+	"><?php _e( 'General Settings', 'read-meter' ); ?></a>
 
 			<a href="?page=bsf_rt&tab=bsf_rt_read_time_settings" class="nav-tab tb 
 			<?php
@@ -55,7 +55,7 @@ if ( isset( $_GET['tab'] ) ) {
 					echo 'nav-tab-active';
 			}
 			?>
-			"><?php _e( 'Read Time', 'bsf_rt_textdomain' ); ?></a>
+			"><?php _e( 'Read Time', 'read-meter' ); ?></a>
 
 			<a href="?page=bsf_rt&tab=bsf_rt_progress_bar_settings" class="nav-tab tb 
 			<?php
@@ -63,7 +63,7 @@ if ( isset( $_GET['tab'] ) ) {
 						echo 'nav-tab-active';
 			}
 			?>
-			"><?php _e( 'Progress Bar', 'bsf_rt_textdomain' ); ?></a>
+			"><?php _e( 'Progress Bar', 'read-meter' ); ?></a>
 
 		<a href="?page=bsf_rt&tab=bsf_rt_user_manual" class="nav-tab tb 
 		<?php
@@ -71,7 +71,7 @@ if ( isset( $_GET['tab'] ) ) {
 						echo 'nav-tab-active';
 		}
 		?>
-		"><?php _e( 'Getting Started', 'bsf_rt_textdomain' ); ?></a>
+		"><?php _e( 'Getting Started', 'read-meter' ); ?></a>
 </h2>
 
 <?php
