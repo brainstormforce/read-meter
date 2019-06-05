@@ -1260,7 +1260,43 @@ class BSF_ReadTime
       * @return Nothing.
       */ 
     public function bsf_rt_set_readtime_styles_content()
-    {
+    {   
+        if ($this->bsf_rt_options['bsf_rt_read_time_background_color'] == '') { ?>
+
+                <style type="text/css">
+              .entry-content .bsf_rt_reading_time_before_content{
+                   background: unset;
+
+                    color: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_color']; ?>;
+
+                    font-size: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_font_size']; ?>px;
+                    
+                    margin-top: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_margin_top']; echo $this->bsf_rt_options['bsf_rt_margin_unit']; ?> ;
+
+                    margin-right: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_margin_right']; echo $this->bsf_rt_options['bsf_rt_margin_unit']; ?> ;
+
+                    margin-bottom: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_margin_bottom']; echo $this->bsf_rt_options['bsf_rt_margin_unit']; ?> ;
+
+                    margin-left: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_margin_left']; echo $this->bsf_rt_options['bsf_rt_margin_unit']; ?> ;
+
+                    padding-top: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_padding_top']; echo $this->bsf_rt_options['bsf_rt_padding_unit']; ?> ;
+
+                    padding-right: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_padding_right']; echo $this->bsf_rt_options['bsf_rt_padding_unit']; ?> ;
+
+                    padding-bottom: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_padding_bottom']; echo $this->bsf_rt_options['bsf_rt_padding_unit']; ?> ;
+
+                    padding-left: <?php  echo $this->bsf_rt_options['bsf_rt_read_time_padding_left']; echo $this->bsf_rt_options['bsf_rt_padding_unit']; ?> ;
+
+                    width: max-content;
+
+                    display: block;
+                    
+                }
+                
+        </style>
+
+       <?php } else {
+
         ?>
         <style type="text/css">
               .entry-content .bsf_rt_reading_time_before_content{
@@ -1293,8 +1329,9 @@ class BSF_ReadTime
                 }
                 
         </style>
-        <?php
-    } 
+        <?php 
+    }
+} 
     /**
      * Adding Shortcode in Astra Theme hook.
      *
