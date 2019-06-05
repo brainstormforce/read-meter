@@ -172,7 +172,7 @@ class BSF_ReadTime
                 if (isset($this->bsf_rt_options['bsf_rt_position_of_read_time']) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] )) {
                     
                     add_filter('get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000);
-                    if ($bsf_rt_current_theme  === 'Twenty Fifteen' ||  $bsf_rt_current_theme  === 'Twenty Nineteen') {
+                    if ($bsf_rt_current_theme  === 'Twenty Fifteen' ||  $bsf_rt_current_theme  === 'Twenty Nineteen' || $bsf_rt_current_theme  === 'Twenty Thirteen' || $bsf_rt_current_theme  === 'Twenty Fourteen' || $bsf_rt_current_theme  === 'Twenty Sixteen' || $bsf_rt_current_theme  === 'Twenty Seventeen' || $bsf_rt_current_theme  === 'Twenty Twelve') {
                         add_filter('the_content', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000);
                     }
                 }
