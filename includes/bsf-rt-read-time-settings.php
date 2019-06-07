@@ -13,9 +13,9 @@ $bsf_rt_read_time_font_size = (!empty( $options['bsf_rt_read_time_font_size'] ) 
 
 $bsf_rt_read_time_bg_option = (!empty( $options['bsf_rt_read_time_bg_option'] ) ? $options['bsf_rt_read_time_bg_option'] : '' );
 
-$bsf_rt_read_time_background_color = (!empty( $options['bsf_rt_read_time_background_color'] ) ? $options['bsf_rt_read_time_background_color'] : '#eeeeee' );
+$bsf_rt_read_time_background_color = (!empty( $options['bsf_rt_read_time_background_color'] ) ? $options['bsf_rt_read_time_background_color'] : '' );
 
-$bsf_rt_read_time_color = (!empty( $options['bsf_rt_read_time_color'] ) ? $options['bsf_rt_read_time_color'] : '#333333' );
+$bsf_rt_read_time_color = (!empty( $options['bsf_rt_read_time_color'] ) ? $options['bsf_rt_read_time_color'] : '' );
 
 $bsf_rt_read_time_margin_top = (!empty( $options['bsf_rt_read_time_margin_top'] ) ? $options['bsf_rt_read_time_margin_top'] : 5 );
 

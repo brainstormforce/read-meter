@@ -6,11 +6,11 @@ $bsf_rt_position_of_progress_bar = (!empty( $options['bsf_rt_position_of_progres
 
 $bsf_rt_progress_bar_styles = (!empty( $options['bsf_rt_progress_bar_styles'] ) ? $options['bsf_rt_progress_bar_styles'] : '' );
 
-$bsf_rt_progress_bar_background_color = (!empty( $options['bsf_rt_progress_bar_background_color'] ) ? $options['bsf_rt_progress_bar_background_color'] : '#e8d5ff' );
+$bsf_rt_progress_bar_background_color = (!empty( $options['bsf_rt_progress_bar_background_color'] ) ? $options['bsf_rt_progress_bar_background_color'] : '' );
 
-$bsf_rt_progress_bar_gradiant_one = (!empty( $options['bsf_rt_progress_bar_gradiant_one'] ) ? $options['bsf_rt_progress_bar_gradiant_one'] : '#5540D9' );
+$bsf_rt_progress_bar_gradiant_one = (!empty( $options['bsf_rt_progress_bar_gradiant_one'] ) ? $options['bsf_rt_progress_bar_gradiant_one'] : '' );
 
-$bsf_rt_progress_bar_gradiant_two = (!empty( $options['bsf_rt_progress_bar_gradiant_two'] ) ? $options['bsf_rt_progress_bar_gradiant_two'] : '#ee7fff' );
+$bsf_rt_progress_bar_gradiant_two = (!empty( $options['bsf_rt_progress_bar_gradiant_two'] ) ? $options['bsf_rt_progress_bar_gradiant_two'] : '' );
 
 $bsf_rt_progress_bar_thickness = (!empty( $options['bsf_rt_progress_bar_thickness'] ) ? $options['bsf_rt_progress_bar_thickness'] : 12 );
 
