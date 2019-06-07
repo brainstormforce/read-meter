@@ -192,8 +192,8 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 		 */
 		public function bsfrt_pluginstyle_frontend() {
 			wp_enqueue_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-frontend-css.css' );
-
 			wp_enqueue_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-frontend.js' );
+			wp_localize_script( 'bsfrt_frontend', 'myObj', array( 'testing' => 'Test' ) );
 		}
 		/**
 		 * Plugin Styles for admin dashboard.

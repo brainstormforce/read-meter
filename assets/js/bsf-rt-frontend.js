@@ -1,3 +1,5 @@
+console.log( myObj );
+
 var idleTime = 0;
 
 var timeoutID;
@@ -72,8 +74,8 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
 
                 if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
 
-                    document.getElementById("bsf_rt_progress_bar").style.width = 0 + "%";
-                    document.getElementById("bsf_rt_progress_bar_container").style.width = 0 + "%";
+                    document.getElementById("bsf_rt_progress_bar").style.width = 100 + "%";
+                    document.getElementById("bsf_rt_progress_bar_container").style.width = 100 + "%";
                 }
             }
         } else {
@@ -108,10 +110,8 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
 
         var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 
-        //var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var height = comments_wrapper.offsetTop + comments_wrapper.offsetHeight - 450;
-        console.log(winScroll);
-        console.log(height);
+        var height = ( parseFloat( comments_wrapper.offsetTop ) + parseFloat(comments_wrapper.offsetHeight) ) - parseFloat( intViewportHeight );
+		
         var scrolled = (winScroll / height) * 100;
         
         if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
