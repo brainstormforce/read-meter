@@ -1,15 +1,15 @@
 <?php
 
 echo '<h1 class="bsf_rt_main_title">';
- _e( 'Read Meter', 'read-meter' );
+ esc_attr_e( 'Read Meter', 'read-meter' );
  echo '</h1>';
 
 if ( get_option( 'bsf_rt_saved_msg' ) == 'ok' ) {
-	echo '<div id="message" class="notice is-dismissible notice-success">
+	_e('<div id="message" class="notice is-dismissible notice-success">
       <p class="description">
       Settings Saved.
       </p>
-    </div>';
+    </div>' , 'read-meter' );
 	update_option( 'bsf_rt_saved_msg', 'notok' );
 }
 

@@ -24,14 +24,14 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 	  <table class="form-table">
 		 <br>
 		 <p class="description">
-			<?php _e( 'Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)', 'bsf_rt_textdomain' ); ?>
+			<?php esc_attr_e( 'Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)', 'bsf_rt_textdomain' ); ?>
 			
 
 		</p> 
 		<tr>
 		  <th scope="row"> 
 
-			<label for="PositionofDisplayProgressBar"><?php _e( 'Display Position', 'bsf_rt_textdomain' ); ?> :</label>
+			<label for="PositionofDisplayProgressBar"><?php esc_attr_e( 'Display Position', 'bsf_rt_textdomain' ); ?> :</label>
 
 		  </th>
 		  <td>
@@ -42,45 +42,45 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 					if ( 'top_of_the_page' === $bsf_rt_position_of_progress_bar ) {
 
 						echo '<option selected value="top_of_the_page">';
-						_e( 'Top of the Page', 'bsf_rt_textdomain' );
+						esc_attr_e( 'Top of the Page', 'bsf_rt_textdomain' );
 						echo '</option>';
 					} else {
 
 						echo '<option  value="top_of_the_page">';
-						_e( 'Top of the Page', 'bsf_rt_textdomain' );
+						esc_attr_e( 'Top of the Page', 'bsf_rt_textdomain' );
 						echo '</option>';
 					}
 					if ( 'bottom_of_the_page' === $bsf_rt_position_of_progress_bar ) {
 
 						echo '<option selected value="bottom_of_the_page">';
-						_e( 'Bottom of the Page', 'bsf_rt_textdomain' );
+						esc_attr_e( 'Bottom of the Page', 'bsf_rt_textdomain' );
 						echo '</option>';
 					} else {
 
 						echo '<option  value="bottom_of_the_page">';
-						_e( 'Bottom of the Page', 'bsf_rt_textdomain' );
+						esc_attr_e( 'Bottom of the Page', 'bsf_rt_textdomain' );
 						echo '</option>';
 					}
 					if ( 'none' === $bsf_rt_position_of_progress_bar ) {
 
 						echo '<option selected value="none">';
-						_e( 'None', 'bsf_rt_textdomain' );
+						esc_attr_e( 'None', 'bsf_rt_textdomain' );
 						echo '</option>';
 					} else {
 
 						echo '<option  value="none">';
-						_e( 'None', 'bsf_rt_textdomain' );
+						esc_attr_e( 'None', 'bsf_rt_textdomain' );
 						echo '</option>';
 					}
 				} else {
 					  echo '<option  value="none">';
-						  _e( 'None', 'bsf_rt_textdomain' );
+						  esc_attr_e( 'None', 'bsf_rt_textdomain' );
 						  echo '</option>';
 					  echo '<option  value="top_of_the_page">';
-						  _e( 'Top of the Page', 'bsf_rt_textdomain' );
+						  esc_attr_e( 'Top of the Page', 'bsf_rt_textdomain' );
 						  echo '</option>';
 					  echo '<option  value="bottom_of_the_page">';
-						  _e( 'Bottom of the Page', 'bsf_rt_textdomain' );
+						  esc_attr_e( 'Bottom of the Page', 'bsf_rt_textdomain' );
 						  echo '</option>';
 				}
 
@@ -93,7 +93,7 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 	   <table class="form-table" id="bsf-rt-progress-bar-options" <?php echo $bsf_rt_progress_display  ?>>  
 		<tr>
 		  <th scope="row"> 
-			<label for="ProgressBarStyle"><?php _e( 'Styles', 'bsf_rt_textdomain' ); ?> :</label>
+			<label for="ProgressBarStyle"><?php esc_attr_e( 'Styles', 'bsf_rt_textdomain' ); ?> :</label>
 		  </th>
 			<td>
 			  <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles">
@@ -103,34 +103,34 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 						if ( 'Normal' === $bsf_rt_progress_bar_styles ) {
 
 							echo '<option id="normalcolor" selected value="Normal">';
-							_e( 'Normal', 'bsf_rt_textdomain' );
+							esc_attr_e( 'Normal', 'bsf_rt_textdomain' );
 							echo '</option>';
 
 						} else {
 
 							echo '<option id="normalcolor"  value="Normal">';
-							_e( 'Normal', 'bsf_rt_textdomain' );
+							esc_attr_e( 'Normal', 'bsf_rt_textdomain' );
 							echo '</option>';
 						}
 						if ( 'Gradient' === $bsf_rt_progress_bar_styles ) {
 
 							echo '<option selected id="gradiantcolor" value="Gradient">';
-							_e( 'Gradient', 'bsf_rt_textdomain' );
+							esc_attr_e( 'Gradient', 'bsf_rt_textdomain' );
 							echo '</option>';
 
 						} else {
 
 							echo '<option  id="gradiantcolor" value="Gradient">';
-							_e( 'Gradient', 'bsf_rt_textdomain' );
+							esc_attr_e( 'Gradient', 'bsf_rt_textdomain' );
 							echo '</option>';
 						}
 					} else {
 
 							echo '<option id="normalcolor"  value="Normal">';
-							_e( 'Normal', 'bsf_rt_textdomain' );
+							esc_attr_e( 'Normal', 'bsf_rt_textdomain' );
 							echo '</option>';
 							echo '<option  id="gradiantcolor" value="Gradient">';
-							_e( 'Gradient', 'bsf_rt_textdomain' );
+							esc_attr_e( 'Gradient', 'bsf_rt_textdomain' );
 							echo '</option>';
 					}
 
@@ -141,7 +141,7 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 		<tr id="normal-back-wrap">
 			<th scope="row">
 
-			  <label for="ProgressBarBackgroundColor"><?php _e( 'Background Color', 'bsf_rt_textdomain' ); ?> :</label>
+			  <label for="ProgressBarBackgroundColor"><?php esc_attr_e( 'Background Color', 'bsf_rt_textdomain' ); ?> :</label>
 
 			</th>
 			<td>
@@ -162,7 +162,7 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 		</tr> 
 		<tr id="normal-color-wrap">
 			<th scope="row">
-			  <label for="ProgressBarColor"> <?php _e( 'Primary Color', 'bsf_rt_textdomain' ); ?> :</label>
+			  <label for="ProgressBarColor"> <?php esc_attr_e( 'Primary Color', 'bsf_rt_textdomain' ); ?> :</label>
 			</th>  
 			<td>
 				<?php
@@ -184,7 +184,7 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 		</tr>
 		<tr id="gradiant-wrap2" <?php echo $bsf_rt_progress_color_display ?>>
 			  <th scope="row">
-				<label for="ProgressBarColor"> <?php _e( 'Secondary Color', 'bsf_rt_textdomain' ); ?> :</label>
+				<label for="ProgressBarColor"> <?php esc_attr_e( 'Secondary Color', 'bsf_rt_textdomain' ); ?> :</label>
 			  </th>
 			  <td>
 					<?php
@@ -204,7 +204,7 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 		<tr>
 			<th scope="row">
 
-			  <label for="Thickness"><?php _e( 'Bar Thickness', 'bsf_rt_textdomain' ); ?> :</label>
+			  <label for="Thickness"><?php esc_attr_e( 'Bar Thickness', 'bsf_rt_textdomain' ); ?> :</label>
 
 			</th>
 			<td>

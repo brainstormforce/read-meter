@@ -45,11 +45,11 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
   <table class="form-table" >
 	   <br>     
 	   <p class="description">
-			<?php _e( 'Control the position & appearance of the estimated read time of the post.', 'read-meter' ); ?>
+			<?php esc_attr_e( 'Control the position & appearance of the estimated read time of the post.', 'read-meter' ); ?>
 	  </p> 
 	  <tr>
 		<th scope="row">
-		<label for="ShowEstimatedReadTime"><?php _e( 'Show Estimated Read Time On', 'read-meter' ); ?>:</label>
+		<label for="ShowEstimatedReadTime"><?php esc_attr_e( 'Show Estimated Read Time On', 'read-meter' ); ?>:</label>
 		</th>
 		<td>
 		  <label id="bsf_rt_single_checkbox_label" for="ForSinglePage" class="bsf_rt_show_readtime_label" >
@@ -65,7 +65,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 				echo '  <input id="bsf_rt_single_page" type="checkbox" checked name="bsf_rt_show_read_time[]"  value="bsf_rt_single_page">';
 			}
 			?>
-			<?php _e( 'Single Post', 'read-meter' ); ?>
+			<?php esc_attr_e( 'Single Post', 'read-meter' ); ?>
 		  </label> 
 	
 	   <br>
@@ -77,7 +77,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 				echo '  <input id="bsf_rt_home_blog_page" type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_home_blog_page" >';
 			}
 			?>
-			<?php _e( 'Home / Blog Page', 'read-meter' ); ?>
+			<?php esc_attr_e( 'Home / Blog Page', 'read-meter' ); ?>
 		  </label> 
 	
 		 <br>
@@ -89,7 +89,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 				echo ' <input id="bsf_rt_archive_page"  type="checkbox" name="bsf_rt_show_read_time[]" value="bsf_rt_archive_page" >';
 			}
 			?>
-			<?php _e( 'Archive Page', 'read-meter' ); ?>
+			<?php esc_attr_e( 'Archive Page', 'read-meter' ); ?>
 		  </label> 
 	
 		   
@@ -98,7 +98,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 	  </tr>
 	  <tr>
 		<th scope="row">
-		  <label for="ShowReadTimePosition"> <?php _e( 'Read Time Position', 'read-meter' ); ?> :</label>
+		  <label for="ShowReadTimePosition"> <?php esc_attr_e( 'Read Time Position', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
 		 <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time" >
@@ -106,53 +106,53 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 			if ( isset( $bsf_rt_position_of_read_time ) ) {
 				if ( 'above_the_content' === $bsf_rt_position_of_read_time ) {
 					echo '<option selected value="above_the_content">';
-					 _e( 'Above the Content', 'read-meter' );
+					 esc_attr_e( 'Above the Content', 'read-meter' );
 					 echo '</option>';
 				} else {
 					  echo '<option value="above_the_content">';
-					 _e( 'Above the Content', 'read-meter' );
+					 esc_attr_e( 'Above the Content', 'read-meter' );
 					 echo '</option>';                }
 				if ( 'above_the_post_title' === $bsf_rt_position_of_read_time ) {
 
 					echo '<option selected value="above_the_post_title">';
-					_e( 'Above the Post Title', 'read-meter' );
+					esc_attr_e( 'Above the Post Title', 'read-meter' );
 					echo '</option>';
 				} else {
 					echo '<option  value="above_the_post_title">';
-					_e( 'Above the Post Title', 'read-meter' );
+					esc_attr_e( 'Above the Post Title', 'read-meter' );
 					echo '</option>';
 				}
 				if ( 'below_the_post_title' === $bsf_rt_position_of_read_time ) {
 					echo '<option selected value="below_the_post_title">';
-					_e( 'Below the Post Title', 'read-meter' );
+					esc_attr_e( 'Below the Post Title', 'read-meter' );
 					echo '</option>';
 				} else {
 					echo '<option  value="below_the_post_title">';
-					_e( 'Below the Post Title', 'read-meter' );
+					esc_attr_e( 'Below the Post Title', 'read-meter' );
 					echo '</option>';
 				}
 				if ( 'none' === $bsf_rt_position_of_read_time ) {
 					echo '<option selected value="none">';
-					_e( 'None', 'read-meter' );
+					esc_attr_e( 'None', 'read-meter' );
 					echo '</option>';
 				} else {
 					echo '<option  value="none">';
-					_e( 'None', 'read-meter' );
+					esc_attr_e( 'None', 'read-meter' );
 					echo '</option>';
 				}
 			} else {
 
 					  echo '<option value="above_the_content">';
-					   _e( 'Above the Content', 'read-meter' );
+					   esc_attr_e( 'Above the Content', 'read-meter' );
 					  echo '</option>';
 					  echo '<option  value="above_the_post_title">';
-					  _e( 'Above the Post Title', 'read-meter' );
+					  esc_attr_e( 'Above the Post Title', 'read-meter' );
 					  echo '</option>';
 					  echo '<option  value="below_the_post_title">';
-					  _e( 'Below the Post Title', 'read-meter' );
+					  esc_attr_e( 'Below the Post Title', 'read-meter' );
 					  echo '</option>';
 					  echo '<option  value="none">';
-					  _e( 'None', 'read-meter' );
+					  esc_attr_e( 'None', 'read-meter' );
 					  echo '</option>';
 
 			}
@@ -166,7 +166,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 	   
 	  <tr>
 		<th scope="row">
-		  <label for="ReadingTimePostfixLabel"> <?php _e( 'Reading Time Prefix', 'read-meter' ); ?> :</label>
+		  <label for="ReadingTimePostfixLabel"> <?php esc_attr_e( 'Reading Time Prefix', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
 			<?php if ( isset( $bsf_rt_reading_time_label ) ) { ?>
@@ -176,7 +176,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 			<?php } ?>
 
 		  <p class="description">
-			<?php _e( 'This text will display before the Reading Time.', 'read-meter' ); ?>
+			<?php esc_attr_e( 'This text will display before the Reading Time.', 'read-meter' ); ?>
 		   
 
 		  </p>  
@@ -184,7 +184,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 	  </tr>
 	  <tr>
 		<th scope="row">
-		 <label for="ReadingTimePrefixLabel"><?php _e( 'Reading Time Postfix', 'read-meter' ); ?> :</label>
+		 <label for="ReadingTimePrefixLabel"><?php esc_attr_e( 'Reading Time Postfix', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
 			<?php if ( isset( $bsf_rt_reading_time_postfix_label ) ) { ?>
@@ -193,26 +193,26 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 			  <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="mins" class="regular-text">
 			<?php } ?>
 		  <p class="description">  
-			<?php _e( 'This text will display after the Reading Time.', 'read-meter' ); ?>                  
+			<?php esc_attr_e( 'This text will display after the Reading Time.', 'read-meter' ); ?>                  
 		   
 		  </p>  
 		</td>
 	  </tr>
 	  <tr >
 		  <th scope="row">
-			<label for="ReadtimeFontSize"><?php _e( 'Font Size', 'read-meter' ); ?>  :</label>
+			<label for="ReadtimeFontSize"><?php esc_attr_e( 'Font Size', 'read-meter' ); ?>  :</label>
 		  </th>
 		  <td>
 				<input type="number" name="bsf_rt_read_time_font_size" max="50" min="15" class="small-text" value="<?php echo $bsf_rt_read_time_font_size; ?>"  >&nbsp px
 				<p class="description">
-					<?php _e( 'Keep blank for default value.', 'read-meter' ); ?>                  
+					<?php esc_attr_e( 'Keep blank for default value.', 'read-meter' ); ?>                  
 		   
 		  </p>  
 		  </td>
 		</tr>
 		<tr>
 		<th scope="row">
-		  <label for="ReadingTimeMargin"><?php _e( 'Margin', 'read-meter' ); ?> :</label>
+		  <label for="ReadingTimeMargin"><?php esc_attr_e( 'Margin', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
 		   <input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_top" class="small-text" value="<?php echo $bsf_rt_read_time_margin_top; ?>" > 
@@ -242,7 +242,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 	  </tr>
 	  <tr>
 		<th scope="row">
-		  <label for="ReadingTimePadding"><?php _e( 'Padding', 'read-meter' ); ?> :</label>
+		  <label for="ReadingTimePadding"><?php esc_attr_e( 'Padding', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
 		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_top" class="small-text" value="<?php echo $bsf_rt_read_time_padding_top; ?>" >
@@ -271,7 +271,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 	  </tr> 
 	  <tr>
 		  <th scope="row"> 
-			<label for="ReadtimeBackgroundColor"> <?php _e( 'Background Color', 'read-meter' ); ?> :</label>
+			<label for="ReadtimeBackgroundColor"> <?php esc_attr_e( 'Background Color', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
 				<?php
@@ -290,7 +290,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		</tr> 
 		<tr >
 		  <th scope="row">
-			<label for="ReadTimeColor"> <?php _e( 'Text Color', 'read-meter' ); ?> :</label>
+			<label for="ReadTimeColor"> <?php esc_attr_e( 'Text Color', 'read-meter' ); ?> :</label>
 		  </th>  
 		  <td>
 			<?php

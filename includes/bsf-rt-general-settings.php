@@ -23,13 +23,13 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		  <br>
 		  <p class="description">
 				<?php
-				_e( 'Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.', 'read-meter' );
+				esc_attr_e( 'Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.', 'read-meter' );
 				?>
 			   
 		  </p>  
 		<tr>
 			<th scope="row">
-			  <label for="SelectPostTypes"><?php _e( 'Select Post Types', 'read-meter' ); ?> :</label>
+			  <label for="SelectPostTypes"><?php esc_attr_e( 'Select Post Types', 'read-meter' ); ?> :</label>
 			</th>
 			<td class="post_type_name">
 				   
@@ -74,15 +74,15 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr>
 		<tr>
 		  <th scope="row">
-			<label for="WordsPerMinute"><?php _e( 'Words Per Minute', 'read-meter' ); ?> :</label>
+			<label for="WordsPerMinute"><?php esc_attr_e( 'Words Per Minute', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
-			<input type="number" required name="bsf_rt_words_per_minute" placeholder="275" value="<?php echo $bsf_rt_words_per_minute; ?>" class="small-text">
+			<input type="number" min="0" required name="bsf_rt_words_per_minute" placeholder="275" value="<?php echo $bsf_rt_words_per_minute; ?>" class="small-text">
 		  </td>
 		</tr>
 		  <th scope="row">
 
-			<label for="IncludeComments"> <?php _e( 'Include Comments', 'read-meter' ); ?> :</label>
+			<label for="IncludeComments"> <?php esc_attr_e( 'Include Comments', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
 				<?php
@@ -93,7 +93,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 				}
 				?>
 			  <p  class="description bsf_rt_description">
-					<?php _e( "Check this to include comment's text in reading time.", 'read-meter' ); ?>
+					<?php esc_attr_e( "Check this to include comment's text in reading time.", 'read-meter' ); ?>
 				  
 			  </p>  
 		  </td>
@@ -101,7 +101,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr>
 		  <th scope="row">
 
-			 <label for="IncludeImages"> <?php _e( 'Include Images', 'read-meter' ); ?> :</label>
+			 <label for="IncludeImages"> <?php esc_attr_e( 'Include Images', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
 			<?php
@@ -114,7 +114,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			}
 			?>
 			<p  class="description bsf_rt_description">   
-				<?php _e( ' Check this to include post images in reading time.', 'read-meter' ); ?>
+				<?php esc_attr_e( ' Check this to include post images in reading time.', 'read-meter' ); ?>
 			  
 			</p>  
 		  </td>
