@@ -37,6 +37,8 @@ $bsf_rt_padding_unit = (!empty( $options['bsf_rt_padding_unit'] ) ? $options['bs
 
 $bsf_rt_margin_unit = (!empty( $options['bsf_rt_margin_unit'] ) ? $options['bsf_rt_margin_unit'] : 'px' );
 
+$bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' ) ? 'style="display:none"' : '' );
+
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
 <form method="post" name="bsf_rt_settings_form">
@@ -99,7 +101,7 @@ $bsf_rt_margin_unit = (!empty( $options['bsf_rt_margin_unit'] ) ? $options['bsf_
 		  <label for="ShowReadTimePosition"> <?php _e( 'Read Time Position', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
-		 <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time" onchange="bsf_rt_readtimepositioncheck(this);">
+		 <select id="bsf_rt_position_of_read_time" required name="bsf_rt_position_of_read_time" >
 			<?php
 			if ( isset( $bsf_rt_position_of_read_time ) ) {
 				if ( 'above_the_content' === $bsf_rt_position_of_read_time ) {
@@ -160,7 +162,7 @@ $bsf_rt_margin_unit = (!empty( $options['bsf_rt_margin_unit'] ) ? $options['bsf_
 		</td>
 	  </tr>
 	  </table>
-	  <table class="form-table" id="bsf_rt_read_time_option">
+	  <table class="form-table" id="bsf_rt_read_time_option" <?php echo $bsf_rt_read_time_options_display ?>>
 	   
 	  <tr>
 		<th scope="row">

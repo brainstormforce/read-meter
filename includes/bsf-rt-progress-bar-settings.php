@@ -14,6 +14,9 @@ $bsf_rt_progress_bar_gradiant_two = (!empty( $options['bsf_rt_progress_bar_gradi
 
 $bsf_rt_progress_bar_thickness = (!empty( $options['bsf_rt_progress_bar_thickness'] ) ? $options['bsf_rt_progress_bar_thickness'] : 12 );
 
+$bsf_rt_progress_display = (( $bsf_rt_position_of_progress_bar == 'none' ) ? 'style="display:none"' : '' );
+
+$bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 'style="display:none"' : '' );
 
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
@@ -32,7 +35,7 @@ $bsf_rt_progress_bar_thickness = (!empty( $options['bsf_rt_progress_bar_thicknes
 
 		  </th>
 		  <td>
-			<select required id="bsf_rt_position_of_progress_bar" name="bsf_rt_position_of_progress_bar" onchange="bsf_rt_Progressbarpositioncheck(this);">
+			<select required id="bsf_rt_position_of_progress_bar" name="bsf_rt_position_of_progress_bar" >
 				<?php
 				if ( isset( $bsf_rt_position_of_progress_bar ) ) {
 
@@ -86,13 +89,14 @@ $bsf_rt_progress_bar_thickness = (!empty( $options['bsf_rt_progress_bar_thicknes
 		  </td>
 		</tr>
 	   </table>
-	   <table class="form-table" id="bsf-rt-progress-bar-options">  
+	  
+	   <table class="form-table" id="bsf-rt-progress-bar-options" <?php echo $bsf_rt_progress_display  ?>>  
 		<tr>
 		  <th scope="row"> 
 			<label for="ProgressBarStyle"><?php _e( 'Styles', 'bsf_rt_textdomain' ); ?> :</label>
 		  </th>
 			<td>
-			  <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles" onchange="bsf_rt_ColorSelectCheck_two(this);">
+			  <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles">
 					<?php
 					if ( isset( $bsf_rt_progress_bar_styles ) ) {
 
@@ -178,7 +182,7 @@ $bsf_rt_progress_bar_thickness = (!empty( $options['bsf_rt_progress_bar_thicknes
 			</td>
 		</tr>
 		</tr>
-		<tr id="gradiant-wrap2">
+		<tr id="gradiant-wrap2" <?php echo $bsf_rt_progress_color_display ?>>
 			  <th scope="row">
 				<label for="ProgressBarColor"> <?php _e( 'Secondary Color', 'bsf_rt_textdomain' ); ?> :</label>
 			  </th>
