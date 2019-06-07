@@ -19,8 +19,6 @@ class BSF_ReadTime {
 
 	public $bsf_rt_options = array();
 
-	public static $bsf_rt_is_admin_bar_showing;
-
 	public static $bsf_rt_check_the_page;
 
 	/**
@@ -103,7 +101,7 @@ class BSF_ReadTime {
 		}
 		$this->bsf_rt_options = $all_options;
 
-		add_action( 'init', array( $this, 'bsf_rt_is_admin_bar_showing' ) );
+	
 	}
 
 	public function bsf_rt_init_frontend() {
@@ -981,33 +979,15 @@ class BSF_ReadTime {
 
 				return;
 			}
-			if ( self::$bsf_rt_is_admin_bar_showing == true ) {
-
-					echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top-admin-bar">
-                            <div class="progress-bar" id="bsf_rt_progress_bar"></div>
-                            </div>';
-			} elseif ( self::$bsf_rt_is_admin_bar_showing == false ) {
-
-						echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top">
+			
+			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top">
                                 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
                                 </div>';
-			}
                
 		}
 
 	}
-	/**
-	 * Checks if admin bar is showing or not.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  Nothing.
-	 * @return Nothing.
-	 */
-	public function bsf_rt_is_admin_bar_showing() {
-		self::$bsf_rt_is_admin_bar_showing = is_admin_bar_showing();
 
-	}
 	 /**
 	  * Function of the read_meter shortcode.
 	  *
@@ -1100,7 +1080,7 @@ class BSF_ReadTime {
 	 */
 	public function bsf_rt_set_progressbar_colors_normal() {        ?>
 		<style type="text/css">
-				.progress-container-top-admin-bar{
+				.admin-bar .progress-container-top {
 					background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
 					height: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
 					
@@ -1140,7 +1120,7 @@ class BSF_ReadTime {
 	public function bsf_rt_set_progressbar_colors_gradient() {
 		?>
 		<style type="text/css">
-			   .progress-container-top-admin-bar{
+			   .admin-bar .progress-container-top {
 					background: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_background_color']; ?>;
 					height: <?php echo $this->bsf_rt_options['bsf_rt_progress_bar_thickness']; ?>px;
 					
