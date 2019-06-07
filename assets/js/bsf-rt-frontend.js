@@ -109,8 +109,9 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
         var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 
         //var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var height = comments_wrapper.offsetTop + comments_height - 23;
-        
+        var height = comments_wrapper.offsetTop + comments_wrapper.offsetHeight - 450;
+        console.log(winScroll);
+        console.log(height);
         var scrolled = (winScroll / height) * 100;
         
         if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {

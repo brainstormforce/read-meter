@@ -113,6 +113,8 @@ class BSF_ReadTime {
 						'comments_template',
 						function( $template ) {
 							echo '<div id="bsf-rt-comments"></div>';
+							$temp = '<div id="bsf-rt-comments"></div>';
+							$template = $template.$temp;
 							return $template;
 						}
 					);
