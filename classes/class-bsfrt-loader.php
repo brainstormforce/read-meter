@@ -97,9 +97,9 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 				$bsf_rt_padding_unit = $_POST['bsf_rt_padding_unit'];
 				$bsf_rt_margin_unit = $_POST['bsf_rt_margin_unit'];
 				
-				$bsf_rt_reading_time_label = (!empty( $_POST['bsf_rt_reading_time_prefix_label'] ) ? $_POST['bsf_rt_reading_time_prefix_label'] : '' );
+				$bsf_rt_reading_time_label = (!empty( $_POST['bsf_rt_reading_time_prefix_label'] ) ? sanitize_text_field($_POST['bsf_rt_reading_time_prefix_label']) : '' );
 
-				$bsf_rt_reading_time_postfix_label = (!empty( $_POST['bsf_rt_reading_time_postfix_label'] ) ? $_POST['bsf_rt_reading_time_postfix_label'] : '' );
+				$bsf_rt_reading_time_postfix_label = (!empty( $_POST['bsf_rt_reading_time_postfix_label'] ) ? sanitize_text_field($_POST['bsf_rt_reading_time_postfix_label']) : '' );
 
 				$bsf_rt_show_read_time = (!empty($_POST['bsf_rt_show_read_time'] ) ? $_POST['bsf_rt_show_read_time'] : array() );
 
