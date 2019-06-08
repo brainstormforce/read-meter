@@ -38,25 +38,25 @@
 }
 
 /*Reading time Display CSS*/
-.bsf_rt_show_readtime_label {
+.bsf-rt-show-readtime-label {
   min-width: 200px;
   display: inline-block;
 }
 
-.bsf_rt_display_label:after {
+.bsf-rt-display-label:after {
   content: attr(prefix);
 }
 
-.bsf_rt_display_time:after {
+.bsf-rt-display-time:after {
   content: attr(reading_time);
 }
 
-.bsf_rt_display_postfix:after {
+.bsf-rt-display-postfix:after {
   content: attr(postfix);
 }
 
 /*If we use astra hook of after header*/
-
+/*
 .bsf_rt_reading_time_after_astra_header {
   background-color: black;
   color: white;
@@ -66,7 +66,7 @@
   width: auto;
   padding: 5px;
   display: inline-block;
-}
+}*/
 /*Class readtime CSS*/
 
 /*.bsf_rt_reading_time_before_content
