@@ -103,23 +103,23 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 
 				$bsf_rt_show_read_time = (!empty($_POST['bsf_rt_show_read_time'] ) ? $_POST['bsf_rt_show_read_time'] : array() );
 
-				$bsf_rt_read_time_font_size = (!empty( $_POST['bsf_rt_read_time_font_size'] ) ? floatval($_POST['bsf_rt_read_time_font_size']) : 15 );
+				$bsf_rt_read_time_font_size = (!empty( $_POST['bsf_rt_read_time_font_size'] ) ? floatval($_POST['bsf_rt_read_time_font_size']) : 10 );
 
-				$bsf_rt_read_time_margin_top = (!empty( $_POST['bsf_rt_read_time_margin_top'] ) ? floatval($_POST['bsf_rt_read_time_margin_top']) : 5 );
+				$bsf_rt_read_time_margin_top = (!empty( $_POST['bsf_rt_read_time_margin_top'] ) ? floatval($_POST['bsf_rt_read_time_margin_top']) : 0 );
 
 				$bsf_rt_read_time_margin_right = (!empty( $_POST['bsf_rt_read_time_margin_right'] ) ? floatval($_POST['bsf_rt_read_time_margin_right']) : 0 );
 
-				$bsf_rt_read_time_margin_bottom = (!empty( $_POST['bsf_rt_read_time_margin_bottom'] ) ? floatval($_POST['bsf_rt_read_time_margin_bottom']) : 5 );
+				$bsf_rt_read_time_margin_bottom = (!empty( $_POST['bsf_rt_read_time_margin_bottom'] ) ? floatval($_POST['bsf_rt_read_time_margin_bottom']) : 0 );
 
 				$bsf_rt_read_time_margin_left = (!empty( $_POST['bsf_rt_read_time_margin_left'] ) ? floatval($_POST['bsf_rt_read_time_margin_left']) : 0 );
 
-				$bsf_rt_read_time_padding_top = (!empty( $_POST['bsf_rt_read_time_padding_top'] ) ? floatval($_POST['bsf_rt_read_time_padding_top']) : 0.5 );
+				$bsf_rt_read_time_padding_top = (!empty( $_POST['bsf_rt_read_time_padding_top'] ) ? floatval($_POST['bsf_rt_read_time_padding_top']) : 0 );
 
-				$bsf_rt_read_time_padding_right = (!empty( $_POST['bsf_rt_read_time_padding_right'] ) ? floatval($_POST['bsf_rt_read_time_padding_right']) : 0.7 );
+				$bsf_rt_read_time_padding_right = (!empty( $_POST['bsf_rt_read_time_padding_right'] ) ? floatval($_POST['bsf_rt_read_time_padding_right']) : 0);
 
-				$bsf_rt_read_time_padding_bottom = (!empty( $_POST['bsf_rt_read_time_padding_bottom'] ) ? floatval($_POST['bsf_rt_read_time_padding_bottom']) : 0.5 );
+				$bsf_rt_read_time_padding_bottom = (!empty( $_POST['bsf_rt_read_time_padding_bottom'] ) ? floatval($_POST['bsf_rt_read_time_padding_bottom']) : 0 );
 
-				$bsf_rt_read_time_padding_left = (!empty( $_POST['bsf_rt_read_time_padding_left'] ) ? floatval($_POST['bsf_rt_read_time_padding_left']) : 0.7 );
+				$bsf_rt_read_time_padding_left = (!empty( $_POST['bsf_rt_read_time_padding_left'] ) ? floatval($_POST['bsf_rt_read_time_padding_left']) : 0);
 
 				$update_options = array(
 					'bsf_rt_reading_time_label'         => $bsf_rt_reading_time_label,
