@@ -54,29 +54,3 @@
 .bsf-rt-display-postfix:after {
   content: attr(postfix);
 }
-
-/*If we use astra hook of after header*/
-/*
-.bsf_rt_reading_time_after_astra_header {
-  background-color: black;
-  color: white;
-  margin-left: 75px;
-  font-weight: bolder;
-  font-weight: 500;
-  width: auto;
-  padding: 5px;
-  display: inline-block;
-}*/
-/*Class readtime CSS*/
-
-/*.bsf_rt_reading_time_before_content
-{
-    background-color: black;
-    color: white;
-    font-weight: 500;
-    width: auto;
-    font-size: 15px ;
-    padding: 0.5em 0.7em;
-    display: inline-block;
-
-}*/
