@@ -24,5 +24,5 @@ add_action( 'admin_menu', 'BSF_RT_Settings_page' );
  * @return void
  */
 function BSF_RT_Page_html() {
-	include BSF_RT_ABSPATH . 'includes/bsf-rt-main-frontend.php';
+	require_once BSF_RT_ABSPATH . 'includes/bsf-rt-main-frontend.php';
 }

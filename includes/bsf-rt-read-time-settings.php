@@ -237,8 +237,13 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 			}
 			?>
 		   </select>
-		</td>
-	   
+		    <p class="description bsf-rt-label-style">
+					<label class="bsf-rt-top">TOP</label>
+					<label class="bsf-rt-right">RIGHT</label>
+					<label class="bsf-rt-bottom">BOTTOM</label>
+					<label class="bsf-rt-left">LEFT</label>                  
+		  </p> 
+		</td> 
 	  </tr>
 	  <tr>
 		<th scope="row">
@@ -249,6 +254,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_right" class="small-text" value="<?php echo $bsf_rt_read_time_padding_right; ?>" > 
 		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_bottom" class="small-text" value="<?php echo $bsf_rt_read_time_padding_bottom; ?>" > 
 		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_left" class="small-text" value="<?php echo $bsf_rt_read_time_padding_left; ?>" >
+
 		   <select name="bsf_rt_padding_unit">
 			<?php
 			if ( $bsf_rt_padding_unit == 'px' ) {
@@ -267,6 +273,12 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 			}
 			?>
 		   </select>
+		   <p class="description bsf-rt-label-style">
+					<label class="bsf-rt-top">TOP</label>
+					<label class="bsf-rt-right">RIGHT</label>
+					<label class="bsf-rt-bottom">BOTTOM</label>
+					<label class="bsf-rt-left">LEFT</label>                  
+		  </p> 
 		</td>
 	  </tr> 
 	  <tr>

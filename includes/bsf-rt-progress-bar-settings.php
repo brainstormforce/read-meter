@@ -26,7 +26,6 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 		 <p class="description">
 			<?php esc_attr_e( 'Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)', 'bsf_rt_textdomain' ); ?>
 			
-
 		</p> 
 		<tr>
 		  <th scope="row"> 

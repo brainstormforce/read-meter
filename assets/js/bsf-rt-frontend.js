@@ -1,4 +1,3 @@
-console.log( myObj );
 
 var idleTime = 0;
 
@@ -65,7 +64,8 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
 {
 
     var intViewportHeight = window.innerHeight; // window height
-    if (content !== null) {
+    if (myObj.option == '') {
+        
         var height = content.clientHeight;
         var winScroll = document.documentElement.scrollTop - content.offsetTop;
 
@@ -102,24 +102,45 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
             }
         }
     } else {
-        
         var comments_wrapper = bsf_rt_comments.nextElementSibling;
-        var comments_height = comments_wrapper.offsetHeight;
-        
-        var content = document.getElementById("main");
+        if (content.clientHeight + comments_wrapper.clientHeight < intViewportHeight) {
+            if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
 
-        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
 
-        var height = ( parseFloat( comments_wrapper.offsetTop ) + parseFloat(comments_wrapper.offsetHeight) ) - parseFloat( intViewportHeight );
-		
-        var scrolled = (winScroll / height) * 100;
-        
-        if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
-            if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
-                document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
-          
+                    document.getElementById("bsf_rt_progress_bar").style.width = 100 + "%";
+                    document.getElementById("bsf_rt_progress_bar_container").style.width = 100 + "%";
+                }
             }
+        } else {
+                var comments_wrapper = bsf_rt_comments.nextElementSibling;
+                var comments_height = comments_wrapper.offsetHeight;
+
+                var winScroll = document.documentElement.scrollTop - content.offsetTop;
+
+                var height = ( parseFloat( comments_wrapper.offsetTop ) + parseFloat(comments_wrapper.offsetHeight) ) - parseFloat( intViewportHeight ) - parseFloat( content.offsetTop );
+                if (winScroll <= 0) {
+                    
+                    if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+
+                        if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+
+                            document.getElementById("bsf_rt_progress_bar").style.width = 0 + "%";
+                        }
+                    }
+                }
+                
+                 var scrolled = (winScroll / height) * 100;
+                
+                if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
+                    if (typeof document.getElementById("bsf_rt_progress_bar") !== 'undefined' && typeof document.getElementById("bsf_rt_progress_bar_container") !== 'undefined' ) {
+                        document.getElementById("bsf_rt_progress_bar").style.width = scrolled + "%";
+                  
+                    }
+                }
+
         }
+        
     }
 
 }

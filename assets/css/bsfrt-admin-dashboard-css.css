@@ -17,4 +17,10 @@
 
 .bsf_rt_description {
     display : inline-block;
+
+}
+.form-table .bsf-rt-label-style{
+	word-spacing: 35px;
+	padding-left: 10px;
+	font-size: 12px;
 }
