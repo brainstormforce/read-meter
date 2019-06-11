@@ -162,7 +162,7 @@ $bsf_rt_read_time_options_display = ( ( $bsf_rt_position_of_read_time == 'none' 
 		</td>
 	  </tr>
 	  </table>
-	  <table class="form-table" id="bsf_rt_read_time_option" <?php echo $bsf_rt_read_time_options_display; ?>>
+	  <table class="form-table" id="bsf_rt_read_time_option" <?php echo wp_kses_post( $bsf_rt_read_time_options_display ); ?>>
 	   
 	  <tr>
 		<th scope="row">
@@ -191,10 +191,10 @@ $bsf_rt_read_time_options_display = ( ( $bsf_rt_position_of_read_time == 'none' 
 		<td>
 			<?php
 			if ( isset( $bsf_rt_reading_time_postfix_label ) ) {
-				echo '<input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="' . esc_attr( $bsf_rt_reading_time_postfix_label ) . '" class="regular-text">';
+				echo '<input type="text"  name="bsf_rt_reading_time_postfix_label"  value="' . esc_attr( $bsf_rt_reading_time_postfix_label ) . '" class="regular-text">';
 			} else {
 				?>
-			  <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="mins" class="regular-text">
+			  <input type="text"  name="bsf_rt_reading_time_postfix_label" value="mins" class="regular-text">
 			<?php } ?>
 		  <p class="description">  
 			<?php esc_attr_e( 'This text will display after the Reading Time.', 'read-meter' ); ?>                  

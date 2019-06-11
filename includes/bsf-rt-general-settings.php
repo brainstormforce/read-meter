@@ -77,8 +77,8 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			<label for="WordsPerMinute"><?php esc_attr_e( 'Words Per Minute', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
-		  	<?php
-				echo '<input type="number" min="0" required name="bsf_rt_words_per_minute" placeholder="275" value="'.esc_attr($bsf_rt_words_per_minute).'" class="small-text">';
+			<?php
+				echo '<input type="number" min="0" required name="bsf_rt_words_per_minute" placeholder="275" value="' . esc_attr( $bsf_rt_words_per_minute ) . '" class="small-text">';
 			?>
 		  </td>
 		</tr>

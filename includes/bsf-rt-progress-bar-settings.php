@@ -89,7 +89,7 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 		</tr>
 	   </table>
 	  
-	   <table class="form-table" id="bsf-rt-progress-bar-options" <?php echo( $bsf_rt_progress_display ); ?>>  
+	   <table class="form-table" id="bsf-rt-progress-bar-options" <?php echo wp_kses_post( $bsf_rt_progress_display ); ?>>  
 		<tr>
 		  <th scope="row"> 
 			<label for="ProgressBarStyle"><?php esc_attr_e( 'Styles', 'bsf_rt_textdomain' ); ?> :</label>
@@ -183,7 +183,7 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 			</td>
 		</tr>
 		</tr>
-		<tr id="gradiant-wrap2" <?php echo $bsf_rt_progress_color_display; ?>>
+		<tr id="gradiant-wrap2" <?php echo wp_kses_post( $bsf_rt_progress_color_display ); ?>>
 			  <th scope="row">
 				<label for="ProgressBarColor"> <?php esc_attr_e( 'Secondary Color', 'bsf_rt_textdomain' ); ?> :</label>
 			  </th>

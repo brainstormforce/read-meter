@@ -255,9 +255,9 @@ class BSF_ReadTime {
 
 			$bsf_rt_post = get_the_ID();
 
-			$post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
-			$previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -273,7 +273,7 @@ class BSF_ReadTime {
 				$calculated_postfix = 'mins';
 			}
 
-			$content      = '<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr($label) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr($this->reading_time) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr($calculated_postfix) . '"></span></span>';
+			$content      = '<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 				$content .= $original_content;
 				return $content;
 		} else {
@@ -315,9 +315,9 @@ class BSF_ReadTime {
 
 			$bsf_rt_post = get_the_ID();
 
-			$post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
-			$previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -334,7 +334,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' .esc_attr($label) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr($this->reading_time) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr($calculated_postfix) . '"></span></span><!-- .bsf-rt-reading-time -->';
+            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
 
 			$title .= $original_title;
 
@@ -378,9 +378,9 @@ class BSF_ReadTime {
 
 			$bsf_rt_post = get_the_ID();
 
-			$post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
-			$previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -397,7 +397,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr($label) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr($this->reading_time) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr($calculated_postfix) . '"></span></span><!-- .bsf-rt-reading-time -->';
+            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
 
 			$original_title .= $title;
 
@@ -461,10 +461,10 @@ class BSF_ReadTime {
 			}
 
 			$excerpt = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' .  esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$excerpt .= $original_excerpt;
-
+			// @codingStandardsIgnoreStart
 			echo $excerpt;
 
 		} else {
@@ -509,9 +509,9 @@ class BSF_ReadTime {
 
 			$bsf_rt_post = get_the_ID();
 
-			$post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
-			$previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -528,7 +528,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' .esc_attr( $label) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr($this->reading_time) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr($calculated_postfix) . '"></span></span>';
+            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$title .= $original_title;
 
@@ -573,9 +573,9 @@ class BSF_ReadTime {
 
 			$bsf_rt_post = get_the_ID();
 
-			$post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
-			$previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -592,7 +592,7 @@ class BSF_ReadTime {
 			}
 
 			$title = ' 
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr($label) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr($this->reading_time) . '"></span> <span class="bsf-rt-display-postfix" postfix="' .esc_attr($calculated_postfix) . '"></span></span>';
+            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$original_title .= $title;
 
@@ -700,9 +700,9 @@ class BSF_ReadTime {
 
 			$bsf_rt_post = get_the_ID();
 
-			$post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
-			$previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -719,7 +719,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr($label) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr($this->reading_time) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr($calculated_postfix) . '"></span></span>';
+            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$title .= $original_title;
 
@@ -766,9 +766,9 @@ class BSF_ReadTime {
 
 			$bsf_rt_post = get_the_ID();
 
-			$post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
-			$previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
+			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -785,7 +785,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr($label) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr($this->reading_time) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr($calculated_postfix) . '"></span></span>';
+            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$original_title .= $title;
 
@@ -879,8 +879,8 @@ class BSF_ReadTime {
 			$this->reading_time = '< 1';
 		}
 
-		 update_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', $this->reading_time );
-		 update_post_meta( $bsf_rt_post, 'bsf_rt_word_count', $word_count );
+		 // update_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', $this->reading_time );
+		 // update_post_meta( $bsf_rt_post, 'bsf_rt_word_count', $word_count );
 
 		return $this->reading_time;
 	}
@@ -1130,7 +1130,7 @@ class BSF_ReadTime {
 				} 
 				.progress-bar {
 				background-color:  <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] !== '' ) ? $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] : 'unset'; ?>;
-				background-image: linear-gradient(to bottom right, <?php echo esc_attr ($this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one']) ?>, <?php echo esc_attr ($this->bsf_rt_options['bsf_rt_progress_bar_gradiant_two']) ?>);
+				background-image: linear-gradient(to bottom right, <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ); ?>, <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_two'] ); ?>);
 				height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
 				width: 0%;
 				
@@ -1240,7 +1240,7 @@ class BSF_ReadTime {
 				   background: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_background_color'] !== '' ) ? $this->bsf_rt_options['bsf_rt_read_time_background_color'] : 'unset'; ?>;
 
 					color: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_color'] !== '' ) ? $this->bsf_rt_options['bsf_rt_read_time_color'] : 'unset'; ?>;
-
+				
 					font-size: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_font_size'] ); ?>px;
 					
 					margin-top: 
@@ -1309,7 +1309,7 @@ class BSF_ReadTime {
 		   </style>
 		<?php
 	}
-
+	// @codingStandardsIgnoreEnd
 	/**
 	 * Adding Shortcode in Astra Theme hook.
 	 *
