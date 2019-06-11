@@ -439,7 +439,7 @@ class BSF_ReadTime {
 			}
 			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
 
-				 return $excerpt;
+				return $excerpt;
 			}
 
 			$original_excerpt = $excerpt;
@@ -464,8 +464,8 @@ class BSF_ReadTime {
             <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$excerpt .= $original_excerpt;
-			// @codingStandardsIgnoreStart
-			echo $excerpt;
+
+			echo $excerpt; //PHPCS:ignore:WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 		} else {
 
