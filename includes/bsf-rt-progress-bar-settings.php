@@ -2,21 +2,21 @@
 $options = get_option( 'bsf_rt_progress_bar_settings' );
 
 
-$bsf_rt_position_of_progress_bar = (!empty( $options['bsf_rt_position_of_progress_bar'] ) ? $options['bsf_rt_position_of_progress_bar'] : '' );
+$bsf_rt_position_of_progress_bar = ( ! empty( $options['bsf_rt_position_of_progress_bar'] ) ? $options['bsf_rt_position_of_progress_bar'] : '' );
 
-$bsf_rt_progress_bar_styles = (!empty( $options['bsf_rt_progress_bar_styles'] ) ? $options['bsf_rt_progress_bar_styles'] : '' );
+$bsf_rt_progress_bar_styles = ( ! empty( $options['bsf_rt_progress_bar_styles'] ) ? $options['bsf_rt_progress_bar_styles'] : '' );
 
-$bsf_rt_progress_bar_background_color = (!empty( $options['bsf_rt_progress_bar_background_color'] ) ? $options['bsf_rt_progress_bar_background_color'] : '' );
+$bsf_rt_progress_bar_background_color = ( ! empty( $options['bsf_rt_progress_bar_background_color'] ) ? $options['bsf_rt_progress_bar_background_color'] : '' );
 
-$bsf_rt_progress_bar_gradiant_one = (!empty( $options['bsf_rt_progress_bar_gradiant_one'] ) ? $options['bsf_rt_progress_bar_gradiant_one'] : '' );
+$bsf_rt_progress_bar_gradiant_one = ( ! empty( $options['bsf_rt_progress_bar_gradiant_one'] ) ? $options['bsf_rt_progress_bar_gradiant_one'] : '' );
 
-$bsf_rt_progress_bar_gradiant_two = (!empty( $options['bsf_rt_progress_bar_gradiant_two'] ) ? $options['bsf_rt_progress_bar_gradiant_two'] : '' );
+$bsf_rt_progress_bar_gradiant_two = ( ! empty( $options['bsf_rt_progress_bar_gradiant_two'] ) ? $options['bsf_rt_progress_bar_gradiant_two'] : '' );
 
-$bsf_rt_progress_bar_thickness = (!empty( $options['bsf_rt_progress_bar_thickness'] ) ? $options['bsf_rt_progress_bar_thickness'] : 12 );
+$bsf_rt_progress_bar_thickness = ( ! empty( $options['bsf_rt_progress_bar_thickness'] ) ? $options['bsf_rt_progress_bar_thickness'] : 12 );
 
-$bsf_rt_progress_display = (( $bsf_rt_position_of_progress_bar == 'none' ) ? 'style="display:none"' : '' );
+$bsf_rt_progress_display = ( ( $bsf_rt_position_of_progress_bar == 'none' ) ? 'style="display:none"' : '' );
 
-$bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 'style="display:none"' : '' );
+$bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ? 'style="display:none"' : '' );
 
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
@@ -89,7 +89,7 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 		</tr>
 	   </table>
 	  
-	   <table class="form-table" id="bsf-rt-progress-bar-options" <?php echo $bsf_rt_progress_display  ?>>  
+	   <table class="form-table" id="bsf-rt-progress-bar-options" <?php echo( $bsf_rt_progress_display ); ?>>  
 		<tr>
 		  <th scope="row"> 
 			<label for="ProgressBarStyle"><?php esc_attr_e( 'Styles', 'bsf_rt_textdomain' ); ?> :</label>
@@ -146,10 +146,11 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 			<td>
 				<?php
 				if ( isset( $bsf_rt_progress_bar_background_color ) ) {
-					?>
 
-					  <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value=" <?php echo $bsf_rt_progress_bar_background_color; ?>">
-				<?php } else { ?>
+
+					  echo '<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_background_color ) . '">';
+				} else {
+					?>
 
 						  <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#e8d5ff">
 
@@ -166,11 +167,12 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 			<td>
 				<?php
 				if ( isset( $bsf_rt_progress_bar_gradiant_one ) ) {
+
+
+					echo '<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_one ) . '">';
+
+				} else {
 					?>
-
-				<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="<?php echo $bsf_rt_progress_bar_gradiant_one; ?>">
-
-				<?php } else { ?>
 
 				<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#5540D9">
 
@@ -181,17 +183,18 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 			</td>
 		</tr>
 		</tr>
-		<tr id="gradiant-wrap2" <?php echo $bsf_rt_progress_color_display ?>>
+		<tr id="gradiant-wrap2" <?php echo $bsf_rt_progress_color_display; ?>>
 			  <th scope="row">
 				<label for="ProgressBarColor"> <?php esc_attr_e( 'Secondary Color', 'bsf_rt_textdomain' ); ?> :</label>
 			  </th>
 			  <td>
 					<?php
 					if ( isset( $bsf_rt_progress_bar_gradiant_two ) ) {
-						?>
 
-				   <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="<?php echo $bsf_rt_progress_bar_gradiant_two; ?>">
-					<?php } else { ?>
+
+						echo '<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_two ) . '">';
+					} else {
+						?>
 
 					  <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#ee7fff">
 						<?php
@@ -210,11 +213,12 @@ $bsf_rt_progress_color_display = (( $bsf_rt_progress_bar_styles == 'Normal' ) ? 
 					<?php
 
 					if ( isset( $bsf_rt_progress_bar_thickness ) ) {
+
+
+						echo '<input type="number" required name="bsf_rt_progress_bar_thickness" class="small-text" value="' . esc_attr( $bsf_rt_progress_bar_thickness ) . '">&nbsppx';
+
+					} else {
 						?>
-
-					  <input type="number" required name="bsf_rt_progress_bar_thickness" class="small-text" value="<?php echo $bsf_rt_progress_bar_thickness; ?>">&nbsppx
-
-					<?php } else { ?>
 
 					<input type="number"  name="bsf_rt_progress_bar_thickness" class="small-text" value="12">&nbsppx
 

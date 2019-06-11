@@ -5,11 +5,11 @@ echo '<h1 class="bsf_rt_main_title">';
  echo '</h1>';
 
 if ( get_option( 'bsf_rt_saved_msg' ) == 'ok' ) {
-	_e('<div id="message" class="notice is-dismissible notice-success">
+	echo '<div id="message" class="notice is-dismissible notice-success">
       <p class="description">
       Settings Saved.
       </p>
-    </div>' , 'read-meter' );
+    </div>';
 	update_option( 'bsf_rt_saved_msg', 'notok' );
 }
 
@@ -47,7 +47,7 @@ if ( isset( $_GET['tab'] ) ) {
 					echo 'nav-tab-active';
 	}
 	?>
-	"><?php _e( 'General Settings', 'read-meter' ); ?></a>
+	"><?php esc_attr_e( 'General Settings', 'read-meter' ); ?></a>
 
 			<a href="?page=bsf_rt&tab=bsf_rt_read_time_settings" class="nav-tab tb 
 			<?php
@@ -55,7 +55,7 @@ if ( isset( $_GET['tab'] ) ) {
 					echo 'nav-tab-active';
 			}
 			?>
-			"><?php _e( 'Read Time', 'read-meter' ); ?></a>
+			"><?php esc_attr_e( 'Read Time', 'read-meter' ); ?></a>
 
 			<a href="?page=bsf_rt&tab=bsf_rt_progress_bar_settings" class="nav-tab tb 
 			<?php
@@ -63,7 +63,7 @@ if ( isset( $_GET['tab'] ) ) {
 						echo 'nav-tab-active';
 			}
 			?>
-			"><?php _e( 'Progress Bar', 'read-meter' ); ?></a>
+			"><?php esc_attr_e( 'Progress Bar', 'read-meter' ); ?></a>
 
 		<a href="?page=bsf_rt&tab=bsf_rt_user_manual" class="nav-tab tb 
 		<?php
@@ -71,7 +71,7 @@ if ( isset( $_GET['tab'] ) ) {
 						echo 'nav-tab-active';
 		}
 		?>
-		"><?php _e( 'Getting Started', 'read-meter' ); ?></a>
+		"><?php esc_attr_e( 'Getting Started', 'read-meter' ); ?></a>
 </h2>
 
 <?php

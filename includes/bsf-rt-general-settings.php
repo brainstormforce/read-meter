@@ -1,13 +1,13 @@
 <?php
 $options = get_option( 'bsf_rt_general_settings' );
 
-$bsf_rt_words_per_minute = (!empty( $options['bsf_rt_words_per_minute'] ) ? $options['bsf_rt_words_per_minute'] : '' );
+$bsf_rt_words_per_minute = ( ! empty( $options['bsf_rt_words_per_minute'] ) ? $options['bsf_rt_words_per_minute'] : '' );
 
-$bsf_rt_post_types = (!empty( $options['bsf_rt_post_types'] ) ? $options['bsf_rt_post_types'] : array() );
+$bsf_rt_post_types = ( ! empty( $options['bsf_rt_post_types'] ) ? $options['bsf_rt_post_types'] : array() );
 
-$bsf_rt_include_images = (!empty( $options['bsf_rt_include_images'] ) ? $options['bsf_rt_include_images'] : '' );
+$bsf_rt_include_images = ( ! empty( $options['bsf_rt_include_images'] ) ? $options['bsf_rt_include_images'] : '' );
 
-$bsf_rt_include_comments = (!empty( $options['bsf_rt_include_comments'] ) ? $options['bsf_rt_include_comments'] : '' );
+$bsf_rt_include_comments = ( ! empty( $options['bsf_rt_include_comments'] ) ? $options['bsf_rt_include_comments'] : '' );
 
 
 $args = array(
@@ -45,27 +45,27 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 							if ( isset( $bsf_rt_post_types ) ) {
 								if ( in_array( $post_type->name, $bsf_rt_post_types ) ) {
 									echo '<label for="ForPostType">
-                             <input type="checkbox" checked name="posts[]" value="' . $post_type->name . '">
-                             ' . $post_type->labels->name . '</label><br> ';
+                             <input type="checkbox" checked name="posts[]" value="' . esc_attr( $post_type->name ) . '">
+                             ' . esc_attr( $post_type->labels->name ) . '</label><br> ';
 								} else {
 									echo '<label for="ForPostType">
-                             <input type="checkbox"  name="posts[]" value="' . $post_type->name . '">
-                             ' . $post_type->labels->name . '</label><br> ';
+                             <input type="checkbox"  name="posts[]" value="' . esc_attr( $post_type->name ) . '">
+                             ' . esc_attr( $post_type->labels->name ) . '</label><br> ';
 								}
 							} else {
 								echo '<label for="ForPostType">
-                             <input type="checkbox"  name="posts[]" value="' . $post_type->name . '">
-                             ' . $post_type->labels->name . '</label><br> ';
+                             <input type="checkbox"  name="posts[]" value="' . esc_attr( $post_type->name ) . '">
+                             ' . esc_attr( $post_type->labels->name ) . '</label><br> ';
 							}
 						} else {
 							if ( $post_type->name == 'post' ) {
 								echo '<label for="ForPostType">
-                         <input type="checkbox" checked name="posts[]" value="' . $post_type->name . '">
-                         ' . $post_type->labels->name . '</label><br> ';
+                         <input type="checkbox" checked name="posts[]" value="' . esc_attr( $post_type->name ) . '">
+                         ' . esc_attr( $post_type->labels->name ) . '</label><br> ';
 							}
 							echo '<label for="ForPostType">
-                         <input type="checkbox"  name="posts[]" value="' . $post_type->name . '">
-                         ' . $post_type->labels->name . '</label><br> ';
+                         <input type="checkbox"  name="posts[]" value="' . esc_attr( $post_type->name ) . '">
+                         ' . esc_attr( $post_type->labels->name ) . '</label><br> ';
 						}
 					}
 					?>
@@ -77,7 +77,9 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			<label for="WordsPerMinute"><?php esc_attr_e( 'Words Per Minute', 'read-meter' ); ?> :</label>
 		  </th>
 		  <td>
-			<input type="number" min="0" required name="bsf_rt_words_per_minute" placeholder="275" value="<?php echo $bsf_rt_words_per_minute; ?>" class="small-text">
+		  	<?php
+				echo '<input type="number" min="0" required name="bsf_rt_words_per_minute" placeholder="275" value="'.esc_attr($bsf_rt_words_per_minute).'" class="small-text">';
+			?>
 		  </td>
 		</tr>
 		  <th scope="row">

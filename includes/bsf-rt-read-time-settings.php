@@ -1,43 +1,43 @@
 <?php
-$options = get_option('bsf_rt_read_time_settings');
+$options = get_option( 'bsf_rt_read_time_settings' );
 
-$bsf_rt_show_read_time = ( !empty( $options['bsf_rt_show_read_time']) ? $options['bsf_rt_show_read_time'] : array( 'bsf_rt_single_page' ) ) ;
+$bsf_rt_show_read_time = ( ! empty( $options['bsf_rt_show_read_time'] ) ? $options['bsf_rt_show_read_time'] : array( 'bsf_rt_single_page' ) );
 
-$bsf_rt_position_of_read_time = (!empty( $options['bsf_rt_position_of_read_time'] ) ? $options['bsf_rt_position_of_read_time'] : '' );
+$bsf_rt_position_of_read_time = ( ! empty( $options['bsf_rt_position_of_read_time'] ) ? $options['bsf_rt_position_of_read_time'] : '' );
 
-$bsf_rt_reading_time_label = (!empty( $options['bsf_rt_reading_time_label'] ) ? $options['bsf_rt_reading_time_label'] : '' );
+$bsf_rt_reading_time_label = ( ! empty( $options['bsf_rt_reading_time_label'] ) ? $options['bsf_rt_reading_time_label'] : '' );
 
-$bsf_rt_reading_time_postfix_label = (!empty( $options['bsf_rt_reading_time_postfix_label'] ) ? $options['bsf_rt_reading_time_postfix_label'] : '' );
+$bsf_rt_reading_time_postfix_label = ( ! empty( $options['bsf_rt_reading_time_postfix_label'] ) ? $options['bsf_rt_reading_time_postfix_label'] : '' );
 
-$bsf_rt_read_time_font_size = (!empty( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_read_time_font_size'] : 10 );
+$bsf_rt_read_time_font_size = ( ! empty( $options['bsf_rt_read_time_font_size'] ) ? $options['bsf_rt_read_time_font_size'] : 10 );
 
-$bsf_rt_read_time_bg_option = (!empty( $options['bsf_rt_read_time_bg_option'] ) ? $options['bsf_rt_read_time_bg_option'] : '' );
+$bsf_rt_read_time_bg_option = ( ! empty( $options['bsf_rt_read_time_bg_option'] ) ? $options['bsf_rt_read_time_bg_option'] : '' );
 
-$bsf_rt_read_time_background_color = (!empty( $options['bsf_rt_read_time_background_color'] ) ? $options['bsf_rt_read_time_background_color'] : '' );
+$bsf_rt_read_time_background_color = ( ! empty( $options['bsf_rt_read_time_background_color'] ) ? $options['bsf_rt_read_time_background_color'] : '' );
 
-$bsf_rt_read_time_color = (!empty( $options['bsf_rt_read_time_color'] ) ? $options['bsf_rt_read_time_color'] : '' );
+$bsf_rt_read_time_color = ( ! empty( $options['bsf_rt_read_time_color'] ) ? $options['bsf_rt_read_time_color'] : '' );
 
-$bsf_rt_read_time_margin_top = (!empty( $options['bsf_rt_read_time_margin_top'] ) ? $options['bsf_rt_read_time_margin_top'] : 0 );
+$bsf_rt_read_time_margin_top = ( ! empty( $options['bsf_rt_read_time_margin_top'] ) ? $options['bsf_rt_read_time_margin_top'] : 0 );
 
-$bsf_rt_read_time_margin_right = (!empty( $options['bsf_rt_read_time_margin_right'] ) ? $options['bsf_rt_read_time_margin_right'] : 0 );
+$bsf_rt_read_time_margin_right = ( ! empty( $options['bsf_rt_read_time_margin_right'] ) ? $options['bsf_rt_read_time_margin_right'] : 0 );
 
-$bsf_rt_read_time_margin_bottom = (!empty( $options['bsf_rt_read_time_margin_bottom'] ) ? $options['bsf_rt_read_time_margin_bottom'] : 0 );
+$bsf_rt_read_time_margin_bottom = ( ! empty( $options['bsf_rt_read_time_margin_bottom'] ) ? $options['bsf_rt_read_time_margin_bottom'] : 0 );
 
-$bsf_rt_read_time_margin_left = (!empty( $options['bsf_rt_read_time_margin_left'] ) ? $options['bsf_rt_read_time_margin_left'] : 0 );
+$bsf_rt_read_time_margin_left = ( ! empty( $options['bsf_rt_read_time_margin_left'] ) ? $options['bsf_rt_read_time_margin_left'] : 0 );
 
-$bsf_rt_read_time_padding_top = (!empty( $options['bsf_rt_read_time_padding_top'] ) ? $options['bsf_rt_read_time_padding_top'] : 0 );
+$bsf_rt_read_time_padding_top = ( ! empty( $options['bsf_rt_read_time_padding_top'] ) ? $options['bsf_rt_read_time_padding_top'] : 0 );
 
-$bsf_rt_read_time_padding_right = (!empty( $options['bsf_rt_read_time_padding_right'] ) ? $options['bsf_rt_read_time_padding_right'] : 0 );
+$bsf_rt_read_time_padding_right = ( ! empty( $options['bsf_rt_read_time_padding_right'] ) ? $options['bsf_rt_read_time_padding_right'] : 0 );
 
-$bsf_rt_read_time_padding_bottom = (!empty( $options['bsf_rt_read_time_padding_bottom'] ) ? $options['bsf_rt_read_time_padding_bottom'] : 0 );
+$bsf_rt_read_time_padding_bottom = ( ! empty( $options['bsf_rt_read_time_padding_bottom'] ) ? $options['bsf_rt_read_time_padding_bottom'] : 0 );
 
-$bsf_rt_read_time_padding_left = (!empty( $options['bsf_rt_read_time_padding_left'] ) ? $options['bsf_rt_read_time_padding_left'] : 0 );
+$bsf_rt_read_time_padding_left = ( ! empty( $options['bsf_rt_read_time_padding_left'] ) ? $options['bsf_rt_read_time_padding_left'] : 0 );
 
-$bsf_rt_padding_unit = (!empty( $options['bsf_rt_padding_unit'] ) ? $options['bsf_rt_padding_unit'] : 'em' );
+$bsf_rt_padding_unit = ( ! empty( $options['bsf_rt_padding_unit'] ) ? $options['bsf_rt_padding_unit'] : 'em' );
 
-$bsf_rt_margin_unit = (!empty( $options['bsf_rt_margin_unit'] ) ? $options['bsf_rt_margin_unit'] : 'px' );
+$bsf_rt_margin_unit = ( ! empty( $options['bsf_rt_margin_unit'] ) ? $options['bsf_rt_margin_unit'] : 'px' );
 
-$bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' ) ? 'style="display:none"' : '' );
+$bsf_rt_read_time_options_display = ( ( $bsf_rt_position_of_read_time == 'none' ) ? 'style="display:none"' : '' );
 
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
@@ -55,7 +55,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		  <label id="bsf_rt_single_checkbox_label" for="ForSinglePage" class="bsf_rt_show_readtime_label" >
 			<?php
 			if ( isset( $bsf_rt_show_read_time ) && is_array( $bsf_rt_show_read_time ) ) {
-				
+
 				if ( in_array( 'bsf_rt_single_page', $bsf_rt_show_read_time ) ) {
 					echo ' <input id="bsf_rt_single_page" type="checkbox" checked name="bsf_rt_show_read_time[]"  value="bsf_rt_single_page">';
 				} else {
@@ -162,16 +162,18 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		</td>
 	  </tr>
 	  </table>
-	  <table class="form-table" id="bsf_rt_read_time_option" <?php echo $bsf_rt_read_time_options_display ?>>
+	  <table class="form-table" id="bsf_rt_read_time_option" <?php echo $bsf_rt_read_time_options_display; ?>>
 	   
 	  <tr>
 		<th scope="row">
-		  <label for="ReadingTimePostfixLabel"> <?php esc_attr_e( 'Reading Time Prefix', 'read-meter' ); ?> :</label>
+		  <label for="ReadingTimePrefixLabel"> <?php esc_attr_e( 'Reading Time Prefix', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
-			<?php if ( isset( $bsf_rt_reading_time_label ) ) { ?>
-		  <input type="text"  name="bsf_rt_reading_time_prefix_label"  value="<?php echo $bsf_rt_reading_time_label; ?>" class="regular-text">
-			<?php } else { ?>
+			<?php
+			if ( isset( $bsf_rt_reading_time_label ) ) {
+				echo '<input type="text"  name="bsf_rt_reading_time_prefix_label"  value="' . esc_attr( $bsf_rt_reading_time_label ) . '" class="regular-text">';
+			} else {
+				?>
 		   <input type="text"  name="bsf_rt_reading_time_prefix_label" value="Reading Time" class="regular-text">
 			<?php } ?>
 
@@ -187,9 +189,11 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		 <label for="ReadingTimePrefixLabel"><?php esc_attr_e( 'Reading Time Postfix', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
-			<?php if ( isset( $bsf_rt_reading_time_postfix_label ) ) { ?>
-		  <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="<?php echo $bsf_rt_reading_time_postfix_label; ?>" class="regular-text">
-			<?php } else { ?>
+			<?php
+			if ( isset( $bsf_rt_reading_time_postfix_label ) ) {
+				echo '<input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="' . esc_attr( $bsf_rt_reading_time_postfix_label ) . '" class="regular-text">';
+			} else {
+				?>
 			  <input type="text"  name="bsf_rt_reading_time_postfix_label" placeholder="mins" value="mins" class="regular-text">
 			<?php } ?>
 		  <p class="description">  
@@ -203,7 +207,9 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 			<label for="ReadtimeFontSize"><?php esc_attr_e( 'Font Size', 'read-meter' ); ?>  :</label>
 		  </th>
 		  <td>
-				<input type="number" name="bsf_rt_read_time_font_size" max="50" min="10" class="small-text" value="<?php echo $bsf_rt_read_time_font_size; ?>"  >&nbsp px
+				<?php
+				echo '<input type="number" name="bsf_rt_read_time_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $bsf_rt_read_time_font_size ) . '"  >&nbsp px';
+				?>
 				<p class="description">
 					<?php esc_attr_e( 'Keep blank for default value.', 'read-meter' ); ?>                  
 		   
@@ -215,10 +221,12 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		  <label for="ReadingTimeMargin"><?php esc_attr_e( 'Margin', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
-		   <input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_top" class="small-text" value="<?php echo $bsf_rt_read_time_margin_top; ?>" > 
-		   <input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_right" class="small-text" value="<?php echo $bsf_rt_read_time_margin_right; ?>" >
-		   <input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_bottom" class="small-text" value="<?php echo $bsf_rt_read_time_margin_bottom; ?>" > 
-		   <input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_left" class="small-text" value="<?php echo $bsf_rt_read_time_margin_left; ?>" >
+			<?php
+			echo '<input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_top" class="small-text" value="' . esc_attr( $bsf_rt_read_time_margin_top ) . '" >';
+			echo '<input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_right" class="small-text" value="' . esc_attr( $bsf_rt_read_time_margin_right ) . '" >';
+			echo '<input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_bottom" class="small-text" value="' . esc_attr( $bsf_rt_read_time_margin_bottom ) . '" >';
+			echo '<input step="any" id="bsf_rt_margin" type="number" name="bsf_rt_read_time_margin_left" class="small-text" value="' . esc_attr( $bsf_rt_read_time_margin_left ) . '" >';
+			?>
 		   <select name="bsf_rt_margin_unit">
 			<?php
 			if ( $bsf_rt_margin_unit == 'px' ) {
@@ -237,7 +245,7 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 			}
 			?>
 		   </select>
-		    <p class="description bsf-rt-label-style">
+			<p class="description bsf-rt-label-style">
 					<label class="bsf-rt-top">TOP</label>
 					<label class="bsf-rt-right">RIGHT</label>
 					<label class="bsf-rt-bottom">BOTTOM</label>
@@ -250,11 +258,12 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		  <label for="ReadingTimePadding"><?php esc_attr_e( 'Padding', 'read-meter' ); ?> :</label>
 		</th>
 		<td>
-		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_top" class="small-text" value="<?php echo $bsf_rt_read_time_padding_top; ?>" >
-		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_right" class="small-text" value="<?php echo $bsf_rt_read_time_padding_right; ?>" > 
-		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_bottom" class="small-text" value="<?php echo $bsf_rt_read_time_padding_bottom; ?>" > 
-		   <input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_left" class="small-text" value="<?php echo $bsf_rt_read_time_padding_left; ?>" >
-
+			<?php
+			echo '<input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_top" class="small-text" value="' . esc_attr( $bsf_rt_read_time_padding_top ) . '" >';
+			echo '<input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_right" class="small-text" value="' . esc_attr( $bsf_rt_read_time_padding_right ) . '" > ';
+			echo '<input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_bottom" class="small-text" value="' . esc_attr( $bsf_rt_read_time_padding_bottom ) . '" >';
+			echo '<input step="any" id="bsf_rt_padding" type="number" name="bsf_rt_read_time_padding_left" class="small-text" value="' . esc_attr( $bsf_rt_read_time_padding_left ) . '" >';
+			?>
 		   <select name="bsf_rt_padding_unit">
 			<?php
 			if ( $bsf_rt_padding_unit == 'px' ) {
@@ -289,9 +298,10 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 				<?php
 				echo '<div id="bsf_rt_bg">';
 				if ( isset( $bsf_rt_read_time_background_color ) ) {
+
+					echo '<input  name="bsf_rt_read_time_background_color" class="my-color-field" value="' . esc_attr( $bsf_rt_read_time_background_color ) . '">';
+				} else {
 					?>
-			  <input  name="bsf_rt_read_time_background_color" class="my-color-field" value=" <?php echo $bsf_rt_read_time_background_color; ?>">
-				<?php } else { ?>
 			   <input  name="bsf_rt_read_time_background_color" class="my-color-field" value="#eeeeee">
 					<?php
 				}
@@ -307,9 +317,10 @@ $bsf_rt_read_time_options_display = (( $bsf_rt_position_of_read_time == 'none' )
 		  <td>
 			<?php
 			if ( isset( $bsf_rt_read_time_color ) ) {
+
+				echo '<input name="bsf_rt_read_time_color" class="my-color-field" value="' . esc_attr( $bsf_rt_read_time_color ) . '">';
+			} else {
 				?>
-			  <input name="bsf_rt_read_time_color" class="my-color-field" value="<?php echo $bsf_rt_read_time_color; ?>">
-			<?php } else { ?>
 			  <input name="bsf_rt_read_time_color" class="my-color-field" value="#333333">
 				<?php
 			}

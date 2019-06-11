@@ -1,10 +1,10 @@
 <?php
    /**
-	* Plugin Name: Read Meter - Advanced Read Time & Reading Progress Bar for WordPress
+	* Plugin Name: Read Meter - Reading Time & Progress Bar for WordPress.
 	* Plugin URI:  https://brainstormforce.com
 	* Description:  To display Reading Time for a particular post.
 	* Version:     1.0.0
-	* Author:      Rajkiran Gajanan Bagal
+	* Author:      Brainstorm Force.
 	* Author URI:  https://brainstormforce.com
 	* Text Domain: read-meter.
 	* Main
@@ -13,7 +13,7 @@
 	*
 	* @category PHP
 	* @package  BSF ReadTime
-	* @author   Display Name <username@rajkiranb.com>
+	* @author   Display Name <username@brainstormforce.com>
 	* @license  https://brainstormforce.com
 	* @link     https://brainstormforce.com
 	*/
