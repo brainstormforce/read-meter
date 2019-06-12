@@ -145,7 +145,7 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 			</th>
 			<td>
 				<?php
-				if ( isset( $bsf_rt_progress_bar_background_color ) ) {
+				if ( !empty( $bsf_rt_progress_bar_background_color ) ) {
 
 
 					  echo '<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_background_color ) . '">';
@@ -166,7 +166,7 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 			</th>  
 			<td>
 				<?php
-				if ( isset( $bsf_rt_progress_bar_gradiant_one ) ) {
+				if ( !empty( $bsf_rt_progress_bar_gradiant_one ) ) {
 
 
 					echo '<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_one ) . '">';
@@ -189,7 +189,7 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 			  </th>
 			  <td>
 					<?php
-					if ( isset( $bsf_rt_progress_bar_gradiant_two ) ) {
+					if ( !empty( $bsf_rt_progress_bar_gradiant_two ) ) {
 
 
 						echo '<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_two ) . '">';

@@ -209,12 +209,15 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 		 */
 		public function bsfrt_pluginstyle_frontend() {
 			$option = get_option( 'bsf_rt_general_settings' );
+			if (empty($option['bsf_rt_include_comments'])) {
 
+				$option['bsf_rt_include_comments'] = '';
+			}
 			wp_enqueue_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-frontend-css.css' );
 			wp_enqueue_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-frontend.js' );
-			if (!empty($option['bsf_rt_include_comments'])) {
-				wp_localize_script( 'bsfrt_frontend', 'myObj', array( 'option' => $option['bsf_rt_include_comments'] ) );
-			}
+			
+			wp_localize_script( 'bsfrt_frontend', 'myObj', array( 'option' => $option['bsf_rt_include_comments'] ) );
+			
 			
 		}
 		/**
