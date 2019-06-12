@@ -73,7 +73,7 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 					array_push($bsf_rt_post_types , filter_var($key, FILTER_SANITIZE_STRING));
 				 }
 				}
-				
+
 				$bsf_rt_include_images = ( ! empty( $_POST['bsf_rt_include_images'] ) ? filter_var($_POST['bsf_rt_include_images'], FILTER_SANITIZE_STRING) : '' );
 
 				$bsf_rt_include_comments = ( ! empty( $_POST['bsf_rt_include_comments'] ) ? filter_var($_POST['bsf_rt_include_comments'], FILTER_SANITIZE_STRING) : '' );
@@ -109,7 +109,16 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 
 				$bsf_rt_reading_time_postfix_label = ( ! empty( $_POST['bsf_rt_reading_time_postfix_label'] ) ? sanitize_text_field( $_POST['bsf_rt_reading_time_postfix_label'] ) : '' );
 
-				$bsf_rt_show_read_time = ( ! empty( $_POST['bsf_rt_show_read_time'] ) ? $_POST['bsf_rt_show_read_time'] : array() );
+				$bsf_rt_readtime_post_types_array = ( ! empty( $_POST['bsf_rt_show_read_time'] ) ? $_POST['bsf_rt_show_read_time'] : array() );
+				$bsf_rt_show_read_time =array();
+				if (!empty($bsf_rt_readtime_post_types_array)) {
+
+				 foreach ($bsf_rt_readtime_post_types_array as $key) {
+
+					array_push($bsf_rt_show_read_time , filter_var($key, FILTER_SANITIZE_STRING));
+				 }
+				}
+				
 
 				$bsf_rt_read_time_font_size = ( ! empty( $_POST['bsf_rt_read_time_font_size'] ) ? floatval( $_POST['bsf_rt_read_time_font_size'] ) : 10 );
 
