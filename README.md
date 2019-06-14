@@ -2,7 +2,7 @@ Read Meter - readme
 
 People often skip reading posts with the fear of the time they’ll spend reading it. Are you losing readers too? 
 
-The Read Meter plugin  displays the estimated reading time for blog posts along with a progress bar. It works great to give visitors a quick idea about the time needed to read a post and encourages them to go on till the end.
+The Read Meter plugin displays the estimated reading time for blog posts along with a progress bar. It works great to give visitors a quick idea about the time needed to read a post and encourages them to go on till the end.
 
 Usually, visitors try to scan the entire post at first glance and grasp as much as information possible from the post. Reading time specified in minutes motivates users to read the post. 
 

@@ -1,114 +1,89 @@
 === Read Meter - Reading Time & Progress Bar ===
 Contributors: brainstormforce
 Donate link: https://example.com/
-Tags: comments, spam
+Tags: readtime, progressbar
 Requires at least: 4.5
 Tested up to: 5.2
 Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+The Read Meter plugin displays the estimated reading time for blog posts along with a progress bar. It works great to give visitors a quick idea about the time needed to read a post and encourages them to go on till the end.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+People often skip reading posts with the fear of the time they’ll spend reading it. Are you losing readers too? 
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+The Read Meter plugin displays the estimated reading time for blog posts along with a progress bar. It works great to give visitors a quick idea about the time needed to read a post and encourages them to go on till the end.
 
-A few notes about the sections above:
+Usually, visitors try to scan the entire post at first glance and grasp as much as information possible from the post. Reading time specified in minutes motivates users to read the post. 
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+A handy progress bar will show the reader’s position on the post. As the reader scrolls the page, the progress bar indicates the remaining part of the post. This lets readers know how far have they reached and how much more do they have to go on. 
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+The plugin uses an advanced image time calculation technique. In case your post contains images, the plugin calculates the time to view those images as well. It adds 12 seconds for the first image, 11 seconds for the second image and so on till the 10th image. After that, it adds 3 seconds for each further image. 
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
 
-e.g.
+1. Upload the plugin files to the `/wp-content/plugins/` directory, or install the plugin through the WordPress plugins screen directly.
+2. Activate the plugin through the 'Plugins' screen in WordPress
+3. Once activated, you’ll find Read Meter settings in the Dashboard Settings.
 
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+Where can I find the settings of the Read Meter plugin?
+After installing and activating the plugin, settings can be found under Settings > Read Meter 
 
-An answer to that question.
+How is the read time calculated?
+Let’s assume, you have set Words Per Minute ( Settings > Read Meter > General Settings) to 275 and total words in your blog post are 1100. So the total number of words (1100) divided by Words per minute (275) will give you an estimated time of reading i.e. 4 minutes. 
 
-= What about foo bar? =
+Can I add this for CPT (Custom Post Types)?
+Yes! The plugin works with all CPTs. You can select Post Types from Settings > Read Meter > General Settings 
 
-Answer to foo bar dilemma.
+Where can I add a shortcode?
+Shortcode -  [read_meter] can be added to any page with a shortcode module/block. This will work with the Gutenberg editor or any page builder editor. 
+
+What themes does the Read Meter Plugin work with?
+The Read Meter plugin works with all WordPress themes!
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+ https://i.imgur.com/fVzaES9.png
+ https://i.imgur.com/t5zQWKF.png
+ https://i.imgur.com/NPT5gnL.png
+ https://i.imgur.com/yMB3oki.png
+
 
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
+* Official Plugin Release.
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
 
 == A brief Markdown Example ==
 
 Ordered list:
+Here are some key features of the plugin - 
 
-1. Some feature
-1. Another feature
-1. Something else about the plugin
+A simple shortcode - [read_meter],  gives you the flexibility to add read time anywhere on the site. 
+Even if the post is updated multiple times, the plugin will calculate the read time for the most recent version of the post. 
+You can choose to display the read time and a progress bar on various post types.
+You can decide whether you would like to include images and comments in the read time and progress bar.
 
-Unordered list:
+That's not all! Here are some more controls you get over Reading Time - 
 
-* something
-* something else
-* third thing
+Display the read time on a blog/archive page or single post page 
+Set the read time position - i.e. Above/Below title or above content
+Set a read time Prefix and Postfix 
+Use various read time styling options - Spacing, Background color, Font size, etc. 
 
-Here's a link to [WordPress](https://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
+Specific controls for Progress Bar - 
 
-[markdown syntax]: https://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
+Set a progress bar position - i.e. Top/ Bottom of the page.
+Use various progress bar styling options - Gradient Background color, Bar thickness, etc. 
 
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
+<img src="https://d2ddoduugvun08.cloudfront.net/items/1Z152l0V2c382w1x2w20/Screen%20Recording%202019-06-13%20at%2004.37.31.07%20PM.gif" style="display: block;height: auto;width: 100%;"/>
 
-`<?php code(); // goes in backticks ?>`
+
