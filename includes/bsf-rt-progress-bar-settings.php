@@ -1,4 +1,12 @@
 <?php
+/**
+ * The Read meter progressbar Settings tab
+ *
+ * @since      1.0.0
+ * @package    BSF
+ * @author     Brainstorm Force.
+ */
+
 $options = get_option( 'bsf_rt_progress_bar_settings' );
 
 
@@ -14,26 +22,25 @@ $bsf_rt_progress_bar_gradiant_two = ( ! empty( $options['bsf_rt_progress_bar_gra
 
 $bsf_rt_progress_bar_thickness = ( ! empty( $options['bsf_rt_progress_bar_thickness'] ) ? $options['bsf_rt_progress_bar_thickness'] : 12 );
 
-$bsf_rt_progress_display = ( ( $bsf_rt_position_of_progress_bar == 'none' ) ? 'style="display:none"' : '' );
+$bsf_rt_progress_display = ( ( 'none' === $bsf_rt_position_of_progress_bar ) ? 'style="display:none"' : '' );
 
-$bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ? 'style="display:none"' : '' );
+$bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) ? 'style="display:none"' : '' );
 
 ?>
 <div class="bsf_rt_global_settings" id="bsf_rt_global_settings">
-  <form action="" method="post" name="bsf_rt_settings_form">
-	  <table class="form-table">
-		 <br>
-		 <p class="description">
+<form action="" method="post" name="bsf_rt_settings_form">
+	<table class="form-table">
+		<br>
+		<p class="description">
 			<?php esc_attr_e( 'Control the position & appearance of the progress bar. Progress bar acts with the content that the user has read. (Note : The Progress Bar will only display on Singular Posts or Pages)', 'bsf_rt_textdomain' ); ?>
-			
 		</p> 
 		<tr>
-		  <th scope="row"> 
+		<th scope="row"> 
 
 			<label for="PositionofDisplayProgressBar"><?php esc_attr_e( 'Display Position', 'bsf_rt_textdomain' ); ?> :</label>
 
-		  </th>
-		  <td>
+		</th>
+		<td>
 			<select required id="bsf_rt_position_of_progress_bar" name="bsf_rt_position_of_progress_bar" >
 				<?php
 				if ( isset( $bsf_rt_position_of_progress_bar ) ) {
@@ -72,30 +79,29 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 						echo '</option>';
 					}
 				} else {
-					  echo '<option  value="none">';
-						  esc_attr_e( 'None', 'bsf_rt_textdomain' );
-						  echo '</option>';
-					  echo '<option  value="top_of_the_page">';
-						  esc_attr_e( 'Top of the Page', 'bsf_rt_textdomain' );
-						  echo '</option>';
-					  echo '<option  value="bottom_of_the_page">';
-						  esc_attr_e( 'Bottom of the Page', 'bsf_rt_textdomain' );
-						  echo '</option>';
+					echo '<option  value="none">';
+						esc_attr_e( 'None', 'bsf_rt_textdomain' );
+						echo '</option>';
+					echo '<option  value="top_of_the_page">';
+						esc_attr_e( 'Top of the Page', 'bsf_rt_textdomain' );
+						echo '</option>';
+					echo '<option  value="bottom_of_the_page">';
+						esc_attr_e( 'Bottom of the Page', 'bsf_rt_textdomain' );
+						echo '</option>';
 				}
 
 				?>
 			</select>
-		  </td>
+		</td>
 		</tr>
-	   </table>
-	  
-	   <table class="form-table" id="bsf-rt-progress-bar-options" <?php echo wp_kses_post( $bsf_rt_progress_display ); ?>>  
+	</table>
+	<table class="form-table" id="bsf-rt-progress-bar-options" <?php echo wp_kses_post( $bsf_rt_progress_display ); ?>>  
 		<tr>
-		  <th scope="row"> 
+	<th scope="row"> 
 			<label for="ProgressBarStyle"><?php esc_attr_e( 'Styles', 'bsf_rt_textdomain' ); ?> :</label>
-		  </th>
+	</th>
 			<td>
-			  <select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles">
+			<select  name="bsf_rt_progress_bar_styles" id="bsf_rt_progress_bar_styles">
 					<?php
 					if ( isset( $bsf_rt_progress_bar_styles ) ) {
 
@@ -134,25 +140,25 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 					}
 
 					?>
-			  </select>
+			</select>
 			</td>
 		</tr>
 		<tr id="normal-back-wrap">
 			<th scope="row">
 
-			  <label for="ProgressBarBackgroundColor"><?php esc_attr_e( 'Background Color', 'bsf_rt_textdomain' ); ?> :</label>
+			<label for="ProgressBarBackgroundColor"><?php esc_attr_e( 'Background Color', 'bsf_rt_textdomain' ); ?> :</label>
 
 			</th>
 			<td>
 				<?php
-				if ( !empty( $bsf_rt_progress_bar_background_color ) ) {
+				if ( ! empty( $bsf_rt_progress_bar_background_color ) ) {
 
 
-					  echo '<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_background_color ) . '">';
+					echo '<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_background_color ) . '">';
 				} else {
 					?>
 
-						  <input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#e8d5ff">
+						<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#e8d5ff">
 
 					<?php
 				}
@@ -162,11 +168,11 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 		</tr> 
 		<tr id="normal-color-wrap">
 			<th scope="row">
-			  <label for="ProgressBarColor"> <?php esc_attr_e( 'Primary Color', 'bsf_rt_textdomain' ); ?> :</label>
+			<label for="ProgressBarColor"> <?php esc_attr_e( 'Primary Color', 'bsf_rt_textdomain' ); ?> :</label>
 			</th>  
 			<td>
 				<?php
-				if ( !empty( $bsf_rt_progress_bar_gradiant_one ) ) {
+				if ( ! empty( $bsf_rt_progress_bar_gradiant_one ) ) {
 
 
 					echo '<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_one ) . '">';
@@ -179,34 +185,32 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 					<?php
 				}
 				?>
-			  
 			</td>
 		</tr>
 		</tr>
 		<tr id="gradiant-wrap2" <?php echo wp_kses_post( $bsf_rt_progress_color_display ); ?>>
-			  <th scope="row">
+			<th scope="row">
 				<label for="ProgressBarColor"> <?php esc_attr_e( 'Secondary Color', 'bsf_rt_textdomain' ); ?> :</label>
-			  </th>
-			  <td>
+			</th>
+			<td>
 					<?php
-					if ( !empty( $bsf_rt_progress_bar_gradiant_two ) ) {
+					if ( ! empty( $bsf_rt_progress_bar_gradiant_two ) ) {
 
 
 						echo '<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_two ) . '">';
 					} else {
 						?>
 
-					  <input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#ee7fff">
+					<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#ee7fff">
 						<?php
 					}
 					?>
-				
-			  </td>
+			</td>
 		</tr>
 		<tr>
 			<th scope="row">
 
-			  <label for="Thickness"><?php esc_attr_e( 'Bar Thickness', 'bsf_rt_textdomain' ); ?> :</label>
+			<label for="Thickness"><?php esc_attr_e( 'Bar Thickness', 'bsf_rt_textdomain' ); ?> :</label>
 
 			</th>
 			<td>
@@ -225,18 +229,18 @@ $bsf_rt_progress_color_display = ( ( $bsf_rt_progress_bar_styles == 'Normal' ) ?
 						<?php
 					}
 					?>
-			  
+
 			</td>
 		</tr>
 	</table>
-	  <table class="form-table">
-		 <tr>
+	<table class="form-table">
+	<tr>
 			<th>
 				<?php wp_nonce_field( 'bsf-rt-nonce-progress', 'bsf-rt-progress' ); ?>
-			  <input type="submit" value="Save" class="bt button button-primary" name="submit">
+			<input type="submit" value="Save" class="bt button button-primary" name="submit">
 
 			</th>
-		 </tr>
+		</tr>
 	</table>
-  </form>
+</form>
 </div>

@@ -1,28 +1,51 @@
 <?php
 /**
+ * The Read meter Main Class
+ *
+ * @since      1.0.0
+ * @package    BSF
+ * @author     Brainstorm Force.
+ */
+
+/**
  * Class for calculating reading time.
  *
  * The class that contains all functions for calculating reading time.
  *
  * @since 1.0.0
  */
-class BSF_ReadTime {
+class BSFRT_ReadTime {
 
 	/**
-	 * Member Variable
-	 *
-	 * @var instance
+	Member Variable
+
+	@var instance
 	 */
 	private static $instance;
 
+	/**
+	Member Variable
+
+	@var reading_time
+	 */
 	public $reading_time;
 
+	/**
+	Member Variable
+
+	@var bsf_rt_options
+	 */
 	public $bsf_rt_options = array();
 
+	/**
+	Member Variable
+
+	@var bsf_rt_check_the_page
+	 */
 	public static $bsf_rt_check_the_page;
 
 	/**
-	 *  Initiator
+	Initiator
 	 */
 	public static function get_instance() {
 		if ( ! isset( self::$instance ) ) {
@@ -32,25 +55,28 @@ class BSF_ReadTime {
 	}
 
 	/**
-	 * Construct function for Read Meter.
-	 *
-	 * Create default settings on plugin activation.
-	 *
-	 * @since 1.0.0
+	Construct function for Read Meter.
+
+	Create default settings on plugin activation.
+
+	@since 1.0.0
 	 */
 	public function __construct() {
 		$this->bsf_rt_init_backend();
 
 		add_action( 'wp', array( $this, 'bsf_rt_init_frontend' ) );
 
-		// Shortcode
+		// Shortcode.
 		add_shortcode( 'read_meter', array( $this, 'read_meter_shortcode' ) );
 
 		add_filter( 'comments_template', array( $this, 'bsf_rt_remove_the_title_from_comments' ) );
 	}
 
+	/**
+	Backend settings
+	 */
 	public function bsf_rt_init_backend() {
-		 $bsf_rt_show_read_time = array( 'bsf_rt_single_page' );
+		$bsf_rt_show_read_time = array( 'bsf_rt_single_page' );
 
 		$bsf_rt_posts = array( 'post' );
 
@@ -95,31 +121,33 @@ class BSF_ReadTime {
 
 		$bsf_rt_progress_bar_settings = get_option( 'bsf_rt_progress_bar_settings' );
 
-		if ( isset( $bsf_rt_general_settings ) && $bsf_rt_read_time_settings !== '' && isset( $bsf_rt_progress_bar_settings ) ) {
-				$all_options = array_merge( $bsf_rt_general_settings, $bsf_rt_read_time_settings );
-				$all_options = array_merge( $all_options, $bsf_rt_progress_bar_settings );
+		if ( isset( $bsf_rt_general_settings ) && '' !== $bsf_rt_read_time_settings && isset( $bsf_rt_progress_bar_settings ) ) {
+			$all_options = array_merge( $bsf_rt_general_settings, $bsf_rt_read_time_settings );
+			$all_options = array_merge( $all_options, $bsf_rt_progress_bar_settings );
 		}
 		$this->bsf_rt_options = $all_options;
 
 	}
-
+	/**
+	Frontend settings
+	 */
 	public function bsf_rt_init_frontend() {
 		add_filter(
 			'comments_template',
 			function( $template ) {
-							echo '<div id="bsf-rt-comments"></div>';
-							$temp     = '<div id="bsf-rt-comments"></div>';
-							$template = $template . $temp;
-							return $template;
+				echo '<div id="bsf-rt-comments"></div>';
+				$temp     = '<div id="bsf-rt-comments"></div>';
+				$template = $template . $temp;
+				return $template;
 			}
 		);
 
 		add_filter( 'the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90 );
 
-		if ( isset( $this->bsf_rt_options['bsf_rt_show_read_time'] ) && $this->bsf_rt_options['bsf_rt_position_of_read_time'] !== 'none' ) {
+		if ( isset( $this->bsf_rt_options['bsf_rt_show_read_time'] ) && 'none' !== $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) {
 
 			if ( isset( $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
-				// Read time styles
+				// Read time styles.
 				if ( isset( $this->bsf_rt_options['bsf_rt_read_time_margin_top'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_margin_right'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_margin_left'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_padding_top'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_padding_right'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_padding_left'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_font_size'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_color'] ) && isset( $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) && isset( $this->bsf_rt_options['bsf_rt_padding_unit'] ) && isset( $this->bsf_rt_options['bsf_rt_margin_unit'] ) ) {
 
 					add_action( 'wp_head', array( $this, 'bsf_rt_set_readtime_styles_content' ) );
@@ -131,17 +159,17 @@ class BSF_ReadTime {
 			}
 		}
 
-		// For twenty fifteen Theme remove the extra markup in the nextpost and prev post section
+		// For twenty fifteen Theme remove the extra markup in the nextpost and prev post section.
 		$bsf_rt_current_theme = $this->bsf_rt_get_current_theme();
 
-		if ( $bsf_rt_current_theme === 'Twenty Fifteen' || $bsf_rt_current_theme === 'Twenty Nineteen' || $bsf_rt_current_theme === 'Twenty Thirteen' || $bsf_rt_current_theme === 'Twenty Fourteen' || $bsf_rt_current_theme === 'Twenty Sixteen' || $bsf_rt_current_theme === 'Twenty Seventeen' || $bsf_rt_current_theme === 'Twenty Twelve' ) {
+		if ( 'Twenty Fifteen' === $bsf_rt_current_theme || 'Twenty Nineteen' === $bsf_rt_current_theme || 'Twenty Thirteen' === $bsf_rt_current_theme || 'Twenty Fourteen' === $bsf_rt_current_theme || 'Twenty Sixteen' === $bsf_rt_current_theme || 'Twenty Seventeen' === $bsf_rt_current_theme || 'Twenty Twelve' === $bsf_rt_current_theme ) {
 			add_filter( 'next_post_link', array( $this, 'bsf_rt_remove_markup_for_twenty_series' ) );
 			add_filter( 'previous_post_link', array( $this, 'bsf_rt_remove_markup_for_twenty_series' ) );
 		}
 
-		// Show Reading time Conditions
-		if ( isset( $this->bsf_rt_options['bsf_rt_show_read_time'] ) && $this->bsf_rt_options['bsf_rt_position_of_read_time'] !== 'none' ) {
-			if ( in_array( 'bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_singular() ) {
+		// Show Reading time Conditions.
+		if ( isset( $this->bsf_rt_options['bsf_rt_show_read_time'] ) && 'none' !== $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) {
+			if ( in_array( 'bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_singular() ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				if ( isset( $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
 
@@ -156,12 +184,12 @@ class BSF_ReadTime {
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_below_the_post_title' ), 90 );
 				}
 			}
-			if ( in_array( 'bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_home() && ! is_archive() ) {
+			if ( in_array( 'bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_home() && ! is_archive() ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				if ( isset( $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
 
 					add_filter( 'get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000 );
-					if ( $bsf_rt_current_theme === 'Twenty Fifteen' || $bsf_rt_current_theme === 'Twenty Nineteen' || $bsf_rt_current_theme === 'Twenty Thirteen' || $bsf_rt_current_theme === 'Twenty Fourteen' || $bsf_rt_current_theme === 'Twenty Sixteen' || $bsf_rt_current_theme === 'Twenty Seventeen' || $bsf_rt_current_theme === 'Twenty Twelve' ) {
+					if ( 'Twenty Fifteen' === $bsf_rt_current_theme || 'Twenty Nineteen' === $bsf_rt_current_theme || 'Twenty Thirteen' === $bsf_rt_current_theme || 'Twenty Fourteen' === $bsf_rt_current_theme || 'Twenty Sixteen' === $bsf_rt_current_theme || 'Twenty Seventeen' === $bsf_rt_current_theme || 'Twenty Twelve' === $bsf_rt_current_theme ) {
 						add_filter( 'the_content', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000 );
 					}
 				}
@@ -174,13 +202,13 @@ class BSF_ReadTime {
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_after_title_excerpt' ), 1000 );
 				}
 			}
-			if ( in_array( 'bsf_rt_archive_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && ! is_home() && is_archive() ) {
+			if ( in_array( 'bsf_rt_archive_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && ! is_home() && is_archive() ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				if ( isset( $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) && ( 'above_the_content' === $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) ) {
 
 					add_filter( 'get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_archive' ), 1000 );
 
-					if ( $bsf_rt_current_theme === 'Twenty Fifteen' || $bsf_rt_current_theme === 'Twenty Nineteen' || $bsf_rt_current_theme === 'Twenty Thirteen' || $bsf_rt_current_theme === 'Twenty Fourteen' || $bsf_rt_current_theme === 'Twenty Sixteen' || $bsf_rt_current_theme === 'Twenty Seventeen' || $bsf_rt_current_theme === 'Twenty Twelve' ) {
+					if ( 'Twenty Fifteen' === $bsf_rt_current_theme || 'Twenty Nineteen' === $bsf_rt_current_theme || 'Twenty Thirteen' === $bsf_rt_current_theme || 'Twenty Fourteen' === $bsf_rt_current_theme || 'Twenty Sixteen' === $bsf_rt_current_theme || 'Twenty Seventeen' === $bsf_rt_current_theme || 'Twenty Twelve' === $bsf_rt_current_theme ) {
 						add_filter( 'the_content', array( $this, 'bsf_rt_add_reading_time_before_content_archive' ), 1000 );
 					}
 				}
@@ -194,10 +222,10 @@ class BSF_ReadTime {
 				}
 			}
 		}
-			// Displaying Progress Bar Conditions
+		// Displaying Progress Bar Conditions.
 		if ( isset( $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) && ( 'none' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
 
-			 return;
+			return;
 
 		} elseif ( isset( $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) && ( 'top_of_the_page' === $this->bsf_rt_options['bsf_rt_position_of_progress_bar'] ) ) {
 
@@ -219,20 +247,20 @@ class BSF_ReadTime {
 
 			if ( isset( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) && isset( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_two'] ) && isset( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) && isset( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ) ) {
 
-				  add_action( 'wp_head', array( $this, 'bsf_rt_set_progressbar_colors_gradient' ) );
+				add_action( 'wp_head', array( $this, 'bsf_rt_set_progressbar_colors_gradient' ) );
 			}
 		}
 	}
 	/**
-	 * Adds the reading time before the_content.
-	 *
-	 * If the options is selected to automatically add the reading time before
-	 * the_content, the reading time is calculated and added to the beginning of the_content.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  string $content The original post content.
-	 * @return string The post content with reading time prepended.
+	Adds the reading time before the_content.
+
+	If the options is selected to automatically add the reading time before
+	the_content, the reading time is calculated and added to the beginning of the_content.
+
+	@since 1.0.0
+
+	@param  string $content The original post content.
+	@return string The post content with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_before_content( $content ) {
 		if ( in_the_loop() && is_singular() ) {
@@ -241,12 +269,12 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
-					return $content;
+				return $content;
 			}
 
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				return $content;
 			}
@@ -254,10 +282,6 @@ class BSF_ReadTime {
 			$original_content = $content;
 
 			$bsf_rt_post = get_the_ID();
-
-			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
-
-			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -273,21 +297,21 @@ class BSF_ReadTime {
 				$calculated_postfix = 'mins';
 			}
 
-			$content      = '<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
-				$content .= $original_content;
-				return $content;
+			$content  = '<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+			$content .= $original_content;
+			return $content;
 		} else {
 
 			return $content;
 		}
 	}
 	/**
-	 * Adds the reading time above the post title.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  string $content The original post content.
-	 * @return string The post content with reading time prepended.
+	Adds the reading time above the post title.
+
+	@since 1.0.0
+
+	@param  string $title The original post content.
+	@return string The post content with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_above_the_post_title( $title ) {
 
@@ -297,27 +321,23 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
-					 return $title;
+				return $title;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				  return $title;
+				return $title;
 			}
 
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
-
-			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
-
-			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -334,7 +354,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
 
 			$title .= $original_title;
 
@@ -347,12 +367,12 @@ class BSF_ReadTime {
 
 	}
 	/**
-	 * Adds the reading time below the post title.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  string $content The original post content.
-	 * @return string The post content with reading time prepended.
+	Adds the reading time below the post title.
+
+	@since 1.0.0
+
+	@param  string $title The original post title.
+	@return string The post title with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_below_the_post_title( $title ) {
 		if ( in_the_loop() && is_singular() ) {
@@ -361,26 +381,22 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
-					return $title;
+				return $title;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				  return $title;
+				return $title;
 			}
 
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
-
-			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
-
-			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -397,7 +413,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
 
 			$original_title .= $title;
 
@@ -412,15 +428,15 @@ class BSF_ReadTime {
 
 	}
 	/**
-	 * Adds the reading time before the_excerpt content.
-	 *
-	 * If the options is selected to automatically add the reading time before
-	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  string $content The original content of the_excerpt.
-	 * @return string The excerpt content with reading time prepended.
+	Adds the reading time before the_excerpt content.
+
+	If the options is selected to automatically add the reading time before
+	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+
+	@since 1.0.0
+
+	@param  string $excerpt The original content of the_excerpt.
+	@return string The excerpt content with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_before_content_excerpt( $excerpt ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
@@ -429,15 +445,15 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $excerpt;
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $excerpt;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				return $excerpt;
 			}
@@ -461,7 +477,7 @@ class BSF_ReadTime {
 			}
 
 			$excerpt = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$excerpt .= $original_excerpt;
 
@@ -473,17 +489,17 @@ class BSF_ReadTime {
 
 		}
 	}
-	 /**
-	  * Adds the reading time before the_excerpt title.
-	  *
-	  * If the options is selected to automatically add the reading time before
-	  * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-	  *
-	  * @since 1.0.0
-	  *
-	  * @param  string $title The original content of the_excerpt.
-	  * @return string The excerpt content with reading time prepended.
-	  */
+	/**
+	Adds the reading time before the_excerpt title.
+
+	If the options is selected to automatically add the reading time before
+	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+
+	@since 1.0.0
+
+	@param  string $title The original content of the_excerpt.
+	@return string The excerpt content with reading time prepended.
+	 */
 	public function bsf_rt_add_reading_time_before_title_excerpt( $title ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
 
@@ -491,28 +507,24 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
-				   return $title;
+				return $title;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				  return $title;
+				return $title;
 
 			}
 
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
-
-			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
-
-			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -529,7 +541,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$title .= $original_title;
 
@@ -540,15 +552,15 @@ class BSF_ReadTime {
 		}
 	}
 	/**
-	 * Adds the reading time after the_excerpt title.
-	 *
-	 * If the options is selected to automatically add the reading time before
-	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  string $title The original content of the_excerpt.
-	 * @return string The excerpt content with reading time prepended.
+	Adds the reading time after the_excerpt title.
+
+	If the options is selected to automatically add the reading time before
+	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+
+	@since 1.0.0
+
+	@param  string $title The original content of the_excerpt.
+	@return string The excerpt content with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_after_title_excerpt( $title ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
@@ -557,26 +569,22 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				  return $title;
+				return $title;
 			}
 
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
-
-			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
-
-			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -593,7 +601,7 @@ class BSF_ReadTime {
 			}
 
 			$title = ' 
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$original_title .= $title;
 
@@ -606,15 +614,15 @@ class BSF_ReadTime {
 		}
 	}
 	/**
-	 * Adds the reading time before the archive excerpt.
-	 *
-	 * If the options is selected to automatically add the reading time before
-	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  string $excerpt The original content of the_excerpt.
-	 * @return string The excerpt content with reading time prepended.
+	Adds the reading time before the archive excerpt.
+
+	If the options is selected to automatically add the reading time before
+	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+
+	@since 1.0.0
+
+	@param  string $excerpt The original content of the_excerpt.
+	@return string The excerpt content with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_before_content_archive( $excerpt ) {
 		if ( in_the_loop() && is_archive() ) {
@@ -623,15 +631,15 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
-
-					return $excerpt;
-			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $excerpt;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+
+				return $excerpt;
+			}
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				return $excerpt;
 			}
@@ -654,7 +662,7 @@ class BSF_ReadTime {
 			}
 
 			$excerpt = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$excerpt .= $original_excerpt;
 
@@ -666,17 +674,17 @@ class BSF_ReadTime {
 
 		}
 	}
-	 /**
-	  * Adds the reading time before the archive title.
-	  *
-	  * If the options is selected to automatically add the reading time before
-	  * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-	  *
-	  * @since 1.0.0
-	  *
-	  * @param  string $title The original content of the_excerpt.
-	  * @return string The excerpt content with reading time prepended.
-	  */
+	/**
+	Adds the reading time before the archive title.
+
+	If the options is selected to automatically add the reading time before
+	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+
+	@since 1.0.0
+
+	@param  string $title The original content of the_excerpt.
+	@return string The excerpt content with reading time prepended.
+	 */
 	public function bsf_rt_add_reading_time_before_title_archive( $title ) {
 		if ( in_the_loop() && is_archive() ) {
 
@@ -684,28 +692,24 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
-					return $title;
+				return $title;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				  return $title;
+				return $title;
 
 			}
 
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
-
-			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
-
-			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -722,7 +726,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$title .= $original_title;
 
@@ -735,15 +739,15 @@ class BSF_ReadTime {
 
 	}
 	/**
-	 * Adds the reading time after the archive title.
-	 *
-	 * If the options is selected to automatically add the reading time before
-	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  string $title The original content of the_excerpt.
-	 * @return string The excerpt content with reading time prepended.
+	Adds the reading time after the archive title.
+
+	If the options is selected to automatically add the reading time before
+	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+
+	@since 1.0.0
+
+	@param  string $title The original content of the_excerpt.
+	@return string The excerpt content with reading time prepended.
 	 */
 	public function bsf_rt_add_reading_time_after_title_archive( $title ) {
 		if ( in_the_loop() && is_archive() ) {
@@ -752,26 +756,22 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return $title;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				  return $title;
+				return $title;
 			}
 
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
-
-			// $post_meta = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
-
-			// $previous_word_count = get_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', true );
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -788,7 +788,7 @@ class BSF_ReadTime {
 			}
 
 			$title = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
 			$original_title .= $title;
 
@@ -803,29 +803,29 @@ class BSF_ReadTime {
 	}
 
 	/**
-	 * Calculate the reading time of a post.
-	 *
-	 * Gets the post content, counts the images, strips shortcodes, and strips tags.
-	 * Then counds the words. Converts images into a word count. And outputs the
-	 * total reading time.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  int   $rt_post_id The Post ID.
-	 * @param  array $rt_options The options selected for the plugin.
-	 * @return string|int The total reading time for the article or string if it's 0.
+	Calculate the reading time of a post.
+
+	Gets the post content, counts the images, strips shortcodes, and strips tags.
+	Then counds the words. Converts images into a word count. And outputs the
+	total reading time.
+
+	@since 1.0.0
+
+	@param  int   $bsf_rt_post The Post ID.
+	@param  array $bsf_rt_options The options selected for the plugin.
+	@return string|int The total reading time for the article or string if it's 0.
 	 */
 	public function bsf_rt_calculate_reading_time( $bsf_rt_post, $bsf_rt_options ) {
-		  // echo "string";
+
 		$bsf_rt_current_post_type = get_post_type();
 
-		if ( $bsf_rt_current_post_type == 'post' ) {
+		if ( 'post' === $bsf_rt_current_post_type ) {
 
 			if ( in_the_loop() && is_singular() ) {
 
 				$args = array(
 
-					'post_id' => $bsf_rt_post, // use post_id, not post_ID
+					'post_id' => $bsf_rt_post, // use post_id, not post_ID.
 
 				);
 				$comments = get_comments( $args );
@@ -848,7 +848,6 @@ class BSF_ReadTime {
 			$comment_word_count = 0;
 		}
 		$bsf_rt_content = get_post_field( 'post_content', $bsf_rt_post );
-		// $bsf_rt_content = get_the_content();
 
 		$number_of_images = substr_count( strtolower( $bsf_rt_content ), '<img ' );
 
@@ -861,7 +860,7 @@ class BSF_ReadTime {
 
 		$word_count = count( preg_split( '/\s+/', $bsf_rt_content ) );
 
-		if ( isset( $this->bsf_rt_options['bsf_rt_include_comments'] ) && $this->bsf_rt_options['bsf_rt_include_comments'] == 'yes' ) {
+		if ( isset( $this->bsf_rt_options['bsf_rt_include_comments'] ) && 'yes' === $this->bsf_rt_options['bsf_rt_include_comments'] ) {
 
 			$word_count += $comment_word_count;
 		}
@@ -869,9 +868,9 @@ class BSF_ReadTime {
 		// Calculate additional time added to post by images.
 		$additional_words_for_images = $this->bsf_rt_calculate_images( $number_of_images, $this->bsf_rt_options['bsf_rt_words_per_minute'] );
 
-		if ( isset( $this->bsf_rt_options['bsf_rt_include_images'] ) && $this->bsf_rt_options['bsf_rt_include_images'] == 'yes' ) {
+		if ( isset( $this->bsf_rt_options['bsf_rt_include_images'] ) && 'yes' === $this->bsf_rt_options['bsf_rt_include_images'] ) {
 
-			 $word_count += $additional_words_for_images;
+			$word_count += $additional_words_for_images;
 		}
 
 		$this->reading_time = ceil( $word_count / $this->bsf_rt_options['bsf_rt_words_per_minute'] );
@@ -882,27 +881,24 @@ class BSF_ReadTime {
 			$this->reading_time = '< 1';
 		}
 
-		 // update_post_meta( $bsf_rt_post, 'bsf_rt_reading_time', $this->reading_time );
-		 // update_post_meta( $bsf_rt_post, 'bsf_rt_word_count', $word_count );
-
 		return $this->reading_time;
 	}
 
 	/**
-	 * Adds additional reading time for images
-	 *
-	 * Calculate additional reading time added by images in posts. Based on calculations by Medium. https://blog.medium.com/read-time-and-you-bc2048ab620c
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param  int   $total_images            number of images in post.
-	 * @param  array $bsf_rt_words_per_minute words per minute.
-	 * @return int  Additional time added to the reading time by images.
+	Adds additional reading time for images.
+
+	Calculate additional reading time added by images in posts. Based on calculations by Medium. https://blog.medium.com/read-time-and-you-bc2048ab620c
+
+	@since 1.1.0
+
+	@param  int   $total_images            number of images in post.
+	@param  array $bsf_rt_words_per_minute words per minute.
+	@return int  Additional time added to the reading time by images.
 	 */
 	public function bsf_rt_calculate_images( $total_images, $bsf_rt_words_per_minute ) {
-			$additional_time = 0;
+		$additional_time = 0;
 
-			// For the first image add 12 seconds, second image add 11, ..., for image 10+ add 3 seconds.
+		// For the first image add 12 seconds, second image add 11, ..., for image 10+ add 3 seconds.
 
 		for ( $i = 1; $i <= $total_images; $i++ ) {
 			if ( $i >= 10 ) {
@@ -914,18 +910,16 @@ class BSF_ReadTime {
 			}
 		}
 
-			return $additional_time;
+		return $additional_time;
 	}
 
-	 /**
-	  * Adds the Progress Bar at the bottom.
-	  *
-	  * @since 1.0.0
-	  *
-	  * @param  Nothing.
-	  * @return Nothing.
-	  */
+	/**
+	Adds the Progress Bar at the bottom.
 
+	@since 1.0.0
+
+	@return Nothing.
+	 */
 	public function hook_header_bottom() {
 		if ( ! is_home() && ! is_archive() ) {
 
@@ -933,72 +927,70 @@ class BSF_ReadTime {
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return;
 			}
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == 'post' && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
+			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return;
 			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				return;
 			}
-			 echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
-                <div class="progress-bar" id="bsf_rt_progress_bar"></div>
-                </div>';
+			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
+<div class="progress-bar" id="bsf_rt_progress_bar"></div>
+</div>';
 		}
 	}
 
-	 /**
-	  * Adds the Progress Bar at the top.
-	  *
-	  * @since 1.0.0
-	  *
-	  * @param  Nothing.
-	  * @return Nothing.
-	  */
+	/**
+	Adds the Progress Bar at the top.
+
+	@since 1.0.0
+
+	@return Nothing.
+	 */
 	public function hook_header_top() {
 		if ( ! is_home() && ! is_archive() ) {
 
-			  // Get the post type of the current post.
-			  $bsf_rt_current_post_type = get_post_type();
+			// Get the post type of the current post.
+			$bsf_rt_current_post_type = get_post_type();
 
-			  // If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( $this->bsf_rt_options['bsf_rt_post_types'] == null ) {
+			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
 				return;
 			}
 
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {
+			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				return;
 			}
 
 			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top">
-                                <div class="progress-bar" id="bsf_rt_progress_bar"></div>
-                                </div>';
+<div class="progress-bar" id="bsf_rt_progress_bar"></div>
+</div>';
 
 		}
 
 	}
 
-	 /**
-	  * Function of the read_meter shortcode.
-	  *
-	  * @since 1.0.0
-	  *
-	  * @param  Nothing.
-	  * @return shortcode display value.
-	  */
+	/**
+	Function of the read_meter shortcode.
+
+	@since 1.0.0
+
+	@return shortcode display value.
+	 */
 	public function read_meter_shortcode() {
-		   $bsf_rt_post = get_the_ID();
+		$bsf_rt_post = get_the_ID();
 
-		   $this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
+		$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
-		   $label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
-		   $postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
+		$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
+		$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
 
 		if ( $this->reading_time > 1 ) {
 			$calculated_postfix = $postfix;
@@ -1006,40 +998,39 @@ class BSF_ReadTime {
 			$calculated_postfix = 'mins';
 		}
 
-		   $shortcode_output = '
-            <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . $label . '"></span> <span class="bsf-rt-display-time" reading_time="' . $this->reading_time . '"></span> <span class="bsf-rt-display-postfix" postfix="' . $calculated_postfix . '"></span></span>';
+		$shortcode_output = '
+<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . $label . '"></span> <span class="bsf-rt-display-time" reading_time="' . $this->reading_time . '"></span> <span class="bsf-rt-display-postfix" postfix="' . $calculated_postfix . '"></span></span>';
 
-		   return $shortcode_output;
+		return $shortcode_output;
 	}
 	/**
-	 * Remove markup for Twenty fifteen.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  Nothing.
-	 * @return Nothing.
+	Remove markup for Twenty fifteen.
+
+	@since 1.0.0
+
+	@param  string $output Markup of readtime div.
+	@return Nothing.
 	 */
 	public function bsf_rt_remove_markup_for_twenty_series( $output ) {
-		$startStr = esc_html( '<span class="bsf-rt-reading-time">' );
-		$endStr   = esc_html( '<!-- .bsf-rt-reading-time -->' );
+		$start_str = esc_html( '<span class="bsf-rt-reading-time">' );
+		$end_str   = esc_html( '<!-- .bsf-rt-reading-time -->' );
 
-		$newstr = preg_replace( '/' . preg_quote( $startStr ) . '.*?' . preg_quote( $endStr ) . '/', '', esc_html( $output ) );
+		$newstr = preg_replace( '/' . preg_quote( $start_str ) . '.*?' . preg_quote( $end_str ) . '/', '', esc_html( $output ) );//PHPCS:ignore:WordPress.PHP.PregQuoteDelimiter.Missing
 
 		return htmlspecialchars_decode( $newstr );
 	}
 	/**
-	 * Get the current Theme Name.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  Nothing.
-	 * @return current theme name.
+	Get the current Theme Name.
+
+	@since 1.0.0
+
+	@return current theme name.
 	 */
 	public function bsf_rt_get_current_theme() {
 		$theme_name = '';
 		$theme      = wp_get_theme();
 
-		if ( isset( $theme->parent_theme ) && '' != $theme->parent_theme || null != $theme->parent_theme ) {
+		if ( isset( $theme->parent_theme ) && '' != $theme->parent_theme || null != $theme->parent_theme ) {//PHPCS:ignore:WordPress.PHP.StrictComparisons.LooseComparison
 
 			$theme_name = $theme->parent_theme;
 
@@ -1050,320 +1041,296 @@ class BSF_ReadTime {
 
 		return $theme_name;
 	}
-	 /**
-	  * Removes our Reading time from the comments title
-	  *
-	  * @since 1.0.0
-	  *
-	  * @param  Nothing.
-	  * @return current theme name.
-	  */
+	/**
+	Removes our Reading time from the comments title
+
+	@since 1.0.0
+	 */
 	public function bsf_rt_remove_the_title_from_comments() {
 		remove_filter( 'the_title', array( self::get_instance(), 'bsf_rt_add_reading_time_above_the_post_title' ), 90, 2 );
 
 		remove_filter( 'the_title', array( self::get_instance(), 'bsf_rt_add_reading_time_below_the_post_title' ), 90, 2 );
 	}
 	/**
-	 * Adds CSS to the progress Bar as per User input , When Style is Selected Normal.
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param Progress Bar color.
-	 * @param Progress Bar Background color.
-	 * @param Progress Bar Thickness.
-	 *
-	 * @return int  Additional time added to the reading time by images.
+	Adds CSS to the progress Bar as per User input , When Style is Selected Normal.
+
+	@since 1.1.0
 	 */
 	public function bsf_rt_set_progressbar_colors_normal() {        ?>
 		<style type="text/css">
-				.admin-bar .progress-container-top {
-					background: <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
-					height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-					
-				}
-				.progress-container-top {
-					background: <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
-					height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-					
-				}
-				.progress-container-bottom {
-					background: <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
-					height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-					
-				} 
-				.progress-bar {
-					background: <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) : 'unset'; ?>;
-					height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-				   width: 0%;
-					
-				}           
+		.admin-bar .progress-container-top {
+		background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
+
+		}
+		.progress-container-top {
+		background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
+
+		}
+		.progress-container-bottom {
+		background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
+
+		} 
+		.progress-bar {
+		background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) : 'unset'; ?>;
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
+		width: 0%;
+
+		}           
 		</style>
-		<?php
+				<?php
 	}
 
-	 /**
-	  * Adds CSS to the progress Bar as per User input , When Style is Selected Gradient.
-	  *
-	  * @since 1.1.0
-	  *
-	  * @param Progress Bar gradient color one.
-	  * @param Progress Bar gradient color two.
-	  * @param Progress Bar Background color.
-	  * @param Progress Bar Thickness.
-	  *
-	  * @return int  Additional time added to the reading time by images.
-	  */
+	/**
+	Adds CSS to the progress Bar as per User input , When Style is Selected Gradient.
+
+	@since 1.1.0
+	 */
 	public function bsf_rt_set_progressbar_colors_gradient() {
 		?>
 		<style type="text/css">
-			   .admin-bar .progress-container-top {
-					background: <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
-					height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-					
-				}
-				.progress-container-top {
-					background: <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
-					height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-					
-				}
-				.progress-container-bottom {
-					background: <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
-					height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-					
-				} 
-				.progress-bar {
-				background-color:  <?php echo ( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) : 'unset'; ?>;
-				background-image: linear-gradient(to bottom right, <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ); ?>, <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_two'] ); ?>);
-				height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
-				width: 0%;
-				
+		.admin-bar .progress-container-top {
+		background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
 
-				}
+		}
+		.progress-container-top {
+		background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
+
+		}
+		.progress-container-bottom {
+		background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_background_color'] ) : 'unset'; ?>;
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
+
+		} 
+		.progress-bar {
+		background-color:  <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ) : 'unset'; ?>;
+		background-image: linear-gradient(to bottom right, <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_one'] ); ?>, <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_gradiant_two'] ); ?>);
+		height: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_progress_bar_thickness'] ); ?>px;
+		width: 0%;
+
+
+		}
 		</style>
-		<?php
+				<?php
 	}
 
-	 /**
-	  * Adds CSS to the Read Time as per User input if color.
-	  *
-	  * @since  1.1.0
-	  * @param  Nothing.
-	  * @return Nothing.
-	  */
+	/**
+	Adds CSS to the Read Time as per User input if color.
+	 *
+	 * @since  1.1.0.
+	 */
 	public function bsf_rt_set_readtime_styles() {
 		?>
 
-				<style type="text/css">
-			.bsf-rt-reading-time {
+<style type="text/css">
+.bsf-rt-reading-time {
 
-				   background: <?php echo ( $this->bsf_rt_options['bsf_rt_read_time_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) : 'unset'; ?>;
+background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) : 'unset'; ?>;
 
-					color: <?php echo ( $this->bsf_rt_options['bsf_rt_read_time_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_color'] ) : 'unset'; ?>;
+color: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_read_time_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_color'] ) : 'unset'; ?>;
 
-					font-size: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_font_size'] ); ?>px;
-					
-					margin-top: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_top'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+font-size: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_font_size'] ); ?>px;
 
-					margin-right: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_right'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+margin-top: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_top'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					margin-bottom: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+margin-right: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_right'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					margin-left: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_left'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+margin-bottom: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					padding-top: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_top'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+margin-left: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_left'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					padding-right: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_right'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+padding-top: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_top'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
 
-					padding-bottom: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+padding-right: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_right'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
 
-					padding-left: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_left'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+padding-bottom: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
 
-					width: max-content;
+padding-left: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_left'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
 
-					display: block;
-					
-				}
-		
+width: max-content;
+
+display: block;
+
+}
+
 		<?php
 	}
 
-	 /**
-	  * Adds CSS to the Read Time as per User input if color and in above content.
-	  *
-	  * @since  1.1.0
-	  * @param  Nothing.
-	  * @return Nothing.
-	  */
+	/**
+	Adds CSS to the Read Time as per User input if color and in above content.
+
+	@since  1.1.0
+	 */
 	public function bsf_rt_set_readtime_styles_content() {
 
 		?>
-			
-				<style type="text/css">
-			  .entry-content .bsf-rt-reading-time{
-				   background: <?php echo ( $this->bsf_rt_options['bsf_rt_read_time_background_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) : 'unset'; ?>;
 
-					color: <?php echo ( $this->bsf_rt_options['bsf_rt_read_time_color'] !== '' ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_color'] ) : 'unset'; ?>;
-				
-					font-size: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_font_size'] ); ?>px;
-					
-					margin-top: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_top'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+<style type="text/css">
+.entry-content .bsf-rt-reading-time{
+background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) : 'unset'; ?>;
 
-					margin-right: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_right'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+color: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_read_time_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_color'] ) : 'unset'; ?>;
 
-					margin-bottom: 
-					<?php
+font-size: <?php echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_font_size'] ); ?>px;
 
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+margin-top: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_top'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					margin-left: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_left'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
-					?>
-					 ;
+margin-right: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_right'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					padding-top: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_top'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+margin-bottom: 
+		<?php
 
-					padding-right: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_right'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_bottom'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					padding-bottom: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+margin-left: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_margin_left'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_margin_unit'] );
+		?>
+;
 
-					padding-left: 
-					<?php
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_left'] );
-					echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
-					?>
-					 ;
+padding-top: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_top'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
 
-					width: max-content;
+padding-right: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_right'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
 
-					display: block;
-					
-				}
-				
-		   </style>
+padding-bottom: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_bottom'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
+
+padding-left: 
+		<?php
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_read_time_padding_left'] );
+		echo esc_attr( $this->bsf_rt_options['bsf_rt_padding_unit'] );
+		?>
+;
+
+width: max-content;
+
+display: block;
+
+}
+
+</style>
 		<?php
 	}
-	// @codingStandardsIgnoreEnd
+
 	/**
-	 * Adding Shortcode in Astra Theme hook.
-	 *
-	 * @since  1.1.0
-	 * @param  Nothing.
-	 * @return Nothing.
+	Adding Shortcode in Astra Theme hook.
+
+	@since  1.1.0
 	 */
 	public function bsf_rt_add_reading_time_after_astra_header() {
 		echo do_shortcode( '[read_meter]' );
 	}
 	/**
-	 * Checking current page
-	 *
-	 * @since  1.1.0
-	 * @param  Nothing.
-	 * @return Nothing.
+	Checking current page
+
+	@since  1.1.0
 	 */
 	public function bsf_rt_check_the_page() {
 		if ( is_singular() ) {
 
-			 self::$bsf_rt_check_the_page = 'single';
+			self::$bsf_rt_check_the_page = 'single';
 		} elseif ( is_home() ) {
 
-			  self::$bsf_rt_check_the_page = 'home';
+			self::$bsf_rt_check_the_page = 'home';
 
 		} elseif ( is_archive() ) {
 
-			  self::$bsf_rt_check_the_page = 'archive';
+			self::$bsf_rt_check_the_page = 'archive';
 
 		}
 	}
-	 /**
-	  * Adding Marker for Progress Bar.
-	  *
-	  * @since  1.1.0
-	  * @param  content
-	  * @return content.
-	  */
+	/**
+	Adding Marker for Progress Bar.
+
+	@since  1.1.0
+	@param  string $content content of post.
+	@return content.
+	 */
 	public function bsf_rt_add_marker_for_progress_bar_scroll( $content ) {
 
-				$markup_start = '<div id="bsf_rt_marker">';
-				$markup_end   = '</div>';
+		$markup_start = '<div id="bsf_rt_marker">';
+		$markup_end   = '</div>';
 
-				$content = $markup_start . $content . $markup_end;
+		$content = $markup_start . $content . $markup_end;
 
-				return $content;
+		return $content;
 
 	}
 
 
 }
 
-BSF_ReadTime::get_instance();
+BSFRT_ReadTime::get_instance();
 

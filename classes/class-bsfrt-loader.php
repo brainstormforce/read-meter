@@ -11,7 +11,7 @@
  * @link     http://brainstormforce.com
  */
 
-if ( ! class_exists( 'BSF_RT_Loader' ) ) :
+if ( ! class_exists( 'BSFRT_Loader' ) ) :
 	/**
 	 * Read Meter Loader Doc comment
 	 *
@@ -23,8 +23,12 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 	 * @license  http://brainstormforce.com
 	 * @link     http://brainstormforce.com
 	 */
-	class BSF_RT_Loader {
-
+	class BSFRT_Loader {
+		/**
+		 * Member Variable
+		 *
+		 * @var instance
+		 */
 		private static $instance;
 		/**
 		 *  Initiator
@@ -39,7 +43,7 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 		 * Constructor
 		 */
 		public function __construct() {
-			 add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_pluginstyle_frontend' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_pluginstyle_frontend' ) );
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'bsfrt_pluginstyle_dashboard' ) );
 
@@ -50,12 +54,16 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 			add_action( 'init', array( $this, 'bsf_rt_process_form_progress_bar_settings' ) );
 
 		}
-
+		/**
+		 * Process plugin's General setting Tab form Data.
+		 *
+		 * @return Nothing.
+		 */
 		public function bsf_rt_process_form_general_settings() {
 
 			require_once BSF_RT_ABSPATH . 'includes/bsf-rt-page.php';
 
-			$page = isset( $_GET['page'] ) ? sanitize_text_field($_GET['page']) : null;
+			$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null;
 
 			if ( 'bsf_rt' !== $page ) {
 				return;
@@ -65,18 +73,18 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 				$bsf_rt_words_per_minute = ( ! empty( $_POST['bsf_rt_words_per_minute'] ) ? intval( $_POST['bsf_rt_words_per_minute'] ) : '' );
 
 				$bsf_rt_post_types_array = ( ! empty( $_POST['posts'] ) ? $_POST['posts'] : array() );
-				$bsf_rt_post_types =array();
-				if (!empty($bsf_rt_post_types_array)) {
+				$bsf_rt_post_types       = array();
+				if ( ! empty( $bsf_rt_post_types_array ) ) {
 
-				 foreach ($bsf_rt_post_types_array as $key) {
-				 	//Sanitizing each element of array separately and then storing them
-					array_push($bsf_rt_post_types , filter_var($key, FILTER_SANITIZE_STRING));
-				 }
+					foreach ( $bsf_rt_post_types_array as $key ) {
+						// Sanitizing each element of array separately and then storing them.
+						array_push( $bsf_rt_post_types, filter_var( $key, FILTER_SANITIZE_STRING ) );
+					}
 				}
 
-				$bsf_rt_include_images = ( ! empty( $_POST['bsf_rt_include_images'] ) ? sanitize_text_field($_POST['bsf_rt_include_images']) : '' );
+				$bsf_rt_include_images = ( ! empty( $_POST['bsf_rt_include_images'] ) ? sanitize_text_field( $_POST['bsf_rt_include_images'] ) : '' );
 
-				$bsf_rt_include_comments = ( ! empty( $_POST['bsf_rt_include_comments'] ) ? sanitize_text_field($_POST['bsf_rt_include_comments']) : '' );
+				$bsf_rt_include_comments = ( ! empty( $_POST['bsf_rt_include_comments'] ) ? sanitize_text_field( $_POST['bsf_rt_include_comments'] ) : '' );
 
 				$update_options = array(
 					'bsf_rt_words_per_minute' => $bsf_rt_words_per_minute,
@@ -90,35 +98,39 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 				update_option( 'bsf_rt_saved_msg', 'ok' );
 			}
 		}
+		/**
+		 * Process plugin's Read time setting Tab form Data.
+		 *
+		 * @return Nothing.
+		 */
 		public function bsf_rt_process_form_read_time_settings() {
 
-			$page = isset( $_GET['page'] ) ? sanitize_text_field($_GET['page']) : null;
+			$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null;
 
 			if ( 'bsf_rt' !== $page ) {
 				return;
 			}
 			if ( isset( $_POST['bsf-rt-reading'] ) && wp_verify_nonce( $_POST['bsf-rt-reading'], 'bsf-rt-nonce-reading' ) ) {
 
-				$bsf_rt_position_of_read_time      = sanitize_text_field($_POST['bsf_rt_position_of_read_time']);
-				$bsf_rt_read_time_background_color = sanitize_hex_color($_POST['bsf_rt_read_time_background_color']);
-				$bsf_rt_read_time_color            = sanitize_hex_color($_POST['bsf_rt_read_time_color']);
-				$bsf_rt_padding_unit               = sanitize_text_field($_POST['bsf_rt_padding_unit']);
-				$bsf_rt_margin_unit                = sanitize_text_field($_POST['bsf_rt_margin_unit']);
+				$bsf_rt_position_of_read_time      = sanitize_text_field( $_POST['bsf_rt_position_of_read_time'] );
+				$bsf_rt_read_time_background_color = sanitize_hex_color( $_POST['bsf_rt_read_time_background_color'] );
+				$bsf_rt_read_time_color            = sanitize_hex_color( $_POST['bsf_rt_read_time_color'] );
+				$bsf_rt_padding_unit               = sanitize_text_field( $_POST['bsf_rt_padding_unit'] );
+				$bsf_rt_margin_unit                = sanitize_text_field( $_POST['bsf_rt_margin_unit'] );
 
 				$bsf_rt_reading_time_label = ( ! empty( $_POST['bsf_rt_reading_time_prefix_label'] ) ? sanitize_text_field( $_POST['bsf_rt_reading_time_prefix_label'] ) : '' );
 
 				$bsf_rt_reading_time_postfix_label = ( ! empty( $_POST['bsf_rt_reading_time_postfix_label'] ) ? sanitize_text_field( $_POST['bsf_rt_reading_time_postfix_label'] ) : '' );
 
 				$bsf_rt_readtime_post_types_array = ( ! empty( $_POST['bsf_rt_show_read_time'] ) ? $_POST['bsf_rt_show_read_time'] : array() );
-				$bsf_rt_show_read_time =array();
-				if (!empty($bsf_rt_readtime_post_types_array)) {
-					//Sanitizing each element of array separately and then storing them
-				 foreach ($bsf_rt_readtime_post_types_array as $key) {
+				$bsf_rt_show_read_time            = array();
+				if ( ! empty( $bsf_rt_readtime_post_types_array ) ) {
+					// Sanitizing each element of array separately and then storing them.
+					foreach ( $bsf_rt_readtime_post_types_array as $key ) {
 
-					array_push($bsf_rt_show_read_time , filter_var($key, FILTER_SANITIZE_STRING));
-				 }
+						array_push( $bsf_rt_show_read_time, filter_var( $key, FILTER_SANITIZE_STRING ) );
+					}
 				}
-				
 
 				$bsf_rt_read_time_font_size = ( ! empty( $_POST['bsf_rt_read_time_font_size'] ) ? floatval( $_POST['bsf_rt_read_time_font_size'] ) : 10 );
 
@@ -164,26 +176,31 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 
 			}
 		}
+		/**
+		 * Process plugin's Progress Bar setting Tab form Data.
+		 *
+		 * @return Nothing.
+		 */
 		public function bsf_rt_process_form_progress_bar_settings() {
 
-			$page = isset( $_GET['page'] ) ? sanitize_text_field($_GET['page']) : null;
+			$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : null;
 
 			if ( 'bsf_rt' !== $page ) {
 				return;
 			}
 			if ( isset( $_POST['bsf-rt-progress'] ) && wp_verify_nonce( $_POST['bsf-rt-progress'], 'bsf-rt-nonce-progress' ) ) {
 
-				$bsf_rt_position_of_progress_bar = sanitize_text_field($_POST['bsf_rt_position_of_progress_bar']);
+				$bsf_rt_position_of_progress_bar = sanitize_text_field( $_POST['bsf_rt_position_of_progress_bar'] );
 
-				$bsf_rt_progress_bar_background_color = sanitize_hex_color($_POST['bsf_rt_progress_bar_background_color']);
+				$bsf_rt_progress_bar_background_color = sanitize_hex_color( $_POST['bsf_rt_progress_bar_background_color'] );
 
 				$bsf_rt_progress_bar_thickness = floatval( $_POST['bsf_rt_progress_bar_thickness'] );
 
-				$bsf_rt_progress_bar_styles = sanitize_text_field($_POST['bsf_rt_progress_bar_styles']);
+				$bsf_rt_progress_bar_styles = sanitize_text_field( $_POST['bsf_rt_progress_bar_styles'] );
 
-				$bsf_rt_progress_bar_gradiant_one = sanitize_hex_color($_POST['bsf_rt_progress_bar_color_g1']);
+				$bsf_rt_progress_bar_gradiant_one = sanitize_hex_color( $_POST['bsf_rt_progress_bar_color_g1'] );
 
-				$bsf_rt_progress_bar_gradiant_two = sanitize_hex_color($_POST['bsf_rt_progress_bar_color_g2']);
+				$bsf_rt_progress_bar_gradiant_two = sanitize_hex_color( $_POST['bsf_rt_progress_bar_color_g2'] );
 
 				$update_options = array(
 					'bsf_rt_position_of_progress_bar'      => $bsf_rt_position_of_progress_bar,
@@ -209,16 +226,15 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 		 */
 		public function bsfrt_pluginstyle_frontend() {
 			$option = get_option( 'bsf_rt_general_settings' );
-			if (empty($option['bsf_rt_include_comments'])) {
+			if ( empty( $option['bsf_rt_include_comments'] ) ) {
 
 				$option['bsf_rt_include_comments'] = '';
 			}
-			wp_enqueue_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-frontend-css.css' );
-			wp_enqueue_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-frontend.js' );
-			
+			wp_enqueue_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-frontend-css.css', null, '1.0' );
+			wp_enqueue_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-frontend.js', null, '1.0', false );
+
 			wp_localize_script( 'bsfrt_frontend', 'myObj', array( 'option' => $option['bsf_rt_include_comments'] ) );
-			
-			
+
 		}
 		/**
 		 * Plugin Styles for admin dashboard.
@@ -229,13 +245,13 @@ if ( ! class_exists( 'BSF_RT_Loader' ) ) :
 		public function bsfrt_pluginstyle_dashboard() {
 			wp_enqueue_style( 'wp-color-picker' );
 
-			wp_enqueue_style( 'bsfrt_dashboard', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-admin-dashboard-css.css', 999 );
+			wp_enqueue_style( 'bsfrt_dashboard', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-admin-dashboard-css.css', null, '1.0' );
 
-			wp_enqueue_script( 'bsfrt_backend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-backend.js' );
+			wp_enqueue_script( 'bsfrt_backend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-backend.js', null, '1.0', false );
 
-			wp_enqueue_script( 'colorpickerscript', BSF_RT_PLUGIN_URL . '/assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), null, true );
+			wp_enqueue_script( 'colorpickerscript', BSF_RT_PLUGIN_URL . '/assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
 		}
 	}
-	BSF_RT_Loader::get_instance();
+	BSFRT_Loader::get_instance();
 endif;
 
