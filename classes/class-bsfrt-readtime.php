@@ -111,11 +111,11 @@ class BSFRT_ReadTime {
 		add_option( 'bsf_rt_read_time_settings', $default_options_readtime );
 
 		$default_options_progressbar = array(
-			'bsf_rt_position_of_progress_bar' => 'none',
-			'bsf_rt_progress_bar_styles' => 'Normal',
+			'bsf_rt_position_of_progress_bar'      => 'none',
+			'bsf_rt_progress_bar_styles'           => 'Normal',
 			'bsf_rt_progress_bar_background_color' => '#e8d5ff',
-			'bsf_rt_progress_bar_gradiant_one' => '#5540D9',
-			'bsf_rt_progress_bar_gradiant_two' => '#ee7fff',
+			'bsf_rt_progress_bar_gradiant_one'     => '#5540D9',
+			'bsf_rt_progress_bar_gradiant_two'     => '#ee7fff',
 		);
 		add_option( 'bsf_rt_progress_bar_settings', $default_options_progressbar );
 
