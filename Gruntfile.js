@@ -30,7 +30,7 @@ module.exports = function( grunt ) {
 			target: {
 				options: {
 					domainPath: '/languages',
-					mainFile: 'read-meter.php',
+					mainFile: 'bsf-readtime.php',
 					potFilename: 'read-meter.pot',
 					potHeaders: {
 						poedit: true,
