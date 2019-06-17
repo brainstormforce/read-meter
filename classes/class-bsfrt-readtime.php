@@ -903,7 +903,6 @@ class BSFRT_ReadTime {
 		$additional_time = 0;
 
 		// For the first image add 12 seconds, second image add 11, ..., for image 10+ add 3 seconds.
-
 		for ( $i = 1; $i <= $total_images; $i++ ) {
 			if ( $i >= 10 ) {
 

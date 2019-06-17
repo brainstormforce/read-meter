@@ -21,25 +21,24 @@ if ( 'ok' == get_option( 'bsf_rt_saved_msg' ) ) { //PHPCS:ignore:WordPress.PHP.S
 }
 
 // Navigation.
-
 // To get the tab value from URL and store in $active_tab variable.
 $active_tab = 'bsf_rt_general_settings';
 
-if ( isset( $_GET['tab'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
+if ( isset( $_GET['tab'] ) ) { // PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
-	if ( 'bsf_rt_general_settings' === $_GET['tab'] ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
+	if ( 'bsf_rt_general_settings' === $_GET['tab'] ) {// PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		$active_tab = 'bsf_rt_general_settings';
 
-	} elseif ( 'bsf_rt_read_time_settings' === $_GET['tab'] ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
+	} elseif ( 'bsf_rt_read_time_settings' === $_GET['tab'] ) {// PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		$active_tab = 'bsf_rt_read_time_settings';
 
-	} elseif ( 'bsf_rt_progress_bar_settings' === $_GET['tab'] ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
+	} elseif ( 'bsf_rt_progress_bar_settings' === $_GET['tab'] ) {// PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		$active_tab = 'bsf_rt_progress_bar_settings';
 
-	} elseif ( 'bsf_rt_user_manual' === $_GET['tab'] ) {//PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
+	} elseif ( 'bsf_rt_user_manual' === $_GET['tab'] ) {// PHPCS:ignore:WordPress.Security.NonceVerification.Recommended
 
 		$active_tab = 'bsf_rt_user_manual';
 	}
