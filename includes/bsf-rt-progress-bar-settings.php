@@ -158,7 +158,7 @@ $bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) 
 				} else {
 					?>
 
-						<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#e8d5ff">
+						<input name="bsf_rt_progress_bar_background_color" class="my-color-field" >
 
 					<?php
 				}
@@ -180,7 +180,7 @@ $bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) 
 				} else {
 					?>
 
-				<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#5540D9">
+				<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" >
 
 					<?php
 				}
@@ -201,7 +201,7 @@ $bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) 
 					} else {
 						?>
 
-					<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#ee7fff">
+					<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" >
 						<?php
 					}
 					?>
