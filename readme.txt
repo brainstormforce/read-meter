@@ -1,17 +1,17 @@
-# Read Meter - Reading Time & Progress Bar #
-**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
-**Donate link:** https://www.paypal.me/BrainstormForce  
-**Tags:** readtime, progressbar  
-**Requires at least:** 4.2  
-**Requires PHP:** 5.2  
-**Tested up to:** 5.2  
-**Stable tag:** 1.0.0  
-**License:** GPLv2 or later  
-**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
+=== Read Meter - Reading Time & Progress Bar ===
+Contributors: brainstormforce
+Donate link: https://www.paypal.me/BrainstormForce
+Tags: readtime, progressbar
+Requires at least: 4.2
+Requires PHP: 5.2
+Tested up to: 5.2
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 The Read Meter plugin displays the estimated reading time for blog posts along with a progress bar. 
 
-## Description ##
+== Description ==
 
 People often skip reading posts with the fear of the time they’ll spend reading it. Are you losing readers too? 
 
@@ -44,41 +44,41 @@ Specific controls for `Progress Bar` -
 + Set a progress bar position - i.e. Top/ Bottom of the page.
 + Use various progress bar styling options - Gradient Background color, Bar thickness, etc. 
 
-## Installation ##
+== Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Once activated, you’ll find Read Meter settings in the Dashboard Settings.
 
-## Frequently Asked Questions ##
+== Frequently Asked Questions ==
 
-### Where can I find the settings of the Read Meter plugin? ###
+= Where can I find the settings of the Read Meter plugin? =
 After installing and activating the plugin, settings can be found under Settings > Read Meter 
 
-### How is the read time calculated? ###
+= How is the read time calculated? =
 Let’s assume, you have set Words Per Minute ( Settings > Read Meter > General Settings) to 275 and total words in your blog post are 1100. So the total number of words (1100) divided by Words per minute (275) will give you an estimated time of reading i.e. 4 minutes. 
 
-### Can I add this for CPT (Custom Post Types)? ###
+= Can I add this for CPT (Custom Post Types)? =
 Yes! The plugin works with all CPTs. You can select Post Types from Settings > Read Meter > General Settings 
 
-### Where can I add a shortcode? ###
+= Where can I add a shortcode? =
 Shortcode -  `[read_meter]` can be added to any page with a shortcode module/block. This will work with the Gutenberg editor or any page builder editor. 
 
-### What themes does the Read Meter Plugin work with? ###
+= What themes does the Read Meter Plugin work with? =
 The Read Meter plugin works with all WordPress themes!
 
-## Screenshots ##
+== Screenshots ==
 1. General Settings 
 2. Read Time 
 3. Progress Bar 
 4. Getting Started
 
-## Changelog ##
+== Changelog ==
 
-### 1.0.1 ###
+= 1.0.1 =
 - Fix: Fixed the Dropdown of Progress bar error. 
 - Fix: Changed default values of Progress Bar colors.
 - Fix: Changed default values of Post type.
 
-### 1.0.0 ###
+= 1.0.0 =
 - Initial Release.

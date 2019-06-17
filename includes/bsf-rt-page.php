@@ -1,21 +1,29 @@
 <?php
 /**
+ * The Read meter Sub-menu Display.
+ *
+ * @since      1.0.0
+ * @package    BSF
+ * @author     Brainstorm Force.
+ */
+
+/**
  * Add submenu of Global settings Page to admin menu.
  *
  * @since  1.0.0
  * @return void
  */
-function BSF_RT_Settings_page() {
+function bsf_rt_settings_page() {
 	add_submenu_page(
 		'options-general.php',
 		'Read Meter',
 		'Read Meter',
 		'manage_options',
 		'bsf_rt',
-		'BSF_RT_Page_html'
+		'bsf_rt_page_html'
 	);
 }
-add_action( 'admin_menu', 'BSF_RT_Settings_page' );
+add_action( 'admin_menu', 'bsf_rt_settings_page' );
 
 /**
  * Main Frontpage.
@@ -23,6 +31,6 @@ add_action( 'admin_menu', 'BSF_RT_Settings_page' );
  * @since  1.0.0
  * @return void
  */
-function BSF_RT_Page_html() {
+function bsf_rt_page_html() {
 	require_once BSF_RT_ABSPATH . 'includes/bsf-rt-main-frontend.php';
 }
