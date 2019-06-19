@@ -6,7 +6,8 @@
  * @package    BSF
  * @author     Brainstorm Force.
  */
-wp_enqueue_style('bsfrt_dashboard');
+
+wp_enqueue_style( 'bsfrt_dashboard' );
 
 $options = get_option( 'bsf_rt_general_settings' );
 

@@ -133,11 +133,11 @@ class BSFRT_ReadTime {
 	 */
 	public function bsf_rt_init_frontend() {
 
-		if (false === $this->bsf_rt_check_selected_post_types()) {
+		if ( false === $this->bsf_rt_check_selected_post_types() ) {
 
 			return;
 		}
-		add_action('wp_enqueue_scripts',array($this,'bsfrt_frontend_default_css'));
+		add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_frontend_default_css' ) );
 		add_filter(
 			'comments_template',
 			function( $template ) {
@@ -352,7 +352,6 @@ class BSFRT_ReadTime {
 	public function bsf_rt_add_reading_time_below_the_post_title( $title ) {
 		if ( in_the_loop() && is_singular() ) {
 
-
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
@@ -387,19 +386,17 @@ class BSFRT_ReadTime {
 
 	}
 	/**
-	Adds the reading time before the_excerpt content.
-
-	If the options is selected to automatically add the reading time before
-	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-
-	@since 1.0.0
-
-	@param  string $excerpt The original content of the_excerpt.
-	@return string The excerpt content with reading time prepended.
+	 * Adds the reading time before the_excerpt content.
+	 *
+	 * If the options is selected to automatically add the reading time before
+	 *  the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param  string $excerpt The original content of the_excerpt.
 	 */
 	public function bsf_rt_add_reading_time_before_content_excerpt( $excerpt ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
-
 
 			$original_excerpt = $excerpt;
 
@@ -489,7 +486,6 @@ class BSFRT_ReadTime {
 	public function bsf_rt_add_reading_time_after_title_excerpt( $title ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
 
-
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
@@ -522,15 +518,14 @@ class BSFRT_ReadTime {
 		}
 	}
 	/**
-	Adds the reading time before the archive excerpt.
-
-	If the options is selected to automatically add the reading time before
-	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-
-	@since 1.0.0
-
-	@param  string $excerpt The original content of the_excerpt.
-	@return string The excerpt content with reading time prepended.
+	 * Adds the reading time before the archive excerpt.
+	 *
+	 * If the options is selected to automatically add the reading time before
+	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param  string $excerpt The original content of the_excerpt.
 	 */
 	public function bsf_rt_add_reading_time_before_content_archive( $excerpt ) {
 		if ( in_the_loop() && is_archive() ) {
@@ -623,7 +618,6 @@ class BSFRT_ReadTime {
 	 */
 	public function bsf_rt_add_reading_time_after_title_archive( $title ) {
 		if ( in_the_loop() && is_archive() ) {
-
 
 			$original_title = $title;
 
@@ -770,16 +764,14 @@ class BSFRT_ReadTime {
 	}
 
 	/**
-	Adds the Progress Bar at the bottom.
-
-	@since 1.0.0
-
-	@return Nothing.
+	 * Adds the Progress Bar at the bottom.
+	 *
+	 * @since 1.0.0
 	 */
 	public function hook_header_bottom() {
 		if ( ! is_home() && ! is_archive() ) {
-			wp_enqueue_script('bsfrt_frontend');
-			
+			wp_enqueue_script( 'bsfrt_frontend' );
+
 			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
 </div>';
@@ -787,15 +779,13 @@ class BSFRT_ReadTime {
 	}
 
 	/**
-	Adds the Progress Bar at the top.
-
-	@since 1.0.0
-
-	@return Nothing.
+	 * Adds the Progress Bar at the top.
+	 *
+	 * @since 1.0.0
 	 */
 	public function hook_header_top() {
 		if ( ! is_home() && ! is_archive() ) {
-			wp_enqueue_script('bsfrt_frontend');
+			wp_enqueue_script( 'bsfrt_frontend' );
 
 			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top">
 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
@@ -1140,11 +1130,11 @@ display: block;
 		}
 	}
 	/**
-	* Adding Marker for Progress Bar.
-	*
-	* @since  1.1.0
-	* @param  string $content content of post.
-	* @return content.
+	 * Adding Marker for Progress Bar.
+	 *
+	 * @since  1.1.0
+	 * @param  string $content content of post.
+	 * @return content.
 	 */
 	public function bsf_rt_add_marker_for_progress_bar_scroll( $content ) {
 
@@ -1157,36 +1147,35 @@ display: block;
 
 	}
 	/**
-	* Checking If the Current Post type is in the user selected Post types array.
-	*
-	* @since  1.1.0
-	* @return bool true/false.
-	*/
+	 * Checking If the Current Post type is in the user selected Post types array.
+	 *
+	 * @since  1.1.0
+	 * @return bool true/false.
+	 */
 	public function bsf_rt_check_selected_post_types() {
 			// Get the post type of the current post.
 			$bsf_rt_current_post_type = get_post_type();
 
 			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
+		if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
 
-				return false;
-			}
+			return false;
+		}
 
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
+		if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				return false;
-			}
+			return false;
+		}
 
 			return true;
 	}
 	/**
-	* Enqueue Plugin's style and script
-	*
-	* @since  1.1.0
-	* @return bool true/false.
-	*/
+	 * Enqueue Plugin's style and script
+	 *
+	 * @since  1.1.0
+	 */
 	public function bsfrt_frontend_default_css() {
-		wp_enqueue_style('bsfrt_frontend');
+		wp_enqueue_style( 'bsfrt_frontend' );
 	}
 
 

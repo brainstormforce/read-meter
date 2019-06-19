@@ -6,9 +6,10 @@
  * @package    BSF
  * @author     Brainstorm Force.
  */
-wp_enqueue_style('bsfrt_dashboard');
-wp_enqueue_script('bsfrt_backend');
-wp_enqueue_script('colorpickerscript');
+
+wp_enqueue_style( 'bsfrt_dashboard' );
+wp_enqueue_script( 'bsfrt_backend' );
+wp_enqueue_script( 'colorpickerscript' );
 $options = get_option( 'bsf_rt_read_time_settings' );
 
 $bsf_rt_show_read_time = ( ! empty( $options['bsf_rt_show_read_time'] ) ? $options['bsf_rt_show_read_time'] : array( 'bsf_rt_single_page' ) );

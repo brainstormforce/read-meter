@@ -6,7 +6,8 @@
  * @package    BSF
  * @author     Brainstorm Force.
  */
-wp_enqueue_style('bsfrt_dashboard');
+
+wp_enqueue_style( 'bsfrt_dashboard' );
 echo '<h1 class="bsf_rt_main_title">';
 esc_attr_e( 'Read Meter', 'read-meter' );
 echo '</h1>';
