@@ -7,6 +7,8 @@
  * @author     Brainstorm Force.
  */
 
+wp_enqueue_style( 'bsfrt_dashboard' );
+
 $options = get_option( 'bsf_rt_general_settings' );
 
 $bsf_rt_words_per_minute = ( ! empty( $options['bsf_rt_words_per_minute'] ) ? $options['bsf_rt_words_per_minute'] : '' );

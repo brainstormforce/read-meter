@@ -32,14 +32,14 @@ Here are some key features of the plugin -
 + You can choose to display the read time and a progress bar on various post types.
 + You can decide whether you would like to include images and comments in the read time and progress bar.
 
-That's not all! Here are some more controls you get over `Reading Time` -
+That's not all! Here are some more controls you get over **Reading Time** -
 
 + Display the read time on a blog/archive page or single post page 
 + Set the read time position - i.e. Above/Below title or above content
 + Set a read time Prefix and Postfix 
 + Use various read time styling options - Spacing, Background color, Font size, etc. 
 
-Specific controls for `Progress Bar` -
+Specific controls for **Progress Bar** -
 
 + Set a progress bar position - i.e. Top/ Bottom of the page.
 + Use various progress bar styling options - Gradient Background color, Bar thickness, etc. 

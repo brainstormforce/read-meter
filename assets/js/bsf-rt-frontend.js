@@ -65,7 +65,7 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
 
     var intViewportHeight = window.innerHeight; // window height
     if (myObj.option == '' || bsf_rt_comments == null) {
-        
+      
         var height = content.clientHeight;
         var winScroll = document.documentElement.scrollTop - content.offsetTop;
 
@@ -102,7 +102,7 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
             }
         }
     } else {
-         
+           
         var comments_wrapper = bsf_rt_comments.nextElementSibling;
         if (content.clientHeight + comments_wrapper.clientHeight < intViewportHeight) {
             if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
@@ -111,9 +111,11 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
 
                     document.getElementById("bsf_rt_progress_bar").style.width = 100 + "%";
                     document.getElementById("bsf_rt_progress_bar_container").style.width = 100 + "%";
+
                 }
             }
         } else {
+         
                 var comments_wrapper = bsf_rt_comments.nextElementSibling;
                 var comments_height = comments_wrapper.offsetHeight;
 

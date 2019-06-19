@@ -111,11 +111,7 @@ class BSFRT_ReadTime {
 		add_option( 'bsf_rt_read_time_settings', $default_options_readtime );
 
 		$default_options_progressbar = array(
-			'bsf_rt_position_of_progress_bar'      => 'none',
-			'bsf_rt_progress_bar_styles'           => 'Normal',
-			'bsf_rt_progress_bar_background_color' => '#e8d5ff',
-			'bsf_rt_progress_bar_gradiant_one'     => '#5540D9',
-			'bsf_rt_progress_bar_gradiant_two'     => '#ee7fff',
+			'bsf_rt_position_of_progress_bar' => 'none',
 		);
 		add_option( 'bsf_rt_progress_bar_settings', $default_options_progressbar );
 
@@ -136,6 +132,12 @@ class BSFRT_ReadTime {
 	Frontend settings
 	 */
 	public function bsf_rt_init_frontend() {
+
+		if ( false === $this->bsf_rt_check_selected_post_types() ) {
+
+			return;
+		}
+		add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_frontend_default_css' ) );
 		add_filter(
 			'comments_template',
 			function( $template ) {
@@ -255,6 +257,7 @@ class BSFRT_ReadTime {
 			}
 		}
 	}
+
 	/**
 	Adds the reading time before the_content.
 
@@ -268,20 +271,6 @@ class BSFRT_ReadTime {
 	 */
 	public function bsf_rt_add_reading_time_before_content( $content ) {
 		if ( in_the_loop() && is_singular() ) {
-
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $content;
-			}
-
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $content;
-			}
 
 			$original_content = $content;
 
@@ -320,24 +309,6 @@ class BSFRT_ReadTime {
 	public function bsf_rt_add_reading_time_above_the_post_title( $title ) {
 
 		if ( in_the_loop() && is_singular() ) {
-
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $title;
-			}
 
 			$original_title = $title;
 
@@ -381,23 +352,6 @@ class BSFRT_ReadTime {
 	public function bsf_rt_add_reading_time_below_the_post_title( $title ) {
 		if ( in_the_loop() && is_singular() ) {
 
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $title;
-			}
-
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
@@ -432,35 +386,17 @@ class BSFRT_ReadTime {
 
 	}
 	/**
-	Adds the reading time before the_excerpt content.
-
-	If the options is selected to automatically add the reading time before
-	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-
-	@since 1.0.0
-
-	@param  string $excerpt The original content of the_excerpt.
-	@return string The excerpt content with reading time prepended.
+	 * Adds the reading time before the_excerpt content.
+	 *
+	 * If the options is selected to automatically add the reading time before
+	 *  the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param  string $excerpt The original content of the_excerpt.
 	 */
 	public function bsf_rt_add_reading_time_before_content_excerpt( $excerpt ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
-
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $excerpt;
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $excerpt;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $excerpt;
-			}
 
 			$original_excerpt = $excerpt;
 
@@ -507,25 +443,6 @@ class BSFRT_ReadTime {
 	public function bsf_rt_add_reading_time_before_title_excerpt( $title ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
 
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $title;
-
-			}
-
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
@@ -569,23 +486,6 @@ class BSFRT_ReadTime {
 	public function bsf_rt_add_reading_time_after_title_excerpt( $title ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
 
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $title;
-			}
-
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
@@ -618,35 +518,17 @@ class BSFRT_ReadTime {
 		}
 	}
 	/**
-	Adds the reading time before the archive excerpt.
-
-	If the options is selected to automatically add the reading time before
-	the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
-
-	@since 1.0.0
-
-	@param  string $excerpt The original content of the_excerpt.
-	@return string The excerpt content with reading time prepended.
+	 * Adds the reading time before the archive excerpt.
+	 *
+	 * If the options is selected to automatically add the reading time before
+	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param  string $excerpt The original content of the_excerpt.
 	 */
 	public function bsf_rt_add_reading_time_before_content_archive( $excerpt ) {
 		if ( in_the_loop() && is_archive() ) {
-
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $excerpt;
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $excerpt;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $excerpt;
-			}
 
 			$original_excerpt = $excerpt;
 
@@ -692,25 +574,6 @@ class BSFRT_ReadTime {
 	public function bsf_rt_add_reading_time_before_title_archive( $title ) {
 		if ( in_the_loop() && is_archive() ) {
 
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $title;
-
-			}
-
 			$original_title = $title;
 
 			$bsf_rt_post = get_the_ID();
@@ -755,23 +618,6 @@ class BSFRT_ReadTime {
 	 */
 	public function bsf_rt_add_reading_time_after_title_archive( $title ) {
 		if ( in_the_loop() && is_archive() ) {
-
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return $title;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return $title;
-			}
 
 			$original_title = $title;
 
@@ -903,6 +749,7 @@ class BSFRT_ReadTime {
 		$additional_time = 0;
 
 		// For the first image add 12 seconds, second image add 11, ..., for image 10+ add 3 seconds.
+
 		for ( $i = 1; $i <= $total_images; $i++ ) {
 			if ( $i >= 10 ) {
 
@@ -917,31 +764,14 @@ class BSFRT_ReadTime {
 	}
 
 	/**
-	Adds the Progress Bar at the bottom.
-
-	@since 1.0.0
-
-	@return Nothing.
+	 * Adds the Progress Bar at the bottom.
+	 *
+	 * @since 1.0.0
 	 */
 	public function hook_header_bottom() {
 		if ( ! is_home() && ! is_archive() ) {
+			wp_enqueue_script( 'bsfrt_frontend' );
 
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return;
-			}
-			if ( 'post' === $this->bsf_rt_options['bsf_rt_post_types'] && $bsf_rt_current_post_type !== $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return;
-			}
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return;
-			}
 			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
 </div>';
@@ -949,28 +779,13 @@ class BSFRT_ReadTime {
 	}
 
 	/**
-	Adds the Progress Bar at the top.
-
-	@since 1.0.0
-
-	@return Nothing.
+	 * Adds the Progress Bar at the top.
+	 *
+	 * @since 1.0.0
 	 */
 	public function hook_header_top() {
 		if ( ! is_home() && ! is_archive() ) {
-
-			// Get the post type of the current post.
-			$bsf_rt_current_post_type = get_post_type();
-
-			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
-			if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
-
-				return;
-			}
-
-			if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
-
-				return;
-			}
+			wp_enqueue_script( 'bsfrt_frontend' );
 
 			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top">
 <div class="progress-bar" id="bsf_rt_progress_bar"></div>
@@ -1315,11 +1130,11 @@ display: block;
 		}
 	}
 	/**
-	Adding Marker for Progress Bar.
-
-	@since  1.1.0
-	@param  string $content content of post.
-	@return content.
+	 * Adding Marker for Progress Bar.
+	 *
+	 * @since  1.1.0
+	 * @param  string $content content of post.
+	 * @return content.
 	 */
 	public function bsf_rt_add_marker_for_progress_bar_scroll( $content ) {
 
@@ -1331,6 +1146,38 @@ display: block;
 		return $content;
 
 	}
+	/**
+	 * Checking If the Current Post type is in the user selected Post types array.
+	 *
+	 * @since  1.1.0
+	 * @return bool true/false.
+	 */
+	public function bsf_rt_check_selected_post_types() {
+			// Get the post type of the current post.
+			$bsf_rt_current_post_type = get_post_type();
+
+			// If the current post type isn't included in the array of post types or it is and set to false, don't display it.
+		if ( null === $this->bsf_rt_options['bsf_rt_post_types'] ) {
+
+			return false;
+		}
+
+		if ( isset( $this->bsf_rt_options['bsf_rt_post_types'] ) && ! in_array( $bsf_rt_current_post_type, $this->bsf_rt_options['bsf_rt_post_types'] ) ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
+
+			return false;
+		}
+
+			return true;
+	}
+	/**
+	 * Enqueue Plugin's style and script
+	 *
+	 * @since  1.1.0
+	 */
+	public function bsfrt_frontend_default_css() {
+		wp_enqueue_style( 'bsfrt_frontend' );
+	}
+
 
 
 }
