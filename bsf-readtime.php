@@ -16,10 +16,10 @@
  * @license  https://brainstormforce.com
  * @link     https://brainstormforce.com
  */
-
+ 
 define( 'BSF_RT_PATH', __FILE__ );
 
-define( 'BSF_RT_VER','1.0.2' );
+define( 'BSF_RT_VER', '1.0.2' );
 
 define( 'BSF_RT_ABSPATH', plugin_dir_path( __FILE__ ) );
 
