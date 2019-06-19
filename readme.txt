@@ -75,13 +75,5 @@ The Read Meter plugin works with all WordPress themes!
 
 == Changelog ==
 
-= 1.0.1 =
-* Fix : Fixed the Dropdown of Progress bar error. 
-* Fix : Changed default values of Progress Bar colors.
-* Fix : Changed default values of Post type.
-
-= 1.0.0 =
+= 1.0 =
 * Initial Release.
-
-
-
