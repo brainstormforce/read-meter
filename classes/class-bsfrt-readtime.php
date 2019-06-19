@@ -281,15 +281,6 @@ class BSFRT_ReadTime {
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
 
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
-
 			$content  = '<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 			$content .= $original_content;
 			return $content;
@@ -318,15 +309,6 @@ class BSFRT_ReadTime {
 
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
-
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
 
 			$title = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
@@ -360,15 +342,6 @@ class BSFRT_ReadTime {
 
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
-
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
 
 			$title = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span><!-- .bsf-rt-reading-time -->';
@@ -407,15 +380,6 @@ class BSFRT_ReadTime {
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
 
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
-
 			$excerpt = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
@@ -452,15 +416,6 @@ class BSFRT_ReadTime {
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
 
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
-
 			$title = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
@@ -494,15 +449,6 @@ class BSFRT_ReadTime {
 
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
-
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
 
 			$title = ' 
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
@@ -538,14 +484,6 @@ class BSFRT_ReadTime {
 
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
-
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
 
 			$excerpt = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
@@ -583,15 +521,6 @@ class BSFRT_ReadTime {
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
 
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
-
 			$title = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
 
@@ -627,15 +556,6 @@ class BSFRT_ReadTime {
 
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
-
-			if ( $this->reading_time > 1 ) {
-
-				$calculated_postfix = $postfix;
-
-			} else {
-
-				$calculated_postfix = 'mins';
-			}
 
 			$title = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
