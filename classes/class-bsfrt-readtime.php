@@ -111,11 +111,11 @@ class BSFRT_ReadTime {
 		add_option( 'bsf_rt_read_time_settings', $default_options_readtime );
 
 		$default_options_progressbar = array(
-			'bsf_rt_position_of_progress_bar' => 'none',
-			'bsf_rt_progress_bar_styles' => 'Normal',
+			'bsf_rt_position_of_progress_bar'      => 'none',
+			'bsf_rt_progress_bar_styles'           => 'Normal',
 			'bsf_rt_progress_bar_background_color' => '#e8d5ff',
-			'bsf_rt_progress_bar_gradiant_one' => '#5540D9',
-			'bsf_rt_progress_bar_gradiant_two' => '#ee7fff',
+			'bsf_rt_progress_bar_gradiant_one'     => '#5540D9',
+			'bsf_rt_progress_bar_gradiant_two'     => '#ee7fff',
 		);
 		add_option( 'bsf_rt_progress_bar_settings', $default_options_progressbar );
 
@@ -126,32 +126,33 @@ class BSFRT_ReadTime {
 	Setter function.
 	 */
 	public function bsf_rt_set_options() {
-        $bsf_rt_general_settings         = get_option( 'bsf_rt_general_settings' );
-        $bsf_rt_read_time_settings         = get_option( 'bsf_rt_read_time_settings' );
-        $bsf_rt_progress_bar_settings     = get_option( 'bsf_rt_progress_bar_settings' );
+		$bsf_rt_general_settings      = get_option( 'bsf_rt_general_settings' );
+		$bsf_rt_read_time_settings    = get_option( 'bsf_rt_read_time_settings' );
+		$bsf_rt_progress_bar_settings = get_option( 'bsf_rt_progress_bar_settings' );
 
-        if ( isset( $bsf_rt_general_settings ) && '' !== $bsf_rt_read_time_settings && isset( $bsf_rt_progress_bar_settings ) ) {
-            $all_options = array_merge( $bsf_rt_general_settings, $bsf_rt_read_time_settings );
-            $all_options = array_merge( $all_options, $bsf_rt_progress_bar_settings );
-        }
+		if ( isset( $bsf_rt_general_settings ) && '' !== $bsf_rt_read_time_settings && isset( $bsf_rt_progress_bar_settings ) ) {
+			$all_options = array_merge( $bsf_rt_general_settings, $bsf_rt_read_time_settings );
+			$all_options = array_merge( $all_options, $bsf_rt_progress_bar_settings );
+		}
 
-        $this->bsf_rt_options = $all_options;
-    }
-    /**
-     * Getter Function.
-     * @since 1.0.2
-     * @param String $key
-     * @param boolean $default
-     * @return void
-     */
-    public function bsf_rt_get_option( $key, $default = false ) {
+		$this->bsf_rt_options = $all_options;
+	}
+	/**
+	 * Getter Function.
+	 *
+	 * @since 1.0.2
+	 * @param String  $key key of that option array to get.
+	 * @param boolean $default default value to set to it.
+	 * @return string value of variable.
+	 */
+	public function bsf_rt_get_option( $key, $default = false ) {
 
-        if ( isset( $this->bsf_rt_options[ $key ] ) && '' !== $this->bsf_rt_options[ $key ] ) {
-            return $this->bsf_rt_options[ $key ];
-        }
+		if ( isset( $this->bsf_rt_options[ $key ] ) && '' !== $this->bsf_rt_options[ $key ] ) {
+			return $this->bsf_rt_options[ $key ];
+		}
 
-        return $default;
-    }
+		return $default;
+	}
 	/**
 	Frontend settings
 	 */
@@ -174,9 +175,9 @@ class BSFRT_ReadTime {
 
 		add_filter( 'the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90 );
 
-		if ( 'none' !== $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+		if ( 'none' !== $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
-			if ( 'above_the_content' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') )  {
+			if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 				// Read time styles.
 				add_action( 'wp_head', array( $this, 'bsf_rt_set_readtime_styles_content' ) );
 			} else {
@@ -194,43 +195,43 @@ class BSFRT_ReadTime {
 		}
 
 		// Show Reading time Conditions.
-		if ( $this->bsf_rt_get_option('bsf_rt_show_read_time') && 'none' !== $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) {
+		if ( $this->bsf_rt_get_option( 'bsf_rt_show_read_time' ) && 'none' !== $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) {
 			if ( in_array( 'bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_singular() ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				if ( 'above_the_content' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'the_content', array( $this, 'bsf_rt_add_reading_time_before_content' ), 90 );
 				}
-				if ( 'above_the_post_title' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'above_the_post_title' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_above_the_post_title' ), 90, 2 );
 				}
-				if ( 'below_the_post_title' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'below_the_post_title' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_below_the_post_title' ), 90 );
 				}
 			}
 			if ( in_array( 'bsf_rt_home_blog_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_home() && ! is_archive() ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				if ( 'above_the_content' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000 );
 					if ( 'Twenty Fifteen' === $bsf_rt_current_theme || 'Twenty Nineteen' === $bsf_rt_current_theme || 'Twenty Thirteen' === $bsf_rt_current_theme || 'Twenty Fourteen' === $bsf_rt_current_theme || 'Twenty Sixteen' === $bsf_rt_current_theme || 'Twenty Seventeen' === $bsf_rt_current_theme || 'Twenty Twelve' === $bsf_rt_current_theme ) {
 						add_filter( 'the_content', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000 );
 					}
 				}
-				if ( 'above_the_post_title' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'above_the_post_title' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_before_title_excerpt' ), 1000 );
 				}
-				if ( 'below_the_post_title' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'below_the_post_title' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_after_title_excerpt' ), 1000 );
 				}
 			}
 			if ( in_array( 'bsf_rt_archive_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && ! is_home() && is_archive() ) { //PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
-				if ( 'above_the_content' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_archive' ), 1000 );
 
@@ -238,39 +239,39 @@ class BSFRT_ReadTime {
 						add_filter( 'the_content', array( $this, 'bsf_rt_add_reading_time_before_content_archive' ), 1000 );
 					}
 				}
-				if ( 'above_the_post_title' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'above_the_post_title' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_before_title_archive' ), 1000 );
 				}
-				if ( 'below_the_post_title' === $this->bsf_rt_get_option('bsf_rt_position_of_read_time') ) {
+				if ( 'below_the_post_title' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
 					add_filter( 'the_title', array( $this, 'bsf_rt_add_reading_time_after_title_archive' ), 1000 );
 				}
 			}
 		}
 		// Displaying Progress Bar Conditions.
-		if ( 'none' === $this->bsf_rt_get_option('bsf_rt_position_of_progress_bar') )  {
+		if ( 'none' === $this->bsf_rt_get_option( 'bsf_rt_position_of_progress_bar' ) ) {
 
 			return;
 
-		} elseif ('top_of_the_page' === $this->bsf_rt_get_option('bsf_rt_position_of_progress_bar') ) {
+		} elseif ( 'top_of_the_page' === $this->bsf_rt_get_option( 'bsf_rt_position_of_progress_bar' ) ) {
 
 			add_action( 'wp_footer', array( $this, 'hook_header_top' ) );
 
-		} elseif ('bottom_of_the_page' === $this->bsf_rt_get_option('bsf_rt_position_of_progress_bar') ) {
+		} elseif ( 'bottom_of_the_page' === $this->bsf_rt_get_option( 'bsf_rt_position_of_progress_bar' ) ) {
 
 			add_action( 'wp_footer', array( $this, 'hook_header_bottom' ) );
 
 		}
 
-		if ('Normal' === $this->bsf_rt_get_option('bsf_rt_progress_bar_styles') ) {
+		if ( 'Normal' === $this->bsf_rt_get_option( 'bsf_rt_progress_bar_styles' ) ) {
 
 				add_action( 'wp_head', array( $this, 'bsf_rt_set_progressbar_colors_normal' ) );
 
-		} elseif ('Gradient' === $this->bsf_rt_get_option('bsf_rt_progress_bar_styles') ) {
+		} elseif ( 'Gradient' === $this->bsf_rt_get_option( 'bsf_rt_progress_bar_styles' ) ) {
 
 				add_action( 'wp_head', array( $this, 'bsf_rt_set_progressbar_colors_gradient' ) );
-			}
+		}
 	}
 
 	/**
