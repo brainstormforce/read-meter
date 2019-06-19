@@ -163,16 +163,7 @@ class BSFRT_ReadTime {
 			return;
 		}
 		add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_frontend_default_css' ) );
-		add_filter(
-			'comments_template',
-			function( $template ) {
-				echo '<div id="bsf-rt-comments"></div>';
-				$temp     = '<div id="bsf-rt-comments"></div>';
-				$template = $template . $temp;
-				return $template;
-			}
-		);
-
+		add_filter('comments_template', array($this , 'bsf_rt_marker_for_progressbar') );
 		add_filter( 'the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90 );
 
 		if ( 'none' !== $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
@@ -1194,6 +1185,18 @@ display: block;
 	 */
 	public function bsfrt_frontend_default_css() {
 		wp_enqueue_style( 'bsfrt_frontend' );
+	}
+	/**
+	 * Marker for progress bar
+	 * @param string $template
+	 * @return string $template for the purpose to execute comments.
+	 * @since  1.1.0
+	 */
+	public function bsf_rt_marker_for_progressbar( $template) {
+		echo '<div id="bsf-rt-comments"></div>';
+				$temp     = '<div id="bsf-rt-comments"></div>';
+				$template = $template . $temp;
+				return $template;
 	}
 
 
