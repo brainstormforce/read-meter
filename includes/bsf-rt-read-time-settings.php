@@ -12,7 +12,7 @@ wp_enqueue_script( 'bsfrt_backend' );
 wp_enqueue_script( 'colorpickerscript' );
 $options = get_option( 'bsf_rt_read_time_settings' );
 
-$bsf_rt_show_read_time = ( ! empty( $options['bsf_rt_show_read_time'] ) ? $options['bsf_rt_show_read_time'] : array( 'bsf_rt_single_page' ) );
+$bsf_rt_show_read_time = ( ! empty( $options['bsf_rt_show_read_time'] ) ? $options['bsf_rt_show_read_time'] : array() );
 
 $bsf_rt_position_of_read_time = ( ! empty( $options['bsf_rt_position_of_read_time'] ) ? $options['bsf_rt_position_of_read_time'] : '' );
 
