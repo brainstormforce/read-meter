@@ -7,6 +7,9 @@
  * @author     Brainstorm Force.
  */
 
+wp_enqueue_style( 'bsfrt_dashboard' );
+wp_enqueue_script( 'bsfrt_backend' );
+wp_enqueue_script( 'colorpickerscript' );
 $options = get_option( 'bsf_rt_progress_bar_settings' );
 
 
@@ -151,14 +154,14 @@ $bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) 
 			</th>
 			<td>
 				<?php
-				if ( ! empty( $bsf_rt_progress_bar_background_color ) ) {
+				if ( isset( $bsf_rt_progress_bar_background_color ) ) {
 
 
 					echo '<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_background_color ) . '">';
 				} else {
 					?>
 
-						<input name="bsf_rt_progress_bar_background_color" class="my-color-field" >
+						<input name="bsf_rt_progress_bar_background_color" class="my-color-field" value="#e8d5ff">
 
 					<?php
 				}
@@ -172,7 +175,7 @@ $bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) 
 			</th>  
 			<td>
 				<?php
-				if ( ! empty( $bsf_rt_progress_bar_gradiant_one ) ) {
+				if ( isset( $bsf_rt_progress_bar_gradiant_one ) ) {
 
 
 					echo '<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_one ) . '">';
@@ -180,7 +183,7 @@ $bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) 
 				} else {
 					?>
 
-				<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" >
+				<input name="bsf_rt_progress_bar_color_g1" class="my-color-field" value="#5540D9">
 
 					<?php
 				}
@@ -194,14 +197,14 @@ $bsf_rt_progress_color_display = ( ( 'Normal' === $bsf_rt_progress_bar_styles ) 
 			</th>
 			<td>
 					<?php
-					if ( ! empty( $bsf_rt_progress_bar_gradiant_two ) ) {
+					if ( isset( $bsf_rt_progress_bar_gradiant_two ) ) {
 
 
 						echo '<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="' . esc_attr( $bsf_rt_progress_bar_gradiant_two ) . '">';
 					} else {
 						?>
 
-					<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" >
+					<input name="bsf_rt_progress_bar_color_g2" class="my-color-field" value="#ee7fff">
 						<?php
 					}
 					?>

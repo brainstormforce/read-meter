@@ -7,6 +7,8 @@
  * @author     Brainstorm Force.
  */
 
+wp_enqueue_style( 'bsfrt_dashboard' );
+
 ?>
 <div class="bsf_rt_user_manual">
 	<br><label class="bsf_rt_page_title" for="howtouse">

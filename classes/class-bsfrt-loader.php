@@ -230,8 +230,8 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 
 				$option['bsf_rt_include_comments'] = '';
 			}
-			wp_enqueue_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-frontend-css.css', null, '1.0' );
-			wp_enqueue_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-frontend.js', null, '1.0', false );
+			wp_register_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-frontend-css.css', null, BSF_RT_VER );
+			wp_register_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-frontend.js', null, BSF_RT_VER, false );
 
 			wp_localize_script( 'bsfrt_frontend', 'myObj', array( 'option' => $option['bsf_rt_include_comments'] ) );
 
@@ -245,11 +245,11 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 		public function bsfrt_pluginstyle_dashboard() {
 			wp_enqueue_style( 'wp-color-picker' );
 
-			wp_enqueue_style( 'bsfrt_dashboard', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-admin-dashboard-css.css', null, '1.0' );
+			wp_register_style( 'bsfrt_dashboard', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-admin-dashboard-css.css', null, BSF_RT_VER );
 
-			wp_enqueue_script( 'bsfrt_backend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-backend.js', null, '1.0', false );
+			wp_register_script( 'bsfrt_backend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-backend.js', null, BSF_RT_VER, false );
 
-			wp_enqueue_script( 'colorpickerscript', BSF_RT_PLUGIN_URL . '/assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
+			wp_register_script( 'colorpickerscript', BSF_RT_PLUGIN_URL . '/assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), BSF_RT_VER, true );
 		}
 	}
 	BSFRT_Loader::get_instance();
