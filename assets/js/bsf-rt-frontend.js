@@ -1,4 +1,3 @@
-
 var idleTime = 0;
 
 var timeoutID;
@@ -79,7 +78,7 @@ function bsfrtProgressBarScroll(content , bsf_rt_comments)
                 }
             }
         } else {
-            height -= content.offsetTop;
+            height = height - intViewportHeight;
             if (winScroll <= 0) {
                 if(document.getElementById("bsf_rt_progress_bar") !== null && document.getElementById("bsf_rt_progress_bar_container") !== null ) {
 
