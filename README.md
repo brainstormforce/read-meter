@@ -5,7 +5,7 @@
 **Requires at least:** 4.2  
 **Requires PHP:** 5.2  
 **Tested up to:** 5.2  
-**Stable tag:** 1.0.0  
+**Stable tag:** 1.0.3  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -75,9 +75,11 @@ The Read Meter plugin works with all WordPress themes!
 
 ## Changelog ##
 
+### 1.0.3 ###
+- Fix: Read time postfix not displayed in frontend.
+
 ### 1.0.2 ###
 - Fix: Do not load CSS/JS on pages where read-meter/read-time is not used.
-- Fix: Read time postfix not displayed in frontend.
 
 ### 1.0.1 ###
 - Fix: Fixed the Dropdown of Progress bar error. 
