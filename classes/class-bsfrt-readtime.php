@@ -749,14 +749,9 @@ class BSFRT_ReadTime {
 
 		$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
-		$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
-		$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
-
-		if ( $this->reading_time > 1 ) {
-			$calculated_postfix = $postfix;
-		} else {
-			$calculated_postfix = 'mins';
-		}
+		$label              = $this->bsf_rt_options['bsf_rt_reading_time_label'];
+		$postfix            = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
+		$calculated_postfix = $postfix;
 
 		$shortcode_output = '
 <span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . $label . '"></span> <span class="bsf-rt-display-time" reading_time="' . $this->reading_time . '"></span> <span class="bsf-rt-display-postfix" postfix="' . $calculated_postfix . '"></span></span>';
