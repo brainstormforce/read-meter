@@ -10,6 +10,9 @@ function setup()
     this.addEventListener("DOMMouseScroll", resetTimer, false);
 
     this.addEventListener("mousewheel", resetTimer, false);
+
+     this.addEventListener("touchstart", resetTimer, false);
+     
     startTimer();
 
 }
