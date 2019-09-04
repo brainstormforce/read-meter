@@ -75,6 +75,7 @@ The Read Meter plugin works with all WordPress themes!
 
 == Changelog ==
 = 1.0.4 =
+- Improvement: Loaded the minified versions of CSS and JS files.
 - Fix: Progress Bar Opacity adjustment working on the mobile devices.
 - Fix: Progress Bar working on Iphone Mobile devices.
 
