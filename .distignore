@@ -29,3 +29,9 @@ node_modules
 *.tar.gz
 *.zip
 package-lock.json
+.wordpress-org
+.github export
+.gitattributes
+.jshintrc
+CHANGELOG.md
+.bowerrc
