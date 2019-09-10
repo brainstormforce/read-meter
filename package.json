@@ -16,6 +16,7 @@
     "grunt-rtlcss": "^2.0.1",
     "grunt-text-replace": "^0.4.0",
     "grunt-wp-i18n": "^1.0.3",
+    "grunt-wp-readme-to-markdown": "^2.0.1",
     "postcss-flexibility": "^2.0.0",
     "shelljs": "^0.8.3"
   }
