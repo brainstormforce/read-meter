@@ -5,7 +5,7 @@
 **Requires at least:** 4.2  
 **Requires PHP:** 5.2  
 **Tested up to:** 5.2  
-**Stable tag:** 1.0.3  
+**Stable tag:** 1.0.4  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -93,4 +93,3 @@ The Read Meter plugin works with all WordPress themes!
 
 ### 1.0.0 ###
 - Initial Release.
-
