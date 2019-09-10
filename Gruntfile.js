@@ -17,6 +17,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
         cssmin: {
             css: {
                 files: [
@@ -36,6 +37,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
         rtlcss: {
             options: {
                 config: {
@@ -57,6 +59,7 @@ module.exports = function(grunt) {
                 cwd: 'assets/min-css/',
             }
         },
+
         postcss: {
             style: {
                 expand: true,
@@ -67,6 +70,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
         copy: {
             main: {
                 options: {
@@ -91,6 +95,7 @@ module.exports = function(grunt) {
                 dest: 'read-meter/'
             }
         },
+
         compress: {
             main: {
                 options: {
@@ -119,10 +124,12 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
         clean: {
             main: ["read-meter"],
             zip: ["*.zip"],
         },
+
         makepot: {
             target: {
                 options: {
@@ -141,6 +148,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         addtextdomain: {
             options: {
                 textdomain: 'read-meter',
@@ -152,6 +160,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         bumpup: {
             options: {
                 updateProps: {
@@ -160,6 +169,7 @@ module.exports = function(grunt) {
             },
             file: 'package.json'
         },
+
         replace: {
             plugin_main: {
                 src: [ 'read-meter.php' ],
@@ -198,7 +208,15 @@ module.exports = function(grunt) {
                     }
                 ]
             }
-        }
+        },
+
+        wp_readme_to_markdown: {
+			your_target: {
+				files: {
+					'README.md': 'readme.txt'
+				}
+			},
+		},
     });
     /* Load Tasks */
     grunt.loadNpmTasks( 'grunt-contrib-copy' );
@@ -209,6 +227,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks( 'grunt-wp-i18n' );
     grunt.loadNpmTasks( 'grunt-rtlcss' );
     grunt.loadNpmTasks( 'grunt-postcss' );
+    grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
     /* Version Bump Task */
     grunt.loadNpmTasks( 'grunt-bumpup' );
     grunt.loadNpmTasks( 'grunt-text-replace' );
@@ -237,4 +256,6 @@ module.exports = function(grunt) {
             grunt.task.run( 'replace' );
         }
     } );
+
+    grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
 };

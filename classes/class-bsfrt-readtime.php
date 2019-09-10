@@ -952,6 +952,8 @@ width: max-content;
 
 display: block;
 
+min-width: 100px;
+
 }
 
 		<?php
@@ -1034,6 +1036,8 @@ padding-left:
 width: max-content;
 
 display: block;
+
+min-width: 100px;
 
 }
 

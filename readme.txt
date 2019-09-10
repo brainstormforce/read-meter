@@ -5,7 +5,7 @@ Tags: readtime, progressbar
 Requires at least: 4.2
 Requires PHP: 5.2
 Tested up to: 5.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,7 @@ The Read Meter plugin works with all WordPress themes!
 - Improvement: Loaded the minified versions of CSS and JS files.
 - Fix: Progress Bar Opacity adjustment working on the mobile devices.
 - Fix: Progress Bar working on Iphone Mobile devices.
+- Fix: Set Minimum width of the Reading time Container.
 
 = 1.0.3 =
 - Fix: Read time postfix not displayed in frontend.
@@ -92,4 +93,3 @@ The Read Meter plugin works with all WordPress themes!
 
 = 1.0.0 =
 - Initial Release.
-
