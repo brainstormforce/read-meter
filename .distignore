@@ -30,7 +30,7 @@ node_modules
 *.zip
 package-lock.json
 .wordpress-org
-.github export
+.github
 .gitattributes
 .jshintrc
 CHANGELOG.md
