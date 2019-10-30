@@ -711,7 +711,7 @@ class BSFRT_ReadTime {
 	 * @since 1.0.0
 	 */
 	public function hook_header_bottom() {
-		if ( ! is_home() && ! is_archive() ) {
+		if ( ! is_home() && ! is_archive() && ! is_404() ) {
 			wp_enqueue_script( 'bsfrt_frontend' );
 
 			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-bottom">
@@ -726,7 +726,7 @@ class BSFRT_ReadTime {
 	 * @since 1.0.0
 	 */
 	public function hook_header_top() {
-		if ( ! is_home() && ! is_archive() ) {
+		if ( ! is_home() && ! is_archive() && ! is_404() ) {
 			wp_enqueue_script( 'bsfrt_frontend' );
 
 			echo '<div id="bsf_rt_progress_bar_container" class="progress-container-top">

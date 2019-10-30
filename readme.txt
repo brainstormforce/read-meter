@@ -5,7 +5,7 @@ Tags: readtime, progressbar
 Requires at least: 4.2
 Requires PHP: 5.2
 Tested up to: 5.2
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,9 @@ The Read Meter plugin works with all WordPress themes!
 4. Getting Started
 
 == Changelog ==
+= 1.0.5 =
+- Fix: Progress Bar displaying on 404 Page.
+
 = 1.0.4 =
 - Improvement: Loaded the minified versions of CSS and JS files.
 - Fix: Progress Bar Opacity adjustment working on mobile devices.
