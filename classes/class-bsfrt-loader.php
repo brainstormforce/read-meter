@@ -68,7 +68,7 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 			if ( 'bsf_rt' !== $page ) {
 				return;
 			}
-			if ( isset( $_POST['bsf-rt-general'] ) && wp_verify_nonce( $_POST['bsf-rt-general'], 'bsf-rt-nonce-general' ) ) {
+			if ( isset( $_POST['bsf-rt-general'] ) && wp_verify_nonce( $_POST['bsf-rt-general'], 'bsf-rt-nonce-general' ) && current_user_can( 'manage_options' ) ) {
 
 				$bsf_rt_words_per_minute = ( ! empty( $_POST['bsf_rt_words_per_minute'] ) ? intval( $_POST['bsf_rt_words_per_minute'] ) : '' );
 
@@ -110,7 +110,7 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 			if ( 'bsf_rt' !== $page ) {
 				return;
 			}
-			if ( isset( $_POST['bsf-rt-reading'] ) && wp_verify_nonce( $_POST['bsf-rt-reading'], 'bsf-rt-nonce-reading' ) ) {
+			if ( isset( $_POST['bsf-rt-reading'] ) && wp_verify_nonce( $_POST['bsf-rt-reading'], 'bsf-rt-nonce-reading' ) && current_user_can( 'manage_options' ) ) {
 
 				$bsf_rt_position_of_read_time      = sanitize_text_field( $_POST['bsf_rt_position_of_read_time'] );
 				$bsf_rt_read_time_background_color = sanitize_hex_color( $_POST['bsf_rt_read_time_background_color'] );
@@ -188,7 +188,7 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 			if ( 'bsf_rt' !== $page ) {
 				return;
 			}
-			if ( isset( $_POST['bsf-rt-progress'] ) && wp_verify_nonce( $_POST['bsf-rt-progress'], 'bsf-rt-nonce-progress' ) ) {
+			if ( isset( $_POST['bsf-rt-progress'] ) && wp_verify_nonce( $_POST['bsf-rt-progress'], 'bsf-rt-nonce-progress' ) && current_user_can( 'manage_options' ) ) {
 
 				$bsf_rt_position_of_progress_bar = sanitize_text_field( $_POST['bsf_rt_position_of_progress_bar'] );
 
