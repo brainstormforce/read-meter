@@ -375,7 +375,7 @@ class BSFRT_ReadTime {
 	 * Adds the reading time before the_excerpt content.
 	 *
 	 * If the options is selected to automatically add the reading time before
-	 *  the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
 	 *
 	 * @since 1.0.0
 	 *
@@ -482,6 +482,7 @@ class BSFRT_ReadTime {
 			return $title;
 		}
 	}
+
 	/**
 	 * Adds the reading time before the archive excerpt.
 	 *
@@ -1122,6 +1123,7 @@ min-width: 100px;
 	public function bsfrt_frontend_default_css() {
 		wp_enqueue_style( 'bsfrt_frontend' );
 	}
+
 	/**
 	 * Marker for progress bar
 	 *
