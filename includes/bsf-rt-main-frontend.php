@@ -13,11 +13,11 @@ esc_attr_e( 'Read Meter', 'read-meter' );
 echo '</h1>';
 
 if ( 'ok' == get_option( 'bsf_rt_saved_msg' ) ) { //PHPCS:ignore:WordPress.PHP.StrictComparisons.LooseComparison
-	echo '<div id="message" class="notice is-dismissible notice-success">
-      <p class="description">
-      Settings Saved.
-      </p>
-    </div>';
+	echo '<div id="message" class="notice is-dismissible notice-success">';
+      echo '<p class="description">';
+      esc_attr_e( 'Settings Saved.', 'read-meter' );
+      echo '</p>';
+    echo '</div>';
 	update_option( 'bsf_rt_saved_msg', 'notok' );
 }
 
