@@ -1,5 +1,5 @@
 # Read Meter - Reading Time & Progress Bar #
-**Contributors:** [pratikchaskar](https://profiles.wordpress.org/pratikchaskar)  
+**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** readtime, progressbar  
 **Requires at least:** 4.2  
