@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Read Meter - Reading Time & Progress Bar for WordPress.
  * Description:  To display Reading Time for a particular post.
- * Version:     1.0.6
- * Author:      Brainstorm Force
- * Author URI:  https://brainstormforce.com
+ * Version:     1.0.7
+ * Author:      Pratik Chaskar
+ * Author URI:  https://pratikchaskar.com
  * Text Domain: read-meter.
  * Main
  *
@@ -19,7 +19,7 @@
 
 define( 'BSF_RT_PATH', __FILE__ );
 
-define( 'BSF_RT_VER', '1.0.6' );
+define( 'BSF_RT_VER', '1.0.7' );
 
 define( 'BSF_RT_ABSPATH', plugin_dir_path( __FILE__ ) );
 
