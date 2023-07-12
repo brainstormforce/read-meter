@@ -21,6 +21,8 @@ Usually, visitors try to scan the entire post at first glance and grasp as much 
 
 A handy progress bar will show the reader’s position on the post. As the reader scrolls the page, the progress bar indicates the remaining part of the post. This lets readers know how far have they reached and how much more do they have to go on.
 
+[Try it out on a free dummy site](https://bsf.io/read-meter-demo)
+
 The plugin uses an advanced image time calculation technique. In case your post contains images, the plugin calculates the time to view those images as well. It adds 12 seconds for the first image, 11 seconds for the second image and so on till the 10th image. After that, it adds 3 seconds for each further image.
 
 It works great to give visitors a quick idea about the time needed to read a post and encourages them to go on till the end.
