@@ -74,7 +74,7 @@ class BSFRT_ReadTime {
 	}
 
 	/**
-	 * If the menu item is a collection page, add the collection slug to the menu item..
+	 * Add Marker for Progressbar.
 	 *
 	 * @param string $content Block content.
 	 * @param array  $block_data Block data.
