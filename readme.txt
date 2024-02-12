@@ -5,7 +5,7 @@ Tags: readtime, progressbar
 Requires at least: 4.2
 Requires PHP: 5.2
 Tested up to: 6.4
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,9 @@ The Read Meter plugin works with all WordPress themes!
 4. Getting Started
 
 == Changelog ==
+= 1.0.7 =
+- Fix: Theme Layout Styles conflict with the Marker div added as a wrapper to the_content.
+
 = 1.0.6 =
 - Fix: Hardened the security.
 
