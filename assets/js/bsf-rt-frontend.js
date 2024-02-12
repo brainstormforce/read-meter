@@ -60,7 +60,9 @@ function goActive()
 window.addEventListener('scroll', shakeEventDidOccur, false);
 window.addEventListener('touchstart', shakeEventDidOccur, false);
  function shakeEventDidOccur () {
-    var content = document.getElementsByClassName("bsf_rt_marker")[0];
+    var content =
+		document.getElementById("bsf_rt_marker") ||
+		document.getElementsByClassName("bsf_rt_marker")[0];
     var bsf_rt_comments = document.getElementById("bsf-rt-comments");
     bsfrtProgressBarScroll(content , bsf_rt_comments)
 };

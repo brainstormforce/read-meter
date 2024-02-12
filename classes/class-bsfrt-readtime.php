@@ -70,7 +70,11 @@ class BSFRT_ReadTime {
 
 		add_filter( 'comments_template', array( $this, 'bsf_rt_remove_the_title_from_comments' ) );
 
-		add_filter( 'render_block', [ $this, 'filter_class' ], 10, 2 );
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			add_filter( 'render_block', [ $this, 'filter_class' ], 10, 2 );
+		} else {
+			add_filter( 'the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90 );
+		}
 	}
 
 	/**
@@ -1092,6 +1096,22 @@ min-width: 100px;
 		}
 	}
 
+	/**
+	 * Adding Marker for Progress Bar.
+	 *
+	 * @since  1.1.0
+	 * @param  string $content content of post.
+	 * @return content.
+	 */
+	public function bsf_rt_add_marker_for_progress_bar_scroll( $content ) {
+
+		$markup_start = '<div id="bsf_rt_marker">';
+		$markup_end   = '</div>';
+
+		$content = $markup_start . $content . $markup_end;
+
+		return $content;
+	}
 	
 	/**
 	 * Checking If the Current Post type is in the user selected Post types array.
