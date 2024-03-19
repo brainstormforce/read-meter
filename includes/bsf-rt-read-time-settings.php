@@ -257,10 +257,10 @@ if ( 'em' === $bsf_rt_margin_unit ) {
 ?>
 </select>
 <p class="description bsf-rt-label-style">
-<label class="bsf-rt-top">TOP</label>
-<label class="bsf-rt-right">RIGHT</label>
-<label class="bsf-rt-bottom">BOTTOM</label>
-<label class="bsf-rt-left">LEFT</label>                  
+<label class="bsf-rt-top"><?php esc_attr_e( 'TOP', 'read-meter' ); ?></label>
+<label class="bsf-rt-right"><?php esc_attr_e( 'RIGHT', 'read-meter' ); ?></label>
+<label class="bsf-rt-bottom"><?php esc_attr_e( 'BOTTOM', 'read-meter' ); ?></label>
+<label class="bsf-rt-left"><?php esc_attr_e( 'LEFT', 'read-meter' ); ?></label>                  
 </p> 
 </td> 
 </tr>
@@ -294,10 +294,10 @@ if ( 'em' === $bsf_rt_padding_unit ) {
 ?>
 </select>
 <p class="description bsf-rt-label-style">
-<label class="bsf-rt-top">TOP</label>
-<label class="bsf-rt-right">RIGHT</label>
-<label class="bsf-rt-bottom">BOTTOM</label>
-<label class="bsf-rt-left">LEFT</label>                  
+<label class="bsf-rt-top"><?php esc_attr_e( 'TOP', 'read-meter' ); ?></label>
+<label class="bsf-rt-right"><?php esc_attr_e( 'RIGHT', 'read-meter' ); ?></label>
+<label class="bsf-rt-bottom"><?php esc_attr_e( 'BOTTOM', 'read-meter' ); ?></label>
+<label class="bsf-rt-left"><?php esc_attr_e( 'LEFT', 'read-meter' ); ?></label>                    
 </p> 
 </td>
 </tr> 
@@ -345,7 +345,7 @@ if ( isset( $bsf_rt_read_time_color ) ) {
 <tr>
 <th>
 <?php wp_nonce_field( 'bsf-rt-nonce-reading', 'bsf-rt-reading' ); ?>
-<input type="submit" value="Save" class="bt button button-primary" name="submit">
+<input type="submit" value="<?php esc_html_e('Save', 'read-meter' ); ?>" class="bt button button-primary" name="submit">
 </th>
 </tr>
 </table>

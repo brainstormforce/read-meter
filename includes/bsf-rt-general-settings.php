@@ -135,7 +135,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	<tr>
 		<th>
 			<?php wp_nonce_field( 'bsf-rt-nonce-general', 'bsf-rt-general' ); ?>
-			<input type="submit" value="Save" class="bt button button-primary" name="submit">
+			<input type="submit" value="<?php esc_html_e( 'Save', 'read-meter' ); ?>" class="bt button button-primary" name="submit">
 		</th>
 	</tr>
 	</table>

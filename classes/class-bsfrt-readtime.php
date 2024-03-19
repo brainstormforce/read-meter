@@ -69,6 +69,29 @@ class BSFRT_ReadTime {
 		add_shortcode( 'read_meter', array( $this, 'read_meter_shortcode' ) );
 
 		add_filter( 'comments_template', array( $this, 'bsf_rt_remove_the_title_from_comments' ) );
+
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			add_filter( 'render_block', [ $this, 'filter_class' ], 10, 2 );
+		} else {
+			add_filter( 'the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90 );
+		}
+	}
+
+	/**
+	 * Add Marker for Progressbar.
+	 *
+	 * @param string $content Block content.
+	 * @param array  $block_data Block data.
+	 *
+	 * @return array
+	 */
+	public function filter_class( $content, $block_data ) {
+		// not a post-content block.
+		if ( empty( $block_data['blockName'] ) || 'core/post-content' !== $block_data['blockName'] ) {
+			return $content;
+		}
+		
+		return preg_replace( '/class="entry-content/', 'class="entry-content bsf_rt_marker', $content );
 	}
 
 	/**
@@ -167,7 +190,6 @@ class BSFRT_ReadTime {
 		}
 		add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_frontend_default_css' ) );
 		add_filter( 'comments_template', array( $this, 'bsf_rt_marker_for_progressbar' ) );
-		add_filter( 'the_content', array( $this, 'bsf_rt_add_marker_for_progress_bar_scroll' ), 90 );
 
 		if ( 'none' !== $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
@@ -1090,7 +1112,7 @@ min-width: 100px;
 
 		return $content;
 	}
-
+	
 	/**
 	 * Checking If the Current Post type is in the user selected Post types array.
 	 *
