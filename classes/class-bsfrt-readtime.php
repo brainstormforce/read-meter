@@ -1108,7 +1108,7 @@ min-width: 100px;
 		$markup_start = '<div id="bsf_rt_marker">';
 		$markup_end   = '</div>';
 
-		$content = $markup_start . $content . $markup_end;
+		$content = $markup_start . $markup_end . $content;
 
 		return $content;
 	}
