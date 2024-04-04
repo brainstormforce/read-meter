@@ -30,11 +30,6 @@ module.exports = function (grunt) {
 						cwd: "assets/css/",
 						ext: ".min.css",
 					},
-					{
-						// .css to ultimate.min.css
-						src: ["assets/css/modules/*.css"],
-						dest: "assets/css/read-meter-frontend.min.css",
-					},
 				],
 			},
 		},
