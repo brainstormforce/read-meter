@@ -78,6 +78,7 @@ The Read Meter plugin works with all WordPress themes!
 == Changelog ==
 = 1.0.8 =
 - Fix: Page Content Wrap Marker used for progress bar was causing styling issues with non block based themes.
+- Fix: Only added the marker needed for progress bar on the post types selected.
 
 = 1.0.7 =
 - Fix: Theme Layout Styles conflict with the Marker div added as a wrapper to the_content.
