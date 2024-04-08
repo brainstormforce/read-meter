@@ -87,7 +87,7 @@ class BSFRT_ReadTime {
 	 */
 	public function filter_class( $content, $block_data ) {
 		// not a post-content block.
-		if ( empty( $block_data['blockName'] ) || 'core/post-content' !== $block_data['blockName'] ) {
+		if ( empty( $block_data['blockName'] ) || 'core/post-content' !== $block_data['blockName'] || ! $this->bsf_rt_check_selected_post_types() ) {
 			return $content;
 		}
 		
@@ -1104,6 +1104,9 @@ min-width: 100px;
 	 * @return content.
 	 */
 	public function bsf_rt_add_marker_for_progress_bar_scroll( $content ) {
+		if ( ! $this->bsf_rt_check_selected_post_types() ) {
+			return $content;
+		}
 
 		$markup_start = '<div id="bsf_rt_marker">';
 		$markup_end   = '</div>';
