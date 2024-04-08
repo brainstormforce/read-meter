@@ -60,9 +60,16 @@ function goActive()
 window.addEventListener('scroll', shakeEventDidOccur, false);
 window.addEventListener('touchstart', shakeEventDidOccur, false);
  function shakeEventDidOccur () {
-    var content =
-		document.getElementById("bsf_rt_marker") ||
-		document.getElementsByClassName("bsf_rt_marker")[0];
+	var content;
+	var rtMarker = document.getElementById("bsf_rt_marker");
+	if (rtMarker) {
+		content = rtMarker.parentElement;
+	} else {
+		content = document.querySelector(".bsf_rt_marker");
+	}
+	var content = rtMarker
+		? rtMarker.parentElement
+		: document.querySelector(".bsf_rt_marker");
     var bsf_rt_comments = document.getElementById("bsf-rt-comments");
     bsfrtProgressBarScroll(content , bsf_rt_comments)
 };

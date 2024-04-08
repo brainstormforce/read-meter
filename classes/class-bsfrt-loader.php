@@ -30,6 +30,21 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 		 * @var instance
 		 */
 		private static $instance;
+
+		/**
+		 * JS Extension
+		 *
+		 * @var js_extension
+		 */
+		private $js_extension = SCRIPT_DEBUG ? '.js' : '.min.js';
+
+		/**
+		 * CSS Extension
+		 *
+		 * @var css_extension
+		 */
+		private $css_extension = SCRIPT_DEBUG ? '.css' : '.min.css';
+		
 		/**
 		 *  Initiator
 		 */
@@ -246,8 +261,8 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 
 				$option['bsf_rt_include_comments'] = '';
 			}
-			wp_register_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/min-css/bsfrt-frontend-css.min.css', null, BSF_RT_VER );
-			wp_register_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/min-js/bsf-rt-frontend.min.js', null, BSF_RT_VER, false );
+			wp_register_style( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-frontend-css' . $this->css_extension, null, BSF_RT_VER );
+			wp_register_script( 'bsfrt_frontend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-frontend' . $this->js_extension, null, BSF_RT_VER, false );
 
 			wp_localize_script( 'bsfrt_frontend', 'myObj', array( 'option' => $option['bsf_rt_include_comments'] ) );
 
@@ -261,11 +276,11 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 		public function bsfrt_pluginstyle_dashboard() {
 			wp_enqueue_style( 'wp-color-picker' );
 
-			wp_register_style( 'bsfrt_dashboard', BSF_RT_PLUGIN_URL . '/assets/min-css/bsfrt-admin-dashboard-css.min.css', null, BSF_RT_VER );
+			wp_register_style( 'bsfrt_dashboard', BSF_RT_PLUGIN_URL . '/assets/css/bsfrt-admin-dashboard-css' . $this->css_extension, null, BSF_RT_VER );
 
-			wp_register_script( 'bsfrt_backend', BSF_RT_PLUGIN_URL . '/assets/min-js/bsf-rt-backend.min.js', null, BSF_RT_VER, false );
+			wp_register_script( 'bsfrt_backend', BSF_RT_PLUGIN_URL . '/assets/js/bsf-rt-backend' . $this->js_extension, null, BSF_RT_VER, false );
 
-			wp_register_script( 'colorpickerscript', BSF_RT_PLUGIN_URL . '/assets/min-js/color-picker.min.js', array( 'jquery', 'wp-color-picker' ), BSF_RT_VER, true );
+			wp_register_script( 'colorpickerscript', BSF_RT_PLUGIN_URL . '/assets/js/color-picker' . $this->js_extension, array( 'jquery', 'wp-color-picker' ), BSF_RT_VER, true );
 		}
 	}
 	BSFRT_Loader::get_instance();
