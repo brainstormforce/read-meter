@@ -1192,7 +1192,7 @@ min-width: 100px;
 	/**
 	 * Helper function to add frontend default CSS.
 	 * 
-	 * @since x.x.x
+	 * @since 1.0.9
 	 */
 	public function bsf_rt_add_default_frontend_css() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_frontend_default_css' ) );
@@ -1201,7 +1201,7 @@ min-width: 100px;
 	/**
 	 * Helper function to add readtime styles content CSS.
 	 * 
-	 * @since x.x.x
+	 * @since 1.0.9
 	 */
 	public function bsf_rt_add_readtime_styles_content() {
 		add_action( 'wp_head', array( $this, 'bsf_rt_set_readtime_styles_content' ) );

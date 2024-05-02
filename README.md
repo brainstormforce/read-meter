@@ -5,7 +5,7 @@
 **Requires at least:** 4.2  
 **Requires PHP:** 5.2  
 **Tested up to:** 6.5  
-**Stable tag:** 1.0.8  
+**Stable tag:** 1.0.9  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -76,6 +76,10 @@ The Read Meter plugin works with all WordPress themes!
 4. Getting Started
 
 ## Changelog ##
+### 1.0.9 ###
+- Feature: Added the ID attribute to the `[read_meter]` shortcode eg: `[read_meter id="47"]` to show reading time of that particular post/page irrespective of where the shortcode is added.
+- Fix: Reading time using shortcode `[read_meter]` was not visible on individual post/page unless the post type was selected.
+
 ### 1.0.8 ###
 - Fix: Page Content Wrap Marker used for progress bar was causing styling issues with non block based themes.
 - Fix: Only added the marker needed for progress bar on the post types selected.
