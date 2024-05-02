@@ -777,6 +777,7 @@ class BSFRT_ReadTime {
 	 * Function of the read_meter shortcode.
 	 *
 	 * @since 1.0.0
+	 * @param array $atts Optional associative array of attributes for the shortcode.
 	 * @return shortcode display value.
 	 */
 	public function read_meter_shortcode( $atts ) {
