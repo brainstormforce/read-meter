@@ -206,7 +206,7 @@ class BSFRT_ReadTime {
 		
 		if ( 'none' !== $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 			
-			if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
+			if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) && ! $this->bsf_rt_styles_loaded_flag ) {
 				// Read time styles.
 				$this->bsf_rt_add_readtime_styles_content();
 			} else {
