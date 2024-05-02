@@ -191,7 +191,8 @@ class BSFRT_ReadTime {
 	 */
 	public function bsf_rt_init_frontend() {
 		global $post;
-		if ( ! empty($post) && has_shortcode($post->post_content, 'read_meter') ) {
+		if ( ! empty( $post ) && has_shortcode( $post->post_content, 
+ 'read_meter' ) ) {
 			$this->bsf_rt_add_default_frontend_css();
 			$this->bsf_rt_add_readtime_styles_content();
 			$this->bsf_rt_styles_loaded_flag = true;
