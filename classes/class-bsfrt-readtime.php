@@ -191,7 +191,8 @@ class BSFRT_ReadTime {
 	 */
 	public function bsf_rt_init_frontend() {
 		global $post;
-		if ( ! empty($post) && has_shortcode($post->post_content, 'read_meter') ) {
+		if ( ! empty( $post ) && has_shortcode( $post->post_content, 
+ 'read_meter' ) ) {
 			$this->bsf_rt_add_default_frontend_css();
 			$this->bsf_rt_add_readtime_styles_content();
 			$this->bsf_rt_styles_loaded_flag = true;
@@ -203,18 +204,18 @@ class BSFRT_ReadTime {
 		}
 		$this->bsf_rt_add_default_frontend_css();
 		add_filter( 'comments_template', array( $this, 'bsf_rt_marker_for_progressbar' ) );
-		
+
 		if ( 'none' !== $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
-			
+
 			if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) && ! $this->bsf_rt_styles_loaded_flag ) {
 				// Read time styles.
 				$this->bsf_rt_add_readtime_styles_content();
 			} else {
-				
+
 				add_action( 'wp_head', array( $this, 'bsf_rt_set_readtime_styles' ) );
 			}
 		}
-		
+
 		// For twenty fifteen Theme remove the extra markup in the nextpost and prev post section.
 		$bsf_rt_current_theme = $this->bsf_rt_get_current_theme();
 
@@ -225,7 +226,7 @@ class BSFRT_ReadTime {
 
 		// Show Reading time Conditions.
 		if ( $this->bsf_rt_get_option( 'bsf_rt_show_read_time' ) && 'none' !== $this->bsf_rt_options['bsf_rt_position_of_read_time'] ) {
-			if ( in_array( 'bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_singular() && ! $this->bsf_rt_styles_loaded_flag ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
+			if ( in_array( 'bsf_rt_single_page', $this->bsf_rt_options['bsf_rt_show_read_time'] ) && is_singular() ) {//PHPCS:ignore:WordPress.PHP.StrictInArray.MissingTrueStrict
 
 				if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
