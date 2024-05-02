@@ -786,8 +786,9 @@ class BSFRT_ReadTime {
 		), $atts, 'read_meter' );
 		
 		$bsf_rt_post = get_the_ID();
-		if ( isset( $atts['id'] ) && ! empty( $atts['id'] ) && is_numeric( $atts['id'] ) ) {
-			if ( $post = get_post( sanitize_text_field( $atts['id'] ) ) ) {
+		if ( ! empty( $atts['id'] ) && is_numeric( $atts['id'] ) ) {
+			$post = get_post( sanitize_text_field( $atts['id'] ) );
+			if ( $post ) {
 				$bsf_rt_post = $post->ID;
 			}
 		}
