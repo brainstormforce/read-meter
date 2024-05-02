@@ -779,8 +779,17 @@ class BSFRT_ReadTime {
 	 * @since 1.0.0
 	 * @return shortcode display value.
 	 */
-	public function read_meter_shortcode() {
+	public function read_meter_shortcode( $atts ) {
+		$atts = shortcode_atts( array(
+			'id' => ''
+		), $atts, 'read_meter' );
+		
 		$bsf_rt_post = get_the_ID();
+		if ( isset( $atts['id'] ) && ! empty( $atts['id'] ) && is_numeric( $atts['id'] ) ) {
+			if ( $post = get_post( sanitize_text_field( $atts['id'] ) ) ) {
+				$bsf_rt_post = $post->ID;
+			}
+		}
 
 		$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
