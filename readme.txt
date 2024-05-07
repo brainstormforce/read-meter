@@ -38,7 +38,7 @@ Here are some key features of the plugin -
 That's not all! Here are some more controls you get over **Reading Time** -
 
 + Display the read time on a blog/archive page or single post page
-+ Display the read time of any blog/archive page or single post page anywhere on the site
++ Show the estimated time it takes to read any blog/archive page or single post page, which can be displayed on any section of the website
 + Set the read time position - i.e. Above/Below title or above content
 + Set a read time Prefix and Postfix
 + Use various read time styling options - Spacing, Background color, Font size, etc.
