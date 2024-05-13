@@ -1003,7 +1003,7 @@ class BSFRT_ReadTime {
 	min-width: 100px;
 
 	}
-</style>
+
 		<?php
 	}
 
