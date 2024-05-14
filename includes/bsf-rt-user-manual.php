@@ -19,6 +19,7 @@ wp_enqueue_style( 'bsfrt_dashboard' );
 	<b>Step 3</b> : Go to the <i>Progress Bar</i> Tab, and select the position, colors, and thickness of the progress bar as per your need. <br><br>
 	<b>Step 4</b> :That' . "'" . 's it! Visit Post/Page to see results.  <br><br><br>
 	<b> Shortcode : [read_meter]</b> <br><br>
-		You can also display the reading time wherever you want by using this shortcode , You just need to copy it and paste it in any content of Post or Page.';
+		You can also display the reading time wherever you want by using this shortcode , You just need to copy it and paste it in any content of Post or Page. <br>
+		You can provide a simple ID attribute to the shortcode to display reading time of that particular post/page irrespective of where the shortcode is added, eg: <b>[read_meter id=47]</b>.';
 		?>
 </div>

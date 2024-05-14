@@ -38,11 +38,18 @@ class BSFRT_ReadTime {
 	public $bsf_rt_options = array();
 
 	/**
-	 * Member Varaible
+	 * Member Variable
 	 *
 	 * @var bsf_rt_check_the_page
 	 */
 	public static $bsf_rt_check_the_page;
+
+	/**
+	 * Member Variable
+	 * 
+	 * @var bsf_rt_styles_loaded_flag
+	 */
+	private $bsf_rt_styles_loaded_flag = false;
 
 	/**
 	 * Initiator
@@ -183,19 +190,26 @@ class BSFRT_ReadTime {
 	 * Frontend settings.
 	 */
 	public function bsf_rt_init_frontend() {
+		global $post;
+		if ( ! empty( $post ) && has_shortcode( $post->post_content, 
+ 'read_meter' ) ) {
+			$this->bsf_rt_add_default_frontend_css();
+			$this->bsf_rt_add_readtime_styles_content();
+			$this->bsf_rt_styles_loaded_flag = true;
+		}
 
 		if ( false === $this->bsf_rt_check_selected_post_types() ) {
 
 			return;
 		}
-		add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_frontend_default_css' ) );
+		$this->bsf_rt_add_default_frontend_css();
 		add_filter( 'comments_template', array( $this, 'bsf_rt_marker_for_progressbar' ) );
 
 		if ( 'none' !== $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
-			if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
+			if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) && ! $this->bsf_rt_styles_loaded_flag ) {
 				// Read time styles.
-				add_action( 'wp_head', array( $this, 'bsf_rt_set_readtime_styles_content' ) );
+				$this->bsf_rt_add_readtime_styles_content();
 			} else {
 
 				add_action( 'wp_head', array( $this, 'bsf_rt_set_readtime_styles' ) );
@@ -265,6 +279,7 @@ class BSFRT_ReadTime {
 				}
 			}
 		}
+
 		// Displaying Progress Bar Conditions.
 		if ( 'none' === $this->bsf_rt_get_option( 'bsf_rt_position_of_progress_bar' ) ) {
 
@@ -624,7 +639,7 @@ class BSFRT_ReadTime {
 	 * Calculate the reading time of a post.
 	 *
 	 * Gets the post content, counts the images, strips shortcodes, and strips tags.
-	 * Then counds the words. Converts images into a word coun and outputs the total reading time.
+	 * Then counts the words. Converts images into a word count and outputs the total reading time.
 	 *
 	 * @since 1.0.0
 	 * @param  int   $bsf_rt_post The Post ID.
@@ -763,10 +778,21 @@ class BSFRT_ReadTime {
 	 * Function of the read_meter shortcode.
 	 *
 	 * @since 1.0.0
+	 * @param array $atts Optional associative array of attributes for the shortcode.
 	 * @return shortcode display value.
 	 */
-	public function read_meter_shortcode() {
+	public function read_meter_shortcode( $atts ) {
+		$atts = shortcode_atts( array(
+			'id' => ''
+		), $atts, 'read_meter' );
+		
 		$bsf_rt_post = get_the_ID();
+		if ( ! empty( $atts['id'] ) && is_numeric( $atts['id'] ) ) {
+			$post = get_post( sanitize_text_field( $atts['id'] ) );
+			if ( $post ) {
+				$bsf_rt_post = $post->ID;
+			}
+		}
 
 		$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
@@ -977,7 +1003,7 @@ class BSFRT_ReadTime {
 	min-width: 100px;
 
 	}
-
+</style>
 		<?php
 	}
 
@@ -1153,8 +1179,8 @@ min-width: 100px;
 	 * Marker for progress bar
 	 *
 	 * @param string $template input of the filter.
-	 * @return string $template for the purpose to execute comments.
 	 * @since  1.1.0
+	 * @return string $template for the purpose to execute comments.
 	 */
 	public function bsf_rt_marker_for_progressbar( $template ) {
 		echo '<div id="bsf-rt-comments"></div>';
@@ -1163,7 +1189,23 @@ min-width: 100px;
 				return $template;
 	}
 
+	/**
+	 * Helper function to add frontend default CSS.
+	 * 
+	 * @since 1.0.9
+	 */
+	public function bsf_rt_add_default_frontend_css() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'bsfrt_frontend_default_css' ) );
+	}
 
+	/**
+	 * Helper function to add readtime styles content CSS.
+	 * 
+	 * @since 1.0.9
+	 */
+	public function bsf_rt_add_readtime_styles_content() {
+		add_action( 'wp_head', array( $this, 'bsf_rt_set_readtime_styles_content' ) );
+	}
 
 }
 
