@@ -4,8 +4,8 @@ Donate link: https://www.paypal.me/BrainstormForce
 Tags: readtime, progressbar
 Requires at least: 4.2
 Requires PHP: 5.2
-Tested up to: 6.6
-Stable tag: 1.0.9
+Tested up to: 6.8
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,9 @@ The Read Meter plugin works with all WordPress themes!
 4. Getting Started
 
 == Changelog ==
+= 1.0.10 =
+- Fix: Improved input handling by updating to a safer and more modern sanitization method.
+
 = 1.0.9 =
 - Feature: Added the ID attribute to the `[read_meter]` shortcode eg: `[read_meter id="47"]` to show reading time of that particular post/page irrespective of where the shortcode is added.
 - Fix: Reading time using shortcode `[read_meter]` was not visible on individual post/page unless the post type was selected.

@@ -100,7 +100,7 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 
 				foreach ( $bsf_rt_post_types_array as $key ) {
 					// Sanitizing each element of array separately and then storing them.
-					array_push( $bsf_rt_post_types, filter_var( $key, FILTER_SANITIZE_STRING ) );
+					array_push( $bsf_rt_post_types, sanitize_text_field( $key ) );
 				}
 			}
 
@@ -156,7 +156,7 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 					// Sanitizing each element of array separately and then storing them.
 				foreach ( $bsf_rt_readtime_post_types_array as $key ) {
 
-					array_push( $bsf_rt_show_read_time, filter_var( $key, FILTER_SANITIZE_STRING ) );
+					array_push( $bsf_rt_show_read_time, sanitize_text_field( $key) );
 				}
 			}
 
