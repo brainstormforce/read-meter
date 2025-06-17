@@ -78,6 +78,9 @@ The Read Meter plugin works with all WordPress themes!
 4. Getting Started
 
 == Changelog ==
+= 1.0.11 =
+- Fix: Updated CSS selector to correctly apply styles to the read meter text.
+
 = 1.0.10 =
 - Fix: Improved input handling by updating to a safer and more modern sanitization method.
 
