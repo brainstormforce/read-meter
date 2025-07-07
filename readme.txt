@@ -1,5 +1,5 @@
 === Read Meter - Reading Time & Progress Bar ===
-Contributors: brainstormforce
+Contributors: Pratik Chaskar
 Donate link: https://www.paypal.me/BrainstormForce
 Tags: readtime, progressbar
 Requires at least: 4.2
