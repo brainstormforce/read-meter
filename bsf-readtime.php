@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Read Meter - Reading Time & Progress Bar for WordPress.
  * Description:  To display Reading Time for a particular post.
- * Version:     1.0.10
+ * Version:     1.0.11
  * Author:      Pratik Chaskar
  * Author URI:  https://pratikchaskar.com
  * Text Domain: read-meter.
@@ -19,7 +19,7 @@
 
 define( 'BSF_RT_PATH', __FILE__ );
 
-define( 'BSF_RT_VER', '1.0.10' );
+define( 'BSF_RT_VER', '1.0.11' );
 
 define( 'BSF_RT_ABSPATH', plugin_dir_path( __FILE__ ) );
 
