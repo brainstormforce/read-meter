@@ -4,7 +4,7 @@
  *
  * @since      1.0.0
  * @package    BSF
- * @author     Brainstorm Force.
+ * @author     Pratik Chaskar.
  */
 
 wp_enqueue_style( 'bsfrt_dashboard' );

@@ -1,11 +1,11 @@
 # Read Meter - Reading Time & Progress Bar #
-**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
+**Contributors:** [Pratik Chaskar](https://profiles.wordpress.org/pratikchaskar)  
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** readtime, progressbar  
 **Requires at least:** 4.2  
 **Requires PHP:** 5.2  
 **Tested up to:** 6.8  
-**Stable tag:** 1.0.10  
+**Stable tag:** 1.0.11  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -79,6 +79,7 @@ The Read Meter plugin works with all WordPress themes!
 
 ## Changelog ##
 ### 1.0.11 ###
+- Fix: Updated Readme file.
 - Fix: Updated CSS selector to correctly apply styles to the read meter text.
 
 ### 1.0.10 ###
