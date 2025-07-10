@@ -1,11 +1,11 @@
 # Read Meter - Reading Time & Progress Bar #
-**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
+**Contributors:** [Pratik Chaskar](https://profiles.wordpress.org/pratikchaskar)  
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** readtime, progressbar  
 **Requires at least:** 4.2  
 **Requires PHP:** 5.2  
 **Tested up to:** 6.8  
-**Stable tag:** 1.0.10  
+**Stable tag:** 1.0.11  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -30,6 +30,7 @@ It works great to give visitors a quick idea about the time needed to read a pos
 Here are some key features of the plugin -
 
 + A simple shortcode - `[read_meter]`,  gives you the flexibility to add read time anywhere on the site.
++ A simple ID attribute to the shortcode can display reading time of that particular post/page irrespective of where the shortcode is added - `[read_meter id=47]`.
 + Even if the post is updated multiple times, the plugin will calculate the read time for the most recent version of the post.
 + You can choose to display the read time and a progress bar on various post types.
 + You can decide whether you would like to include images and comments in the read time and progress bar.
@@ -37,6 +38,7 @@ Here are some key features of the plugin -
 That's not all! Here are some more controls you get over **Reading Time** -
 
 + Display the read time on a blog/archive page or single post page
++ Show the estimated time it takes to read any blog/archive page or single post page, which can be displayed on any section of the website
 + Set the read time position - i.e. Above/Below title or above content
 + Set a read time Prefix and Postfix
 + Use various read time styling options - Spacing, Background color, Font size, etc.
@@ -76,6 +78,10 @@ The Read Meter plugin works with all WordPress themes!
 4. Getting Started
 
 ## Changelog ##
+### 1.0.11 ###
+- Fix: Updated Readme file.
+- Fix: Updated CSS selector to correctly apply styles to the read meter text.
+
 ### 1.0.10 ###
 - Fix: Improved input handling by updating to a safer and more modern sanitization method.
 

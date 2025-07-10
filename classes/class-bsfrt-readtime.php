@@ -4,7 +4,7 @@
  *
  * @since      1.0.0
  * @package    BSF
- * @author     Brainstorm Force.
+ * @author     Pratik Chaskar.
  */
 
 /**
@@ -1017,7 +1017,8 @@ class BSFRT_ReadTime {
 		?>
 
 <style type="text/css">
-.entry-content .bsf-rt-reading-time{
+.entry-content .bsf-rt-reading-time,
+.post-content .bsf-rt-reading-time {
 background: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_background_color'] ) : 'unset'; ?>;
 
 color: <?php echo ( '' !== $this->bsf_rt_options['bsf_rt_read_time_color'] ) ? esc_attr( $this->bsf_rt_options['bsf_rt_read_time_color'] ) : 'unset'; ?>;
