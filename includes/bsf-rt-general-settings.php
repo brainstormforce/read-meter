@@ -33,13 +33,13 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<br>
 		<p class="description">
 				<?php
-				esc_attr_e( 'Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.', 'read-meter' );
+				esc_html_e( 'Control the core settings of a read meter, e.g. the average count of words that humans can read in a minute & allow a read meter on particular post types, etc.', 'read-meter' );
 				?>
 			   
 		</p>  
 		<tr>
 	<th scope="row">
-			<label for="SelectPostTypes"><?php esc_attr_e( 'Select Post Types', 'read-meter' ); ?> :</label>
+			<label for="SelectPostTypes"><?php esc_html_e( 'Select Post Types:', 'read-meter' ); ?></label>
 			</th>
 			<td class="post_type_name">
 				   
@@ -84,7 +84,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		<tr>
 		<tr>
 		<th scope="row">
-			<label for="WordsPerMinute"><?php esc_attr_e( 'Words Per Minute', 'read-meter' ); ?> :</label>
+			<label for="WordsPerMinute"><?php esc_html_e( 'Words Per Minute:', 'read-meter' ); ?></label>
 		</th>
 		<td>
 			<?php
@@ -94,7 +94,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 		</tr>
 		<th scope="row">
 
-			<label for="IncludeComments"> <?php esc_attr_e( 'Include Comments', 'read-meter' ); ?> :</label>
+			<label for="IncludeComments"> <?php esc_html_e( 'Include Comments:', 'read-meter' ); ?></label>
 		</th>
 		<td>
 				<?php
@@ -105,7 +105,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 				}
 				?>
 			<p  class="description bsf_rt_description">
-					<?php esc_attr_e( "Check this to include comment's text in reading time.", 'read-meter' ); ?>
+					<?php esc_html_e( "Check this to include comment's text in reading time.", 'read-meter' ); ?>
 
 			</p>  
 		</td>
@@ -113,7 +113,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 <tr>
 		<th scope="row">
 
-			<label for="IncludeImages"> <?php esc_attr_e( 'Include Images', 'read-meter' ); ?> :</label>
+			<label for="IncludeImages"> <?php esc_html_e( 'Include Images:', 'read-meter' ); ?></label>
 		</th>
 		<td>
 			<?php
@@ -126,7 +126,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 			}
 			?>
 			<p  class="description bsf_rt_description">   
-				<?php esc_attr_e( ' Check this to include post images in reading time.', 'read-meter' ); ?>  
+				<?php esc_html_e( ' Check this to include post images in reading time.', 'read-meter' ); ?>  
 			</p>  
 		</td>
 		</tr>
@@ -135,7 +135,7 @@ $exclude = array( 'attachment', 'elementor_library', 'Media', 'My Templates' );
 	<tr>
 		<th>
 			<?php wp_nonce_field( 'bsf-rt-nonce-general', 'bsf-rt-general' ); ?>
-			<input type="submit" value="Save" class="bt button button-primary" name="submit">
+			<input type="submit" value="<?php esc_attr_e( 'Save', 'read-meter' ); ?>" class="bt button button-primary" name="submit">
 		</th>
 	</tr>
 	</table>
