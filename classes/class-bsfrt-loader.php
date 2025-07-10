@@ -7,8 +7,8 @@
  * @category PHP
  * @package  Read Meter
  * @author   Display Name <username@rajkiranb.com>
- * @license  http://brainstormforce.com
- * @link     http://brainstormforce.com
+ * @license  http://pratikchaskar.com
+ * @link     http://pratikchaskar.com
  */
 
 if ( ! class_exists( 'BSFRT_Loader' ) ) :
@@ -20,8 +20,8 @@ if ( ! class_exists( 'BSFRT_Loader' ) ) :
 	 * @category PHP
 	 * @package  Read Meter
 	 * @author   Display Name <username@rajkiranb.com>
-	 * @license  http://brainstormforce.com
-	 * @link     http://brainstormforce.com
+	 * @license  http://pratikchaskar.com
+	 * @link     http://pratikchaskar.com
 	 */
 	class BSFRT_Loader {
 		/**

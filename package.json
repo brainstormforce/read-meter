@@ -1,8 +1,8 @@
 {
   "name": "read-meter",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "Gruntfile.js",
-  "author": "Brainstorm Force",
+  "author": "Pratik Chaskar",
   "devDependencies": {
     "autoprefixer": "^9.6.1",
     "grunt": "^1.6.1",
