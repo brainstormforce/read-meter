@@ -245,7 +245,7 @@ class BSFRT_ReadTime {
 
 				if ( 'above_the_content' === $this->bsf_rt_get_option( 'bsf_rt_position_of_read_time' ) ) {
 
-					add_filter( 'get_the_excerpt', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000 );
+					add_filter( 'get_the_excerpt', array( $this, 'bsf_rt_generate_reading_time_excerpt' ), 1000 );
 					if ( 'Twenty Fifteen' === $bsf_rt_current_theme || 'Twenty Nineteen' === $bsf_rt_current_theme || 'Twenty Thirteen' === $bsf_rt_current_theme || 'Twenty Fourteen' === $bsf_rt_current_theme || 'Twenty Sixteen' === $bsf_rt_current_theme || 'Twenty Seventeen' === $bsf_rt_current_theme || 'Twenty Twelve' === $bsf_rt_current_theme ) {
 						add_filter( 'the_content', array( $this, 'bsf_rt_add_reading_time_before_content_excerpt' ), 1000 );
 					}
@@ -409,41 +409,37 @@ class BSFRT_ReadTime {
 	}
 
 	/**
-	 * Adds the reading time before the_excerpt content.
-	 *
-	 * If the options is selected to automatically add the reading time before
-	 * the_excerpt, the reading time is calculated and added to the beginning of the_excerpt.
+	 * Generates the reading time text and appends it to the excerpt.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param  string $excerpt The original content of the_excerpt.
+	 * @param string $excerpt The original excerpt content.
+	 * @return string The excerpt with reading time prepended.
 	 */
-	public function bsf_rt_add_reading_time_before_content_excerpt( $excerpt ) {
+	public function bsf_rt_generate_reading_time_excerpt( $excerpt ) {
 		if ( in_the_loop() && is_home() && ! is_archive() ) {
-
 			$original_excerpt = $excerpt;
-
-			$bsf_rt_post = get_the_ID();
+			$bsf_rt_post      = get_the_ID();
 
 			$this->bsf_rt_calculate_reading_time( $bsf_rt_post, $this->bsf_rt_options );
 
 			$label   = $this->bsf_rt_options['bsf_rt_reading_time_label'];
 			$postfix = $this->bsf_rt_options['bsf_rt_reading_time_postfix_label'];
 
-			$calculated_postfix = $postfix;
+			$reading_time = '<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $postfix ) . '"></span></span>';
 
-			$excerpt = '
-<span class="bsf-rt-reading-time"><span class="bsf-rt-display-label" prefix="' . esc_attr( $label ) . '"></span> <span class="bsf-rt-display-time" reading_time="' . esc_attr( $this->reading_time ) . '"></span> <span class="bsf-rt-display-postfix" postfix="' . esc_attr( $calculated_postfix ) . '"></span></span>';
-
-			$excerpt .= $original_excerpt;
-
-			echo $excerpt; //PHPCS:ignore:WordPress.XSS.EscapeOutput.OutputNotEscaped
-
-		} else {
-
-			echo $excerpt; //PHPCS:ignore:WordPress.XSS.EscapeOutput.OutputNotEscaped
-
+			return $reading_time . $original_excerpt;
 		}
+		return $excerpt;
+	}
+
+	/**
+	 * Displays the excerpt with reading time.
+	 *
+	 * @since 1.0.0
+	 * @param string $excerpt The original excerpt content.
+	 */
+	public function bsf_rt_add_reading_time_before_content_excerpt( $excerpt ) {
+		echo $this->bsf_rt_generate_reading_time_excerpt( $excerpt ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
