@@ -6,6 +6,7 @@ on:
 jobs:
   master:
     name: Push to master
+    environment: Production
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
