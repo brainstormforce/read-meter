@@ -9,14 +9,14 @@
 
 wp_enqueue_style( 'bsfrt_dashboard' );
 echo '<h1 class="bsf_rt_main_title">';
-esc_attr_e( 'Read Meter', 'read-meter' );
+esc_html_e( 'Read Meter', 'read-meter' );
 echo '</h1>';
 
 if ( 'ok' == get_option( 'bsf_rt_saved_msg' ) ) { //PHPCS:ignore:WordPress.PHP.StrictComparisons.LooseComparison
 	echo '<div id="message" class="notice is-dismissible notice-success">
-      <p class="description">
-      Settings Saved.
-      </p>
+      <p class="description">' .
+      esc_html__( 'Settings Saved.', 'read-meter' )
+      . '</p>
     </div>';
 	update_option( 'bsf_rt_saved_msg', 'notok' );
 }
@@ -57,7 +57,7 @@ if ( isset( $_GET['tab'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerificatio
 					echo 'nav-tab-active';
 	}
 	?>
-	"><?php esc_attr_e( 'General Settings', 'read-meter' ); ?></a>
+	"><?php esc_html_e( 'General Settings', 'read-meter' ); ?></a>
 
 			<a href="?page=bsf_rt&tab=bsf_rt_read_time_settings" class="nav-tab tb 
 			<?php
@@ -65,7 +65,7 @@ if ( isset( $_GET['tab'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerificatio
 					echo 'nav-tab-active';
 			}
 			?>
-			"><?php esc_attr_e( 'Read Time', 'read-meter' ); ?></a>
+			"><?php esc_html_e( 'Read Time', 'read-meter' ); ?></a>
 
 			<a href="?page=bsf_rt&tab=bsf_rt_progress_bar_settings" class="nav-tab tb 
 			<?php
@@ -73,7 +73,7 @@ if ( isset( $_GET['tab'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerificatio
 						echo 'nav-tab-active';
 			}
 			?>
-			"><?php esc_attr_e( 'Progress Bar', 'read-meter' ); ?></a>
+			"><?php esc_html_e( 'Progress Bar', 'read-meter' ); ?></a>
 
 		<a href="?page=bsf_rt&tab=bsf_rt_user_manual" class="nav-tab tb 
 		<?php
@@ -81,7 +81,7 @@ if ( isset( $_GET['tab'] ) ) {//PHPCS:ignore:WordPress.Security.NonceVerificatio
 						echo 'nav-tab-active';
 		}
 		?>
-		"><?php esc_attr_e( 'Getting Started', 'read-meter' ); ?></a>
+		"><?php esc_html_e( 'Getting Started', 'read-meter' ); ?></a>
 </h2>
 
 <?php

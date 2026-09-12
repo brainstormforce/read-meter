@@ -119,8 +119,8 @@ class BSFRT_ReadTime {
 
 		$default_options_readtime = array(
 			'bsf_rt_show_read_time'             => $bsf_rt_show_read_time,
-			'bsf_rt_reading_time_label'         => 'Reading Time',
-			'bsf_rt_reading_time_postfix_label' => 'mins',
+			'bsf_rt_reading_time_label'         => __( 'Reading Time', 'read-meter'),
+			'bsf_rt_reading_time_postfix_label' => __( 'mins', 'read-meter'),
 			'bsf_rt_words_per_minute'           => '275',
 			'bsf_rt_position_of_read_time'      => 'above_the_content',
 			'bsf_rt_read_time_background_color' => '#eeeeee',

@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Read Meter - Reading Time & Progress Bar for WordPress.
+ * Plugin Name: Read Meter - Reading Time & Progress Bar for WordPress
  * Description:  To display Reading Time for a particular post.
  * Version:     1.0.11
  * Author:      Pratik Chaskar
  * Author URI:  https://pratikchaskar.com
- * Text Domain: read-meter.
+ * Text Domain: read-meter
  * Main
  *
  * PHP version 7
